@@ -1,0 +1,16 @@
+//
+//  tempConfig.xcconfig
+//  QuickMart
+//
+//  Created by Mina_Wagdy on 27/06/2026.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Config.xcconfig"
+
+// Local Overrides (Git Ignored)
+STORE_URL = https:\/\/api.stagingstore.com
+ADMIN_API_TOKEN = temp_admin_token_8a9b
+API_KEY = temp_api_key_1234
+API_SECRET_KEY = temp_secret_key_5678

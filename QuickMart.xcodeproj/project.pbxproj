@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D4D1B8082FEFDF650082FE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,6 +97,7 @@
 		584C12852FEFFA2000F61A1B /* QuickMart */ = {
 			isa = PBXGroup;
 			children = (
+				D4D1B8082FEFDF650082FE02 /* Info.plist */,
 				D4D1B6D22FEFD3A90082FE02 /* Presentation */,
 				D4D1B6D12FEFD3A00082FE02 /* Domain */,
 				D4D1B6D02FEFD3960082FE02 /* App */,
@@ -305,6 +307,8 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D4D1B6D02FEFD3960082FE02 /* App */;
+			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -366,6 +370,8 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D4D1B6D02FEFD3960082FE02 /* App */;
+			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -430,6 +436,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"QuickMart/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickMart/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = APISecretKey;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -455,6 +463,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"QuickMart/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickMart/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = APISecretKey;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
