@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		584C12872FEFFA2000F61A1B /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12862FEFFA2000F61A1B /* QuickMartApp.swift */; };
+		584C12892FEFFA2000F61A1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12882FEFFA2000F61A1B /* ContentView.swift */; };
+		584C128B2FEFFA2300F61A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128A2FEFFA2300F61A1B /* Assets.xcassets */; };
+		584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */; };
+		584C12902FEFFA2300F61A1B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C128F2FEFFA2300F61A1B /* Persistence.swift */; };
+		584C12932FEFFA2300F61A1B /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */; };
+		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
+		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
+		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		584C129A2FEFFA2300F61A1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 584C127B2FEFFA1F00F61A1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 584C12822FEFFA2000F61A1B;
+			remoteInfo = QuickMart;
+		};
+		584C12A42FEFFA2400F61A1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 584C127B2FEFFA1F00F61A1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 584C12822FEFFA2000F61A1B;
+			remoteInfo = QuickMart;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		584C12862FEFFA2000F61A1B /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
+		584C12882FEFFA2000F61A1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		584C128A2FEFFA2300F61A1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		584C128F2FEFFA2300F61A1B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
+		584C12942FEFFA2300F61A1B /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
+		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartTests.swift; sourceTree = "<group>"; };
+		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
+		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		584C12802FEFFA2000F61A1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C12962FEFFA2300F61A1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C12A02FEFFA2400F61A1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		584C127A2FEFFA1F00F61A1B = {
+			isa = PBXGroup;
+			children = (
+				584C12852FEFFA2000F61A1B /* QuickMart */,
+				584C129C2FEFFA2300F61A1B /* QuickMartTests */,
+				584C12A62FEFFA2400F61A1B /* QuickMartUITests */,
+				584C12842FEFFA2000F61A1B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		584C12842FEFFA2000F61A1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				584C12832FEFFA2000F61A1B /* QuickMart.app */,
+				584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */,
+				584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		584C12852FEFFA2000F61A1B /* QuickMart */ = {
+			isa = PBXGroup;
+			children = (
+				584C12862FEFFA2000F61A1B /* QuickMartApp.swift */,
+				584C12882FEFFA2000F61A1B /* ContentView.swift */,
+				584C128A2FEFFA2300F61A1B /* Assets.xcassets */,
+				584C128F2FEFFA2300F61A1B /* Persistence.swift */,
+				584C12942FEFFA2300F61A1B /* QuickMart.entitlements */,
+				584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */,
+				584C128C2FEFFA2300F61A1B /* Preview Content */,
+			);
+			path = QuickMart;
+			sourceTree = "<group>";
+		};
+		584C128C2FEFFA2300F61A1B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		584C129C2FEFFA2300F61A1B /* QuickMartTests */ = {
+			isa = PBXGroup;
+			children = (
+				584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */,
+			);
+			path = QuickMartTests;
+			sourceTree = "<group>";
+		};
+		584C12A62FEFFA2400F61A1B /* QuickMartUITests */ = {
+			isa = PBXGroup;
+			children = (
+				584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */,
+				584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */,
+			);
+			path = QuickMartUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		584C12822FEFFA2000F61A1B /* QuickMart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 584C12AD2FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMart" */;
+			buildPhases = (
+				584C127F2FEFFA2000F61A1B /* Sources */,
+				584C12802FEFFA2000F61A1B /* Frameworks */,
+				584C12812FEFFA2000F61A1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickMart;
+			productName = QuickMart;
+			productReference = 584C12832FEFFA2000F61A1B /* QuickMart.app */;
+			productType = "com.apple.product-type.application";
+		};
+		584C12982FEFFA2300F61A1B /* QuickMartTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 584C12B02FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMartTests" */;
+			buildPhases = (
+				584C12952FEFFA2300F61A1B /* Sources */,
+				584C12962FEFFA2300F61A1B /* Frameworks */,
+				584C12972FEFFA2300F61A1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				584C129B2FEFFA2300F61A1B /* PBXTargetDependency */,
+			);
+			name = QuickMartTests;
+			productName = QuickMartTests;
+			productReference = 584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		584C12A22FEFFA2400F61A1B /* QuickMartUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 584C12B32FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMartUITests" */;
+			buildPhases = (
+				584C129F2FEFFA2400F61A1B /* Sources */,
+				584C12A02FEFFA2400F61A1B /* Frameworks */,
+				584C12A12FEFFA2400F61A1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				584C12A52FEFFA2400F61A1B /* PBXTargetDependency */,
+			);
+			name = QuickMartUITests;
+			productName = QuickMartUITests;
+			productReference = 584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		584C127B2FEFFA1F00F61A1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					584C12822FEFFA2000F61A1B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					584C12982FEFFA2300F61A1B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 584C12822FEFFA2000F61A1B;
+					};
+					584C12A22FEFFA2400F61A1B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 584C12822FEFFA2000F61A1B;
+					};
+				};
+			};
+			buildConfigurationList = 584C127E2FEFFA1F00F61A1B /* Build configuration list for PBXProject "QuickMart" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 584C127A2FEFFA1F00F61A1B;
+			productRefGroup = 584C12842FEFFA2000F61A1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				584C12822FEFFA2000F61A1B /* QuickMart */,
+				584C12982FEFFA2300F61A1B /* QuickMartTests */,
+				584C12A22FEFFA2400F61A1B /* QuickMartUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		584C12812FEFFA2000F61A1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
+				584C128B2FEFFA2300F61A1B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C12972FEFFA2300F61A1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C12A12FEFFA2400F61A1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		584C127F2FEFFA2000F61A1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				584C12902FEFFA2300F61A1B /* Persistence.swift in Sources */,
+				584C12892FEFFA2000F61A1B /* ContentView.swift in Sources */,
+				584C12872FEFFA2000F61A1B /* QuickMartApp.swift in Sources */,
+				584C12932FEFFA2300F61A1B /* QuickMart.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C12952FEFFA2300F61A1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		584C129F2FEFFA2400F61A1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */,
+				584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		584C129B2FEFFA2300F61A1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 584C12822FEFFA2000F61A1B /* QuickMart */;
+			targetProxy = 584C129A2FEFFA2300F61A1B /* PBXContainerItemProxy */;
+		};
+		584C12A52FEFFA2400F61A1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 584C12822FEFFA2000F61A1B /* QuickMart */;
+			targetProxy = 584C12A42FEFFA2400F61A1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		584C12AB2FEFFA2400F61A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		584C12AC2FEFFA2400F61A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		584C12AE2FEFFA2400F61A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickMart/QuickMart.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuickMart/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		584C12AF2FEFFA2400F61A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickMart/QuickMart.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuickMart/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		584C12B12FEFFA2400F61A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickMart.app/Contents/MacOS/QuickMart";
+			};
+			name = Debug;
+		};
+		584C12B22FEFFA2400F61A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickMart.app/Contents/MacOS/QuickMart";
+			};
+			name = Release;
+		};
+		584C12B42FEFFA2400F61A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = QuickMart;
+			};
+			name = Debug;
+		};
+		584C12B52FEFFA2400F61A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = QuickMart;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		584C127E2FEFFA1F00F61A1B /* Build configuration list for PBXProject "QuickMart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				584C12AB2FEFFA2400F61A1B /* Debug */,
+				584C12AC2FEFFA2400F61A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		584C12AD2FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				584C12AE2FEFFA2400F61A1B /* Debug */,
+				584C12AF2FEFFA2400F61A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		584C12B02FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMartTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				584C12B12FEFFA2400F61A1B /* Debug */,
+				584C12B22FEFFA2400F61A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		584C12B32FEFFA2400F61A1B /* Build configuration list for PBXNativeTarget "QuickMartUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				584C12B42FEFFA2400F61A1B /* Debug */,
+				584C12B52FEFFA2400F61A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */,
+			);
+			currentVersion = 584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */;
+			path = QuickMart.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 584C127B2FEFFA1F00F61A1B /* Project object */;
+}
