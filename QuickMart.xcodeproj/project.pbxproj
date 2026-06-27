@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 71;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,29 @@
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
+		D4A91EDF2FF0259B007B11D2 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */; };
+		D4A91EE02FF0259B007B11D2 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91ED92FF0259B007B11D2 /* ItemView.swift */; };
+		D4A91EE12FF0259B007B11D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EDC2FF0259B007B11D2 /* ContentView.swift */; };
+		D4A91EE22FF0259B007B11D2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EDD2FF0259B007B11D2 /* Router.swift */; };
+		D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE32FF025A9007B11D2 /* Product.swift */; };
+		D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */; };
+		D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */; };
+		D4A91EF72FF025AE007B11D2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EED2FF025AE007B11D2 /* AppRouter.swift */; };
+		D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF02FF025AE007B11D2 /* DIContainer.swift */; };
+		D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */; };
+		D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */; };
+		D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */; };
+		D4A91EFC2FF025AE007B11D2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */; };
+		D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */; };
+		D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */; };
+		D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */; };
+		D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F032FF025B9007B11D2 /* ProductDTO.swift */; };
+		D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F052FF025B9007B11D2 /* ProductRepository.swift */; };
+		D4A91F0D2FF025B9007B11D2 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F072FF025B9007B11D2 /* Persistence.swift */; };
+		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
+		D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */; };
+		D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F112FF025BF007B11D2 /* NetworkService.swift */; };
+		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,16 +63,32 @@
 		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		D4A91ED92FF0259B007B11D2 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		D4A91EDC2FF0259B007B11D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4A91EDD2FF0259B007B11D2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D4A91EE32FF025A9007B11D2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProtocol.swift; sourceTree = "<group>"; };
+		D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProductUseCase.swift; sourceTree = "<group>"; };
+		D4A91EED2FF025AE007B11D2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D4A91EF02FF025AE007B11D2 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
+		D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
+		D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tempConfig.xcconfig; sourceTree = "<group>"; };
+		D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
+		D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		D4A91F032FF025B9007B11D2 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
+		D4A91F052FF025B9007B11D2 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		D4A91F072FF025B9007B11D2 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
+		D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		D4A91F112FF025BF007B11D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D4D1B8082FEFDF650082FE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		D4D1B6CE2FEFD36C0082FE02 /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
-		D4D1B6CF2FEFD38E0082FE02 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
-		D4D1B6D02FEFD3960082FE02 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
-		D4D1B6D12FEFD3A00082FE02 /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
-		D4D1B6D22FEFD3A90082FE02 /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		584C12802FEFFA2000F61A1B /* Frameworks */ = {
@@ -101,11 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				D4D1B8082FEFDF650082FE02 /* Info.plist */,
-				D4D1B6D22FEFD3A90082FE02 /* Presentation */,
-				D4D1B6D12FEFD3A00082FE02 /* Domain */,
-				D4D1B6D02FEFD3960082FE02 /* App */,
-				D4D1B6CF2FEFD38E0082FE02 /* Data */,
-				D4D1B6CE2FEFD36C0082FE02 /* Core */,
+				D4A91EDE2FF0259B007B11D2 /* Presentation */,
+				D4A91EE92FF025A9007B11D2 /* Domain */,
+				D4A91EF52FF025AE007B11D2 /* App */,
+				D4A91F082FF025B9007B11D2 /* Data */,
+				D4A91F152FF025BF007B11D2 /* Core */,
 				584C128C2FEFFA2300F61A1B /* Preview Content */,
 			);
 			path = QuickMart;
@@ -136,6 +175,177 @@
 			path = QuickMartUITests;
 			sourceTree = "<group>";
 		};
+		D4A91ED82FF0259B007B11D2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D4A91EDA2FF0259B007B11D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91ED92FF0259B007B11D2 /* ItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4A91EDB2FF0259B007B11D2 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91ED82FF0259B007B11D2 /* ViewModels */,
+				D4A91EDA2FF0259B007B11D2 /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D4A91EDE2FF0259B007B11D2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EDB2FF0259B007B11D2 /* Authentication */,
+				D4A91EDC2FF0259B007B11D2 /* ContentView.swift */,
+				D4A91EDD2FF0259B007B11D2 /* Router.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D4A91EE42FF025A9007B11D2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EE32FF025A9007B11D2 /* Product.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D4A91EE62FF025A9007B11D2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D4A91EE82FF025A9007B11D2 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */,
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+		D4A91EE92FF025A9007B11D2 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EE42FF025A9007B11D2 /* Entities */,
+				D4A91EE62FF025A9007B11D2 /* Protocols */,
+				D4A91EE82FF025A9007B11D2 /* Usecases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D4A91EF52FF025AE007B11D2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EED2FF025AE007B11D2 /* AppRouter.swift */,
+				D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */,
+				D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */,
+				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
+				D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */,
+				D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */,
+				D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */,
+				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D4A91EFF2FF025B9007B11D2 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		D4A91F012FF025B9007B11D2 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		D4A91F022FF025B9007B11D2 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EFF2FF025B9007B11D2 /* Local */,
+				D4A91F012FF025B9007B11D2 /* Remote */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		D4A91F042FF025B9007B11D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F032FF025B9007B11D2 /* ProductDTO.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D4A91F062FF025B9007B11D2 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F052FF025B9007B11D2 /* ProductRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D4A91F082FF025B9007B11D2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F022FF025B9007B11D2 /* DataSources */,
+				D4A91F042FF025B9007B11D2 /* Models */,
+				D4A91F062FF025B9007B11D2 /* Repositories */,
+				D4A91F072FF025B9007B11D2 /* Persistence.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D4A91F0F2FF025BF007B11D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4A91F122FF025BF007B11D2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */,
+				D4A91F112FF025BF007B11D2 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D4A91F142FF025BF007B11D2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F132FF025BF007B11D2 /* Formatter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D4A91F152FF025BF007B11D2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91F0F2FF025BF007B11D2 /* Extensions */,
+				D4A91F122FF025BF007B11D2 /* Network */,
+				D4A91F142FF025BF007B11D2 /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,13 +360,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D4D1B6CE2FEFD36C0082FE02 /* Core */,
-				D4D1B6CF2FEFD38E0082FE02 /* Data */,
-				D4D1B6D02FEFD3960082FE02 /* App */,
-				D4D1B6D12FEFD3A00082FE02 /* Domain */,
-				D4D1B6D22FEFD3A90082FE02 /* Presentation */,
 			);
 			name = QuickMart;
 			productName = QuickMart;
@@ -247,6 +450,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
+				D4A91EFC2FF025AE007B11D2 /* Config.xcconfig in Resources */,
+				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
 				153B02142FEFE68C00B276B9 /* GoogleService-Info.plist in Resources */,
 				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
 			);
@@ -273,6 +479,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A91EF72FF025AE007B11D2 /* AppRouter.swift in Sources */,
+				D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */,
+				D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */,
+				D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */,
+				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
+				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
+				D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */,
+				D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */,
+				D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */,
+				D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */,
+				D4A91F0D2FF025B9007B11D2 /* Persistence.swift in Sources */,
+				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
+				D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */,
+				D4A91EDF2FF0259B007B11D2 /* ProductViewModel.swift in Sources */,
+				D4A91EE02FF0259B007B11D2 /* ItemView.swift in Sources */,
+				D4A91EE12FF0259B007B11D2 /* ContentView.swift in Sources */,
+				D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */,
+				D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */,
+				D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */,
+				D4A91EE22FF0259B007B11D2 /* Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,8 +537,7 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = D4D1B6D02FEFD3960082FE02 /* App */;
-			baseConfigurationReferenceRelativePath = Config.xcconfig;
+			baseConfigurationReference = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -374,8 +599,7 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = D4D1B6D02FEFD3960082FE02 /* App */;
-			baseConfigurationReferenceRelativePath = Config.xcconfig;
+			baseConfigurationReference = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -596,6 +820,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */,
+			);
+			currentVersion = D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */;
+			path = QuickMart.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 584C127B2FEFFA1F00F61A1B /* Project object */;
 }
