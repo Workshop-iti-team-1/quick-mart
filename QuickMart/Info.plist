@@ -10,5 +10,7 @@
 	<string>$(ADMIN_API_TOKEN)</string>
 	<key>StoreURL</key>
 	<string>$(STORE_URL)</string>
+	<key>UILaunchScreen</key>
+	<dict/>
 </dict>
 </plist>
