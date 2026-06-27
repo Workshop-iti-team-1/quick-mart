@@ -3,16 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		584C12872FEFFA2000F61A1B /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12862FEFFA2000F61A1B /* QuickMartApp.swift */; };
-		584C12892FEFFA2000F61A1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12882FEFFA2000F61A1B /* ContentView.swift */; };
-		584C128B2FEFFA2300F61A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128A2FEFFA2300F61A1B /* Assets.xcassets */; };
 		584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */; };
-		584C12902FEFFA2300F61A1B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C128F2FEFFA2300F61A1B /* Persistence.swift */; };
-		584C12932FEFFA2300F61A1B /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */; };
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
@@ -37,19 +32,21 @@
 
 /* Begin PBXFileReference section */
 		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		584C12862FEFFA2000F61A1B /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
-		584C12882FEFFA2000F61A1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		584C128A2FEFFA2300F61A1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		584C128F2FEFFA2300F61A1B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
-		584C12942FEFFA2300F61A1B /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
 		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartTests.swift; sourceTree = "<group>"; };
 		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D4D1B6CE2FEFD36C0082FE02 /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
+		D4D1B6CF2FEFD38E0082FE02 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
+		D4D1B6D02FEFD3960082FE02 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
+		D4D1B6D12FEFD3A00082FE02 /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
+		D4D1B6D22FEFD3A90082FE02 /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		584C12802FEFFA2000F61A1B /* Frameworks */ = {
@@ -99,12 +96,11 @@
 		584C12852FEFFA2000F61A1B /* QuickMart */ = {
 			isa = PBXGroup;
 			children = (
-				584C12862FEFFA2000F61A1B /* QuickMartApp.swift */,
-				584C12882FEFFA2000F61A1B /* ContentView.swift */,
-				584C128A2FEFFA2300F61A1B /* Assets.xcassets */,
-				584C128F2FEFFA2300F61A1B /* Persistence.swift */,
-				584C12942FEFFA2300F61A1B /* QuickMart.entitlements */,
-				584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */,
+				D4D1B6D22FEFD3A90082FE02 /* Presentation */,
+				D4D1B6D12FEFD3A00082FE02 /* Domain */,
+				D4D1B6D02FEFD3960082FE02 /* App */,
+				D4D1B6CF2FEFD38E0082FE02 /* Data */,
+				D4D1B6CE2FEFD36C0082FE02 /* Core */,
 				584C128C2FEFFA2300F61A1B /* Preview Content */,
 			);
 			path = QuickMart;
@@ -149,6 +145,13 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D4D1B6CE2FEFD36C0082FE02 /* Core */,
+				D4D1B6CF2FEFD38E0082FE02 /* Data */,
+				D4D1B6D02FEFD3960082FE02 /* App */,
+				D4D1B6D12FEFD3A00082FE02 /* Domain */,
+				D4D1B6D22FEFD3A90082FE02 /* Presentation */,
 			);
 			name = QuickMart;
 			productName = QuickMart;
@@ -240,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
-				584C128B2FEFFA2300F61A1B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584C12902FEFFA2300F61A1B /* Persistence.swift in Sources */,
-				584C12892FEFFA2000F61A1B /* ContentView.swift in Sources */,
-				584C12872FEFFA2000F61A1B /* QuickMartApp.swift in Sources */,
-				584C12932FEFFA2300F61A1B /* QuickMart.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,19 +576,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		584C12912FEFFA2300F61A1B /* QuickMart.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */,
-			);
-			currentVersion = 584C12922FEFFA2300F61A1B /* QuickMart.xcdatamodel */;
-			path = QuickMart.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 584C127B2FEFFA1F00F61A1B /* Project object */;
 }
