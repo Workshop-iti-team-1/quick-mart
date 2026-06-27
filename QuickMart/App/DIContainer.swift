@@ -16,14 +16,14 @@ final class DIContainer {
     
     // MARK: - Core / Network Infrastructure
     
-    lazy var graphQLClient: ShopifyGraphQLClientProtocol = {
-        // Wiring up the AppConfiguration seamlessly
-        return ShopifyGraphQLClient(
-            endpoint: AppConfiguration.storeURL,
-            adminToken: AppConfiguration.adminAPIToken,
-            apiKey: AppConfiguration.apiKey
-        )
-    }()
+//    lazy var graphQLClient: ShopifyGraphQLClientProtocol = {
+//        // Wiring up the AppConfiguration seamlessly
+//        return ShopifyGraphQLClient(
+//            endpoint: AppConfiguration.storeURL,
+//            adminToken: AppConfiguration.adminAPIToken,
+//            apiKey: AppConfiguration.apiKey
+//        )
+//    }()
     
     // Add CoreData Stack here later if needed:
     // lazy var coreDataStack: CoreDataStack = { CoreDataStack(modelName: "QuickMart") }()

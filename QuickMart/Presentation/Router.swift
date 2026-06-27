@@ -8,6 +8,6 @@ import Foundation
 
 enum Route: Hashable {
     case home
-    case productDetail(String)
-    case cart
+//    case productDetail(String)
+//    case cart
 }
