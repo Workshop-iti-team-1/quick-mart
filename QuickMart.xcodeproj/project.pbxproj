@@ -458,6 +458,9 @@
 				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
 				153B02142FEFE68C00B276B9 /* GoogleService-Info.plist in Resources */,
 				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
+				595629792FF02003006C0084 /* QuickMart.entitlements in Resources */,
+				595629752FF02003006C0084 /* Assets.xcassets in Resources */,
+				595629762FF02003006C0084 /* tempConfig.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
