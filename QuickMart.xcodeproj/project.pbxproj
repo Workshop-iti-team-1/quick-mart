@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153B02142FEFE68C00B276B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 153B02132FEFE68C00B276B9 /* GoogleService-Info.plist */; };
 		584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */; };
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		153B02132FEFE68C00B276B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				584C129C2FEFFA2300F61A1B /* QuickMartTests */,
 				584C12A62FEFFA2400F61A1B /* QuickMartUITests */,
 				584C12842FEFFA2000F61A1B /* Products */,
+				153B02132FEFE68C00B276B9 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153B02142FEFE68C00B276B9 /* GoogleService-Info.plist in Resources */,
 				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,10 +448,13 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iti.quickmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -471,10 +478,13 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iti.quickmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
