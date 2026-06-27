@@ -12,25 +12,30 @@
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
-		595629612FF01FF8006C0084 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956295A2FF01FF8006C0084 /* ProductViewModel.swift */; };
-		595629622FF01FF8006C0084 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956295C2FF01FF8006C0084 /* ItemView.swift */; };
-		595629632FF01FF8006C0084 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956295F2FF01FF8006C0084 /* ContentView.swift */; };
-		5956296B2FF01FFF006C0084 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629642FF01FFF006C0084 /* Product.swift */; };
-		5956296C2FF01FFF006C0084 /* ProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629662FF01FFF006C0084 /* ProductProtocol.swift */; };
-		5956296D2FF01FFF006C0084 /* FetchProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629682FF01FFF006C0084 /* FetchProductUseCase.swift */; };
-		595629752FF02003006C0084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5956296E2FF02003006C0084 /* Assets.xcassets */; };
-		595629762FF02003006C0084 /* tempConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 595629722FF02003006C0084 /* tempConfig.xcconfig */; };
-		595629772FF02003006C0084 /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595629702FF02003006C0084 /* QuickMart.xcdatamodeld */; };
-		595629782FF02003006C0084 /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629712FF02003006C0084 /* QuickMartApp.swift */; };
-		595629792FF02003006C0084 /* QuickMart.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 5956296F2FF02003006C0084 /* QuickMart.entitlements */; };
-		595629852FF02011006C0084 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956297A2FF02011006C0084 /* LocalDataSource.swift */; };
-		595629862FF02011006C0084 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956297C2FF02011006C0084 /* RemoteDataSource.swift */; };
-		595629872FF02011006C0084 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956297F2FF02011006C0084 /* ProductDTO.swift */; };
-		595629882FF02011006C0084 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629812FF02011006C0084 /* ProductRepository.swift */; };
-		595629892FF02011006C0084 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595629832FF02011006C0084 /* Persistence.swift */; };
-		595629912FF02014006C0084 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956298A2FF02014006C0084 /* View+Shimmer.swift */; };
-		595629922FF02014006C0084 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956298C2FF02014006C0084 /* NetworkService.swift */; };
-		595629932FF02014006C0084 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956298E2FF02014006C0084 /* Formatter.swift */; };
+		D4A91EDF2FF0259B007B11D2 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */; };
+		D4A91EE02FF0259B007B11D2 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91ED92FF0259B007B11D2 /* ItemView.swift */; };
+		D4A91EE12FF0259B007B11D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EDC2FF0259B007B11D2 /* ContentView.swift */; };
+		D4A91EE22FF0259B007B11D2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EDD2FF0259B007B11D2 /* Router.swift */; };
+		D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE32FF025A9007B11D2 /* Product.swift */; };
+		D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */; };
+		D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */; };
+		D4A91EF72FF025AE007B11D2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EED2FF025AE007B11D2 /* AppRouter.swift */; };
+		D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF02FF025AE007B11D2 /* DIContainer.swift */; };
+		D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */; };
+		D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */; };
+		D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */; };
+		D4A91EFC2FF025AE007B11D2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */; };
+		D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */; };
+		D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */; };
+		D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */; };
+		D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F032FF025B9007B11D2 /* ProductDTO.swift */; };
+		D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F052FF025B9007B11D2 /* ProductRepository.swift */; };
+		D4A91F0D2FF025B9007B11D2 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F072FF025B9007B11D2 /* Persistence.swift */; };
+		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
+		D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */; };
+		D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F112FF025BF007B11D2 /* NetworkService.swift */; };
+		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
+		D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,26 +64,31 @@
 		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5956295A2FF01FF8006C0084 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
-		5956295C2FF01FF8006C0084 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
-		5956295F2FF01FF8006C0084 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		595629642FF01FFF006C0084 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		595629662FF01FFF006C0084 /* ProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProtocol.swift; sourceTree = "<group>"; };
-		595629682FF01FFF006C0084 /* FetchProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProductUseCase.swift; sourceTree = "<group>"; };
-		5956296E2FF02003006C0084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5956296F2FF02003006C0084 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
-		595629712FF02003006C0084 /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
-		595629722FF02003006C0084 /* tempConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tempConfig.xcconfig; sourceTree = "<group>"; };
-		595629742FF02003006C0084 /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
-		5956297A2FF02011006C0084 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
-		5956297C2FF02011006C0084 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
-		5956297F2FF02011006C0084 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
-		595629812FF02011006C0084 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
-		595629832FF02011006C0084 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		5956298A2FF02014006C0084 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
-		5956298C2FF02014006C0084 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		5956298E2FF02014006C0084 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		59E063702FEFF3400015DC97 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
+		D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		D4A91ED92FF0259B007B11D2 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		D4A91EDC2FF0259B007B11D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4A91EDD2FF0259B007B11D2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D4A91EE32FF025A9007B11D2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProtocol.swift; sourceTree = "<group>"; };
+		D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProductUseCase.swift; sourceTree = "<group>"; };
+		D4A91EED2FF025AE007B11D2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D4A91EF02FF025AE007B11D2 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
+		D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
+		D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tempConfig.xcconfig; sourceTree = "<group>"; };
+		D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
+		D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		D4A91F032FF025B9007B11D2 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
+		D4A91F052FF025B9007B11D2 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		D4A91F072FF025B9007B11D2 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
+		D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		D4A91F112FF025BF007B11D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyGraphQLClientProtocol.swift; sourceTree = "<group>"; };
 		D4D1B8082FEFDF650082FE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +125,6 @@
 				584C12A62FEFFA2400F61A1B /* QuickMartUITests */,
 				584C12842FEFFA2000F61A1B /* Products */,
 				153B02132FEFE68C00B276B9 /* GoogleService-Info.plist */,
-				59E063702FEFF3400015DC97 /* QuickMart.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,11 +142,11 @@
 			isa = PBXGroup;
 			children = (
 				D4D1B8082FEFDF650082FE02 /* Info.plist */,
-				595629602FF01FF8006C0084 /* Presentation */,
-				5956296A2FF01FFF006C0084 /* Domain */,
-				595629732FF02003006C0084 /* App */,
-				595629842FF02011006C0084 /* Data */,
-				595629902FF02014006C0084 /* Core */,
+				D4A91EDE2FF0259B007B11D2 /* Presentation */,
+				D4A91EE92FF025A9007B11D2 /* Domain */,
+				D4A91EF52FF025AE007B11D2 /* App */,
+				D4A91F082FF025B9007B11D2 /* Data */,
+				D4A91F152FF025BF007B11D2 /* Core */,
 				584C128C2FEFFA2300F61A1B /* Preview Content */,
 			);
 			path = QuickMart;
@@ -168,168 +177,174 @@
 			path = QuickMartUITests;
 			sourceTree = "<group>";
 		};
-		5956295B2FF01FF8006C0084 /* ViewModels */ = {
+		D4A91ED82FF0259B007B11D2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5956295A2FF01FF8006C0084 /* ProductViewModel.swift */,
+				D4A91ED72FF0259B007B11D2 /* ProductViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		5956295D2FF01FF8006C0084 /* Views */ = {
+		D4A91EDA2FF0259B007B11D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5956295C2FF01FF8006C0084 /* ItemView.swift */,
+				D4A91ED92FF0259B007B11D2 /* ItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5956295E2FF01FF8006C0084 /* Authentication */ = {
+		D4A91EDB2FF0259B007B11D2 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				5956295B2FF01FF8006C0084 /* ViewModels */,
-				5956295D2FF01FF8006C0084 /* Views */,
+				D4A91ED82FF0259B007B11D2 /* ViewModels */,
+				D4A91EDA2FF0259B007B11D2 /* Views */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		595629602FF01FF8006C0084 /* Presentation */ = {
+		D4A91EDE2FF0259B007B11D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				5956295E2FF01FF8006C0084 /* Authentication */,
-				5956295F2FF01FF8006C0084 /* ContentView.swift */,
+				D4A91EDB2FF0259B007B11D2 /* Authentication */,
+				D4A91EDC2FF0259B007B11D2 /* ContentView.swift */,
+				D4A91EDD2FF0259B007B11D2 /* Router.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		595629652FF01FFF006C0084 /* Entities */ = {
+		D4A91EE42FF025A9007B11D2 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				595629642FF01FFF006C0084 /* Product.swift */,
+				D4A91EE32FF025A9007B11D2 /* Product.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		595629672FF01FFF006C0084 /* Protocols */ = {
+		D4A91EE62FF025A9007B11D2 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				595629662FF01FFF006C0084 /* ProductProtocol.swift */,
+				D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		595629692FF01FFF006C0084 /* Usecases */ = {
+		D4A91EE82FF025A9007B11D2 /* Usecases */ = {
 			isa = PBXGroup;
 			children = (
-				595629682FF01FFF006C0084 /* FetchProductUseCase.swift */,
+				D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */,
 			);
 			path = Usecases;
 			sourceTree = "<group>";
 		};
-		5956296A2FF01FFF006C0084 /* Domain */ = {
+		D4A91EE92FF025A9007B11D2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				595629652FF01FFF006C0084 /* Entities */,
-				595629672FF01FFF006C0084 /* Protocols */,
-				595629692FF01FFF006C0084 /* Usecases */,
+				D4A91EE42FF025A9007B11D2 /* Entities */,
+				D4A91EE62FF025A9007B11D2 /* Protocols */,
+				D4A91EE82FF025A9007B11D2 /* Usecases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		595629732FF02003006C0084 /* App */ = {
+		D4A91EF52FF025AE007B11D2 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				5956296E2FF02003006C0084 /* Assets.xcassets */,
-				5956296F2FF02003006C0084 /* QuickMart.entitlements */,
-				595629702FF02003006C0084 /* QuickMart.xcdatamodeld */,
-				595629712FF02003006C0084 /* QuickMartApp.swift */,
-				595629722FF02003006C0084 /* tempConfig.xcconfig */,
+				D4A91EED2FF025AE007B11D2 /* AppRouter.swift */,
+				D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */,
+				D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */,
+				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
+				D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */,
+				D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */,
+				D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */,
+				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		5956297B2FF02011006C0084 /* Local */ = {
+		D4A91EFF2FF025B9007B11D2 /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				5956297A2FF02011006C0084 /* LocalDataSource.swift */,
+				D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
 		};
-		5956297D2FF02011006C0084 /* Remote */ = {
+		D4A91F012FF025B9007B11D2 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				5956297C2FF02011006C0084 /* RemoteDataSource.swift */,
+				D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
 		};
-		5956297E2FF02011006C0084 /* DataSources */ = {
+		D4A91F022FF025B9007B11D2 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				5956297B2FF02011006C0084 /* Local */,
-				5956297D2FF02011006C0084 /* Remote */,
+				D4A91EFF2FF025B9007B11D2 /* Local */,
+				D4A91F012FF025B9007B11D2 /* Remote */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		595629802FF02011006C0084 /* Models */ = {
+		D4A91F042FF025B9007B11D2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5956297F2FF02011006C0084 /* ProductDTO.swift */,
+				D4A91F032FF025B9007B11D2 /* ProductDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		595629822FF02011006C0084 /* Repositories */ = {
+		D4A91F062FF025B9007B11D2 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				595629812FF02011006C0084 /* ProductRepository.swift */,
+				D4A91F052FF025B9007B11D2 /* ProductRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		595629842FF02011006C0084 /* Data */ = {
+		D4A91F082FF025B9007B11D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5956297E2FF02011006C0084 /* DataSources */,
-				595629802FF02011006C0084 /* Models */,
-				595629822FF02011006C0084 /* Repositories */,
-				595629832FF02011006C0084 /* Persistence.swift */,
+				D4A91F022FF025B9007B11D2 /* DataSources */,
+				D4A91F042FF025B9007B11D2 /* Models */,
+				D4A91F062FF025B9007B11D2 /* Repositories */,
+				D4A91F072FF025B9007B11D2 /* Persistence.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		5956298B2FF02014006C0084 /* Extensions */ = {
+		D4A91F0F2FF025BF007B11D2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5956298A2FF02014006C0084 /* View+Shimmer.swift */,
+				D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		5956298D2FF02014006C0084 /* Network */ = {
+		D4A91F122FF025BF007B11D2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5956298C2FF02014006C0084 /* NetworkService.swift */,
+				D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */,
+				D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */,
+				D4A91F112FF025BF007B11D2 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		5956298F2FF02014006C0084 /* Utilities */ = {
+		D4A91F142FF025BF007B11D2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				5956298E2FF02014006C0084 /* Formatter.swift */,
+				D4A91F132FF025BF007B11D2 /* Formatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		595629902FF02014006C0084 /* Core */ = {
+		D4A91F152FF025BF007B11D2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5956298B2FF02014006C0084 /* Extensions */,
-				5956298D2FF02014006C0084 /* Network */,
-				5956298F2FF02014006C0084 /* Utilities */,
+				D4A91F0F2FF025BF007B11D2 /* Extensions */,
+				D4A91F122FF025BF007B11D2 /* Network */,
+				D4A91F142FF025BF007B11D2 /* Utilities */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -438,6 +453,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
+				D4A91EFC2FF025AE007B11D2 /* Config.xcconfig in Resources */,
+				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
 				153B02142FEFE68C00B276B9 /* GoogleService-Info.plist in Resources */,
 				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
 				595629792FF02003006C0084 /* QuickMart.entitlements in Resources */,
@@ -467,22 +485,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				595629772FF02003006C0084 /* QuickMart.xcdatamodeld in Sources */,
-				595629782FF02003006C0084 /* QuickMartApp.swift in Sources */,
-				5956296B2FF01FFF006C0084 /* Product.swift in Sources */,
-				5956296C2FF01FFF006C0084 /* ProductProtocol.swift in Sources */,
-				5956296D2FF01FFF006C0084 /* FetchProductUseCase.swift in Sources */,
-				595629612FF01FF8006C0084 /* ProductViewModel.swift in Sources */,
-				595629912FF02014006C0084 /* View+Shimmer.swift in Sources */,
-				595629922FF02014006C0084 /* NetworkService.swift in Sources */,
-				595629932FF02014006C0084 /* Formatter.swift in Sources */,
-				595629852FF02011006C0084 /* LocalDataSource.swift in Sources */,
-				595629862FF02011006C0084 /* RemoteDataSource.swift in Sources */,
-				595629872FF02011006C0084 /* ProductDTO.swift in Sources */,
-				595629882FF02011006C0084 /* ProductRepository.swift in Sources */,
-				595629892FF02011006C0084 /* Persistence.swift in Sources */,
-				595629622FF01FF8006C0084 /* ItemView.swift in Sources */,
-				595629632FF01FF8006C0084 /* ContentView.swift in Sources */,
+				D4A91EF72FF025AE007B11D2 /* AppRouter.swift in Sources */,
+				D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */,
+				D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */,
+				D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */,
+				D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */,
+				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
+				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
+				D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */,
+				D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */,
+				D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */,
+				D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */,
+				D4A91F0D2FF025B9007B11D2 /* Persistence.swift in Sources */,
+				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
+				D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */,
+				D4A91EDF2FF0259B007B11D2 /* ProductViewModel.swift in Sources */,
+				D4A91EE02FF0259B007B11D2 /* ItemView.swift in Sources */,
+				D4A91EE12FF0259B007B11D2 /* ContentView.swift in Sources */,
+				D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */,
+				D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */,
+				D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */,
+				D4A91EE22FF0259B007B11D2 /* Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +544,7 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -582,6 +606,7 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4A91EEF2FF025AE007B11D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -639,7 +664,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = QuickMart/App/QuickMart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -649,7 +673,7 @@
 				INFOPLIST_FILE = QuickMart/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = APISecretKey;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -661,7 +685,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -670,7 +694,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = QuickMart/App/QuickMart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -680,7 +703,7 @@
 				INFOPLIST_FILE = QuickMart/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = APISecretKey;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -692,7 +715,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -704,16 +727,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MACOSX_DEPLOYMENT_TARGET = 11.7;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickMart.app/Contents/MacOS/QuickMart";
 			};
 			name = Debug;
@@ -726,16 +745,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MACOSX_DEPLOYMENT_TARGET = 11.7;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickMart.app/Contents/MacOS/QuickMart";
 			};
 			name = Release;
@@ -747,15 +762,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = QuickMart;
 			};
 			name = Debug;
@@ -767,15 +778,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.QuickMartUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = QuickMart;
 			};
 			name = Release;
@@ -822,12 +829,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		595629702FF02003006C0084 /* QuickMart.xcdatamodeld */ = {
+		D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				595629742FF02003006C0084 /* QuickMart.xcdatamodel */,
+				D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */,
 			);
-			currentVersion = 595629742FF02003006C0084 /* QuickMart.xcdatamodel */;
+			currentVersion = D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */;
 			path = QuickMart.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
