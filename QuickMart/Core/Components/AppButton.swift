@@ -9,40 +9,48 @@ struct AppButton: View {
     var title: String
     var style: AppButtonStyle = .primary
     var icon: String? = nil
+    var customIcon: Image? = nil
+    var color: Color = .black
+    var verticalPadding: CGFloat = 16
     var action: () -> Void
-    
     @Environment(\.colorScheme) var colorScheme
-    
     var body: some View {
         Button(action: action) {
-            HStack {
+            HStack(spacing: 8) {
                 Text(title)
+                    .appTextStyle(.button, color: textColor)
                 if let icon = icon {
                     Image(systemName: icon)
+                        .foregroundColor(textColor)
+                }
+                if let customIcon = customIcon {
+                    customIcon
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
                 }
             }
-            .appTextStyle(.button, color: textColor)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
+            .padding(.vertical, verticalPadding)
             .background(backgroundView)
         }
     }
-    
+
     private var textColor: Color {
         switch style {
         case .primary:
             return colorScheme == .dark ? .black : .white
         case .secondary:
-            return .cyanPrimary
+            return color
         }
     }
-    
+
     @ViewBuilder
     private var backgroundView: some View {
         switch style {
         case .primary:
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.cyanPrimary)
+                .fill(color)
         case .secondary:
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)
