@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
-//import FirebaseCore
+
 @main
 struct QuickMartApp: App {
-
-//    init() {
-//        FirebaseApp.configure()
-//    }
+    @State private var router = AppRouter()
+    
     var body: some Scene {
         WindowGroup {
-         RootView()
+            RootView()
+                .environment(router)
         }
     }
-} 
- 
-
+}
