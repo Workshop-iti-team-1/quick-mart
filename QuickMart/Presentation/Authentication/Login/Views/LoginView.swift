@@ -26,12 +26,12 @@ struct LoginView: View {
                         .padding(.top, 16)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Login")
+                        Text(AppStrings.Auth.login)
                             .appTextStyle(.heading1, color: .primary)
                         HStack(spacing: 4) {
-                            Text("Don't have an account?")
+                            Text(AppStrings.Auth.dontHaveAccount)
                                 .appTextStyle(.body, color: .gray)
-                            Button("Signup") {
+                            Button(AppStrings.Auth.signup) {
                                 router.popToRoot()
                                 router.push(.signup)
                             }
@@ -40,22 +40,22 @@ struct LoginView: View {
                     }
 
                     VStack(spacing: 16) {
-                        CustomTextField(title: "Email", placeholder: "Enter your email", text: $email)
-                        CustomTextField(title: "Password", placeholder: "Enter your password", text: $password, isSecure: true)
+                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $email)
+                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $password, isSecure: true)
                     }
                     .padding(.top, 16)
 
                     HStack {
                         Spacer()
-                        Button("Forgot password?") { }
+                        Button(AppStrings.Auth.forgotPassword) { }
                             .appTextStyle(.body, color: .cyanPrimary)
                     }
 
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: "Login", verticalPadding: 20) { }
-                        AppButton(title: "Login with Google", style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                     }
                     .padding(.top, 16)
                     .padding(.bottom, 32)
@@ -63,13 +63,13 @@ struct LoginView: View {
                     HStack {
                         Spacer()
                         (
-                            Text("By login , you agree to our ")
+                            Text(AppStrings.Auth.termsPrefix)
                                 .foregroundColor(.gray)
-                            + Text("Privacy Policy")
+                            + Text(AppStrings.Auth.privacyPolicy)
                                 .foregroundColor(.cyanPrimary)
-                            + Text(" and ")
+                            + Text(AppStrings.Auth.and)
                                 .foregroundColor(.gray)
-                            + Text("Terms & Conditions")
+                            + Text(AppStrings.Auth.termsConditions)
                                 .foregroundColor(.cyanPrimary)
                             + Text(".")
                                 .foregroundColor(.gray)

@@ -9,17 +9,17 @@ struct OnboardingBottomActionView: View {
     var body: some View {
         VStack(spacing: 32) {
             if currentPage < items.count - 1 {
-                AppButton(title: "Next") {
+                AppButton(title: AppStrings.Onboarding.next) {
                     withAnimation { currentPage += 1 }
                 }
                 .padding(.horizontal, 20)
             } else {
-                HStack(spacing: 16) {
-                    AppButton(title: "Login", style: .secondary) {
+                HStack(spacing: 8) {
+                    AppButton(title: AppStrings.Auth.login, style: .secondary) {
                         hasSeenOnboarding = true
                         router.push(.login)
                     }
-                    AppButton(title: "Get Started", icon: "arrow.right") {
+                    AppButton(title: AppStrings.Onboarding.getStarted, icon: "arrow.right") {
                         hasSeenOnboarding = true
                         router.push(.signup)
                     }

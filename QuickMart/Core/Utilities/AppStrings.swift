@@ -1,0 +1,39 @@
+import Foundation
+
+enum AppStrings {
+    enum Auth {
+        static let login = String(localized: "Auth_login", defaultValue: "Login")
+        static let signup = String(localized: "Auth_signup", defaultValue: "Signup")
+        static let dontHaveAccount = String(localized: "Auth_dontHaveAccount", defaultValue: "Don't have an account?")
+        static let alreadyHaveAccount = String(localized: "Auth_alreadyHaveAccount", defaultValue: "Already have an account?")
+        static let fullName = String(localized: "Auth_fullName", defaultValue: "Full Name")
+        static let email = String(localized: "Auth_email", defaultValue: "Email")
+        static let password = String(localized: "Auth_password", defaultValue: "Password")
+        static let enterName = String(localized: "Auth_enterName", defaultValue: "Enter your name")
+        static let enterEmail = String(localized: "Auth_enterEmail", defaultValue: "Enter your email")
+        static let enterPassword = String(localized: "Auth_enterPassword", defaultValue: "Enter your password")
+        static let forgotPassword = String(localized: "Auth_forgotPassword", defaultValue: "Forgot password?")
+        static let loginWithGoogle = String(localized: "Auth_loginWithGoogle", defaultValue: "Login with Google")
+        static let signupWithGoogle = String(localized: "Auth_signupWithGoogle", defaultValue: "Signup with Google")
+        static let createAccount = String(localized: "Auth_createAccount", defaultValue: "Create Account")
+        static let termsPrefix = String(localized: "Auth_termsPrefix", defaultValue: "By login, you agree to our ")
+        static let privacyPolicy = String(localized: "Auth_privacyPolicy", defaultValue: "Privacy Policy")
+        static let and = String(localized: "Auth_and", defaultValue: " and ")
+        static let termsConditions = String(localized: "Auth_termsConditions", defaultValue: "Terms & Conditions")
+    }
+    
+    enum Onboarding {
+        static let skipForNow = String(localized: "Onboarding_skipForNow", defaultValue: "Skip for now")
+        static let next = String(localized: "Onboarding_next", defaultValue: "Next")
+        static let getStarted = String(localized: "Onboarding_getStarted", defaultValue: "Get Started")
+        
+        static let title1 = String(localized: "Onboarding_title1", defaultValue: "Explore a wide range of\nproducts")
+        static let desc1 = String(localized: "Onboarding_desc1", defaultValue: "Explore a wide range of products at your\nfingertips. QuickMart offers an extensive\ncollection to suit your needs.")
+        
+        static let title2 = String(localized: "Onboarding_title2", defaultValue: "Unlock exclusive offers\nand discounts")
+        static let desc2 = String(localized: "Onboarding_desc2", defaultValue: "Get access to limited-time deals and special\npromotions available only to our valued\ncustomers.")
+        
+        static let title3 = String(localized: "Onboarding_title3", defaultValue: "Safe and secure\npayments")
+        static let desc3 = String(localized: "Onboarding_desc3", defaultValue: "QuickMart employs industry-leading encryption\nand trusted payment gateways to safeguard your\nfinancial information.")
+    }
+}

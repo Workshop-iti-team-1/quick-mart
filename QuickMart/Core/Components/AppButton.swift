@@ -33,7 +33,6 @@ struct AppButton: View {
             .padding(.vertical, verticalPadding)
             .background(backgroundView)
         }
-        .padding(.horizontal, 16)
     }
 
     private var textColor: Color {

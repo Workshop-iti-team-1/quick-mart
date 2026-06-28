@@ -9,18 +9,18 @@ struct OnboardingItem {
 struct AppConstants {
     static let onboardingItems = [
         OnboardingItem(
-            title: "Explore a wide range of\nproducts",
-            description: "Explore a wide range of products at your\nfingertips. QuickMart offers an extensive\ncollection to suit your needs.",
+            title: AppStrings.Onboarding.title1,
+            description: AppStrings.Onboarding.desc1,
             image: .onboarding1
         ),
         OnboardingItem(
-            title: "Unlock exclusive offers\nand discounts",
-            description: "Get access to limited-time deals and special\npromotions available only to our valued\ncustomers.",
+            title: AppStrings.Onboarding.title2,
+            description: AppStrings.Onboarding.desc2,
             image: .onboarding2
         ),
         OnboardingItem(
-            title: "Safe and secure\npayments",
-            description: "QuickMart employs industry-leading encryption\nand trusted payment gateways to safeguard your\nfinancial information.",
+            title: AppStrings.Onboarding.title3,
+            description: AppStrings.Onboarding.desc3,
             image: .onboarding3
         )
     ]

@@ -26,12 +26,12 @@ struct SignupView: View {
                         .padding(.top, 16)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Signup")
+                        Text(AppStrings.Auth.signup)
                             .appTextStyle(.heading1, color: .primary)
                         HStack(spacing: 4) {
-                            Text("Already have an account?")
+                            Text(AppStrings.Auth.alreadyHaveAccount)
                                 .appTextStyle(.body, color: .gray)
-                            Button("Login") {
+                            Button(AppStrings.Auth.login) {
                                 router.popToRoot()
                                 router.push(.login)
                             }
@@ -40,17 +40,17 @@ struct SignupView: View {
                     }
 
                     VStack(spacing: 16) {
-                        CustomTextField(title: "Full Name", placeholder: "Enter your name", text: $fullName)
-                        CustomTextField(title: "Email", placeholder: "Enter your email", text: $email)
-                        CustomTextField(title: "Password", placeholder: "Enter your password", text: $password, isSecure: true)
+                        CustomTextField(title: AppStrings.Auth.fullName, placeholder: AppStrings.Auth.enterName, text: $fullName)
+                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $email)
+                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $password, isSecure: true)
                     }
                     .padding(.top, 16)
 
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: "Create Account", verticalPadding: 20) { }
-                        AppButton(title: "Signup with Google", style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.createAccount, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.signupWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                     }
                     .padding(.top, 16)
                     .padding(.bottom, 32)

@@ -35,7 +35,7 @@ struct OnboardingTopCardView: View {
         HStack {
             if currentPage == 0 {
                 HStack(spacing: 2) {
-                    Image("quickmart")
+                    Image.appLogo
                         .resizable()
                         .scaledToFit()
                         .frame(height: 24)
@@ -62,7 +62,7 @@ struct OnboardingTopCardView: View {
                         hasSeenOnboarding = true
                     }
                 }) {
-                    Text("Skip for now")
+                    Text(AppStrings.Onboarding.skipForNow)
                         .appTextStyle(.button, color: .cyanPrimary)
                 }
                 .transition(.opacity)
