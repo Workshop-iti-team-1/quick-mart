@@ -22,8 +22,8 @@
 		5FA135B72FF169EC005F9FA6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135B32FF169EC005F9FA6 /* SignupView.swift */; };
 		5FA135B92FF16AF3005F9FA6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135B82FF16AF3005F9FA6 /* CustomTextField.swift */; };
 		65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985C743BC269621E90D1CB3 /* Route.swift */; };
-		73AA1E6E9B929EE18BF160AA /* ApolloClient+Shopify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DF2E68D26A3DFF6FB4D /* ApolloClient+Shopify.swift */; };
-		7A7BE68B58B207DEA8C8D97B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE31073432D446BE0CF0978 /* Config.swift */; };
+		73AA1E6E9B929EE18BF160AA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DF2E68D26A3DFF6FB4D /* Network.swift */; };
+		7A7BE68B58B207DEA8C8D97B /* ShopifyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */; };
 		7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */; };
 		853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C127E4B8B2EA37B5662334F /* RootView.swift */; };
 		9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC406163828EE1731A9A68A /* UserDefaultsKeys.swift */; };
@@ -45,7 +45,6 @@
 		D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F032FF025B9007B11D2 /* ProductDTO.swift */; };
 		D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F052FF025B9007B11D2 /* ProductRepository.swift */; };
 		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
-		D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */; };
 		D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F112FF025BF007B11D2 /* NetworkService.swift */; };
 		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
 		D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */; };
@@ -55,6 +54,7 @@
 		DFCA6316A229031D81765A74 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449E3371C690013C22FFECF /* color.swift */; };
 		F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D676201016FCACC6E578BECA /* AppTextStyle.swift */; };
 		F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684F704246EE1B731ABEA /* AppConstants.swift */; };
+		FE0BEFD3C89E6C9FD7673A62 /* DIContainer+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F3E53F719FDB38C844682 /* DIContainer+Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +78,8 @@
 		1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A25156AF2CD212F46842181 /* Apollo+NetworkError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Apollo+NetworkError.swift"; sourceTree = "<group>"; };
 		1AE9EDA13CE49B1F1041FAC3 /* OnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		406F3E53F719FDB38C844682 /* DIContainer+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DIContainer+Network.swift"; sourceTree = "<group>"; };
+		434622D7FFA562F3359467E3 /* Config.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +99,7 @@
 		82A14204EB0695F65E046182 /* OnboardingTopCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingTopCardView.swift; sourceTree = "<group>"; };
 		8665BB92029607964C5FDF8B /* OnboardingTextContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingTextContainerView.swift; sourceTree = "<group>"; };
 		90DCE8A385D97C5EFE3DD83A /* AppStrings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
-		9CE31073432D446BE0CF0978 /* Config.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Config.swift; sourceTree = "<group>"; };
+		9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShopifyConfig.swift; sourceTree = "<group>"; };
 		ABC406163828EE1731A9A68A /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AF7A5B8BE8A25040E2309634 /* AppButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
@@ -115,7 +117,6 @@
 		D4A91F032FF025B9007B11D2 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
 		D4A91F052FF025B9007B11D2 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
-		D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D4A91F112FF025BF007B11D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyGraphQLClientProtocol.swift; sourceTree = "<group>"; };
@@ -123,7 +124,7 @@
 		D676201016FCACC6E578BECA /* AppTextStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppTextStyle.swift; sourceTree = "<group>"; };
 		E449E3371C690013C22FFECF /* color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 		F11684F704246EE1B731ABEA /* AppConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
-		F2644DF2E68D26A3DFF6FB4D /* ApolloClient+Shopify.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ApolloClient+Shopify.swift"; sourceTree = "<group>"; };
+		F2644DF2E68D26A3DFF6FB4D /* Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		FDFF40E7CEED51AE00537F4C /* OnboardingBottomActionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingBottomActionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +180,15 @@
 				1AE9EDA13CE49B1F1041FAC3 /* OnboardingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		489F77F3FD94E054576B4E45 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
+				406F3E53F719FDB38C844682 /* DIContainer+Network.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		584C127A2FEFFA1F00F61A1B = {
@@ -375,12 +385,12 @@
 			isa = PBXGroup;
 			children = (
 				D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */,
-				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
 				D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */,
 				D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */,
 				D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */,
 				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
 				6C127E4B8B2EA37B5662334F /* RootView.swift */,
+				434622D7FFA562F3359467E3 /* Config.local.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -448,10 +458,9 @@
 			isa = PBXGroup;
 			children = (
 				D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */,
-				D4A91F102FF025BF007B11D2 /* AppConfiguration.swift */,
 				D4A91F112FF025BF007B11D2 /* NetworkService.swift */,
-				9CE31073432D446BE0CF0978 /* Config.swift */,
-				F2644DF2E68D26A3DFF6FB4D /* ApolloClient+Shopify.swift */,
+				9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */,
+				F2644DF2E68D26A3DFF6FB4D /* Network.swift */,
 				ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */,
 				1A25156AF2CD212F46842181 /* Apollo+NetworkError.swift */,
 			);
@@ -479,6 +488,7 @@
 				636B4946720853956C6B8F8C /* Components */,
 				2713FAB5D66D903311E7CB7A /* theme */,
 				3F3A17423400352EE053FFD1 /* Route */,
+				489F77F3FD94E054576B4E45 /* DI */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -620,7 +630,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */,
-				D4A91F172FF025BF007B11D2 /* AppConfiguration.swift in Sources */,
 				D4A91F182FF025BF007B11D2 /* NetworkService.swift in Sources */,
 				D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */,
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
@@ -653,10 +662,11 @@
 				65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */,
 				AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */,
 				B9EC8BA9D39C1EA1B2DC31BF /* AppStrings.swift in Sources */,
-				7A7BE68B58B207DEA8C8D97B /* Config.swift in Sources */,
-				73AA1E6E9B929EE18BF160AA /* ApolloClient+Shopify.swift in Sources */,
+				7A7BE68B58B207DEA8C8D97B /* ShopifyConfig.swift in Sources */,
+				73AA1E6E9B929EE18BF160AA /* Network.swift in Sources */,
 				7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */,
 				57EB4E515FDAFAD064E4EC86 /* Apollo+NetworkError.swift in Sources */,
+				FE0BEFD3C89E6C9FD7673A62 /* DIContainer+Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +705,7 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 434622D7FFA562F3359467E3 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

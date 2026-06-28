@@ -1,0 +1,8 @@
+// Config.xcconfig
+// https://help.apple.com/xcode/#/dev745c5c974
+// Base configuration — committed to Git (no secrets here)
+
+STORE_URL = https:\/\/your-store.myshopify.com\/api\/2024-01\/graphql.json
+STOREFRONT_TOKEN = 
+API_KEY = 
+API_SECRET_KEY = 

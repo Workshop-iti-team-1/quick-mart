@@ -2,14 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>APIKey</key>
-	<string>$(API_KEY)</string>
-	<key>APISecretKey</key>
-	<string>$(API_SECRET_KEY)</string>
-	<key>AdminAPIToken</key>
-	<string>$(ADMIN_API_TOKEN)</string>
-	<key>StoreURL</key>
+	<key>STORE_URL</key>
 	<string>$(STORE_URL)</string>
+	<key>STOREFRONT_TOKEN</key>
+	<string>$(STOREFRONT_TOKEN)</string>
+	<key>API_KEY</key>
+	<string>$(API_KEY)</string>
+	<key>API_SECRET_KEY</key>
+	<string>$(API_SECRET_KEY)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
