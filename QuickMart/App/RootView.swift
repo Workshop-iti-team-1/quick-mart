@@ -2,10 +2,10 @@ import SwiftUI
 
 struct RootView: View {
     @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
-    @State private var router = AppRouter()
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(AppRouter.self) private var router
 
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.path) {
             Group {
                 if hasSeenOnboarding {
@@ -25,7 +25,6 @@ struct RootView: View {
                 }
             }
         }
-        .environment(\.appTheme, AppTheme(colorScheme: colorScheme))
     }
 }
 #Preview {

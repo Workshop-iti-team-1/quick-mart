@@ -13,82 +13,83 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     var router: AppRouter
-    @Environment(\.appTheme) var theme
-
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.lg) {
-                Image.appLogo
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 32)
-                    .padding(.top, AppTheme.Spacing.md)
+        ZStack(alignment: .top) {
+            Color.backGround.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    Image.appLogo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 32)
+                        .padding(.top, 16)
 
-                VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
-                    Text("Login")
-                        .font(AppFonts.heading1)
-                        .foregroundColor(theme.primaryText)
-                    HStack(spacing: 4) {
-                        Text("Don't have an account?")
-                            .font(AppFonts.body)
-                            .foregroundColor(theme.mutedText)
-                        Button("Signup") {
-                            router.popToRoot()
-                            router.push(.signup)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(AppStrings.Auth.login)
+                            .appTextStyle(.heading1, color: .primary)
+                        HStack(spacing: 4) {
+                            Text(AppStrings.Auth.dontHaveAccount)
+                                .appTextStyle(.body, color: .gray)
+                            Button(AppStrings.Auth.signup) {
+                                router.popToRoot()
+                                router.push(.signup)
+                            }
+                            .appTextStyle(.body, color: .cyanPrimary)
                         }
-                        .font(AppFonts.body)
-                        .fontWeight(.medium)
-                        .foregroundColor(theme.primary)
                     }
-                }
 
-                VStack(spacing: AppTheme.Spacing.md) {
-                    CustomTextField(title: "Email", placeholder: "Enter your email", text: $email)
-                    CustomTextField(title: "Password", placeholder: "Enter your password", text: $password, isSecure: true)
-                }
-                .padding(.top, AppTheme.Spacing.md)
+                    VStack(spacing: 16) {
+                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $email)
+                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $password, isSecure: true)
+                    }
+                    .padding(.top, 16)
 
-                HStack {
+                    HStack {
+                        Spacer()
+                        Button(AppStrings.Auth.forgotPassword) { }
+                            .appTextStyle(.body, color: .cyanPrimary)
+                    }
+
                     Spacer()
-                    Button("Forgot password?") { }
-                        .font(AppFonts.body)
-                        .fontWeight(.medium)
-                        .foregroundColor(theme.primary)
-                }
 
-                Spacer()
+                    VStack(spacing: 8) {
+                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+                        
+                        Button(AppStrings.Auth.loginAsGuest) { 
+                            // TODO: Handle guest login
+                        }
+                        .appTextStyle(.body, color: .cyanPrimary)
+                        .padding(.top, 8)
+                    }
+                    .padding(.top, 16)
+                    .padding(.bottom, 32)
 
-                VStack(spacing: AppTheme.Spacing.sm) {
-                    AppButton(title: "Login", verticalPadding: 20) { }
-                    AppButton(title: "Login with Google", style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+                    HStack {
+                        Spacer()
+                        (
+                            Text(AppStrings.Auth.termsPrefix)
+                                .foregroundColor(.gray)
+                            + Text(AppStrings.Auth.privacyPolicy)
+                                .foregroundColor(.cyanPrimary)
+                            + Text(AppStrings.Auth.and)
+                                .foregroundColor(.gray)
+                            + Text(AppStrings.Auth.termsConditions)
+                                .foregroundColor(.cyanPrimary)
+                            + Text(".")
+                                .foregroundColor(.gray)
+                        )
+                        .font(.system(size: 12, weight: .regular))
+                        .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    .padding(.top, 32)
                 }
-                .padding(.top, AppTheme.Spacing.md)
-                .padding(.bottom, AppTheme.Spacing.xl)
-
-                HStack {
-                    Spacer()
-                    (
-                        Text("By login , you agree to our ")
-                            .foregroundColor(theme.mutedText)
-                        + Text("Privacy Policy")
-                            .foregroundColor(theme.primary)
-                        + Text(" and ")
-                            .foregroundColor(theme.mutedText)
-                        + Text("Terms & Conditions")
-                            .foregroundColor(theme.primary)
-                        + Text(".")
-                            .foregroundColor(theme.mutedText)
-                    )
-                    .font(AppFonts.caption)
-                    .multilineTextAlignment(.center)
-                    Spacer()
-                }
-                .padding(.top, AppTheme.Spacing.xl)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 32)
             }
-            .padding(.horizontal, AppTheme.Spacing.sm)
-            .padding(.bottom, AppTheme.Spacing.xl)
         }
-        .background(theme.background.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
     }
 }
