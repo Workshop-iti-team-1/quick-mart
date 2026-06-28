@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct QuickMartApp: App {
-    
     @State private var router = AppRouter()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(router)
         }
     }
 }
