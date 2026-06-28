@@ -10,4 +10,6 @@ enum Route: Hashable {
     case home
 //    case productDetail(String)
 //    case cart
+    case login
+    case signup
 }

@@ -3,14 +3,14 @@ import SwiftUI
 struct OnboardingView: View {
     @State private var currentPage = 0
     @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
-    
+    var router: AppRouter
     let items = AppConstants.onboardingItems
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 Color.backGround.ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
                     OnboardingTopCardView(
                         currentPage: $currentPage,
@@ -18,32 +18,17 @@ struct OnboardingView: View {
                         items: items,
                         geometry: geometry
                     )
-                    
                     Spacer()
-                    
-                    OnboardingTextContainerView(
-                        currentPage: $currentPage,
-                        items: items
-                    )
-                    
+                    OnboardingTextContainerView(currentPage: $currentPage, items: items)
                     Spacer()
-                    
                     OnboardingBottomActionView(
                         currentPage: $currentPage,
                         hasSeenOnboarding: $hasSeenOnboarding,
-                        items: items
+                        items: items,
+                        router: router
                     )
                 }
             }
         }
-    }
-}
-
-#Preview {
-    Group {
-        OnboardingView()
-            .preferredColorScheme(.light)
-        OnboardingView()
-            .preferredColorScheme(.dark)
     }
 }
