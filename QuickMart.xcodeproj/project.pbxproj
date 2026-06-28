@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */; };
+		1518E88C2FF1B5A3006BED1A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 1518E88B2FF1B5A3006BED1A /* Apollo */; };
 		261A5B2B394AB22A645F271E /* OnboardingTextContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665BB92029607964C5FDF8B /* OnboardingTextContainerView.swift */; };
 		49E07C1824415F2404D0613D /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7A5B8BE8A25040E2309634 /* AppButton.swift */; };
 		584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */; };
@@ -126,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8BD1A22FF1945D00666E5D /* FirebaseCore in Frameworks */,
+				1518E88C2FF1B5A3006BED1A /* Apollo in Frameworks */,
 				DE8BD1A02FF1945D00666E5D /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +164,6 @@
 				5985C743BC269621E90D1CB3 /* Route.swift */,
 				7553ECC63FC025BF82070C77 /* AppRouter.swift */,
 			);
-			name = Route;
 			path = Route;
 			sourceTree = "<group>";
 		};
@@ -563,6 +564,7 @@
 			mainGroup = 584C127A2FEFFA1F00F61A1B;
 			packageReferences = (
 				DE8BD19E2FF1945D00666E5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1518E88A2FF1B5A3006BED1A /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = 584C12842FEFFA2000F61A1B /* Products */;
 			projectDirPath = "";
@@ -966,6 +968,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1518E88A2FF1B5A3006BED1A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
 		DE8BD19E2FF1945D00666E5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -977,6 +987,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1518E88B2FF1B5A3006BED1A /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1518E88A2FF1B5A3006BED1A /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
 		DE8BD19F2FF1945D00666E5D /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE8BD19E2FF1945D00666E5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
