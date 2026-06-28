@@ -10,10 +10,11 @@ struct AppButton: View {
     var style: AppButtonStyle = .primary
     var icon: String? = nil
     var customIcon: Image? = nil
-    var color: Color = .black
-    var verticalPadding: CGFloat = 16
+    var verticalPadding: CGFloat = AppTheme.Button.verticalPadding
     var action: () -> Void
-    @Environment(\.colorScheme) var colorScheme
+
+    @Environment(\.appTheme) var theme
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
@@ -34,14 +35,13 @@ struct AppButton: View {
             .padding(.vertical, verticalPadding)
             .background(backgroundView)
         }
+        .padding(.horizontal, AppTheme.Button.horizontalPadding)
     }
 
     private var textColor: Color {
         switch style {
-        case .primary:
-            return colorScheme == .dark ? .black : .white
-        case .secondary:
-            return color
+        case .primary: return theme.primaryButtonText
+        case .secondary: return theme.primary
         }
     }
 
@@ -49,15 +49,16 @@ struct AppButton: View {
     private var backgroundView: some View {
         switch style {
         case .primary:
-            RoundedRectangle(cornerRadius: 12)
-                .fill(color)
+            RoundedRectangle(cornerRadius: AppTheme.Radius.md)
+                .fill(theme.primaryButtonBackground)
         case .secondary:
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: AppTheme.Radius.md)
+                .stroke(theme.cardStroke, lineWidth: 1.5)
         }
     }
 }
 
+  
 #Preview {
     VStack(spacing: 20) {
         AppButton(title: "Primary Button") {}
@@ -66,3 +67,4 @@ struct AppButton: View {
     }
     .padding()
 }
+

@@ -1,10 +1,3 @@
-//
-//  LoginView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 28/06/2026.
-//
-
 
 //
 //  LoginView.swift
@@ -20,72 +13,82 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     var router: AppRouter
+    @Environment(\.appTheme) var theme
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.lg) {
                 Image.appLogo
                     .resizable()
                     .scaledToFit()
                     .frame(height: 32)
-                    .padding(.top, 16)
+                    .padding(.top, AppTheme.Spacing.md)
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
                     Text("Login")
-                        .appTextStyle(.heading1, color: .primary)
+                        .font(AppFonts.heading1)
+                        .foregroundColor(theme.primaryText)
                     HStack(spacing: 4) {
                         Text("Don't have an account?")
-                            .appTextStyle(.body, color: .grayText)
-                        Button("Signup") {  router.push(.signup)}
-                            .appTextStyle(.body, color: .cyanPrimary)
-                            .fontWeight(.medium)
+                            .font(AppFonts.body)
+                            .foregroundColor(theme.mutedText)
+                        Button("Signup") {
+                            router.popToRoot()
+                            router.push(.signup)
+                        }
+                        .font(AppFonts.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(theme.primary)
                     }
                 }
 
-                VStack(spacing: 16) {
+                VStack(spacing: AppTheme.Spacing.md) {
                     CustomTextField(title: "Email", placeholder: "Enter your email", text: $email)
                     CustomTextField(title: "Password", placeholder: "Enter your password", text: $password, isSecure: true)
                 }
-                .padding(.top, 16)
+                .padding(.top, AppTheme.Spacing.md)
 
                 HStack {
                     Spacer()
                     Button("Forgot password?") { }
-                        .appTextStyle(.body, color: .cyanPrimary)
+                        .font(AppFonts.body)
                         .fontWeight(.medium)
+                        .foregroundColor(theme.primary)
                 }
 
                 Spacer()
 
-                VStack(spacing: 12) {
+                VStack(spacing: AppTheme.Spacing.sm) {
                     AppButton(title: "Login", verticalPadding: 20) { }
-                    AppButton(title: "Login with Google", style: .secondary, customIcon: .googleIcon,verticalPadding: 20) { }
+                    AppButton(title: "Login with Google", style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                 }
-                .padding(.top, 16)
-                .padding(.bottom, 32)
+                .padding(.top, AppTheme.Spacing.md)
+                .padding(.bottom, AppTheme.Spacing.xl)
+
                 HStack {
                     Spacer()
                     (
                         Text("By login , you agree to our ")
-                            .foregroundColor(.grayText)
+                            .foregroundColor(theme.mutedText)
                         + Text("Privacy Policy")
-                            .foregroundColor(.cyanPrimary)
+                            .foregroundColor(theme.primary)
                         + Text(" and ")
-                            .foregroundColor(.grayText)
+                            .foregroundColor(theme.mutedText)
                         + Text("Terms & Conditions")
-                            .foregroundColor(.cyanPrimary)
+                            .foregroundColor(theme.primary)
                         + Text(".")
-                            .foregroundColor(.grayText)
+                            .foregroundColor(theme.mutedText)
                     )
-                    .appTextStyle(.caption, color: .grayText)
+                    .font(AppFonts.caption)
                     .multilineTextAlignment(.center)
                     Spacer()
                 }
-                .padding(.top, 32)
+                .padding(.top, AppTheme.Spacing.xl)
             }
-            .padding(.horizontal, 8)
-            .padding(.bottom, 32)
+            .padding(.horizontal, AppTheme.Spacing.sm)
+            .padding(.bottom, AppTheme.Spacing.xl)
         }
-        .background(Color.backGround.ignoresSafeArea())
+        .background(theme.background.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
     }
 }

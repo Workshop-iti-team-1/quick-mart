@@ -9,17 +9,17 @@ struct OnboardingBottomActionView: View {
     var body: some View {
         VStack(spacing: 32) {
             if currentPage < items.count - 1 {
-                AppButton(title: "Next", color: .cyanPrimary) {
+                AppButton(title: "Next") {
                     withAnimation { currentPage += 1 }
                 }
                 .padding(.horizontal, 20)
             } else {
                 HStack(spacing: 16) {
-                    AppButton(title: "Login", style: .secondary, color: .cyanPrimary) {
+                    AppButton(title: "Login", style: .secondary) {
                         hasSeenOnboarding = true
                         router.push(.login)
                     }
-                    AppButton(title: "Get Started", icon: "arrow.right", color: .cyanPrimary) {
+                    AppButton(title: "Get Started", icon: "arrow.right") {
                         hasSeenOnboarding = true
                         router.push(.signup)
                     }
@@ -39,3 +39,4 @@ struct OnboardingBottomActionView: View {
         .animation(.easeInOut, value: currentPage)
     }
 }
+
