@@ -56,6 +56,12 @@ struct LoginView: View {
                     VStack(spacing: 8) {
                         AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { }
                         AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+                        
+                        Button(AppStrings.Auth.loginAsGuest) { 
+                            // TODO: Handle guest login
+                        }
+                        .appTextStyle(.body, color: .cyanPrimary)
+                        .padding(.top, 8)
                     }
                     .padding(.top, 16)
                     .padding(.bottom, 32)

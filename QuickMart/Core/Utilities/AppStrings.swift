@@ -16,6 +16,7 @@ enum AppStrings {
         static let loginWithGoogle = String(localized: "Auth_loginWithGoogle", defaultValue: "Login with Google")
         static let signupWithGoogle = String(localized: "Auth_signupWithGoogle", defaultValue: "Signup with Google")
         static let createAccount = String(localized: "Auth_createAccount", defaultValue: "Create Account")
+        static let loginAsGuest = String(localized: "Auth_loginAsGuest", defaultValue: "Login as guest")
         static let termsPrefix = String(localized: "Auth_termsPrefix", defaultValue: "By login, you agree to our ")
         static let privacyPolicy = String(localized: "Auth_privacyPolicy", defaultValue: "Privacy Policy")
         static let and = String(localized: "Auth_and", defaultValue: " and ")
@@ -35,5 +36,21 @@ enum AppStrings {
         
         static let title3 = String(localized: "Onboarding_title3", defaultValue: "Safe and secure\npayments")
         static let desc3 = String(localized: "Onboarding_desc3", defaultValue: "QuickMart employs industry-leading encryption\nand trusted payment gateways to safeguard your\nfinancial information.")
+    }
+    
+    enum Network {
+        static let invalidURL = String(localized: "Network_invalidURL", defaultValue: "Invalid API URL.")
+        static func encodingFailed(_ error: String) -> String {
+            String(localized: "Network_encodingFailed", defaultValue: "Request encoding failed: \(error)")
+        }
+        static func requestFailed(_ code: Int) -> String {
+            String(localized: "Network_requestFailed", defaultValue: "Request failed with HTTP \(code).")
+        }
+        static func decodingFailed(_ error: String) -> String {
+            String(localized: "Network_decodingFailed", defaultValue: "Response decoding failed: \(error)")
+        }
+        static let noData = String(localized: "Network_noData", defaultValue: "No data received.")
+        static let unauthorized = String(localized: "Network_unauthorized", defaultValue: "Invalid Storefront Access Token.")
+        static let rateLimited = String(localized: "Network_rateLimited", defaultValue: "Too many requests. Please slow down.")
     }
 }
