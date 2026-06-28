@@ -1,0 +1,81 @@
+//
+//  .swiftlint.yml
+//  QuickMart
+//
+//  Created by Alaa Ayman on 28/06/2026.
+//
+
+# ==========================================
+# Paths to Ignore
+# ==========================================
+# SwiftLint will completely ignore these folders
+excluded:
+  - Pods
+  - Carthage
+  - DerivedData
+  - .build
+  - fastlane
+  - Scripts
+
+# ==========================================
+# Disabled Rules
+# ==========================================
+# Default rules that are too noisy or strict
+disabled_rules:
+  - line_length                 # Screens are wide now; hard character limits cause awkward formatting
+  - trailing_whitespace         # Too nitpicky for most teams
+  - todo                        # Prevents warnings just for leaving a // TODO: comment
+  - nesting                     # Sometimes nested types are necessary for good namespace management
+  - multiple_closures_with_trailing_closure # SwiftUI uses multiple trailing closures heavily
+
+# ==========================================
+# Opt-In Rules (Highly Recommended)
+# ==========================================
+# Rules that are off by default but prevent bugs and improve performance
+opt_in_rules:
+  - empty_count                 # Prefer `if array.isEmpty` over `if array.count == 0` (faster)
+  - force_unwrapping            # Forbids `!` (prevents random app crashes)
+  - implicitly_unwrapped_optional # Forbids `var name: String!` (except for IBOutlets)
+  - redundant_type_annotation   # Forbids `var name: String = "Bob"`. Encourages type inference.
+  - closure_end_indentation     # Keeps closure brackets aligned properly
+  - closure_spacing             # Ensures spaces inside closure curly braces
+  - contains_over_filter_count  # Prefer `contains` over `filter {}.count > 0`
+  - contains_over_filter_is_empty # Prefer `contains` over `filter {}.isEmpty`
+  - fatal_error_message         # Forces you to provide a message when using fatalError()
+
+# ==========================================
+# Rule Customizations
+# ==========================================
+# Tweak the specific limits that trigger warnings (yellow) or errors (red)
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 500
+  error: 1000
+
+function_body_length:
+  warning: 50
+  error: 100
+
+type_name:
+  min_length: 3
+  max_length: 50
+
+identifier_name:
+  min_length:
+    warning: 3
+    error: 2
+  # Allow common short variable names so they don't trigger errors
+  excluded:
+    - id
+    - x
+    - y
+    - z
+    - i
+    - j
+    - up
+    - to
+    - vc
