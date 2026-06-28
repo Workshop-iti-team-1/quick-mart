@@ -4,36 +4,29 @@ struct OnboardingBottomActionView: View {
     @Binding var currentPage: Int
     @Binding var hasSeenOnboarding: Bool
     let items: [OnboardingItem]
-    
+    var router: AppRouter
+
     var body: some View {
         VStack(spacing: 32) {
             if currentPage < items.count - 1 {
-                AppButton(title: "Next", action: {
-                    withAnimation {
-                        currentPage += 1
-                    }
-                })
-                .padding(.horizontal, 20)
-                .transition(.opacity)
-            } else {
-                HStack(spacing: 16) {
-                    AppButton(title: "Login", style: .secondary, action: {
-                        withAnimation {
-                            hasSeenOnboarding = true
-                        }
-                    })
-                    
-                    AppButton(title: "Get Started", icon: "arrow.right", action: {
-                        withAnimation {
-                            hasSeenOnboarding = true
-                        }
-                    })
+                AppButton(title: "Next", color: .cyanPrimary) {
+                    withAnimation { currentPage += 1 }
                 }
                 .padding(.horizontal, 20)
-                .transition(.opacity)
+            } else {
+                HStack(spacing: 16) {
+                    AppButton(title: "Login", style: .secondary, color: .cyanPrimary) {
+                        hasSeenOnboarding = true
+                        router.push(.login)
+                    }
+                    AppButton(title: "Get Started", icon: "arrow.right", color: .cyanPrimary) {
+                        hasSeenOnboarding = true
+                        router.push(.signup)
+                    }
+                }
+                .padding(.horizontal, 20)
             }
-            
-            // Page Indicator
+
             HStack(spacing: 8) {
                 ForEach(0..<items.count, id: \.self) { index in
                     Capsule()
