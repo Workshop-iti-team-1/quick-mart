@@ -7,6 +7,7 @@ struct AppTextStyle: ViewModifier {
         case body
         case button
         case caption
+        case label
     }
 
     var style: TextStyle
@@ -33,6 +34,10 @@ struct AppTextStyle: ViewModifier {
         case .caption:
             content
                 .font(.system(size: 12, weight: .regular))
+                .foregroundColor(color)
+        case .label:
+            content
+                .font(.system(size: 14, weight: .medium))
                 .foregroundColor(color)
         }
     }

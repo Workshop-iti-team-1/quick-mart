@@ -17,51 +17,46 @@ struct CustomTextField: View {
 
     @State private var isPasswordVisible: Bool = false
     @FocusState private var isFocused: Bool
-    @Environment(\.appTheme) var theme
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 0) {
                 Text(title)
-                    .font(AppFonts.label)
-                    .foregroundColor(theme.primaryText)
+                    .appTextStyle(.label, color: .primary)
                 if isRequired {
                     Text(" *")
-                        .font(AppFonts.label)
-                        .foregroundColor(theme.error)
+                        .appTextStyle(.label, color: .red)
                 }
             }
 
             HStack {
                 if isSecure && !isPasswordVisible {
                     SecureField(placeholder, text: $text)
-                        .font(AppFonts.body)
-                        .foregroundColor(theme.primaryText)
+                        .appTextStyle(.body, color: .primary)
                         .focused($isFocused)
                 } else {
                     TextField(placeholder, text: $text)
-                        .font(AppFonts.body)
-                        .foregroundColor(theme.primaryText)
+                        .appTextStyle(.body, color: .primary)
                         .focused($isFocused)
                 }
                 if isSecure {
                     Button(action: { isPasswordVisible.toggle() }) {
                         Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
-                            .foregroundColor(theme.mutedText)
+                            .foregroundColor(Color.gray)
                     }
                 }
             }
-            .padding(.horizontal, AppTheme.Spacing.md)
-            .frame(height: AppTheme.Button.height)
+            .padding(.horizontal, 16)
+            .frame(height: 56)
             .background(
-                RoundedRectangle(cornerRadius: AppTheme.Radius.md)
+                RoundedRectangle(cornerRadius: 12)
                     .stroke(
-                        isFocused ? theme.inputFocusedBorder : theme.inputBorder,
+                        isFocused ? Color.cyanPrimary : Color.gray.opacity(0.3),
                         lineWidth: 1.5
                     )
             )
         }
-        .padding(.horizontal, AppTheme.Spacing.md)
+        .padding(.horizontal, 16)
     }
 }
 

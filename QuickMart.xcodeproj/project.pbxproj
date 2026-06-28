@@ -19,7 +19,6 @@
 		5FA135B62FF169EC005F9FA6 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135B12FF169EC005F9FA6 /* RegisterViewModel.swift */; };
 		5FA135B72FF169EC005F9FA6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135B32FF169EC005F9FA6 /* SignupView.swift */; };
 		5FA135B92FF16AF3005F9FA6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135B82FF16AF3005F9FA6 /* CustomTextField.swift */; };
-		5FA135BB2FF17684005F9FA6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA135BA2FF1767B005F9FA6 /* AppTheme.swift */; };
 		65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985C743BC269621E90D1CB3 /* Route.swift */; };
 		853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C127E4B8B2EA37B5662334F /* RootView.swift */; };
 		9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC406163828EE1731A9A68A /* UserDefaultsKeys.swift */; };
@@ -87,7 +86,6 @@
 		5FA135B12FF169EC005F9FA6 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		5FA135B32FF169EC005F9FA6 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5FA135B82FF16AF3005F9FA6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		5FA135BA2FF1767B005F9FA6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		6C127E4B8B2EA37B5662334F /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7553ECC63FC025BF82070C77 /* AppRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		7E7E7477EA51BCBA5A046101 /* images.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = images.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 		2713FAB5D66D903311E7CB7A /* theme */ = {
 			isa = PBXGroup;
 			children = (
-				5FA135BA2FF1767B005F9FA6 /* AppTheme.swift */,
 				D676201016FCACC6E578BECA /* AppTextStyle.swift */,
 				E449E3371C690013C22FFECF /* color.swift */,
 			);
@@ -631,7 +628,6 @@
 				D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */,
 				D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */,
 				D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */,
-				5FA135BB2FF17684005F9FA6 /* AppTheme.swift in Sources */,
 				5FA135B62FF169EC005F9FA6 /* RegisterViewModel.swift in Sources */,
 				5FA135B72FF169EC005F9FA6 /* SignupView.swift in Sources */,
 				853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */,

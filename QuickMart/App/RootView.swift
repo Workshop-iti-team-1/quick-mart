@@ -3,7 +3,6 @@ import SwiftUI
 struct RootView: View {
     @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
     @Environment(AppRouter.self) private var router
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         @Bindable var router = router
@@ -26,7 +25,6 @@ struct RootView: View {
                 }
             }
         }
-        .environment(\.appTheme, AppTheme(colorScheme: colorScheme))
     }
 }
 #Preview {

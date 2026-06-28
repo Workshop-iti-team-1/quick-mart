@@ -10,10 +10,8 @@ struct AppButton: View {
     var style: AppButtonStyle = .primary
     var icon: String? = nil
     var customIcon: Image? = nil
-    var verticalPadding: CGFloat = AppTheme.Button.verticalPadding
+    var verticalPadding: CGFloat = 18
     var action: () -> Void
-
-    @Environment(\.appTheme) var theme
 
     var body: some View {
         Button(action: action) {
@@ -35,13 +33,13 @@ struct AppButton: View {
             .padding(.vertical, verticalPadding)
             .background(backgroundView)
         }
-        .padding(.horizontal, AppTheme.Button.horizontalPadding)
+        .padding(.horizontal, 16)
     }
 
     private var textColor: Color {
         switch style {
-        case .primary: return theme.primaryButtonText
-        case .secondary: return theme.primary
+        case .primary: return Color(UIColor.systemBackground)
+        case .secondary: return Color.primary
         }
     }
 
@@ -49,11 +47,11 @@ struct AppButton: View {
     private var backgroundView: some View {
         switch style {
         case .primary:
-            RoundedRectangle(cornerRadius: AppTheme.Radius.md)
-                .fill(theme.primaryButtonBackground)
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.primary)
         case .secondary:
-            RoundedRectangle(cornerRadius: AppTheme.Radius.md)
-                .stroke(theme.cardStroke, lineWidth: 1.5)
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray.opacity(0.3), lineWidth: 1.5)
         }
     }
 }
