@@ -17,44 +17,51 @@ struct CustomTextField: View {
 
     @State private var isPasswordVisible: Bool = false
     @FocusState private var isFocused: Bool
+    @Environment(\.appTheme) var theme
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
             HStack(spacing: 0) {
                 Text(title)
-                    .appTextStyle(.body, color: .primary)
-                    .fontWeight(.medium)
+                    .font(AppFonts.label)
+                    .foregroundColor(theme.primaryText)
                 if isRequired {
                     Text(" *")
-                        .appTextStyle(.body, color: .red)
+                        .font(AppFonts.label)
+                        .foregroundColor(theme.error)
                 }
             }
 
             HStack {
                 if isSecure && !isPasswordVisible {
                     SecureField(placeholder, text: $text)
-                        .appTextStyle(.body, color: .primary)
+                        .font(AppFonts.body)
+                        .foregroundColor(theme.primaryText)
                         .focused($isFocused)
                 } else {
                     TextField(placeholder, text: $text)
-                        .appTextStyle(.body, color: .primary)
+                        .font(AppFonts.body)
+                        .foregroundColor(theme.primaryText)
                         .focused($isFocused)
                 }
-
                 if isSecure {
                     Button(action: { isPasswordVisible.toggle() }) {
                         Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
-                            .foregroundColor(.grayText)
+                            .foregroundColor(theme.mutedText)
                     }
                 }
             }
-            .padding(.horizontal, 16)
-            .frame(height: 56)
+            .padding(.horizontal, AppTheme.Spacing.md)
+            .frame(height: AppTheme.Button.height)
             .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(isFocused ? Color.cyanPrimary : Color.gray.opacity(0.2), lineWidth: 1.5)
+                RoundedRectangle(cornerRadius: AppTheme.Radius.md)
+                    .stroke(
+                        isFocused ? theme.inputFocusedBorder : theme.inputBorder,
+                        lineWidth: 1.5
+                    )
             )
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, AppTheme.Spacing.md)
     }
 }
+
