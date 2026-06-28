@@ -11,6 +11,13 @@
 	<key>StoreURL</key>
 	<string>$(STORE_URL)</string>
 	<key>UILaunchScreen</key>
-	<dict/>
+	<dict>
+		<key>UIColorName</key>
+		<string>backGround</string>
+		<key>UIImageName</key>
+		<string>quickmart</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

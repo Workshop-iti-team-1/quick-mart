@@ -15,9 +15,9 @@ struct QuickMartApp: App {
 //    }
     var body: some Scene {
         WindowGroup {
-         SplashView()
+         RootView()
         }
     }
-}
-
+} 
+ 
 
