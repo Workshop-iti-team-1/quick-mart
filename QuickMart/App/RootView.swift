@@ -2,10 +2,11 @@ import SwiftUI
 
 struct RootView: View {
     @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
-    @State private var router = AppRouter()
+    @Environment(AppRouter.self) private var router
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.path) {
             Group {
                 if hasSeenOnboarding {
