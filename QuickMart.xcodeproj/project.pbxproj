@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150DD8E92FF30C1B00D89DCE /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD8E82FF30C1B00D89DCE /* SessionManager.swift */; };
 		1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */; };
 		1518E88C2FF1B5A3006BED1A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 1518E88B2FF1B5A3006BED1A /* Apollo */; };
 		15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36C2FF1F3030091D036 /* Customer.swift */; };
@@ -103,6 +104,7 @@
 		039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		0B4CFA3F34C465D3BADAE0A0 /* RegisterRequestDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterRequestDTO.swift; sourceTree = "<group>"; };
 		150DD8E42FF2CEE500D89DCE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		150DD8E82FF30C1B00D89DCE /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15D4B36C2FF1F3030091D036 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		15D4B36E2FF1F30B0091D036 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				7E7E7477EA51BCBA5A046101 /* images.swift */,
 				90DCE8A385D97C5EFE3DD83A /* AppStrings.swift */,
 				1A0B89A7F0D4E1F3C3BB0304 /* String+Validation.swift */,
+				150DD8E82FF30C1B00D89DCE /* SessionManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -879,6 +882,7 @@
 				261A5B2B394AB22A645F271E /* OnboardingTextContainerView.swift in Sources */,
 				C921832A67FB45E399B37411 /* OnboardingTopCardView.swift in Sources */,
 				D412CA5D2FF2EB720010892E /* CategoryView.swift in Sources */,
+				150DD8E92FF30C1B00D89DCE /* SessionManager.swift in Sources */,
 				B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */,
 				65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */,
 				AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */,
