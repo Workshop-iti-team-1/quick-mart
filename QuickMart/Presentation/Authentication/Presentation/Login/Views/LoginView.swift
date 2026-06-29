@@ -10,8 +10,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject private var viewModel = DIContainer.shared.makeLoginViewModel()
     var router: AppRouter
     var body: some View {
         ZStack(alignment: .top) {
@@ -40,8 +39,8 @@ struct LoginView: View {
                     }
 
                     VStack(spacing: 16) {
-                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $email)
-                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $password, isSecure: true)
+                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $viewModel.email)
+                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $viewModel.password, isSecure: true)
                     }
                     .padding(.top, 16)
 
@@ -54,7 +53,11 @@ struct LoginView: View {
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { }
+                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { 
+                            viewModel.login()
+                        }
+                        .disabled(viewModel.isLoading)
+                        
                         AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                         
                         Button(AppStrings.Auth.loginAsGuest) { 
@@ -91,5 +94,21 @@ struct LoginView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .overlay {
+            if viewModel.isLoading {
+                CustomLoadingView()
+            }
+        }
+        .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
+            Button(AppStrings.General.ok, role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage ?? "")
+        }
+        .onChange(of: viewModel.isAuthenticated) { authenticated in
+            if authenticated {
+                // Navigate to home or next screen
+                print("Authenticated, navigating...")
+            }
+        }
     }
 }

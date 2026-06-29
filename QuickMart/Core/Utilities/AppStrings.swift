@@ -6,12 +6,19 @@ enum AppStrings {
         static let signup = String(localized: "Auth_signup", defaultValue: "Signup")
         static let dontHaveAccount = String(localized: "Auth_dontHaveAccount", defaultValue: "Don't have an account?")
         static let alreadyHaveAccount = String(localized: "Auth_alreadyHaveAccount", defaultValue: "Already have an account?")
-        static let fullName = String(localized: "Auth_fullName", defaultValue: "Full Name")
+        static let firstName = String(localized: "Auth_firstName", defaultValue: "First Name")
+        static let lastName = String(localized: "Auth_lastName", defaultValue: "Last Name")
         static let email = String(localized: "Auth_email", defaultValue: "Email")
         static let password = String(localized: "Auth_password", defaultValue: "Password")
-        static let enterName = String(localized: "Auth_enterName", defaultValue: "Enter your name")
+        static let confirmPassword = String(localized: "Auth_confirmPassword", defaultValue: "Confirm Password")
+        
+        static let enterFirstName = String(localized: "Auth_enterFirstName", defaultValue: "Enter your first name")
+        static let enterLastName = String(localized: "Auth_enterLastName", defaultValue: "Enter your last name")
         static let enterEmail = String(localized: "Auth_enterEmail", defaultValue: "Enter your email")
         static let enterPassword = String(localized: "Auth_enterPassword", defaultValue: "Enter your password")
+        static let enterConfirmPassword = String(localized: "Auth_enterConfirmPassword", defaultValue: "Re-enter your password")
+        
+        static let loading = String(localized: "Auth_loading", defaultValue: "Loading...")
         static let forgotPassword = String(localized: "Auth_forgotPassword", defaultValue: "Forgot password?")
         static let loginWithGoogle = String(localized: "Auth_loginWithGoogle", defaultValue: "Login with Google")
         static let signupWithGoogle = String(localized: "Auth_signupWithGoogle", defaultValue: "Signup with Google")
@@ -21,6 +28,19 @@ enum AppStrings {
         static let privacyPolicy = String(localized: "Auth_privacyPolicy", defaultValue: "Privacy Policy")
         static let and = String(localized: "Auth_and", defaultValue: " and ")
         static let termsConditions = String(localized: "Auth_termsConditions", defaultValue: "Terms & Conditions")
+        
+        enum Validation {
+            static let emptyEmailPassword = String(localized: "Auth_validation_emptyEmailPassword", defaultValue: "Please enter email and password.")
+            static let invalidEmail = String(localized: "Auth_validation_invalidEmail", defaultValue: "Please enter a valid email address.")
+            static let emptyName = String(localized: "Auth_validation_emptyName", defaultValue: "Please enter your first and last name.")
+            static let shortPassword = String(localized: "Auth_validation_shortPassword", defaultValue: "Password must be at least 6 characters.")
+            static let passwordsNotMatch = String(localized: "Auth_validation_passwordsNotMatch", defaultValue: "Passwords do not match.")
+        }
+    }
+    
+    enum General {
+        static let error = String(localized: "General_error", defaultValue: "Error")
+        static let ok = String(localized: "General_ok", defaultValue: "OK")
     }
     
     enum Onboarding {
