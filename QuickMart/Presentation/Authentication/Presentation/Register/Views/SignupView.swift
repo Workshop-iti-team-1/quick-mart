@@ -49,14 +49,7 @@ struct SignupView: View {
                     Spacer()
 
                     VStack(spacing: 8) {
-                        if let error = viewModel.errorMessage {
-                            Text(error)
-                                .foregroundColor(.red)
-                                .font(.footnote)
-                                .multilineTextAlignment(.center)
-                        }
-                        
-                        AppButton(title: viewModel.isLoading ? AppStrings.Auth.loading : AppStrings.Auth.createAccount, verticalPadding: 20) { 
+                        AppButton(title: AppStrings.Auth.createAccount, verticalPadding: 20) { 
                             viewModel.register()
                         }
                         .disabled(viewModel.isLoading)
@@ -71,6 +64,16 @@ struct SignupView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .overlay {
+            if viewModel.isLoading {
+                CustomLoadingView()
+            }
+        }
+        .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
+            Button(AppStrings.General.ok, role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage ?? "")
+        }
         .onChange(of: viewModel.isRegistered) { registered in
             if registered {
                 // Navigate to login or next screen

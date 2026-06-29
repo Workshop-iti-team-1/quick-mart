@@ -13,7 +13,12 @@ final class LoginViewModel: ObservableObject {
     @Published var password = ""
     
     @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published var errorMessage: String? {
+        didSet {
+            showError = errorMessage != nil
+        }
+    }
+    @Published var showError = false
     @Published var isAuthenticated = false
     
     private let loginUseCase: LoginUseCaseProtocol
@@ -24,7 +29,12 @@ final class LoginViewModel: ObservableObject {
     
     func login() {
         guard !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Please enter email and password."
+            errorMessage = AppStrings.Auth.Validation.emptyEmailPassword
+            return
+        }
+        
+        guard email.isValidEmail else {
+            errorMessage = AppStrings.Auth.Validation.invalidEmail
             return
         }
         

@@ -53,14 +53,7 @@ struct LoginView: View {
                     Spacer()
 
                     VStack(spacing: 8) {
-                        if let error = viewModel.errorMessage {
-                            Text(error)
-                                .foregroundColor(.red)
-                                .font(.footnote)
-                                .multilineTextAlignment(.center)
-                        }
-                        
-                        AppButton(title: viewModel.isLoading ? AppStrings.Auth.loading : AppStrings.Auth.login, verticalPadding: 20) { 
+                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { 
                             viewModel.login()
                         }
                         .disabled(viewModel.isLoading)
@@ -101,6 +94,16 @@ struct LoginView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .overlay {
+            if viewModel.isLoading {
+                CustomLoadingView()
+            }
+        }
+        .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
+            Button(AppStrings.General.ok, role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage ?? "")
+        }
         .onChange(of: viewModel.isAuthenticated) { authenticated in
             if authenticated {
                 // Navigate to home or next screen

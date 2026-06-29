@@ -28,6 +28,19 @@ enum AppStrings {
         static let privacyPolicy = String(localized: "Auth_privacyPolicy", defaultValue: "Privacy Policy")
         static let and = String(localized: "Auth_and", defaultValue: " and ")
         static let termsConditions = String(localized: "Auth_termsConditions", defaultValue: "Terms & Conditions")
+        
+        enum Validation {
+            static let emptyEmailPassword = String(localized: "Auth_validation_emptyEmailPassword", defaultValue: "Please enter email and password.")
+            static let invalidEmail = String(localized: "Auth_validation_invalidEmail", defaultValue: "Please enter a valid email address.")
+            static let emptyName = String(localized: "Auth_validation_emptyName", defaultValue: "Please enter your first and last name.")
+            static let shortPassword = String(localized: "Auth_validation_shortPassword", defaultValue: "Password must be at least 6 characters.")
+            static let passwordsNotMatch = String(localized: "Auth_validation_passwordsNotMatch", defaultValue: "Passwords do not match.")
+        }
+    }
+    
+    enum General {
+        static let error = String(localized: "General_error", defaultValue: "Error")
+        static let ok = String(localized: "General_ok", defaultValue: "OK")
     }
     
     enum Onboarding {

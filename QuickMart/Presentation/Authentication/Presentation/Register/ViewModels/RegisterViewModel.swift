@@ -17,7 +17,12 @@ final class RegisterViewModel: ObservableObject {
     @Published var acceptsMarketing = false
     
     @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published var errorMessage: String? {
+        didSet {
+            showError = errorMessage != nil
+        }
+    }
+    @Published var showError = false
     @Published var isRegistered = false
     
     private let registerUseCase: RegisterUseCaseProtocol
@@ -27,8 +32,23 @@ final class RegisterViewModel: ObservableObject {
     }
     
     func register() {
-        guard !email.isEmpty, !password.isEmpty, password == confirmPassword else {
-            errorMessage = "Please fill all fields and ensure passwords match."
+        guard !firstName.isEmpty, !lastName.isEmpty else {
+            errorMessage = AppStrings.Auth.Validation.emptyName
+            return
+        }
+        
+        guard email.isValidEmail else {
+            errorMessage = AppStrings.Auth.Validation.invalidEmail
+            return
+        }
+        
+        guard password.isValidPassword else {
+            errorMessage = AppStrings.Auth.Validation.shortPassword
+            return
+        }
+        
+        guard password == confirmPassword else {
+            errorMessage = AppStrings.Auth.Validation.passwordsNotMatch
             return
         }
         
