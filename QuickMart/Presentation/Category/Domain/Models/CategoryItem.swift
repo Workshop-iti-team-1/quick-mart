@@ -1,0 +1,19 @@
+//
+//  CategoryItem.swift
+//  QuickMart
+//
+//  Created by Mina_Wagdy on 29/06/2026.
+//
+
+// Features/Category/Domain/Models/CategoryItem.swift
+
+import Foundation
+
+struct CategoryItem: Identifiable, Hashable {
+    let id: String
+    let name: String
+    /// Name of an asset in the Asset Catalog, or an SF Symbol name used as a placeholder.
+    /// When Shopify integration arrives, swap this with a remote URL and update the view layer only.
+    let imageName: String
+    let isSystemImage: Bool
+}
