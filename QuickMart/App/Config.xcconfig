@@ -1,8 +1,17 @@
-// Config.xcconfig
-// https://help.apple.com/xcode/#/dev745c5c974
-// Base configuration — committed to Git (no secrets here)
+//
+//  Config.xcconfig
+//  QuickMart
+//
+//  Created by siam on 29/06/2026.
+//
 
-STORE_URL = https:\/\/your-store.myshopify.com\/api\/2024-01\/graphql.json
-STOREFRONT_TOKEN = 
-API_KEY = 
-API_SECRET_KEY = 
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+STORE_URL = https:\/\/mad46-ios-team1.myshopify.com\/api\/2025-01\/graphql.json
+STOREFRONT_TOKEN = 3c9028a33a8408566d10ac7c7d9107d1
+API_KEY = your_real_api_key_here
+API_SECRET_KEY = your_real_secret_key_here
+
+
+
+
