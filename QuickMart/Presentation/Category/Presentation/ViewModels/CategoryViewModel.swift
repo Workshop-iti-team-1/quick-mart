@@ -4,29 +4,34 @@
 //
 //  Created by Mina_Wagdy on 29/06/2026.
 //
-// Features/Category/Presentation/ViewModels/CategoryViewModel.swift
 
 import Foundation
-import Combine
 
 @MainActor
 final class CategoryViewModel: ObservableObject {
+
+    // MARK: - Published State
 
     @Published private(set) var categories: [CategoryItem] = []
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = nil
 
-    private let repository: CategoryRepositoryProtocol
+    // MARK: - Dependency
 
-    // No default value — the DIContainer is the sole owner of this decision
-    init(repository: CategoryRepositoryProtocol) {
-        self.repository = repository
+    private let fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol
+
+    // MARK: - Init
+
+    init(fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol) {
+        self.fetchCategoriesUseCase = fetchCategoriesUseCase
     }
+
+    // MARK: - Intent
 
     func loadCategories() {
         isLoading = true
         errorMessage = nil
-        categories = repository.fetchCategories()
+        categories = fetchCategoriesUseCase.execute()
         isLoading = false
     }
 }

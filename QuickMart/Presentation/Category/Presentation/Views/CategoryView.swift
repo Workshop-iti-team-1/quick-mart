@@ -79,9 +79,7 @@ struct CategoryView: View {
     NavigationStack {
         NavigationLink("Go to Categories") {
             CategoryView(
-                viewModel: CategoryViewModel(
-                    repository: MockCategoryRepository()
-                )
+                viewModel: DIContainer.shared.makeCategoryViewModel()
             )
         }
         .padding()
