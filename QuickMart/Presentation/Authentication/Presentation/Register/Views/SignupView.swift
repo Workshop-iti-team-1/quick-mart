@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct SignupView: View {
-    @State private var fullName = ""
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject private var viewModel = DIContainer.shared.makeRegisterViewModel()
     var router: AppRouter
     var body: some View {
         ZStack(alignment: .top) {
@@ -40,16 +38,29 @@ struct SignupView: View {
                     }
 
                     VStack(spacing: 16) {
-                        CustomTextField(title: AppStrings.Auth.fullName, placeholder: AppStrings.Auth.enterName, text: $fullName)
-                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $email)
-                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $password, isSecure: true)
+                        CustomTextField(title: AppStrings.Auth.firstName, placeholder: AppStrings.Auth.enterFirstName, text: $viewModel.firstName)
+                        CustomTextField(title: AppStrings.Auth.lastName, placeholder: AppStrings.Auth.enterLastName, text: $viewModel.lastName)
+                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $viewModel.email)
+                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $viewModel.password, isSecure: true)
+                        CustomTextField(title: AppStrings.Auth.confirmPassword, placeholder: AppStrings.Auth.enterConfirmPassword, text: $viewModel.confirmPassword, isSecure: true)
                     }
                     .padding(.top, 16)
 
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: AppStrings.Auth.createAccount, verticalPadding: 20) { }
+                        if let error = viewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                                .font(.footnote)
+                                .multilineTextAlignment(.center)
+                        }
+                        
+                        AppButton(title: viewModel.isLoading ? AppStrings.Auth.loading : AppStrings.Auth.createAccount, verticalPadding: 20) { 
+                            viewModel.register()
+                        }
+                        .disabled(viewModel.isLoading)
+                        
                         AppButton(title: AppStrings.Auth.signupWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                     }
                     .padding(.top, 16)
@@ -60,6 +71,13 @@ struct SignupView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onChange(of: viewModel.isRegistered) { registered in
+            if registered {
+                // Navigate to login or next screen
+                router.popToRoot()
+                router.push(.login)
+            }
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 struct ShopifyConfig {
 
     static var storeURL: URL {
-        let urlString = value(for: "STORE_URL")
+        let urlString = value(for: "STORE_URL").replacingOccurrences(of: "\\", with: "")
         guard let url = URL(string: urlString) else {
             fatalError("Key STORE_URL is missing or empty in Info.plist")
         }
