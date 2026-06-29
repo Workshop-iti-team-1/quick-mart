@@ -46,6 +46,15 @@
 		BFFB154A5B878704916D544C /* CustomLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D20BE86A4B20A54AA6EA3F /* CustomLoadingView.swift */; };
 		C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45CCB23672A7E1B9F37B9C5 /* AuthRepositoryProtocol.swift */; };
 		C921832A67FB45E399B37411 /* OnboardingTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A14204EB0695F65E046182 /* OnboardingTopCardView.swift */; };
+		D412CA452FF2E1DB0010892E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA442FF2E1DB0010892E /* FirebaseAuth */; };
+		D412CA472FF2E1DB0010892E /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA462FF2E1DB0010892E /* FirebaseCore */; };
+		D412CA4A2FF2E2560010892E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA492FF2E2560010892E /* Apollo */; };
+		D412CA542FF2EA9A0010892E /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA532FF2EA940010892E /* CategoryItem.swift */; };
+		D412CA562FF2EAD40010892E /* MockCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA552FF2EAD10010892E /* MockCategoryRepository.swift */; };
+		D412CA582FF2EAF60010892E /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA572FF2EAEB0010892E /* CategoryViewModel.swift */; };
+		D412CA5B2FF2EB220010892E /* CategoryGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5A2FF2EB1F0010892E /* CategoryGridItemView.swift */; };
+		D412CA5D2FF2EB720010892E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5C2FF2EB6F0010892E /* CategoryView.swift */; };
+		D412CA602FF2F1D80010892E /* FetchCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5F2FF2F1D50010892E /* FetchCategoriesUseCase.swift */; };
 		D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE32FF025A9007B11D2 /* Product.swift */; };
 		D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */; };
 		D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */; };
@@ -133,6 +142,12 @@
 		ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AF7A5B8BE8A25040E2309634 /* AppButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		CEEC02B6C8D86D9300F33FA9 /* LoginRequestDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRequestDTO.swift; sourceTree = "<group>"; };
+		D412CA532FF2EA940010892E /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		D412CA552FF2EAD10010892E /* MockCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCategoryRepository.swift; sourceTree = "<group>"; };
+		D412CA572FF2EAEB0010892E /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		D412CA5A2FF2EB1F0010892E /* CategoryGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGridItemView.swift; sourceTree = "<group>"; };
+		D412CA5C2FF2EB6F0010892E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		D412CA5F2FF2F1D50010892E /* FetchCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCategoriesUseCase.swift; sourceTree = "<group>"; };
 		D4A91EE32FF025A9007B11D2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProtocol.swift; sourceTree = "<group>"; };
 		D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProductUseCase.swift; sourceTree = "<group>"; };
@@ -166,8 +181,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8BD1A22FF1945D00666E5D /* FirebaseCore in Frameworks */,
+				D412CA4A2FF2E2560010892E /* Apollo in Frameworks */,
+				D412CA472FF2E1DB0010892E /* FirebaseCore in Frameworks */,
 				1518E88C2FF1B5A3006BED1A /* Apollo in Frameworks */,
 				DE8BD1A02FF1945D00666E5D /* FirebaseAuth in Frameworks */,
+				D412CA452FF2E1DB0010892E /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +444,83 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		D412CA4B2FF2E4AF0010892E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA4E2FF2E4DF0010892E /* Data */,
+				D412CA4D2FF2E4D90010892E /* Domain */,
+				D412CA4C2FF2E4C80010892E /* Presentation */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		D412CA4C2FF2E4C80010892E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA502FF2E8920010892E /* ViewModels */,
+				D412CA4F2FF2E88B0010892E /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D412CA4D2FF2E4D90010892E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA5E2FF2F1CC0010892E /* UseCases */,
+				D412CA512FF2EA820010892E /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D412CA4E2FF2E4DF0010892E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA552FF2EAD10010892E /* MockCategoryRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D412CA4F2FF2E88B0010892E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA5C2FF2EB6F0010892E /* CategoryView.swift */,
+				D412CA592FF2EB120010892E /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D412CA502FF2E8920010892E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA572FF2EAEB0010892E /* CategoryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D412CA512FF2EA820010892E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA532FF2EA940010892E /* CategoryItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D412CA592FF2EB120010892E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA5A2FF2EB1F0010892E /* CategoryGridItemView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D412CA5E2FF2F1CC0010892E /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				D412CA5F2FF2F1D50010892E /* FetchCategoriesUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		D4A91EDB2FF0259B007B11D2 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +534,7 @@
 		D4A91EDE2FF0259B007B11D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D412CA4B2FF2E4AF0010892E /* Category */,
 				D4A91EDB2FF0259B007B11D2 /* Authentication */,
 				C519C718EDEE31B4F261B340 /* Onboarding */,
 			);
@@ -702,8 +798,8 @@
 			);
 			mainGroup = 584C127A2FEFFA1F00F61A1B;
 			packageReferences = (
-				DE8BD19E2FF1945D00666E5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				1518E88A2FF1B5A3006BED1A /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				D412CA432FF2E1DB0010892E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D412CA482FF2E2560010892E /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = 584C12842FEFFA2000F61A1B /* Products */;
 			projectDirPath = "";
@@ -759,6 +855,7 @@
 				D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */,
 				D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */,
 				D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */,
+				D412CA582FF2EAF60010892E /* CategoryViewModel.swift in Sources */,
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
 				D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */,
 				5FA135B92FF16AF3005F9FA6 /* CustomTextField.swift in Sources */,
@@ -772,13 +869,16 @@
 				853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */,
 				49E07C1824415F2404D0613D /* AppButton.swift in Sources */,
 				F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */,
+				D412CA562FF2EAD40010892E /* MockCategoryRepository.swift in Sources */,
 				9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */,
 				DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */,
+				D412CA5B2FF2EB220010892E /* CategoryGridItemView.swift in Sources */,
 				F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */,
 				DFCA6316A229031D81765A74 /* color.swift in Sources */,
 				BC43438CFEB6647875F94D0E /* OnboardingBottomActionView.swift in Sources */,
 				261A5B2B394AB22A645F271E /* OnboardingTextContainerView.swift in Sources */,
 				C921832A67FB45E399B37411 /* OnboardingTopCardView.swift in Sources */,
+				D412CA5D2FF2EB720010892E /* CategoryView.swift in Sources */,
 				B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */,
 				65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */,
 				AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */,
@@ -793,6 +893,7 @@
 				B6FF4B0613B9FEA34103DC60 /* AuthMutations.swift in Sources */,
 				C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */,
 				AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */,
+				D412CA602FF2F1D80010892E /* FetchCategoriesUseCase.swift in Sources */,
 				3909DB3BC9483E30F31E8559 /* RegisterUseCase.swift in Sources */,
 				3A46263D22695CB387577F8E /* AuthRemoteDataSource.swift in Sources */,
 				3D398B032F8E3A52DA9CA904 /* AuthRepositoryImpl.swift in Sources */,
@@ -802,6 +903,7 @@
 				DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */,
 				1C494194884F29089BC26E72 /* LoginResponseDTO.swift in Sources */,
 				BFFB154A5B878704916D544C /* CustomLoadingView.swift in Sources */,
+				D412CA542FF2EA9A0010892E /* CategoryItem.swift in Sources */,
 				98B60399B78AA82923551283 /* String+Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,6 +1240,22 @@
 				version = 1.5.0;
 			};
 		};
+		D412CA432FF2E1DB0010892E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 11.12.0;
+			};
+		};
+		D412CA482FF2E2560010892E /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
 		DE8BD19E2FF1945D00666E5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1152,6 +1270,21 @@
 		1518E88B2FF1B5A3006BED1A /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1518E88A2FF1B5A3006BED1A /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		D412CA442FF2E1DB0010892E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D412CA432FF2E1DB0010892E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D412CA462FF2E1DB0010892E /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D412CA432FF2E1DB0010892E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		D412CA492FF2E2560010892E /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D412CA482FF2E2560010892E /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
 		};
 		DE8BD19F2FF1945D00666E5D /* FirebaseAuth */ = {
