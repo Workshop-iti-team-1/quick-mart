@@ -1,0 +1,32 @@
+//
+//  LatestProductsSection.swift
+//  QuickMart
+//
+//  Created by Alaa Ayman on 29/06/2026.
+//
+
+
+
+import SwiftUI
+
+struct LatestProductsSection: View {
+    let items: [ProductItem]
+    let onSeeAll: () -> Void
+
+    private let columns = [
+        GridItem(.flexible(), spacing: 14),
+        GridItem(.flexible(), spacing: 14)
+    ]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            SectionHeader(title: "Latest Products", onSeeAll: onSeeAll)
+
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(items) { item in
+                    ProductCard(item: item)
+                }
+            }
+        }
+    }
+}
