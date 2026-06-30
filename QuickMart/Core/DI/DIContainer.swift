@@ -29,4 +29,20 @@ public final class DIContainer {
     func makeCategoryViewModel() -> CategoryViewModel {
         CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
     }
+    // MARK: - Home
+       private func makeHomeRepository() -> HomeRepositoryProtocol {
+           MockHomeRepository()
+       }
+       private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
+           FetchBannersUseCase(repository: makeHomeRepository())
+       }
+       private func makeFetchLatestProductsUseCase() -> FetchLatestProductsUseCaseProtocol {
+           FetchLatestProductsUseCase(repository: makeHomeRepository())
+       }
+       func makeHomeViewModel() -> HomeViewModel {
+           HomeViewModel(
+               fetchBannersUseCase: makeFetchBannersUseCase(),
+               fetchLatestProductsUseCase: makeFetchLatestProductsUseCase()
+           )
+       }
 }

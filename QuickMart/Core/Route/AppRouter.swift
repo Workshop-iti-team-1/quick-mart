@@ -49,13 +49,10 @@ final class AppRouter {
     func destination(for route: Route) -> some View {
         switch route {
         case .home:
-            // Replace with HomeView() when built
-            Text("Home")
+            HomeView(viewModel: self.diContainer.makeHomeViewModel(), router: self)
         case .login:
-            // Replace with LoginView() when built
             Text("Login")
         case .signup:
-            // Replace with SignupView() when built
             Text("Signup")
         case .category:
             CategoryView(viewModel: diContainer.makeCategoryViewModel())
