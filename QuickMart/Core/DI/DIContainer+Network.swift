@@ -9,7 +9,7 @@ import Foundation
 import Apollo
 
 extension DIContainer {
-    public var apolloClient: ApolloClient {
-        return Network.shared.apollo
+    var graphQLClient: ShopifyGraphQLClientProtocol {
+        return GraphQLClient(apollo: self.apolloClient)
     }
 }

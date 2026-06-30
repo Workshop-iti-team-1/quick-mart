@@ -7,16 +7,7 @@
 
 import Foundation
 
-struct RegisterResponse: Decodable {
-    let data: RegisterData
-}
-struct RegisterData: Decodable {
-    let customerCreate: CustomerCreate
-}
-struct CustomerCreate: Decodable {
-    let customer: CustomerDTO?
-    let customerUserErrors: [ShopifyUserError]
-}
+
 struct CustomerDTO: Decodable {
     let id: String
     let firstName: String?

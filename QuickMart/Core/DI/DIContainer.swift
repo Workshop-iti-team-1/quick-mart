@@ -8,6 +8,7 @@
 // App/DI/DIContainer.swift
 
 import Foundation
+import Apollo
 
 @MainActor
 public final class DIContainer {
@@ -15,6 +16,13 @@ public final class DIContainer {
     public static let shared = DIContainer()
 
     private init() {}
+    
+    private(set) lazy var apolloClient: ApolloClient = {
+        let store = ApolloStore()
+        let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
+        return ApolloClient(networkTransport: transport, store: store)
+    }()
 
     // MARK: - Category
 

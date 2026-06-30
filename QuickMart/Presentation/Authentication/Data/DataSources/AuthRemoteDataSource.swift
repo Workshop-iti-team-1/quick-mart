@@ -20,32 +20,66 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     func register(request: RegisterRequestDTO) async throws -> CustomerDTO {
-        let mutation = AuthMutations.register
+        let input = ShopifyAPI.CustomerCreateInput(
+            firstName: .some(request.firstName ),
+            lastName: .some(request.lastName ),
+            email: request.email ,
+            password: request.password
+        )
+        let mutation = ShopifyAPI.RegisterCustomerMutation(input: input)
+        let response = try await client.performMutation(mutation: mutation)
         
-        let variables: [String: Any] = ["input": request.toDictionary()]
-        let response: RegisterResponse = try await client.performMutation(mutation: mutation, variables: variables)
+        guard let result = response.customerCreate else {
+            throw NetworkError.noData
+        }
         
-        let result = response.data.customerCreate
         if let customer = result.customer {
-            return customer
+            return CustomerDTO(
+                id: customer.id,
+                firstName: customer.firstName,
+                lastName: customer.lastName,
+                email: customer.email ?? ""
+            )
         } else if !result.customerUserErrors.isEmpty {
-            throw NetworkError.userErrors(result.customerUserErrors)
+            let errors = result.customerUserErrors.map { error in
+                ShopifyUserError(
+                    code: error.code?.rawValue,
+                    field: error.field,
+                    message: error.message
+                )
+            }
+            throw NetworkError.userErrors(errors)
         } else {
             throw NetworkError.noData
         }
     }
     
     func login(request: LoginRequestDTO) async throws -> AuthTokenDTO {
-        let mutation = AuthMutations.login
+        let input = ShopifyAPI.CustomerAccessTokenCreateInput(
+            email: request.email ,
+            password: request.password
+        )
+        let mutation = ShopifyAPI.LoginCustomerMutation(input: input)
+        let response = try await client.performMutation(mutation: mutation)
         
-        let variables: [String: Any] = ["input": request.toDictionary()]
-        let response: LoginResponse = try await client.performMutation(mutation: mutation, variables: variables)
+        guard let result = response.customerAccessTokenCreate else {
+            throw NetworkError.noData
+        }
         
-        let result = response.data.customerAccessTokenCreate
         if let token = result.customerAccessToken {
-            return token
+            return AuthTokenDTO(
+                accessToken: token.accessToken,
+                expiresAt: token.expiresAt
+            )
         } else if !result.customerUserErrors.isEmpty {
-            throw NetworkError.userErrors(result.customerUserErrors)
+            let errors = result.customerUserErrors.map { error in
+                ShopifyUserError(
+                    code: error.code?.rawValue,
+                    field: error.field,
+                    message: error.message
+                )
+            }
+            throw NetworkError.userErrors(errors)
         } else {
             throw NetworkError.noData
         }

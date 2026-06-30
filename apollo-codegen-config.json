@@ -1,0 +1,53 @@
+{
+  "schemaNamespace" : "ShopifyAPI",
+  "input" : {
+    "operationSearchPaths" : [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "**/*.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./QuickMart/Core/Network/ShopifyAPI",
+      "moduleType" : {
+        "embeddedInTarget" : {
+          "name" : "QuickMart"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  },
+  "schemaDownload": {
+    "downloadMethod": {
+        "introspection": {
+            "endpointURL": "https://mad46-ios-team1.myshopify.com/api/2025-01/graphql.json",
+            "httpMethod": {
+                "POST": {}
+            },
+            "includeDeprecatedInputValues": false,
+            "outputFormat": "SDL"
+        }
+    },
+    "downloadTimeout": 60,
+    "headers": [
+        {
+            "key": "X-Shopify-Storefront-Access-Token",
+            "value": "3c9028a33a8408566d10ac7c7d9107d1"
+        },
+        {
+            "key": "Content-Type",
+            "value": "application/json"
+        }
+    ],
+    "outputPath": "./schema.graphqls"
+  }
+}

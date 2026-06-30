@@ -7,16 +7,7 @@
 
 import Foundation
 
-struct LoginResponse: Decodable {
-    let data: LoginData
-}
-struct LoginData: Decodable {
-    let customerAccessTokenCreate: CustomerAccessTokenCreate
-}
-struct CustomerAccessTokenCreate: Decodable {
-    let customerAccessToken: AuthTokenDTO?
-    let customerUserErrors: [ShopifyUserError]
-}
+
 struct AuthTokenDTO: Decodable {
     let accessToken: String
     let expiresAt: String
