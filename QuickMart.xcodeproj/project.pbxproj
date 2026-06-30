@@ -15,7 +15,6 @@
 		11A4D3F2EF5152B750B054C1 /* CustomerCreateInput.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C2F17EB08752B9EE81EFED /* CustomerCreateInput.graphql.swift */; };
 		150DD8E92FF30C1B00D89DCE /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD8E82FF30C1B00D89DCE /* SessionManager.swift */; };
 		1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */; };
-
 		15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36C2FF1F3030091D036 /* Customer.swift */; };
 		15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36E2FF1F30B0091D036 /* AuthToken.swift */; };
 		15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */; };
@@ -55,7 +54,6 @@
 		535C61CBB8D28342D2118F30 /* Collection.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC81C9280FBE9E244067347 /* Collection.graphql.swift */; };
 		54B2D399558E31B8BC4DB3DB /* SchemaConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE0121AD939D7421ACA7930 /* SchemaConfiguration.swift */; };
 		57EB4E515FDAFAD064E4EC86 /* Apollo+NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A25156AF2CD212F46842181 /* Apollo+NetworkError.swift */; };
-		584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */; };
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
@@ -136,18 +134,11 @@
 		D412CA5B2FF2EB220010892E /* CategoryGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5A2FF2EB1F0010892E /* CategoryGridItemView.swift */; };
 		D412CA5D2FF2EB720010892E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5C2FF2EB6F0010892E /* CategoryView.swift */; };
 		D412CA602FF2F1D80010892E /* FetchCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412CA5F2FF2F1D50010892E /* FetchCategoriesUseCase.swift */; };
-		D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE32FF025A9007B11D2 /* Product.swift */; };
-		D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */; };
-		D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */; };
 		D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF02FF025AE007B11D2 /* DIContainer.swift */; };
 		D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */; };
 		D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */; };
 		D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */; };
 		D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */; };
-		D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */; };
-		D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */; };
-		D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F032FF025B9007B11D2 /* ProductDTO.swift */; };
-		D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F052FF025B9007B11D2 /* ProductRepository.swift */; };
 		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
 		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
 		D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */; };
@@ -155,7 +146,6 @@
 		DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E7477EA51BCBA5A046101 /* images.swift */; };
 		DB7E1F3D7B94D6845333BCB2 /* CustomerUserError.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623841E30B61FE8DF1C67C0 /* CustomerUserError.graphql.swift */; };
 		DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB407902B34A12003729580C /* RegisterResponseDTO.swift */; };
-
 		DEB88D722FA592E794489BBD /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B91A82DF9FEC88375C5705 /* DateTime.swift */; };
 		DFCA6316A229031D81765A74 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449E3371C690013C22FFECF /* color.swift */; };
 		E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */; };
@@ -190,9 +180,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		03E17CE8B3BB8BFC7C709C1E /* BaseCartLine.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseCartLine.graphql.swift; sourceTree = "<group>"; };
 		0646E403735FA14A145E78CA /* Location.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Location.graphql.swift; sourceTree = "<group>"; };
@@ -241,8 +228,10 @@
 		4DC62179CB9EEEDD7B8E53E8 /* MediaPresentation.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MediaPresentation.graphql.swift; sourceTree = "<group>"; };
 		50CC09F4EB3380251FE524FC /* Metaobject.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Metaobject.graphql.swift; sourceTree = "<group>"; };
 		57D20BE86A4B20A54AA6EA3F /* CustomLoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
-		584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartTests.swift; sourceTree = "<group>"; };
+		584C12A32FEFFA2400F61A1B /* QuickMartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -325,19 +314,12 @@
 		D412CA5A2FF2EB1F0010892E /* CategoryGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGridItemView.swift; sourceTree = "<group>"; };
 		D412CA5C2FF2EB6F0010892E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		D412CA5F2FF2F1D50010892E /* FetchCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCategoriesUseCase.swift; sourceTree = "<group>"; };
-		D4A91EE32FF025A9007B11D2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProtocol.swift; sourceTree = "<group>"; };
-		D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProductUseCase.swift; sourceTree = "<group>"; };
 		D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4A91EF02FF025AE007B11D2 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
 		D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartApp.swift; sourceTree = "<group>"; };
 		D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tempConfig.xcconfig; sourceTree = "<group>"; };
 		D4A91EF62FF025AE007B11D2 /* QuickMart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickMart.xcdatamodel; sourceTree = "<group>"; };
-		D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
-		D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
-		D4A91F032FF025B9007B11D2 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
-		D4A91F052FF025B9007B11D2 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyGraphQLClientProtocol.swift; sourceTree = "<group>"; };
@@ -537,23 +519,12 @@
 			isa = PBXGroup;
 			children = (
 				D4D1B8082FEFDF650082FE02 /* Info.plist */,
-				D4A91EDE2FF0259B007B11D2 /* Presentation */,
-				D4A91EE92FF025A9007B11D2 /* Domain */,
+				D4A91EDE2FF0259B007B11D2 /* Modules */,
 				D4A91EF52FF025AE007B11D2 /* App */,
-				D4A91F082FF025B9007B11D2 /* Data */,
 				D4A91F152FF025BF007B11D2 /* Core */,
-				584C128C2FEFFA2300F61A1B /* Preview Content */,
 				1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */,
 			);
 			path = QuickMart;
-			sourceTree = "<group>";
-		};
-		584C128C2FEFFA2300F61A1B /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				584C128D2FEFFA2300F61A1B /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		584C129C2FEFFA2300F61A1B /* QuickMartTests */ = {
@@ -971,7 +942,7 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		D4A91EDE2FF0259B007B11D2 /* Presentation */ = {
+		D4A91EDE2FF0259B007B11D2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				5F840A682FF3191E00BB18C7 /* Home */,
@@ -979,41 +950,7 @@
 				D4A91EDB2FF0259B007B11D2 /* Authentication */,
 				C519C718EDEE31B4F261B340 /* Onboarding */,
 			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		D4A91EE42FF025A9007B11D2 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EE32FF025A9007B11D2 /* Product.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		D4A91EE62FF025A9007B11D2 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EE52FF025A9007B11D2 /* ProductProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		D4A91EE82FF025A9007B11D2 /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EE72FF025A9007B11D2 /* FetchProductUseCase.swift */,
-			);
-			path = Usecases;
-			sourceTree = "<group>";
-		};
-		D4A91EE92FF025A9007B11D2 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EE42FF025A9007B11D2 /* Entities */,
-				D4A91EE62FF025A9007B11D2 /* Protocols */,
-				D4A91EE82FF025A9007B11D2 /* Usecases */,
-			);
-			path = Domain;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		D4A91EF52FF025AE007B11D2 /* App */ = {
@@ -1028,57 +965,6 @@
 				150DD8E42FF2CEE500D89DCE /* Config.xcconfig */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		D4A91EFF2FF025B9007B11D2 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EFE2FF025B9007B11D2 /* LocalDataSource.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		D4A91F012FF025B9007B11D2 /* Remote */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91F002FF025B9007B11D2 /* RemoteDataSource.swift */,
-			);
-			path = Remote;
-			sourceTree = "<group>";
-		};
-		D4A91F022FF025B9007B11D2 /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91EFF2FF025B9007B11D2 /* Local */,
-				D4A91F012FF025B9007B11D2 /* Remote */,
-			);
-			path = DataSources;
-			sourceTree = "<group>";
-		};
-		D4A91F042FF025B9007B11D2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91F032FF025B9007B11D2 /* ProductDTO.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D4A91F062FF025B9007B11D2 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91F052FF025B9007B11D2 /* ProductRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		D4A91F082FF025B9007B11D2 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				D4A91F022FF025B9007B11D2 /* DataSources */,
-				D4A91F042FF025B9007B11D2 /* Models */,
-				D4A91F062FF025B9007B11D2 /* Repositories */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		D4A91F0F2FF025BF007B11D2 /* Extensions */ = {
@@ -1279,7 +1165,6 @@
 			files = (
 				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
 				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
-				584C128E2FEFFA2300F61A1B /* Preview Assets.xcassets in Resources */,
 				1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1312,10 +1197,6 @@
 				15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */,
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
-				D4A91F092FF025B9007B11D2 /* LocalDataSource.swift in Sources */,
-				D4A91F0A2FF025B9007B11D2 /* RemoteDataSource.swift in Sources */,
-				D4A91F0B2FF025B9007B11D2 /* ProductDTO.swift in Sources */,
-				D4A91F0C2FF025B9007B11D2 /* ProductRepository.swift in Sources */,
 				D412CA582FF2EAF60010892E /* CategoryViewModel.swift in Sources */,
 				5F840A882FF31BD200BB18C7 /* ProductItem.swift in Sources */,
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
@@ -1328,9 +1209,6 @@
 				5FA135AF2FF168EB005F9FA6 /* LoginViewModel.swift in Sources */,
 				5FA135B02FF168EB005F9FA6 /* LoginView.swift in Sources */,
 				5F840A7E2FF31AEC00BB18C7 /* HomeViewModel.swift in Sources */,
-				D4A91EEA2FF025A9007B11D2 /* Product.swift in Sources */,
-				D4A91EEB2FF025A9007B11D2 /* ProductProtocol.swift in Sources */,
-				D4A91EEC2FF025A9007B11D2 /* FetchProductUseCase.swift in Sources */,
 				5F840A8A2FF31CE800BB18C7 /* MockHomeRepository.swift in Sources */,
 				5FA135B62FF169EC005F9FA6 /* RegisterViewModel.swift in Sources */,
 				5F840A7C2FF31AC100BB18C7 /* BannerSlide.swift in Sources */,
