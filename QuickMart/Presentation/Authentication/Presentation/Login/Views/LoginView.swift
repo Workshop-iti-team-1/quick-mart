@@ -46,8 +46,10 @@ struct LoginView: View {
 
                     HStack {
                         Spacer()
-                        Button(AppStrings.Auth.forgotPassword) { }
-                            .appTextStyle(.body, color: .cyanPrimary)
+                        Button(AppStrings.Auth.forgotPassword) {
+                            router.push(.forgotPassword)
+                        }
+                        .appTextStyle(.body, color: .cyanPrimary)
                     }
 
                     Spacer()

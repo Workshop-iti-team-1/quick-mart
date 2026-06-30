@@ -20,6 +20,11 @@ enum AppStrings {
         
         static let loading = String(localized: "Auth_loading", defaultValue: "Loading...")
         static let forgotPassword = String(localized: "Auth_forgotPassword", defaultValue: "Forgot password?")
+        static let forgotPasswordTitle = String(localized: "Auth_forgotPasswordTitle", defaultValue: "Forgot Password")
+        static let forgotPasswordSubtitle = String(localized: "Auth_forgotPasswordSubtitle", defaultValue: "Enter your email address and we will send you a link to reset your password.")
+        static let sendResetLink = String(localized: "Auth_sendResetLink", defaultValue: "Send Reset Link")
+        static let resetLinkSent = String(localized: "Auth_resetLinkSent", defaultValue: "A reset link has been sent to your email.")
+        static let backToLogin = String(localized: "Auth_backToLogin", defaultValue: "Back to Login")
         static let loginWithGoogle = String(localized: "Auth_loginWithGoogle", defaultValue: "Login with Google")
         static let signupWithGoogle = String(localized: "Auth_signupWithGoogle", defaultValue: "Signup with Google")
         static let createAccount = String(localized: "Auth_createAccount", defaultValue: "Create Account")

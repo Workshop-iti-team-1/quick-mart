@@ -50,4 +50,9 @@ final class AuthRepositoryImpl: AuthRepositoryProtocol {
     func loginAsGuest() async throws -> FirebaseUser {
         return try await firebaseAuth.signInAnonymously()
     }
+    
+    func recoverPassword(email: String) async throws {
+        // As requested by the user, this is only with Shopify API, not Firebase.
+        try await remoteDataSource.recoverPassword(email: email)
+    }
 }

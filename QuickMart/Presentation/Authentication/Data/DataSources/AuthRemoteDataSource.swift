@@ -10,6 +10,7 @@ import Foundation
 protocol AuthRemoteDataSourceProtocol {
     func register(request: RegisterRequestDTO) async throws -> CustomerDTO
     func login(request: LoginRequestDTO) async throws -> AuthTokenDTO
+    func recoverPassword(email: String) async throws
 }
 
 final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
@@ -82,6 +83,26 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
             throw NetworkError.userErrors(errors)
         } else {
             throw NetworkError.noData
+        }
+    }
+    
+    func recoverPassword(email: String) async throws {
+        let mutation = ShopifyAPI.RecoverPasswordMutation(email: email)
+        let response = try await client.performMutation(mutation: mutation)
+        
+        guard let result = response.customerRecover else {
+            throw NetworkError.noData
+        }
+        
+        if !result.customerUserErrors.isEmpty {
+            let errors = result.customerUserErrors.map { error in
+                ShopifyUserError(
+                    code: error.code?.rawValue,
+                    field: error.field,
+                    message: error.message
+                )
+            }
+            throw NetworkError.userErrors(errors)
         }
     }
 }

@@ -44,6 +44,10 @@ extension DIContainer {
         return GuestLoginUseCase(repository: authRepository)
     }
     
+    var recoverPasswordUseCase: RecoverPasswordUseCaseProtocol {
+        return RecoverPasswordUseCase(repository: authRepository)
+    }
+    
     // MARK: - View Models
     
     @MainActor
@@ -57,5 +61,10 @@ extension DIContainer {
     @MainActor
     func makeRegisterViewModel() -> RegisterViewModel {
         return RegisterViewModel(registerUseCase: registerUseCase)
+    }
+    
+    @MainActor
+    func makeForgotPasswordViewModel() -> ForgotPasswordViewModel {
+        return ForgotPasswordViewModel(recoverPasswordUseCase: recoverPasswordUseCase)
     }
 }

@@ -25,6 +25,10 @@ class SessionManager: ObservableObject {
     
     private init(firebaseAuth: FirebaseAuthServiceProtocol = FirebaseAuthService()) {
         self.firebaseAuth = firebaseAuth
+    }
+    
+    /// Call this AFTER FirebaseApp.configure() has completed
+    func configure() {
         checkUserStatus()
     }
     

@@ -11,4 +11,5 @@ protocol AuthRepositoryProtocol {
     func register(firstName: String, lastName: String, email: String, password: String, acceptsMarketing: Bool) async throws -> Customer
     func login(email: String, password: String) async throws -> AuthToken
     func loginAsGuest() async throws -> FirebaseUser
+    func recoverPassword(email: String) async throws
 }
