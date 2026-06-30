@@ -31,6 +31,19 @@ struct HomeView: View {
                         onSeeAll: { }
                     )
                 }
+                
+            
+                Button(action: {
+                    SessionManager.shared.logout()
+                }) {
+                    Text("Test Logout")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(12)
+                }
             }
             .padding(.horizontal, 16)
             .padding(.top, 12)
