@@ -11,6 +11,7 @@ import FirebaseAuth
 
 enum AppState {
     case loading
+    case unauthenticated
     case guest
     case loggedIn
 }
@@ -38,7 +39,7 @@ class SessionManager: ObservableObject {
                 currentState = .guest
             }
         } else {
-            currentState = .guest
+            currentState = .unauthenticated
         }
     }
     
@@ -54,7 +55,7 @@ class SessionManager: ObservableObject {
     func logout() {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.customerAccessToken)
         try? firebaseAuth.signOut()
-        currentState = .guest
+        currentState = .unauthenticated
     }
     
     func getToken() -> String? {
