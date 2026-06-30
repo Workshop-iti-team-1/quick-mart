@@ -27,3 +27,13 @@ mutation LoginCustomer($input: CustomerAccessTokenCreateInput!) {
     }
   }
 }
+
+mutation RecoverPassword($email: String!) {
+ customerRecover(email: $email) {
+    customerUserErrors {
+     code
+     field
+      message
+  }
+ }
+}
