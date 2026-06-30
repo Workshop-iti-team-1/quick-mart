@@ -20,17 +20,17 @@ enum FirebaseAuthError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidEmail:
-            return "The email address is invalid."
+            return AppStrings.FirebaseError.invalidEmail
         case .wrongPassword:
-            return "Incorrect password. Please try again."
+            return AppStrings.FirebaseError.wrongPassword
         case .emailAlreadyInUse:
-            return "This email is already registered. Please login instead."
+            return AppStrings.FirebaseError.emailAlreadyInUse
         case .weakPassword:
-            return "Password is too weak. Please use at least 6 characters."
+            return AppStrings.FirebaseError.weakPassword
         case .userNotFound:
-            return "No account found with this email."
+            return AppStrings.FirebaseError.userNotFound
         case .networkError:
-            return "Network error. Please check your connection."
+            return AppStrings.FirebaseError.networkError
         case .unknown(let message):
             return message
         }

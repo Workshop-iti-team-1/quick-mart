@@ -37,6 +37,7 @@ struct HomeView: View {
             .padding(.bottom, 24)
         }
         .background(Color.backGround.ignoresSafeArea())
+        .navigationBarBackButtonHidden(true)
         .customToolbar(onSearch: {  })
         .onAppear {
             viewModel.loadHome()

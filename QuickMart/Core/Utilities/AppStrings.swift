@@ -43,6 +43,15 @@ enum AppStrings {
         static let ok = String(localized: "General_ok", defaultValue: "OK")
     }
     
+    enum FirebaseError {
+        static let invalidEmail = String(localized: "FirebaseError_invalidEmail", defaultValue: "The email address is invalid.")
+        static let wrongPassword = String(localized: "FirebaseError_wrongPassword", defaultValue: "Incorrect password. Please try again.")
+        static let emailAlreadyInUse = String(localized: "FirebaseError_emailAlreadyInUse", defaultValue: "This email is already registered. Please login instead.")
+        static let weakPassword = String(localized: "FirebaseError_weakPassword", defaultValue: "Password is too weak. Please use at least 6 characters.")
+        static let userNotFound = String(localized: "FirebaseError_userNotFound", defaultValue: "No account found with this email.")
+        static let networkError = String(localized: "FirebaseError_networkError", defaultValue: "Network error. Please check your connection.")
+    }
+    
     enum Onboarding {
         static let skipForNow = String(localized: "Onboarding_skipForNow", defaultValue: "Skip for now")
         static let next = String(localized: "Onboarding_next", defaultValue: "Next")
