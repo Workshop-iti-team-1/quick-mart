@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import FirebaseAuth
 
 enum AppState {
     case loading
@@ -19,13 +20,23 @@ class SessionManager: ObservableObject {
     
     @Published var currentState: AppState = .loading
     
-    private init() {
+    private let firebaseAuth: FirebaseAuthServiceProtocol
+    
+    private init(firebaseAuth: FirebaseAuthServiceProtocol = FirebaseAuthService()) {
+        self.firebaseAuth = firebaseAuth
         checkUserStatus()
     }
     
     func checkUserStatus() {
-        if let _ = getToken() {
-            currentState = .loggedIn
+        if let firebaseUser = firebaseAuth.getCurrentUser() {
+            if firebaseUser.isAnonymous {
+                currentState = .guest
+            } else if getToken() != nil {
+                currentState = .loggedIn
+            } else {
+                // Firebase user exists but no Shopify token — treat as guest
+                currentState = .guest
+            }
         } else {
             currentState = .guest
         }
@@ -36,8 +47,13 @@ class SessionManager: ObservableObject {
         currentState = .loggedIn
     }
     
+    func loginAsGuest() {
+        currentState = .guest
+    }
+    
     func logout() {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.customerAccessToken)
+        try? firebaseAuth.signOut()
         currentState = .guest
     }
     

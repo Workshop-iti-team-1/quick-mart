@@ -51,9 +51,9 @@ final class AppRouter {
         case .home:
             HomeView(viewModel: self.diContainer.makeHomeViewModel(), router: self)
         case .login:
-            Text("Login")
+            LoginView(router: self)
         case .signup:
-            Text("Signup")
+            SignupView(router: self)
         case .category:
             CategoryView(viewModel: diContainer.makeCategoryViewModel())
         }

@@ -64,7 +64,7 @@ final class RegisterViewModel: ObservableObject {
                     password: password,
                     acceptsMarketing: acceptsMarketing
                 )
-                print("Registered! Customer ID: \(customer.id)")
+                print("Registered in Firebase & Shopify! Customer ID: \(customer.id)")
                 self.isRegistered = true
                 self.isLoading = false
             } catch {

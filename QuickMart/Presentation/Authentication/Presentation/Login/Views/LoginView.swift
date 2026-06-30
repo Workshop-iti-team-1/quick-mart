@@ -61,7 +61,7 @@ struct LoginView: View {
                         AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
                         
                         Button(AppStrings.Auth.loginAsGuest) { 
-                            // TODO: Handle guest login
+                            viewModel.loginAsGuest()
                         }
                         .appTextStyle(.body, color: .cyanPrimary)
                         .padding(.top, 8)
@@ -106,8 +106,14 @@ struct LoginView: View {
         }
         .onChange(of: viewModel.isAuthenticated) { authenticated in
             if authenticated {
-                // Navigate to home or next screen
-                print("Authenticated, navigating...")
+                router.popToRoot()
+                router.push(.home)
+            }
+        }
+        .onChange(of: viewModel.isGuestAuthenticated) { isGuest in
+            if isGuest {
+                router.popToRoot()
+                router.push(.home)
             }
         }
     }

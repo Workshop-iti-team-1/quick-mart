@@ -18,6 +18,10 @@
 		1518E88C2FF1B5A3006BED1A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 1518E88B2FF1B5A3006BED1A /* Apollo */; };
 		15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36C2FF1F3030091D036 /* Customer.swift */; };
 		15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36E2FF1F30B0091D036 /* AuthToken.swift */; };
+		15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */; };
+		15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */; };
+		15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244F2FF4569B00428612 /* FirebaseUser.swift */; };
+		15F124552FF456CA00428612 /* GuestLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F124542FF456CA00428612 /* GuestLoginUseCase.swift */; };
 		18519BE8EC9C19AD8D48C63A /* ShopifyAPI.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ABC14E9FEF41B3D52340F1 /* ShopifyAPI.graphql.swift */; };
 		1B01E0C74626D1CEC07F8FBD /* SearchQuerySuggestion.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87419783DC5F28C03943F5 /* SearchQuerySuggestion.graphql.swift */; };
 		1C494194884F29089BC26E72 /* LoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6D05E3D4FF19300607EC7 /* LoginResponseDTO.swift */; };
@@ -195,6 +199,10 @@
 		1525CF02540AF309DBD66314 /* CustomerAccessTokenCreatePayload.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerAccessTokenCreatePayload.graphql.swift; sourceTree = "<group>"; };
 		15D4B36C2FF1F3030091D036 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		15D4B36E2FF1F30B0091D036 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthError.swift; sourceTree = "<group>"; };
+		15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		15F1244F2FF4569B00428612 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		15F124542FF456CA00428612 /* GuestLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestLoginUseCase.swift; sourceTree = "<group>"; };
 		17D401FE199C613648D33B6F /* ShopPayInstallmentsFinancingPlanTerm.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShopPayInstallmentsFinancingPlanTerm.graphql.swift; sourceTree = "<group>"; };
 		1A0B89A7F0D4E1F3C3BB0304 /* String+Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		1A25156AF2CD212F46842181 /* Apollo+NetworkError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Apollo+NetworkError.swift"; sourceTree = "<group>"; };
@@ -382,6 +390,16 @@
 				086AA3E7328FACCD6F4AEDCA /* CustomerAccessTokenCreateInput.graphql.swift */,
 			);
 			path = InputObjects;
+			sourceTree = "<group>";
+		};
+		15F124502FF4569B00428612 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */,
+				15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */,
+				15F1244F2FF4569B00428612 /* FirebaseUser.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		176EBF081614985AB907B523 /* Repositories */ = {
@@ -722,6 +740,7 @@
 			children = (
 				039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */,
 				6CEF6214DE88C80686522218 /* RegisterUseCase.swift */,
+				15F124542FF456CA00428612 /* GuestLoginUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1070,6 +1089,7 @@
 				2713FAB5D66D903311E7CB7A /* theme */,
 				3F3A17423400352EE053FFD1 /* Route */,
 				489F77F3FD94E054576B4E45 /* DI */,
+				15F124502FF4569B00428612 /* Firebase */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1283,6 +1303,7 @@
 				D412CA5D2FF2EB720010892E /* CategoryView.swift in Sources */,
 				150DD8E92FF30C1B00D89DCE /* SessionManager.swift in Sources */,
 				5F840A8C2FF31D7300BB18C7 /* CustomToolbar.swift in Sources */,
+				15F124552FF456CA00428612 /* GuestLoginUseCase.swift in Sources */,
 				B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */,
 				65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */,
 				AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */,
@@ -1296,6 +1317,9 @@
 				7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */,
 				57EB4E515FDAFAD064E4EC86 /* Apollo+NetworkError.swift in Sources */,
 				E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */,
+				15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */,
+				15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */,
+				15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */,
 				5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */,
 				5F840A7A2FF31AAB00BB18C7 /* HomeCategoryCell.swift in Sources */,
 				C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */,
