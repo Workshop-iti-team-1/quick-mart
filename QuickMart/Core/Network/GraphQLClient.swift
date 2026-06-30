@@ -7,6 +7,7 @@
 
 import Foundation
 import Apollo
+import ApolloAPI
 
 class TokenInterceptor: ApolloInterceptor {
     var id: String = UUID().uuidString
@@ -43,15 +44,10 @@ class NetworkInterceptorProvider: DefaultInterceptorProvider {
 }
 
 final class GraphQLClient: ShopifyGraphQLClientProtocol {
-    static let shared = GraphQLClient()
-    
     private let apollo: ApolloClient
     
-    private init() {
-        let store = ApolloStore()
-        let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
-        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
-        self.apollo = ApolloClient(networkTransport: transport, store: store)
+    init(apollo: ApolloClient) {
+        self.apollo = apollo
     }
     
     func performQuery<Query: GraphQLQuery>(query: Query) async throws -> Query.Data {

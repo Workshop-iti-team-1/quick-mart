@@ -11,10 +11,5 @@ struct LoginRequestDTO: Encodable {
     let email: String
     let password: String
     
-    func toDictionary() -> [String: Any] {
-        return [
-            "email": email,
-            "password": password
-        ]
-    }
+
 }

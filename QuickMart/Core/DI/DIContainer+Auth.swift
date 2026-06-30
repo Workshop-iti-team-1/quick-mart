@@ -9,12 +9,8 @@ import Foundation
 
 extension DIContainer {
     
-    var rawGraphQLClient: ShopifyGraphQLClientProtocol {
-        return RawGraphQLClient()
-    }
-    
     var authRemoteDataSource: AuthRemoteDataSourceProtocol {
-        return AuthRemoteDataSource(client: rawGraphQLClient)
+        return AuthRemoteDataSource(client: graphQLClient)
     }
     
     var authRepository: AuthRepositoryProtocol {

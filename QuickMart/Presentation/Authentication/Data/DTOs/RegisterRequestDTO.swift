@@ -14,13 +14,5 @@ struct RegisterRequestDTO: Encodable {
     let password: String
     let acceptsMarketing: Bool
     
-    func toDictionary() -> [String: Any] {
-        return [
-            "firstName": firstName,
-            "lastName": lastName,
-            "email": email,
-            "password": password,
-            "acceptsMarketing": acceptsMarketing
-        ]
-    }
+
 }
