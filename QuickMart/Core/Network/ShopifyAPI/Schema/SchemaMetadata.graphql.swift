@@ -81,6 +81,7 @@ extension ShopifyAPI {
       case "UserErrorsShopPayPaymentRequestSessionUserErrors": return ShopifyAPI.Objects.UserErrorsShopPayPaymentRequestSessionUserErrors
       case "CustomerAccessTokenCreatePayload": return ShopifyAPI.Objects.CustomerAccessTokenCreatePayload
       case "CustomerAccessToken": return ShopifyAPI.Objects.CustomerAccessToken
+      case "CustomerRecoverPayload": return ShopifyAPI.Objects.CustomerRecoverPayload
       default: return nil
       }
     }
