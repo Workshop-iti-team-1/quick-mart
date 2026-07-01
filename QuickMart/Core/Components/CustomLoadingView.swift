@@ -17,7 +17,7 @@ struct CustomLoadingView: View {
                 .progressViewStyle(CircularProgressViewStyle(tint: .cyanPrimary))
                 .scaleEffect(1.5)
                 .padding(24)
-                .background(Color.backGround)
+                .background(Color.white)
                 .cornerRadius(12)
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
         }

@@ -9,28 +9,13 @@ import Foundation
 
 extension DIContainer {
     
-    // MARK: - Firebase
-    
-    var firebaseAuthService: FirebaseAuthServiceProtocol {
-        return FirebaseAuthService()
-    }
-    
-    // MARK: - Data Sources
-    
     var authRemoteDataSource: AuthRemoteDataSourceProtocol {
         return AuthRemoteDataSource(client: graphQLClient)
     }
     
-    // MARK: - Repository
-    
     var authRepository: AuthRepositoryProtocol {
-        return AuthRepositoryImpl(
-            remoteDataSource: authRemoteDataSource,
-            firebaseAuth: firebaseAuthService
-        )
+        return AuthRepositoryImpl(remoteDataSource: authRemoteDataSource)
     }
-    
-    // MARK: - Use Cases
     
     var loginUseCase: LoginUseCaseProtocol {
         return LoginUseCase(repository: authRepository)
@@ -40,31 +25,13 @@ extension DIContainer {
         return RegisterUseCase(repository: authRepository)
     }
     
-    var guestLoginUseCase: GuestLoginUseCaseProtocol {
-        return GuestLoginUseCase(repository: authRepository)
-    }
-    
-    var recoverPasswordUseCase: RecoverPasswordUseCaseProtocol {
-        return RecoverPasswordUseCase(repository: authRepository)
-    }
-    
-    // MARK: - View Models
-    
     @MainActor
     func makeLoginViewModel() -> LoginViewModel {
-        return LoginViewModel(
-            loginUseCase: loginUseCase,
-            guestLoginUseCase: guestLoginUseCase
-        )
+        return LoginViewModel(loginUseCase: loginUseCase)
     }
     
     @MainActor
     func makeRegisterViewModel() -> RegisterViewModel {
         return RegisterViewModel(registerUseCase: registerUseCase)
-    }
-    
-    @MainActor
-    func makeForgotPasswordViewModel() -> ForgotPasswordViewModel {
-        return ForgotPasswordViewModel(recoverPasswordUseCase: recoverPasswordUseCase)
     }
 }
