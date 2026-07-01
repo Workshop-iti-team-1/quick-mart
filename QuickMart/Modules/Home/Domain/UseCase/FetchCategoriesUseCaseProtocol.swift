@@ -1,4 +1,12 @@
 //
+//  FetchCategoriesUseCaseProtocol.swift
+//  QuickMart
+//
+//  Created by Alaa Ayman on 01/07/2026.
+//
+
+
+//
 //  FetchCategoriesUseCase.swift
 //  QuickMart
 //

@@ -2,6 +2,22 @@
 //  MockCategoryRepository.swift
 //  QuickMart
 //
+//  Created by Alaa Ayman on 01/07/2026.
+//
+
+
+//
+//  CategoryRepositoryProtocol.swift
+//  QuickMart
+//
+//  Created by Alaa Ayman on 01/07/2026.
+//
+
+
+//
+//  MockCategoryRepository.swift
+//  QuickMart
+//
 //  Created by Mina_Wagdy on 29/06/2026.
 //
 // Features/Category/Data/MockCategoryRepository.swift
@@ -10,9 +26,7 @@ import Foundation
 
 // MARK: - Protocol (Dependency Inversion – SOLID)
 
-protocol CategoryRepositoryProtocol {
-    func fetchCategories() -> [CategoryItem]
-}
+
 
 // MARK: - Mock Implementation
 
