@@ -10,4 +10,5 @@ enum Route: Hashable {
     case login
     case signup
     case category
+    case forgotPassword
 }
