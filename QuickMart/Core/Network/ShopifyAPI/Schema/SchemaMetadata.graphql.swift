@@ -31,17 +31,17 @@ extension ShopifyAPI {
 
     static func objectType(forTypename typename: String) -> Object? {
       switch typename {
-      case "Mutation": return ShopifyAPI.Objects.Mutation
-      case "CustomerCreatePayload": return ShopifyAPI.Objects.CustomerCreatePayload
-      case "Customer": return ShopifyAPI.Objects.Customer
+      case "QueryRoot": return ShopifyAPI.Objects.QueryRoot
+      case "CollectionConnection": return ShopifyAPI.Objects.CollectionConnection
+      case "CollectionEdge": return ShopifyAPI.Objects.CollectionEdge
+      case "Collection": return ShopifyAPI.Objects.Collection
       case "Article": return ShopifyAPI.Objects.Article
       case "AppliedGiftCard": return ShopifyAPI.Objects.AppliedGiftCard
       case "Blog": return ShopifyAPI.Objects.Blog
-      case "Collection": return ShopifyAPI.Objects.Collection
+      case "Metaobject": return ShopifyAPI.Objects.Metaobject
       case "Page": return ShopifyAPI.Objects.Page
       case "Product": return ShopifyAPI.Objects.Product
       case "SearchQuerySuggestion": return ShopifyAPI.Objects.SearchQuerySuggestion
-      case "Metaobject": return ShopifyAPI.Objects.Metaobject
       case "Cart": return ShopifyAPI.Objects.Cart
       case "CartLine": return ShopifyAPI.Objects.CartLine
       case "ComponentizableCartLine": return ShopifyAPI.Objects.ComponentizableCartLine
@@ -72,7 +72,14 @@ extension ShopifyAPI {
       case "ShopPolicy": return ShopifyAPI.Objects.ShopPolicy
       case "TaxonomyCategory": return ShopifyAPI.Objects.TaxonomyCategory
       case "UrlRedirect": return ShopifyAPI.Objects.UrlRedirect
+      case "Customer": return ShopifyAPI.Objects.Customer
       case "SellingPlan": return ShopifyAPI.Objects.SellingPlan
+      case "Image": return ShopifyAPI.Objects.Image
+      case "ProductConnection": return ShopifyAPI.Objects.ProductConnection
+      case "ProductEdge": return ShopifyAPI.Objects.ProductEdge
+      case "PageInfo": return ShopifyAPI.Objects.PageInfo
+      case "Mutation": return ShopifyAPI.Objects.Mutation
+      case "CustomerCreatePayload": return ShopifyAPI.Objects.CustomerCreatePayload
       case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError
       case "CartUserError": return ShopifyAPI.Objects.CartUserError
       case "MetafieldDeleteUserError": return ShopifyAPI.Objects.MetafieldDeleteUserError
