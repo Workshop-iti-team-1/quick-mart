@@ -10,7 +10,7 @@
 import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    @StateObject private var categoryViewModel = DIContainer.shared.makeCategoryViewModel()
+    @StateObject private var brandViewModel = DIContainer.shared.makeBrandViewModel()
     let router: AppRouter
 
     var body: some View {
@@ -19,9 +19,9 @@ struct HomeView: View {
                 if !viewModel.banners.isEmpty {
                     AdBannerPager(items: viewModel.banners)
                 }
-                if !categoryViewModel.categories.isEmpty {
+                if !brandViewModel.brands.isEmpty {
                     HomeCategoriesSection(
-                        items: categoryViewModel.categories,
+                        items: brandViewModel.brands,
                         onSeeAll: { router.push(.category) }
                     )
                 }
@@ -54,7 +54,7 @@ struct HomeView: View {
         .customToolbar(onSearch: {  })
         .onAppear {
             viewModel.loadHome()
-            categoryViewModel.loadCategories()
+            brandViewModel.loadBrands()
         }
     }
 }

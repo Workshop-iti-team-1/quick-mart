@@ -1,32 +1,21 @@
 //
-//  CategoryView.swift
+//  BrandView.swift
 //  QuickMart
 //
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-
-//
-//  CategoryView.swift
-//  QuickMart
-//
-//  Created by Mina_Wagdy on 29/06/2026.
-//
-// Features/Category/Presentation/Views/CategoryView.swift
-
-// Features/Category/Presentation/Views/CategoryView.swift
-
 import SwiftUI
 
-struct CategoryView: View {
+struct AllBrandsView: View {
 
     // MARK: - ViewModel
 
-    @StateObject private var viewModel: CategoryViewModel
+    @StateObject private var viewModel: BrandViewModel
 
     // MARK: - Init
 
-    init(viewModel: CategoryViewModel) {
+    init(viewModel: BrandViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -57,21 +46,21 @@ struct CategoryView: View {
             if viewModel.isLoading {
                 ProgressView()
             } else {
-                categoryGrid
+                brandGrid
             }
         }
-        .navigationTitle("Categories")
+        .navigationTitle("Brands")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { viewModel.loadCategories() }
+        .onAppear { viewModel.loadBrands() }
     }
 
     // MARK: - Subviews
 
-    private var categoryGrid: some View {
+    private var brandGrid: some View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
-                ForEach(viewModel.categories) { item in
-                    CategoryGridItemView(item: item)
+                ForEach(viewModel.brands) { item in
+                    BrandGridItemView(item: item)
                 }
             }
             .padding(.horizontal, Layout.horizontalPadding)
@@ -85,9 +74,9 @@ struct CategoryView: View {
 
 #Preview {
     NavigationStack {
-        NavigationLink("Go to Categories") {
-            CategoryView(
-                viewModel: DIContainer.shared.makeCategoryViewModel()
+        NavigationLink("Go to Brands") {
+            AllBrandsView(
+                viewModel: DIContainer.shared.makeBrandViewModel()
             )
         }
         .padding()
