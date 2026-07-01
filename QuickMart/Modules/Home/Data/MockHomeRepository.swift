@@ -5,8 +5,6 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
-
-
 import Foundation
 
 struct MockHomeRepository: HomeRepositoryProtocol {
@@ -42,7 +40,7 @@ struct MockHomeRepository: HomeRepositoryProtocol {
                 isSystemImage: true,
                 gradientStart: "appMerigold",
                 gradientEnd: "appOrange"
-            )
+            ),
         ]
     }
 
@@ -87,7 +85,41 @@ struct MockHomeRepository: HomeRepositoryProtocol {
                 isSystemImage: true,
                 colorNames: ["appBrown", "appBlack"],
                 colorCount: 4
-            )
+            ),
+        ]
+    }
+    func fetchBrands() -> [BrandItem] {
+        [
+            BrandItem(
+                id: "1", name: "Electronics", imageName: "desktopcomputer",
+                isSystemImage: true),
+            BrandItem(
+                id: "2", name: "Fashion", imageName: "bag.fill",
+                isSystemImage: true),
+            BrandItem(
+                id: "3", name: "Furniture", imageName: "sofa.fill",
+                isSystemImage: true),
+            BrandItem(
+                id: "4", name: "Industrial", imageName: "car.fill",
+                isSystemImage: true),
+            BrandItem(
+                id: "5", name: "Home Decor", imageName: "gift.fill",
+                isSystemImage: true),
+            BrandItem(
+                id: "6", name: "Electronics", imageName: "tv.fill",
+                isSystemImage: true),
+            BrandItem(
+                id: "7", name: "Health", imageName: "stethoscope",
+                isSystemImage: true),
+            BrandItem(
+                id: "8", name: "Construction & Real State",
+                imageName: "house.fill", isSystemImage: true),
+            BrandItem(
+                id: "9", name: "Fabrication Service",
+                imageName: "wrench.and.screwdriver.fill", isSystemImage: true),
+            BrandItem(
+                id: "10", name: "Electrical Equipment", imageName: "bolt.fill",
+                isSystemImage: true),
         ]
     }
 }

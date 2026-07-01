@@ -12,4 +12,5 @@ import Foundation
 protocol HomeRepositoryProtocol {
     func fetchBanners() -> [BannerItem]
     func fetchLatestProducts() -> [ProductItem]
+    func fetchBrands() -> [BrandItem]
 }

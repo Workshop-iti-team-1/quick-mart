@@ -1,23 +1,13 @@
 //
-//  CategoryItem.swift
+//  BrandItem.swift
 //  QuickMart
 //
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-
-//
-//  CategoryItem.swift
-//  QuickMart
-//
-//  Created by Mina_Wagdy on 29/06/2026.
-//
-
-// Features/Category/Domain/Models/CategoryItem.swift
-
 import Foundation
 
-struct CategoryItem: Identifiable, Hashable {
+struct BrandItem: Identifiable, Hashable {
     let id: String
     let name: String
     /// Name of an asset in the Asset Catalog, or an SF Symbol name used as a placeholder.

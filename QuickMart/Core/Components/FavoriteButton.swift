@@ -22,7 +22,7 @@ struct FavoriteButton: View {
             isFavorite.toggle()
         } label: {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
-                .foregroundColor(isFavorite ? .appRed : .grey150)
+                .foregroundColor(isFavorite ? .cyanPrimary : .grey150)
                 .font(.system(size: 18, weight: .medium))
                 .padding(6)
                 .background(Color.appWhite)

@@ -55,7 +55,7 @@ final class AppRouter {
         case .signup:
             SignupView(router: self)
         case .category:
-            CategoryView(viewModel: diContainer.makeCategoryViewModel())
+            AllBrandsView(viewModel: diContainer.makeBrandViewModel())
         case .forgotPassword:
             ForgotPasswordView(router: self)
         }

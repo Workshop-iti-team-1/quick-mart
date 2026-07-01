@@ -7,8 +7,8 @@
 
 // App/DI/DIContainer.swift
 
-import Foundation
 import Apollo
+import Foundation
 
 @MainActor
 public final class DIContainer {
@@ -16,41 +16,41 @@ public final class DIContainer {
     public static let shared = DIContainer()
 
     private init() {}
-    
+
     private(set) lazy var apolloClient: ApolloClient = {
         let store = ApolloStore()
-        let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
-        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
+        let provider = NetworkInterceptorProvider(
+            client: URLSessionClient(), store: store)
+        let transport = RequestChainNetworkTransport(
+            interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
         return ApolloClient(networkTransport: transport, store: store)
     }()
 
-    // MARK: - Category
+    // MARK: - Brand
 
-    private func makeCategoryRepository() -> CategoryRepositoryProtocol {
-        MockCategoryRepository()
+    private func makeFetchBrandsUseCase() -> FetchBrandsUseCaseProtocol {
+        FetchBrandsUseCase(repository: makeHomeRepository())
     }
 
-    private func makeFetchCategoriesUseCase() -> FetchCategoriesUseCaseProtocol {
-        FetchCategoriesUseCase(repository: makeCategoryRepository())
-    }
-
-    func makeCategoryViewModel() -> CategoryViewModel {
-        CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
+    func makeBrandViewModel() -> BrandViewModel {
+        BrandViewModel(fetchBrandsUseCase: makeFetchBrandsUseCase())
     }
     // MARK: - Home
-       private func makeHomeRepository() -> HomeRepositoryProtocol {
-           MockHomeRepository()
-       }
-       private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
-           FetchBannersUseCase(repository: makeHomeRepository())
-       }
-       private func makeFetchLatestProductsUseCase() -> FetchLatestProductsUseCaseProtocol {
-           FetchLatestProductsUseCase(repository: makeHomeRepository())
-       }
-       func makeHomeViewModel() -> HomeViewModel {
-           HomeViewModel(
-               fetchBannersUseCase: makeFetchBannersUseCase(),
-               fetchLatestProductsUseCase: makeFetchLatestProductsUseCase()
-           )
-       }
+    private func makeHomeRepository() -> HomeRepositoryProtocol {
+        MockHomeRepository()
+    }
+    private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
+        FetchBannersUseCase(repository: makeHomeRepository())
+    }
+    private func makeFetchLatestProductsUseCase()
+        -> FetchLatestProductsUseCaseProtocol
+    {
+        FetchLatestProductsUseCase(repository: makeHomeRepository())
+    }
+    func makeHomeViewModel() -> HomeViewModel {
+        HomeViewModel(
+            fetchBannersUseCase: makeFetchBannersUseCase(),
+            fetchLatestProductsUseCase: makeFetchLatestProductsUseCase()
+        )
+    }
 }

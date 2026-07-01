@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HomeCategoryCell: View {
-    let item: CategoryItem
+    let item: BrandItem
 
     var body: some View {
         VStack(spacing: 8) {
@@ -45,7 +45,7 @@ struct HomeCategoryCell: View {
 
 // MARK: - Section
 struct HomeCategoriesSection: View {
-    let items: [CategoryItem]
+    let items: [BrandItem]
     let onSeeAll: () -> Void
 
     var body: some View {

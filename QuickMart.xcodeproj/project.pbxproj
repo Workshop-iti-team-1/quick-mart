@@ -59,13 +59,11 @@
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
 		58B44005E0F6C2AEBD1183F8 /* Order.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D079F60F6338799EF3C25FF /* Order.graphql.swift */; };
 		5C0EFC4F2CB246B4B660D6BB /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06899A606A38A5FA1706BB46 /* SchemaMetadata.graphql.swift */; };
-		5F5DB5E62FF5819300908285 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E52FF5819300908285 /* CategoryView.swift */; };
-		5F5DB5E82FF581BE00908285 /* CategoryGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E72FF581BE00908285 /* CategoryGridItemView.swift */; };
-		5F5DB5EA2FF5822C00908285 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E92FF5822C00908285 /* CategoryViewModel.swift */; };
-		5F5DB5EE2FF5829700908285 /* FetchCategoriesUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5ED2FF5829700908285 /* FetchCategoriesUseCaseProtocol.swift */; };
-		5F5DB5F02FF582E400908285 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5EF2FF582E400908285 /* CategoryItem.swift */; };
-		5F5DB5F22FF5837300908285 /* CategoryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5F12FF5837300908285 /* CategoryRepositoryProtocol.swift */; };
-		5F5DB5F42FF5839700908285 /* MockCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5F32FF5839700908285 /* MockCategoryRepository.swift */; };
+		5F5DB5E62FF5819300908285 /* AllBrandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E52FF5819300908285 /* AllBrandsView.swift */; };
+		5F5DB5E82FF581BE00908285 /* BrandGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E72FF581BE00908285 /* BrandGridItemView.swift */; };
+		5F5DB5EA2FF5822C00908285 /* BrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */; };
+		5F5DB5EE2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5ED2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift */; };
+		5F5DB5F02FF582E400908285 /* BrandItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5EF2FF582E400908285 /* BrandItem.swift */; };
 		5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A722FF319FF00BB18C7 /* HomeView.swift */; };
 		5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */; };
 		5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */; };
@@ -238,13 +236,11 @@
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		5D079F60F6338799EF3C25FF /* Order.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Order.graphql.swift; sourceTree = "<group>"; };
 		5DCAB1584A0DB0A23102B89B /* Trackable.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Trackable.graphql.swift; sourceTree = "<group>"; };
-		5F5DB5E52FF5819300908285 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		5F5DB5E72FF581BE00908285 /* CategoryGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGridItemView.swift; sourceTree = "<group>"; };
-		5F5DB5E92FF5822C00908285 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		5F5DB5ED2FF5829700908285 /* FetchCategoriesUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCategoriesUseCaseProtocol.swift; sourceTree = "<group>"; };
-		5F5DB5EF2FF582E400908285 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
-		5F5DB5F12FF5837300908285 /* CategoryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepositoryProtocol.swift; sourceTree = "<group>"; };
-		5F5DB5F32FF5839700908285 /* MockCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCategoryRepository.swift; sourceTree = "<group>"; };
+		5F5DB5E52FF5819300908285 /* AllBrandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBrandsView.swift; sourceTree = "<group>"; };
+		5F5DB5E72FF581BE00908285 /* BrandGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandGridItemView.swift; sourceTree = "<group>"; };
+		5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewModel.swift; sourceTree = "<group>"; };
+		5F5DB5ED2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBrandsUseCaseProtocol.swift; sourceTree = "<group>"; };
+		5F5DB5EF2FF582E400908285 /* BrandItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandItem.swift; sourceTree = "<group>"; };
 		5F840A722FF319FF00BB18C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatches.swift; sourceTree = "<group>"; };
 		5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestProductsSection.swift; sourceTree = "<group>"; };
@@ -578,7 +574,6 @@
 		5F840A6A2FF3193D00BB18C7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5F32FF5839700908285 /* MockCategoryRepository.swift */,
 				5F840A892FF31CE700BB18C7 /* MockHomeRepository.swift */,
 			);
 			path = Data;
@@ -596,7 +591,7 @@
 		5F840A6D2FF3197C00BB18C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5E52FF5819300908285 /* CategoryView.swift */,
+				5F5DB5E52FF5819300908285 /* AllBrandsView.swift */,
 				5F840A742FF31A0E00BB18C7 /* Components */,
 				5F840A722FF319FF00BB18C7 /* HomeView.swift */,
 			);
@@ -606,7 +601,7 @@
 		5F840A6E2FF3198400BB18C7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5E92FF5822C00908285 /* CategoryViewModel.swift */,
+				5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */,
 				5F840A7D2FF31AEC00BB18C7 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
@@ -615,7 +610,7 @@
 		5F840A6F2FF3199600BB18C7 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5ED2FF5829700908285 /* FetchCategoriesUseCaseProtocol.swift */,
+				5F5DB5ED2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift */,
 				5F840A812FF31B2300BB18C7 /* FetchBannersUseCaseProtocol.swift */,
 				5F840A7F2FF31B0C00BB18C7 /* FetchLatestProductsUseCaseProtocol.swift */,
 			);
@@ -625,7 +620,6 @@
 		5F840A702FF319B600BB18C7 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5F12FF5837300908285 /* CategoryRepositoryProtocol.swift */,
 				5F840A832FF31B7900BB18C7 /* HomeRepositoryProtocol.swift */,
 			);
 			path = Repository;
@@ -634,7 +628,7 @@
 		5F840A712FF319DC00BB18C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5EF2FF582E400908285 /* CategoryItem.swift */,
+				5F5DB5EF2FF582E400908285 /* BrandItem.swift */,
 				5F840A872FF31BD200BB18C7 /* ProductItem.swift */,
 				5F840A852FF31BB300BB18C7 /* BannerItem.swift */,
 			);
@@ -644,7 +638,7 @@
 		5F840A742FF31A0E00BB18C7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DB5E72FF581BE00908285 /* CategoryGridItemView.swift */,
+				5F5DB5E72FF581BE00908285 /* BrandGridItemView.swift */,
 				5F840A7B2FF31AC100BB18C7 /* BannerSlide.swift */,
 				5F840A792FF31AAB00BB18C7 /* HomeCategoryCell.swift */,
 				5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */,
@@ -1129,11 +1123,10 @@
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
 				5F840A882FF31BD200BB18C7 /* ProductItem.swift in Sources */,
-				5F5DB5F22FF5837300908285 /* CategoryRepositoryProtocol.swift in Sources */,
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
 				5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */,
 				D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */,
-				5F5DB5F02FF582E400908285 /* CategoryItem.swift in Sources */,
+				5F5DB5F02FF582E400908285 /* BrandItem.swift in Sources */,
 				5F840A942FF31EA400BB18C7 /* ProductCard.swift in Sources */,
 				5FA135B92FF16AF3005F9FA6 /* CustomTextField.swift in Sources */,
 				15F1245D2FF4644F00428612 /* ForgotPasswordView.swift in Sources */,
@@ -1141,7 +1134,6 @@
 				5FA135AF2FF168EB005F9FA6 /* LoginViewModel.swift in Sources */,
 				5FA135B02FF168EB005F9FA6 /* LoginView.swift in Sources */,
 				5F840A7E2FF31AEC00BB18C7 /* HomeViewModel.swift in Sources */,
-				5F5DB5F42FF5839700908285 /* MockCategoryRepository.swift in Sources */,
 				5F840A8A2FF31CE800BB18C7 /* MockHomeRepository.swift in Sources */,
 				5FA135B62FF169EC005F9FA6 /* RegisterViewModel.swift in Sources */,
 				5F840A7C2FF31AC100BB18C7 /* BannerSlide.swift in Sources */,
@@ -1149,7 +1141,7 @@
 				853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */,
 				49E07C1824415F2404D0613D /* AppButton.swift in Sources */,
 				F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */,
-				5F5DB5E82FF581BE00908285 /* CategoryGridItemView.swift in Sources */,
+				5F5DB5E82FF581BE00908285 /* BrandGridItemView.swift in Sources */,
 				9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */,
 				DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */,
 				F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */,
@@ -1169,7 +1161,7 @@
 				5F840A822FF31B2300BB18C7 /* FetchBannersUseCaseProtocol.swift in Sources */,
 				5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */,
 				5F840A922FF31E7800BB18C7 /* FavoriteButton.swift in Sources */,
-				5F5DB5EA2FF5822C00908285 /* CategoryViewModel.swift in Sources */,
+				5F5DB5EA2FF5822C00908285 /* BrandViewModel.swift in Sources */,
 				5F840A802FF31B0C00BB18C7 /* FetchLatestProductsUseCaseProtocol.swift in Sources */,
 				15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */,
 				7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */,
@@ -1220,7 +1212,7 @@
 				7A9A73AE015B3C3E48767E35 /* Menu.graphql.swift in Sources */,
 				898235916F2AE685693FFEE5 /* Company.graphql.swift in Sources */,
 				F21E20870194F9AE7DBE067C /* Mutation.graphql.swift in Sources */,
-				5F5DB5EE2FF5829700908285 /* FetchCategoriesUseCaseProtocol.swift in Sources */,
+				5F5DB5EE2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift in Sources */,
 				E6639DC463E1B60EBC1E7905 /* Location.graphql.swift in Sources */,
 				8DED530D92A31768FD2EE753 /* Metaobject.graphql.swift in Sources */,
 				A402E2F14F89FF07D8EB140A /* CompanyLocation.graphql.swift in Sources */,
@@ -1230,7 +1222,7 @@
 				B3127FB9B0E69641923DDAA6 /* CartLine.graphql.swift in Sources */,
 				F3F6A7757C0D4103A65FE2C7 /* MailingAddress.graphql.swift in Sources */,
 				DB7E1F3D7B94D6845333BCB2 /* CustomerUserError.graphql.swift in Sources */,
-				5F5DB5E62FF5819300908285 /* CategoryView.swift in Sources */,
+				5F5DB5E62FF5819300908285 /* AllBrandsView.swift in Sources */,
 				0FC0BDFEF316E8725AAE6C70 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
 				2A6034E0D3955ABA1E290DB8 /* Page.graphql.swift in Sources */,
 				1B01E0C74626D1CEC07F8FBD /* SearchQuerySuggestion.graphql.swift in Sources */,

@@ -1,24 +1,17 @@
 //
-//  CategoryGridItemView.swift
+//  BrandGridItemView.swift
 //  QuickMart
 //
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-
-//
-//  CategoryGridItemView.swift
-//  QuickMart
-//
-//  Created by Mina_Wagdy on 29/06/2026.
-//
 import SwiftUI
 
-struct CategoryGridItemView: View {
+struct BrandGridItemView: View {
 
     // MARK: - Input
 
-    let item: CategoryItem
+    let item: BrandItem
 
     // MARK: - Private Constants
 
@@ -87,8 +80,8 @@ struct CategoryGridItemView: View {
 // MARK: - Preview
 
 #Preview {
-    CategoryGridItemView(
-        item: CategoryItem(
+    BrandGridItemView(
+        item: BrandItem(
             id: "1",
             name: "Electronics",
             imageName: "desktopcomputer",
