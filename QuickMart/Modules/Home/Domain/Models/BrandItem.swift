@@ -12,6 +12,6 @@ struct BrandItem: Identifiable, Hashable {
     let name: String
     /// Name of an asset in the Asset Catalog, or an SF Symbol name used as a placeholder.
     /// When Shopify integration arrives, swap this with a remote URL and update the view layer only.
-    let imageName: String
-    let isSystemImage: Bool
+    let imageName: String?
+    let isSystemImage: Bool?
 }

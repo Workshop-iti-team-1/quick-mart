@@ -6,12 +6,11 @@
 //
 
 
-// Features/Category/Domain/Models/CategoryItem.swift
 import Foundation
 
 struct CategoryItem: Identifiable, Hashable {
     let id: String
     let name: String
-    let imageName: String
-    let isSystemImage: Bool
+    let imageName: String?
+    let isSystemImage: Bool?
 }
