@@ -43,6 +43,27 @@ enum AppStrings {
         }
     }
     
+    enum Cart {
+        static let myCart = String(localized: "Cart_myCart", defaultValue: "My Cart")
+        static let voucherCode = String(localized: "Cart_voucherCode", defaultValue: "Voucher Code")
+        static let orderInfo = String(localized: "Cart_orderInfo", defaultValue: "Order Info")
+        static let subtotal = String(localized: "Cart_subtotal", defaultValue: "Subtotal")
+        static let shippingCost = String(localized: "Cart_shippingCost", defaultValue: "Shipping Cost")
+        static let total = String(localized: "Cart_total", defaultValue: "Total")
+        static let checkout = String(localized: "Cart_checkout", defaultValue: "Checkout")
+        
+        static let emptyCartTitle = String(localized: "Cart_emptyCartTitle", defaultValue: "Your cart is empty")
+        static let emptyCartMessage = String(localized: "Cart_emptyCartMessage", defaultValue: "Looks like you have not added anything in your cart. Go ahead and explore top categories.")
+        static let exploreCategories = String(localized: "Cart_exploreCategories", defaultValue: "Explore Categories")
+        
+        static let guestCartTitle = String(localized: "Cart_guestCartTitle", defaultValue: "Login to view cart")
+        static let guestCartMessage = String(localized: "Cart_guestCartMessage", defaultValue: "Please login to your account to view your cart and checkout.")
+        static let login = String(localized: "Cart_login", defaultValue: "Login")
+        
+        static let enterVoucherCode = String(localized: "Cart_enterVoucherCode", defaultValue: "Enter Voucher Code")
+        static let apply = String(localized: "Cart_apply", defaultValue: "Apply")
+    }
+    
     enum General {
         static let error = String(localized: "General_error", defaultValue: "Error")
         static let ok = String(localized: "General_ok", defaultValue: "OK")

@@ -77,7 +77,6 @@ struct SignupView: View {
         .onChange(of: viewModel.isRegistered) { registered in
             if registered {
                 router.popToRoot()
-                router.push(.home)
             }
         }
     }
