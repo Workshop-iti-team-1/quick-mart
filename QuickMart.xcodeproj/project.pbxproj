@@ -1084,7 +1084,6 @@
 		5F552A262FF6891400D34320 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				5F840A892FF31CE700BB18C7 /* MockHomeRepository.swift */,
 				5F74F40B2FF61E1F00DE42F6 /* Home.graphql */,
 				5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */,
 				5F552A1D2FF664B100D34320 /* HomeRemoteDataSource.swift */,
@@ -1223,7 +1222,6 @@
 		5F840A6A2FF3193D00BB18C7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5F74F4082FF61DE900DE42F6 /* DataSource */,
 				5F552A262FF6891400D34320 /* DataSource */,
 				5F552A1F2FF6653700D34320 /* Repository */,
 				5F552A162FF663F200D34320 /* Mapper */,
