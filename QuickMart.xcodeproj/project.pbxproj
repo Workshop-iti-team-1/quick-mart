@@ -1841,9 +1841,13 @@
 		D4A91EDE2FF0259B007B11D2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				5FA216D62FF8EE6A00DBA613 /* Wishlist */,
 				5F365C102FF84CDF0082DE82 /* Address */,
 				D4A1B2772FF668E600735C4D /* Search */,
+=======
+				DECCB6092FF68CED00F0A8C0 /* Profile */,
+>>>>>>> f3bfd59 (add profile screen and it's childs route)
 				5F840A682FF3191E00BB18C7 /* Home */,
 				15F1D5A62FF67D6300EA9832 /* Cart */,
 				D4A91EDB2FF0259B007B11D2 /* Authentication */,
@@ -1938,6 +1942,37 @@
 				5FA135AE2FF168EB005F9FA6 /* Login */,
 				5FA135B52FF169EC005F9FA6 /* Register */,
 				15F1245C2FF4644F00428612 /* ForgotPassword */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DECCB6092FF68CED00F0A8C0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DECCB60C2FF68D0900F0A8C0 /* Presentation */,
+				DECCB60B2FF68D0000F0A8C0 /* Domain */,
+				DECCB60A2FF68CF800F0A8C0 /* Data */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DECCB60A2FF68CF800F0A8C0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DECCB60B2FF68D0000F0A8C0 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		DECCB60C2FF68D0900F0A8C0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Presentation;
 			sourceTree = "<group>";
