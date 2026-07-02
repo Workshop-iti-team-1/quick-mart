@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */; };
+		BB0011223344556677889902 /* CommonRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889902 /* CommonRemoteDataSource.swift */; };
+		BB0011223344556677889903 /* CommonRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889903 /* CommonRepositoryImpl.swift */; };
+		BB0011223344556677889904 /* CommonRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889904 /* CommonRepositoryProtocol.swift */; };
+		BB0011223344556677889905 /* AddToCartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889905 /* AddToCartUseCase.swift */; };
+		BB0011223344556677889906 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889906 /* ProductDetailsView.swift */; };
+		BB0011223344556677889907 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889907 /* ProductDetailsViewModel.swift */; };
 		032AD6C57AD7378FB54ECA71 /* OnlineStorePublishable.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60471AFF1077C197EDC85886 /* OnlineStorePublishable.graphql.swift */; };
 		0402B6B1E47CD7B4D8B5A5F5 /* Media.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1059AC191947ABABDB75D51 /* Media.graphql.swift */; };
 		11A4D3F2EF5152B750B054C1 /* CustomerCreateInput.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C2F17EB08752B9EE81EFED /* CustomerCreateInput.graphql.swift */; };
@@ -321,6 +328,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSourceProtocol.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSourceProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889902 /* CommonRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSource.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSource.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889903 /* CommonRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRepositoryImpl.swift; path = QuickMart/Modules/Common/Data/Repositories/CommonRepositoryImpl.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889904 /* CommonRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRepositoryProtocol.swift; path = QuickMart/Modules/Common/Domain/Repositories/CommonRepositoryProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889905 /* AddToCartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToCartUseCase.swift; path = QuickMart/Modules/Common/Domain/UseCases/AddToCartUseCase.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889906 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsView.swift; path = QuickMart/Modules/Home/Presentation/View/ProductDetailsView.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889907 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewModel.swift; path = QuickMart/Modules/Home/Presentation/ViewModels/ProductDetailsViewModel.swift; sourceTree = SOURCE_ROOT; };
 		039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		03E17CE8B3BB8BFC7C709C1E /* BaseCartLine.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseCartLine.graphql.swift; sourceTree = "<group>"; };
 		06899A606A38A5FA1706BB46 /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
@@ -653,6 +667,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC0011223344556677889901 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CC0011223344556677889902 /* Data */,
+				CC0011223344556677889905 /* Domain */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889902 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CC0011223344556677889903 /* DataSources */,
+				CC0011223344556677889904 /* Repositories */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889903 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				AA0011223344556677889902 /* CommonRemoteDataSource.swift */,
+				AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */,
+			);
+			name = DataSources;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889904 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AA0011223344556677889903 /* CommonRepositoryImpl.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889905 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CC0011223344556677889906 /* Repositories */,
+				CC0011223344556677889907 /* UseCases */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889906 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AA0011223344556677889904 /* CommonRepositoryProtocol.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		CC0011223344556677889907 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AA0011223344556677889905 /* AddToCartUseCase.swift */,
+			);
+			name = UseCases;
+			sourceTree = "<group>";
+		};
 		0D846C7F25FA5047F6C5A7E7 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,6 +1316,7 @@
 		5F840A6D2FF3197C00BB18C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA0011223344556677889906 /* ProductDetailsView.swift */,
 				5F552A222FF677CD00D34320 /* CategoryDetailView.swift */,
 				5F5DB5E52FF5819300908285 /* AllBrandsView.swift */,
 				5F840A742FF31A0E00BB18C7 /* Components */,
@@ -1253,6 +1328,7 @@
 		5F840A6E2FF3198400BB18C7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA0011223344556677889907 /* ProductDetailsViewModel.swift */,
 				5F74F5162FF6304000DE42F6 /* CategoryViewModel.swift */,
 				5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */,
 				5F840A7D2FF31AEC00BB18C7 /* HomeViewModel.swift */,
@@ -1457,8 +1533,9 @@
 		D4A91EDE2FF0259B007B11D2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				15F1D5A62FF67D6300EA9832 /* Cart */,
+				CC0011223344556677889901 /* Common */,
 				5F840A682FF3191E00BB18C7 /* Home */,
+				15F1D5A62FF67D6300EA9832 /* Cart */,
 				D4A91EDB2FF0259B007B11D2 /* Authentication */,
 				C519C718EDEE31B4F261B340 /* Onboarding */,
 			);
@@ -1710,6 +1787,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift in Sources */,
+				BB0011223344556677889902 /* CommonRemoteDataSource.swift in Sources */,
+				BB0011223344556677889903 /* CommonRepositoryImpl.swift in Sources */,
+				BB0011223344556677889904 /* CommonRepositoryProtocol.swift in Sources */,
+				BB0011223344556677889905 /* AddToCartUseCase.swift in Sources */,
+				BB0011223344556677889906 /* ProductDetailsView.swift in Sources */,
+				BB0011223344556677889907 /* ProductDetailsViewModel.swift in Sources */,
 				D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */,
 				5F840A8E2FF31E2900BB18C7 /* SectionHeader.swift in Sources */,
 				5F840A842FF31B7900BB18C7 /* HomeRepositoryProtocol.swift in Sources */,

@@ -62,6 +62,8 @@ final class AppRouter {
             CategoryDetailView(category: item)
         case .forgotPassword:
             ForgotPasswordView(router: self)
+        case .productDetails(let product):
+            ProductDetailsView(viewModel: self.diContainer.makeProductDetailsViewModel(product: product))
         }
     }
 }

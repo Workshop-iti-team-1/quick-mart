@@ -12,6 +12,7 @@ import SwiftUI
 struct LatestProductsSection: View {
     let items: [ProductItem]
     let onSeeAll: () -> Void
+    @Environment(AppRouter.self) var router
 
     private let columns = [
         GridItem(.flexible(), spacing: 14),
@@ -24,7 +25,12 @@ struct LatestProductsSection: View {
 
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items) { item in
-                    ProductCard(item: item)
+                    Button(action: {
+                        router.push(.productDetails(product: item))
+                    }) {
+                        ProductCard(item: item)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
