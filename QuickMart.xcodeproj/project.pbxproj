@@ -122,7 +122,6 @@
 		5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A722FF319FF00BB18C7 /* HomeView.swift */; };
 		5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */; };
 		5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */; };
-		5F840A7A2FF31AAB00BB18C7 /* HomeCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A792FF31AAB00BB18C7 /* HomeCategoryCell.swift */; };
 		5F840A7C2FF31AC100BB18C7 /* BannerSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A7B2FF31AC100BB18C7 /* BannerSlide.swift */; };
 		5F840A7E2FF31AEC00BB18C7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A7D2FF31AEC00BB18C7 /* HomeViewModel.swift */; };
 		5F840A802FF31B0C00BB18C7 /* FetchLatestProductsUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A7F2FF31B0C00BB18C7 /* FetchLatestProductsUseCaseProtocol.swift */; };
@@ -320,7 +319,6 @@
 		5F840A722FF319FF00BB18C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatches.swift; sourceTree = "<group>"; };
 		5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestProductsSection.swift; sourceTree = "<group>"; };
-		5F840A792FF31AAB00BB18C7 /* HomeCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryCell.swift; sourceTree = "<group>"; };
 		5F840A7B2FF31AC100BB18C7 /* BannerSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSlide.swift; sourceTree = "<group>"; };
 		5F840A7D2FF31AEC00BB18C7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5F840A7F2FF31B0C00BB18C7 /* FetchLatestProductsUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLatestProductsUseCaseProtocol.swift; sourceTree = "<group>"; };
@@ -600,7 +598,6 @@
 			children = (
 				5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */,
 				5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */,
-				5F840A792FF31AAB00BB18C7 /* HomeCategoryCell.swift */,
 				5F74F50E2FF62E7900DE42F6 /* HomeCategoriesSection.swift */,
 				5F7563BF2FF6341600BDB660 /* CategoryGridCell.swift */,
 				5F74F50C2FF62E4C00DE42F6 /* HomeBrandsSection.swift */,
@@ -1355,7 +1352,6 @@
 				15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */,
 				15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */,
 				5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */,
-				5F840A7A2FF31AAB00BB18C7 /* HomeCategoryCell.swift in Sources */,
 				C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */,
 				AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */,
 				3909DB3BC9483E30F31E8559 /* RegisterUseCase.swift in Sources */,

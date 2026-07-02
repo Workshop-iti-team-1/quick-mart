@@ -13,4 +13,6 @@ protocol HomeRepositoryProtocol {
     func fetchBanners() -> [BannerItem]
     func fetchLatestProducts() -> [ProductItem]
     func fetchBrands() -> [BrandItem]
+    func fetchCategories() -> [CategoryItem]
+    
 }
