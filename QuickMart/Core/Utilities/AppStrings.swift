@@ -78,12 +78,15 @@ enum AppStrings {
         static let viewCart = String(localized: "ProductDetails_viewCart", defaultValue: "View Cart")
         static let outOfStock = String(localized: "ProductDetails_outOfStock", defaultValue: "This product is currently out of stock.")
         static let selectOptionsFirst = String(localized: "ProductDetails_selectOptionsFirst", defaultValue: "Please select options first or variant unavailable")
+        static let guestAlertTitle = String(localized: "ProductDetails_guestAlertTitle", defaultValue: "Login Required")
+        static let guestAlertMessage = String(localized: "ProductDetails_guestAlertMessage", defaultValue: "You need to log in to add products to your cart.")
     }
     
     enum General {
         static let error = String(localized: "General_error", defaultValue: "Error")
         static let success = String(localized: "General_success", defaultValue: "Success")
         static let ok = String(localized: "General_ok", defaultValue: "OK")
+        static let cancel = String(localized: "General_cancel", defaultValue: "Cancel")
     }
     
     enum FirebaseError {

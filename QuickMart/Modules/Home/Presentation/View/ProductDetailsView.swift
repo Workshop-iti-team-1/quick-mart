@@ -57,6 +57,14 @@ struct ProductDetailsView: View {
         } message: {
             Text(AppStrings.ProductDetails.outOfStock)
         }
+        .alert(AppStrings.ProductDetails.guestAlertTitle, isPresented: $viewModel.showGuestAlert) {
+            Button(AppStrings.General.cancel, role: .cancel) { }
+            Button(AppStrings.Auth.login) {
+                router.push(.login)
+            }
+        } message: {
+            Text(AppStrings.ProductDetails.guestAlertMessage)
+        }
     }
     
     // MARK: - Subviews

@@ -23,6 +23,7 @@ final class ProductDetailsViewModel: ObservableObject {
     @Published var showToast: Bool = false
     @Published var navigateToCart: Bool = false
     @Published var showOutOfStockAlert: Bool = false
+    @Published var showGuestAlert: Bool = false
     
     private let getProductDetailsUseCase: GetProductDetailsUseCaseProtocol
     private let addToCartUseCase: AddToCartUseCaseProtocol
@@ -80,6 +81,11 @@ final class ProductDetailsViewModel: ObservableObject {
     }
     
     func addToCart(buyNow: Bool = false) async {
+        if SessionManager.shared.currentState == .guest {
+            showGuestAlert = true
+            return
+        }
+        
         guard let variantId = selectedVariantId else {
             errorMessage = AppStrings.ProductDetails.selectOptionsFirst
             return
