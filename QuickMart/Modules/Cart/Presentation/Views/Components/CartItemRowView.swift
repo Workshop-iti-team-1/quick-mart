@@ -41,10 +41,6 @@ struct CartItemRowView: View {
                         .lineLimit(2)
                     
                     Spacer()
-                    
-                    // Selection checkmark (Mocked as always selected for now)
-                    Image(systemName: "checkmark.square.fill")
-                        .foregroundColor(.cyanPrimary)
                 }
                 
                 Text(item.merchandise.title) // Variant title

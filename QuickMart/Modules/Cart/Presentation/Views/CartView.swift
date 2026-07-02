@@ -47,6 +47,11 @@ struct CartView: View {
         } message: {
             Text(viewModel.errorMessage ?? "")
         }
+        .alert(AppStrings.General.success, isPresented: $viewModel.showDiscountAlert) {
+            Button(AppStrings.General.ok, role: .cancel) { }
+        } message: {
+            Text(viewModel.discountMessage)
+        }
         .sheet(isPresented: $showVoucherSheet) {
             if #available(iOS 16.0, *) {
                 VoucherBottomSheet(isPresented: $showVoucherSheet) { code in

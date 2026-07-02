@@ -23,6 +23,8 @@ final class CartViewModel: ObservableObject {
         didSet { showError = errorMessage != nil }
     }
     @Published var showError = false
+    @Published var showDiscountAlert = false
+    @Published var discountMessage = ""
     @Published var isUpdating = false
     @Published var isCheckoutUrlPresented = false
     
@@ -97,6 +99,8 @@ final class CartViewModel: ObservableObject {
             do {
                 let updatedCart = try await useCases.applyDiscount(code: code)
                 self.cart = updatedCart
+                self.discountMessage = AppStrings.Cart.discountAppliedMessage
+                self.showDiscountAlert = true
             } catch {
                 self.errorMessage = error.localizedDescription
             }
