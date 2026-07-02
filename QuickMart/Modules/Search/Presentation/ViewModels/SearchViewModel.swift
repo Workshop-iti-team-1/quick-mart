@@ -167,7 +167,6 @@ final class SearchViewModel: ObservableObject {
     private func processFilterBrands(_ brands: [BrandItem]) -> [BrandItem] {
         let mainCategories: Set<String> = ["MEN", "WOMEN", "KID", "KIDS", "SALE"]
         return brands
-            .dropFirst(3)
             .filter { !mainCategories.contains($0.name.uppercased()) }
             .sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
