@@ -32,13 +32,9 @@ public final class DIContainer {
     private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
         FetchBannersUseCase(repository: homeRepository)
     }
-    private func makeFetchLatestProductsUseCase() -> FetchLatestProductsUseCaseProtocol {
-        FetchLatestProductsUseCase(repository: homeRepository)
-    }
     func makeHomeViewModel() -> HomeViewModel {
         HomeViewModel(
-            fetchBannersUseCase: makeFetchBannersUseCase(),
-            fetchLatestProductsUseCase: makeFetchLatestProductsUseCase()
+            fetchBannersUseCase: makeFetchBannersUseCase()
         )
     }
 

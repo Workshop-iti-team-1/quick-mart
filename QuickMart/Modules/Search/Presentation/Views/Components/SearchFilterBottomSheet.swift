@@ -164,13 +164,13 @@ struct SearchFilterBottomSheet: View {
     }
 }
 
-#Preview {
-    let vm = SearchViewModel(
-        searchProductsUseCase: SearchProductsUseCase(repository: MockSearchRepository()),
-        fetchSubCategoriesUseCase: FetchSubCategoriesUseCase(repository: MockSearchRepository()),
-        fetchCategoriesUseCase: FetchCategoriesUseCase(repository: MockHomeRepository()),
-        fetchBrandsUseCase: FetchBrandsUseCase(repository: MockHomeRepository()),
-        repository: MockSearchRepository()
-    )
-    SearchFilterBottomSheet(viewModel: vm)
-}
+//#Preview {
+//    let vm = SearchViewModel(
+//        searchProductsUseCase: SearchProductsUseCase(repository: MockSearchRepository()),
+//        fetchSubCategoriesUseCase: FetchSubCategoriesUseCase(repository: MockSearchRepository()),
+//        fetchCategoriesUseCase: FetchCategoriesUseCase(repository: MockHomeRepository()),
+//        fetchBrandsUseCase: FetchBrandsUseCase(repository: MockHomeRepository()),
+//        repository: MockSearchRepository()
+//    )
+//    SearchFilterBottomSheet(viewModel: vm)
+//}

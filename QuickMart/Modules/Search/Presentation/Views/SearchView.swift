@@ -14,13 +14,11 @@ struct SearchView: View {
     @FocusState private var isSearchFocused: Bool
 
     // MARK: - Init
-
     init(viewModel: SearchViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Layout
-
     private enum Layout {
         static let horizontalPad: CGFloat   = 16
         static let searchBarRadius: CGFloat = 25
@@ -36,19 +34,21 @@ struct SearchView: View {
     }
 
     // MARK: - Body
-
     var body: some View {
         ZStack {
             Color.backGround.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                headerView
+                //headerView
                 searchBarView
                     .padding(.bottom, 16)
                 contentView
             }
         }
-        .onAppear { isSearchFocused = true }
+        .task {
+            // Load "All Products" when the view appears
+            await viewModel.loadInitialData()
+        }
         .sheet(isPresented: $viewModel.isFilterPresented) {
             SearchFilterBottomSheet(viewModel: viewModel)
                 .presentationDetents([.medium, .large])
@@ -58,7 +58,6 @@ struct SearchView: View {
     }
 
     // MARK: - Header
-
     private var headerView: some View {
         HStack {
             Image("quickmartApp")
@@ -82,7 +81,6 @@ struct SearchView: View {
     }
 
     // MARK: - Search Bar
-
     private var searchBarView: some View {
         HStack(spacing: 10) {
             Image(systemName: "magnifyingglass")
@@ -93,7 +91,10 @@ struct SearchView: View {
                 .appTextStyle(.body, color: .appBlack)
                 .focused($isSearchFocused)
                 .submitLabel(.search)
-                .onSubmit { viewModel.commitSearch() }
+                .onSubmit {
+                    viewModel.commitSearch()
+                    isSearchFocused = false // Ensure focus drops on return
+                }
 
             Spacer(minLength: 0)
 
@@ -110,6 +111,7 @@ struct SearchView: View {
 
     private var filterButton: some View {
         Button {
+            isSearchFocused = false // Drop keyboard if opening filters
             viewModel.showFilter()
         } label: {
             ZStack(alignment: .topTrailing) {
@@ -131,15 +133,16 @@ struct SearchView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.isSearchActive {
-            activeSearchContent
-        } else {
+        // Show Recent Searches ONLY when the user is actively typing/focused AND there's no query yet
+        if isSearchFocused && viewModel.searchText.isEmpty {
             recentSearchesView
+        } else {
+            // Shows "All Products" when text is empty & unfocused, or "Filtered Results" when typing
+            activeSearchContent
         }
     }
 
     // MARK: - Recent Searches
-
     private var recentSearchesView: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("RECENT SEARCH")
@@ -152,6 +155,7 @@ struct SearchView: View {
                     ForEach(viewModel.recentSearches, id: \.self) { query in
                         RecentSearchRowView(query: query) {
                             viewModel.selectRecentSearch(query)
+                            isSearchFocused = false // Drop keyboard to reveal results
                         }
                         .padding(.horizontal, Layout.horizontalPad)
                         Divider()
@@ -164,7 +168,6 @@ struct SearchView: View {
     }
 
     // MARK: - Active Search
-
     @ViewBuilder
     private var activeSearchContent: some View {
         if viewModel.isSearching {
@@ -181,7 +184,7 @@ struct SearchView: View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
                 ForEach(viewModel.searchResults) { item in
-                    ProductCard(item: item)
+                    ProductCard(item: item) // Ensure ProductCard is implemented elsewhere
                 }
             }
             .padding(.horizontal, Layout.horizontalPad)
@@ -207,15 +210,15 @@ struct SearchView: View {
 }
 
 // MARK: - Preview
-
-#Preview {
-    SearchView(
-        viewModel: SearchViewModel(
-            searchProductsUseCase: SearchProductsUseCase(repository: MockSearchRepository()),
-            fetchSubCategoriesUseCase: FetchSubCategoriesUseCase(repository: MockSearchRepository()),
-            fetchCategoriesUseCase: FetchCategoriesUseCase(repository: MockHomeRepository()),
-            fetchBrandsUseCase: FetchBrandsUseCase(repository: MockHomeRepository()),
-            repository: MockSearchRepository()
-        )
-    )
-}
+//
+//#Preview {
+//    SearchView(
+//        viewModel: SearchViewModel(
+//            searchProductsUseCase: SearchProductsUseCase(repository: MockSearchRepository()),
+//            fetchSubCategoriesUseCase: FetchSubCategoriesUseCase(repository: MockSearchRepository()),
+//            fetchCategoriesUseCase: FetchCategoriesUseCase(repository: MockHomeRepository()),
+//            fetchBrandsUseCase: FetchBrandsUseCase(repository: MockHomeRepository()),
+//            repository: MockSearchRepository()
+//        )
+//    )
+//}

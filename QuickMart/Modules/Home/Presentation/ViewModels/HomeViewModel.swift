@@ -19,15 +19,11 @@ final class HomeViewModel: ObservableObject {
 
    
     private let fetchBannersUseCase: FetchBannersUseCaseProtocol
-    private let fetchLatestProductsUseCase: FetchLatestProductsUseCaseProtocol
 
-  
     init(
-        fetchBannersUseCase: FetchBannersUseCaseProtocol,
-        fetchLatestProductsUseCase: FetchLatestProductsUseCaseProtocol
+        fetchBannersUseCase: FetchBannersUseCaseProtocol
     ) {
         self.fetchBannersUseCase = fetchBannersUseCase
-        self.fetchLatestProductsUseCase = fetchLatestProductsUseCase
     }
 
    
@@ -35,7 +31,6 @@ final class HomeViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         banners = fetchBannersUseCase.execute()
-        latestProducts = fetchLatestProductsUseCase.execute()
         isLoading = false
     }
 }

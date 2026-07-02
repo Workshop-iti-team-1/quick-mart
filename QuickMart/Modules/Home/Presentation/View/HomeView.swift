@@ -36,13 +36,6 @@ struct HomeView: View {
                     )
                 }
 
-                if !viewModel.latestProducts.isEmpty {
-                    LatestProductsSection(
-                        items: viewModel.latestProducts,
-                        onSeeAll: { }
-                    )
-                }
-
                 Button {
                     SessionManager.shared.logout()
                 } label: {

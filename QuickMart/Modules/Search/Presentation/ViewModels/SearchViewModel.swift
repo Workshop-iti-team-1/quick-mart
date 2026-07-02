@@ -10,9 +10,9 @@ import Combine
 
 @MainActor
 final class SearchViewModel: ObservableObject {
-
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: - Search State
-
     @Published var searchText: String = ""
     @Published private(set) var searchResults: [ProductSearchItem] = []
     @Published private(set) var recentSearches: [String] = []
@@ -20,36 +20,28 @@ final class SearchViewModel: ObservableObject {
     @Published private(set) var errorMessage: String? = nil
 
     // MARK: - Filter State
-
-    /// Pending state — edited inside the sheet before Apply is tapped
     @Published var pendingFilters: SearchFilters = SearchFilters()
-    /// Applied state — drives the actual search results
     @Published private(set) var appliedFilters: SearchFilters = SearchFilters()
     @Published var isFilterPresented: Bool = false
 
-    // MARK: - Filter Data (loaded once when sheet opens)
-
+    // MARK: - Filter Data
     @Published private(set) var filterCategories: [CategoryItem] = []
     @Published private(set) var filterBrands: [BrandItem] = []
     @Published private(set) var filterSubCategories: [SubCategory] = []
 
     // MARK: - Computed
-
     var isSearchActive: Bool { !searchText.trimmingCharacters(in: .whitespaces).isEmpty }
     var hasResults: Bool { !searchResults.isEmpty }
     var hasActiveFilters: Bool { !appliedFilters.isEmpty }
 
     // MARK: - Dependencies
-
     private let searchProductsUseCase: SearchProductsUseCaseProtocol
     private let fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol
     private let fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol
     private let fetchBrandsUseCase: FetchBrandsUseCaseProtocol
     private let repository: SearchRepositoryProtocol
-    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
-
     init(
         searchProductsUseCase: SearchProductsUseCaseProtocol,
         fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol,
@@ -68,31 +60,33 @@ final class SearchViewModel: ObservableObject {
     }
 
     // MARK: - Setup
-
     private func setupSearchDebounce() {
         $searchText
+            .dropFirst() // Ignore immediate emission on init; handled by loadInitialData()
             .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] query in
                 guard let self else { return }
-                let trimmed = query.trimmingCharacters(in: .whitespaces)
-                guard !trimmed.isEmpty else {
-                    self.searchResults = []
-                    return
-                }
-                Task { await self.performSearch(query: trimmed) }
+                Task { await self.performSearch(query: query) }
             }
             .store(in: &cancellables)
     }
 
     // MARK: - Search Intents
+    
+    func loadInitialData() async {
+        // Fetch "All products" only if we haven't loaded anything yet
+        guard searchResults.isEmpty && !isSearching else { return }
+        await performSearch(query: searchText)
+    }
 
     func performSearch(query: String) async {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
-        guard !trimmed.isEmpty else { return }
+        
         isSearching = true
         errorMessage = nil
         do {
+            // Note: Assuming your UseCase/Backend treats an empty query as "Fetch All"
             searchResults = try await searchProductsUseCase.execute(
                 query: trimmed,
                 filters: appliedFilters
@@ -121,9 +115,8 @@ final class SearchViewModel: ObservableObject {
     }
 
     // MARK: - Filter Intents
-
     func showFilter() {
-        pendingFilters = appliedFilters // Sync pending state before presenting
+        pendingFilters = appliedFilters
         isFilterPresented = true
         Task { await loadFilterData() }
     }
@@ -131,7 +124,7 @@ final class SearchViewModel: ObservableObject {
     func applyFilters() {
         appliedFilters = pendingFilters
         isFilterPresented = false
-        guard !searchText.isEmpty else { return }
+        // Fetch products with new filters, even if search text is empty (applies filters to "All Products")
         Task { await performSearch(query: searchText) }
     }
 
@@ -156,24 +149,21 @@ final class SearchViewModel: ObservableObject {
     }
 
     // MARK: - Filter Data Loading
-
     private func loadFilterData() async {
-        async let cats    = fetchCategoriesUseCase.execute()
-        async let brands  = fetchBrandsUseCase.execute()
+        async let cats = fetchCategoriesUseCase.execute().asyncValue()
+        async let brands = fetchBrandsUseCase.execute().asyncValue()
         async let subCats = fetchSubCategoriesUseCase.execute()
 
         do {
-            let (c, b, s) = try await (cats, brands, subCats)
-            filterCategories    = c
-            filterBrands        = processFilterBrands(b)
-            filterSubCategories = s
+            let (categories, fetchedBrands, subCategories) = try await (cats, brands, subCats)
+            filterCategories = categories
+            filterBrands = processFilterBrands(fetchedBrands)
+            filterSubCategories = subCategories
         } catch {
-            // Non-fatal: filter sheet degrades gracefully with whatever data loaded
+            print(error)
         }
     }
 
-    /// Business rule: skip first 3 dummy collections; remove MEN/WOMEN/KID/SALE;
-    /// sort remaining alphabetically. Maps to future Shopify collection metadata filtering.
     private func processFilterBrands(_ brands: [BrandItem]) -> [BrandItem] {
         let mainCategories: Set<String> = ["MEN", "WOMEN", "KID", "KIDS", "SALE"]
         return brands

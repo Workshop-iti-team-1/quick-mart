@@ -53,50 +53,6 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
         ]
     }
 
-    func fetchLatestProducts() -> [ProductItem] {
-        [
-            ProductItem(
-                id: "1",
-                name: "Nike Air Jordan Retro",
-                price: 126.00,
-                originalPrice: 156.00,
-                imageName: "shoe",
-                isSystemImage: true,
-                colorNames: ["appBlack", "appBlue", "appBrown"],
-                colorCount: 5
-            ),
-            ProductItem(
-                id: "2",
-                name: "Classic Black Glasses",
-                price: 8.50,
-                originalPrice: 10.00,
-                imageName: "eyeglasses",
-                isSystemImage: true,
-                colorNames: ["appBlue", "grey100", "appBrown"],
-                colorCount: 7
-            ),
-            ProductItem(
-                id: "3",
-                name: "Wireless Earbuds Pro",
-                price: 49.99,
-                originalPrice: 69.99,
-                imageName: "headphones",
-                isSystemImage: true,
-                colorNames: ["appBlack", "appWhite"],
-                colorCount: 3
-            ),
-            ProductItem(
-                id: "4",
-                name: "Leather Handbag",
-                price: 89.00,
-                originalPrice: nil,
-                imageName: "bag.fill",
-                isSystemImage: true,
-                colorNames: ["appBrown", "appBlack"],
-                colorCount: 4
-            ),
-        ]
-    }
     func fetchBrands() -> AnyPublisher<[BrandItem], Error> {
         remoteDataSource.fetchCollections(first: 20)
             .map { collections in

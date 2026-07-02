@@ -11,7 +11,6 @@ import Combine
 
 protocol HomeRepositoryProtocol {
     func fetchBanners() -> [BannerItem]
-    func fetchLatestProducts() -> [ProductItem]
     func fetchBrands() -> AnyPublisher<[BrandItem], Error>
     func fetchCategories() -> AnyPublisher<[CategoryItem], Error>
 }
