@@ -1,9 +1,9 @@
 // App/Navigation/RootView.swift
 
+// App/Navigation/RootView.swift
 import SwiftUI
 
 struct RootView: View {
-
     @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
     @Environment(AppRouter.self) private var router
     @EnvironmentObject private var sessionManager: SessionManager
@@ -12,23 +12,26 @@ struct RootView: View {
         @Bindable var router = router
 
         NavigationStack(path: $router.path) {
-            Group {
-                switch sessionManager.currentState {
-                case .loading:
-                    ProgressView()
-                case .unauthenticated:
-                    if hasSeenOnboarding {
-                        LoginView(router: router)
-                    } else {
-                        OnboardingView(router: router)
-                    }
-                case .guest, .loggedIn:
-                    MainTabView(router: router)
+            currentView
+                .navigationDestination(for: Route.self) { route in
+                    router.destination(for: route)
                 }
+        }
+    }
+
+    @ViewBuilder
+    private var currentView: some View {
+        switch sessionManager.currentState {
+        case .loading:
+            ProgressView()
+        case .unauthenticated:
+            if hasSeenOnboarding {
+                LoginView()
+            } else {
+                OnboardingView()
             }
-            .navigationDestination(for: Route.self) { route in
-                router.destination(for: route)
-            }
+        case .guest, .loggedIn:
+            MainTabView()
         }
     }
 }

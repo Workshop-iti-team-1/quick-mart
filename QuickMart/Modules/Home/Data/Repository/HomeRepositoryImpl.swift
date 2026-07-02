@@ -1,14 +1,22 @@
 //
-//  MockHomeRepository.swift
+//  HomeRepositoryImpl.swift
 //  QuickMart
 //
-//  Created by Alaa Ayman on 29/06/2026.
+//  Created by Alaa Ayman on 02/07/2026.
 //
 
-
 import Foundation
+import Combine
 
-struct MockHomeRepository: HomeRepositoryProtocol {
+final class HomeRepositoryImpl: HomeRepositoryProtocol {
+    private let remoteDataSource: HomeRemoteDataSourceProtocol
+    private var cancellables = Set<AnyCancellable>()
+
+    init(remoteDataSource: HomeRemoteDataSourceProtocol) {
+        self.remoteDataSource = remoteDataSource
+    }
+
+    
 
     func fetchBanners() -> [BannerItem] {
         [
@@ -89,35 +97,24 @@ struct MockHomeRepository: HomeRepositoryProtocol {
             ),
         ]
     }
-    
-    // MARK: - Updated Categories to use Custom Images
-    func fetchCategories() -> [CategoryItem] {
-        [
-            CategoryItem(
-                id: "1", name: "WOMEN", imageName: "women",
-                isSystemImage: false),
-            CategoryItem(
-                id: "2", name: "MEN", imageName: "men",
-                isSystemImage: false),
-            CategoryItem(
-                id: "3", name: "SALE", imageName: "sale",
-                isSystemImage: false),
-            CategoryItem(
-                id: "4", name: "KID", imageName: "kid",
-                isSystemImage: false),
-        ]
+    func fetchBrands() -> AnyPublisher<[BrandItem], Error> {
+        remoteDataSource.fetchCollections(first: 20)
+            .map { collections in
+                collections
+                    .dropFirst(3)
+                    .dropLast(4)
+                    .map { $0.toBrandEntity() }
+            }
+            .eraseToAnyPublisher()
     }
-    
-    func fetchBrands() -> [BrandItem] {
-        [
-            BrandItem(id: "1",  name: "Electronics",              imageName: "desktopcomputer",             isSystemImage: true),
-            BrandItem(id: "2",  name: "Fashion",                  imageName: "bag.fill",                    isSystemImage: true),
-            BrandItem(id: "3",  name: "Furniture",                imageName: "sofa.fill",                   isSystemImage: true),
-            BrandItem(id: "4",  name: "Industrial",               imageName: "car.fill",                    isSystemImage: true),
-            BrandItem(id: "5",  name: "Home Decor",               imageName: "gift.fill",                   isSystemImage: true),
-            BrandItem(id: "6",  name: "Health",                   imageName: "stethoscope",                 isSystemImage: true),
-            BrandItem(id: "7",  name: "Construction",             imageName: "house.fill",                  isSystemImage: true),
-            BrandItem(id: "8",  name: "Electrical Equipment",     imageName: "bolt.fill",                   isSystemImage: true),
-        ]
+
+    func fetchCategories() -> AnyPublisher<[CategoryItem], Error> {
+        remoteDataSource.fetchCollections(first: 20)
+            .map { collections in
+                collections
+                    .suffix(4)
+                    .map { $0.toCategoryEntity() }
+            }
+            .eraseToAnyPublisher()
     }
 }

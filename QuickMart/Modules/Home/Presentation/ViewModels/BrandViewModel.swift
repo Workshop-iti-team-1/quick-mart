@@ -6,32 +6,35 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 final class BrandViewModel: ObservableObject {
-
-    // MARK: - Published State
-
     @Published private(set) var brands: [BrandItem] = []
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = nil
 
-    // MARK: - Dependency
-
     private let fetchBrandsUseCase: FetchBrandsUseCaseProtocol
-
-    // MARK: - Init
+    private var cancellables = Set<AnyCancellable>()
 
     init(fetchBrandsUseCase: FetchBrandsUseCaseProtocol) {
         self.fetchBrandsUseCase = fetchBrandsUseCase
     }
 
-    // MARK: - Intent
-
     func loadBrands() {
         isLoading = true
         errorMessage = nil
-        brands = fetchBrandsUseCase.execute()
-        isLoading = false
+
+        fetchBrandsUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.localizedDescription
+                }
+            } receiveValue: { [weak self] brands in
+                self?.brands = brands
+            }
+            .store(in: &cancellables)
     }
 }

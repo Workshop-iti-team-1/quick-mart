@@ -10,21 +10,18 @@ import SwiftUI
 
 struct MainTabView: View {
     @StateObject private var viewModel = RootViewModel()
-    let router: AppRouter
+    @Environment(AppRouter.self) private var router
 
     var body: some View {
         VStack(spacing: 0) {
             Group {
                 switch viewModel.selectedTab {
                 case .home:
-                    HomeView(
-                        viewModel: DIContainer.shared.makeHomeViewModel(),
-                        router: router
-                    )
-                    .customToolbar(
-                        cartCount: viewModel.cartItemCount,
-                        onCart: { viewModel.select(.cart) }
-                    )
+                    HomeView(viewModel: DIContainer.shared.makeHomeViewModel())
+                        .customToolbar(
+                            cartCount: viewModel.cartItemCount,
+                            onCart: { viewModel.select(.cart) }
+                        )
                 case .search:
                     SearchView(viewModel: DIContainer.shared.makeSearchViewModel())
                 case .cart:

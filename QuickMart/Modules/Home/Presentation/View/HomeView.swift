@@ -5,31 +5,22 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
-//
-//  HomeView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 29/06/2026.
-//
-
 import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     @StateObject private var brandViewModel = DIContainer.shared.makeBrandViewModel()
     @StateObject private var categoryViewModel = DIContainer.shared.makeCategoryViewModel()
-    let router: AppRouter
+    @Environment(AppRouter.self) private var router
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
 
-                // MARK: - Banner
                 if !viewModel.banners.isEmpty {
                     AdBannerPager(items: viewModel.banners)
                 }
 
-                // MARK: - Brands
                 if !brandViewModel.brands.isEmpty {
                     HomeBrandsSection(
                         items: brandViewModel.brands,
@@ -37,25 +28,24 @@ struct HomeView: View {
                     )
                 }
 
-                // MARK: - Categories 2x2
                 if !categoryViewModel.categories.isEmpty {
                     HomeCategoriesSection(
-                        items: categoryViewModel.categories
+                        items: categoryViewModel.categories,
+                       
+                        onCategoryTap: { router.push(.categoryDetail($0)) }
                     )
                 }
 
-                // MARK: - Latest Products
                 if !viewModel.latestProducts.isEmpty {
                     LatestProductsSection(
                         items: viewModel.latestProducts,
                         onSeeAll: { }
                     )
                 }
-                
-                // MARK: - Test Logout
-                Button(action: {
+
+                Button {
                     SessionManager.shared.logout()
-                }) {
+                } label: {
                     Text("Test Logout")
                         .font(.headline)
                         .foregroundColor(.white)

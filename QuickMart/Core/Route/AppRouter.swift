@@ -49,16 +49,17 @@ final class AppRouter {
     func destination(for route: Route) -> some View {
         switch route {
         case .home:
-            HomeView(
-                viewModel: self.diContainer.makeHomeViewModel(), router: self)
+            HomeView(viewModel: self.diContainer.makeHomeViewModel())
         case .login:
-            LoginView(router: self)
+            LoginView()
         case .signup:
             SignupView(router: self)
         case .allBrands:
             AllBrandsView(viewModel: diContainer.makeBrandViewModel())
         case .category:
             AllBrandsView(viewModel: diContainer.makeBrandViewModel())
+        case .categoryDetail(let item):
+            CategoryDetailView(category: item)
         case .forgotPassword:
             ForgotPasswordView(router: self)
         case .search:
