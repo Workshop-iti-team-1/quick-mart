@@ -5,9 +5,8 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
-
-
 import SwiftUI
+
 struct ProductCard: View {
     let item: ProductSearchItem
     @State private var isFavorite: Bool
@@ -32,10 +31,21 @@ struct ProductCard: View {
                                     .frame(width: 80)
                                     .foregroundColor(.grey150)
                             } else {
-                                Image(item.imageName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 80)
+                                AsyncImage(url: URL(string: item.imageName)) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 80)
+                                    default:
+                                        Image(systemName: "photo")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 80)
+                                            .foregroundColor(.grey150)
+                                    }
+                                }
                             }
                         }
                     )
@@ -44,7 +54,7 @@ struct ProductCard: View {
                     .padding(8)
             }
 
-//            ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
+            ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
 
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)
@@ -54,12 +64,27 @@ struct ProductCard: View {
                 Text(String(format: "$%.2f", item.price))
                     .appTextStyle(.label, color: .appBlack)
 
-                if let original = item.originalPrice {
-                    Text(String(format: "$%.2f", original))
+                if let originalPriceText = formattedOriginalPrice {
+                    Text(originalPriceText)
                         .appTextStyle(.caption, color: .grayText)
                         .strikethrough(true, color: .grayText)
                 }
             }
         }
+    }
+
+    // MARK: - Helpers
+
+    /// Formats the originalPrice array for display.
+    /// nil / empty  → hidden
+    /// [x]          → "$x.xx"
+    /// [min, max]   → "$min.xx – $max.xx"
+    private var formattedOriginalPrice: String? {
+        guard let prices = item.originalPrice, !prices.isEmpty else { return nil }
+        if prices.count == 1 {
+            return String(format: "$%.2f", prices[0])
+        }
+        let sorted = prices.sorted()
+        return String(format: "$%.2f – $%.2f", sorted[0], sorted[sorted.count - 1])
     }
 }

@@ -20,7 +20,7 @@ struct ProductSearchItem: Identifiable, Hashable {
     let imageName: String
     let isSystemImage: Bool
     let price: Double
-    let originalPrice: Double?
+    let originalPrice: [Double]?
     let colorNames: [String]
     let colorCount: Int
     var isFavorite: Bool
@@ -37,7 +37,7 @@ struct ProductSearchItem: Identifiable, Hashable {
         imageName: String,
         isSystemImage: Bool = true,
         price: Double,
-        originalPrice: Double? = nil,
+        originalPrice: [Double]? = nil,
         colorNames: [String] = [],
         colorCount: Int = 0,
         isFavorite: Bool = false,

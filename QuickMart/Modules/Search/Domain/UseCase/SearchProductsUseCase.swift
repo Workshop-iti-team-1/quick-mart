@@ -5,12 +5,18 @@
 //  Created by Mina_Wagdy on 02/07/2026.
 //
 
+// Features/Search/Domain/UseCases/SearchProductsUseCase.swift
+
 import Foundation
 
 // MARK: - Protocol
 
 protocol SearchProductsUseCaseProtocol {
-    func execute(query: String, filters: SearchFilters) async throws -> [ProductSearchItem]
+    func execute(
+        query: String,
+        filters: SearchFilters,
+        after: String?
+    ) async throws -> (products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?)
 }
 
 // MARK: - Implementation
@@ -23,41 +29,27 @@ struct SearchProductsUseCase: SearchProductsUseCaseProtocol {
         self.repository = repository
     }
 
-    func execute(query: String, filters: SearchFilters) async throws -> [ProductSearchItem] {
-        let raw = try await repository.searchProducts(query: query, filters: filters)
-        // Client-side filtering: remove this block when Shopify GraphQL handles it server-side.
-        return applyFilters(filters, to: raw)
-    }
+    func execute(
+        query: String,
+        filters: SearchFilters,
+        after: String?
+    ) async throws -> (products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?) {
 
-    // MARK: - Filter Logic
-    // Rule: OR within each section, AND across sections.
+        var result = try await repository.searchProducts(
+            query: query,
+            filters: filters,
+            after: after
+        )
 
-    private func applyFilters(_ filters: SearchFilters, to products: [ProductSearchItem]) -> [ProductSearchItem] {
-        var result = products
-
+        // Client-side category filtering.
+        // Shopify search API doesn't natively support collection: scoping yet.
+        // Remove this block once Shopify adds collection-scoped search —
+        // the query builder in the repository already has the slot ready.
         if !filters.selectedCategoryIDs.isEmpty {
-            result = result.filter {
-                filters.selectedCategoryIDs.contains($0.categoryID ?? "")
+            result.products = result.products.filter { product in
+                guard let categoryID = product.categoryID else { return false }
+                return filters.selectedCategoryIDs.contains(categoryID)
             }
-        }
-
-        if !filters.selectedSubCategoryIDs.isEmpty {
-            result = result.filter {
-                filters.selectedSubCategoryIDs.contains($0.subCategoryID ?? "")
-            }
-        }
-
-        if !filters.selectedBrandIDs.isEmpty {
-            result = result.filter {
-                filters.selectedBrandIDs.contains($0.brandID ?? "")
-            }
-        }
-
-        // Client-side sort (bestSelling and newest require server-side ordering)
-        switch filters.selectedSort {
-        case .priceLowToHigh: result.sort { $0.price < $1.price }
-        case .priceHighToLow: result.sort { $0.price > $1.price }
-        default: break
         }
 
         return result

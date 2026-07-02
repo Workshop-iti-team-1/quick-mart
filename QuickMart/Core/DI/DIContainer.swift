@@ -101,9 +101,13 @@ public final class DIContainer {
 
     // MARK: - Private Assembly
 
+    private var searchRemoteDataSource: SearchRemoteDataSourceProtocol {
+        SearchRemoteDataSource(client: graphQLClient)
+    }
+
     private var searchRepository: SearchRepositoryProtocol {
-        MockSearchRepository()
-        // Future: ShopifySearchRepository(client: rawGraphQLClient)
+        ShopifySearchRepository(remoteDataSource: searchRemoteDataSource)
+        // Swap for MockSearchRepository() during UI testing or Previews
     }
 
     private var searchProductsUseCase: SearchProductsUseCaseProtocol {
@@ -115,13 +119,14 @@ public final class DIContainer {
     }
 
     // MARK: - Public Factory
+
     @MainActor
     func makeSearchViewModel() -> SearchViewModel {
         SearchViewModel(
             searchProductsUseCase: searchProductsUseCase,
             fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
-            fetchCategoriesUseCase: makeFetchCategoriesUseCase(),  // reused from DIContainer
-            fetchBrandsUseCase: makeFetchBrandsUseCase(),  // reused from DIContainer
+            fetchCategoriesUseCase: makeFetchCategoriesUseCase(), // reused from Home
+            fetchBrandsUseCase: makeFetchBrandsUseCase(),         // reused from Home
             repository: searchRepository
         )
     }
