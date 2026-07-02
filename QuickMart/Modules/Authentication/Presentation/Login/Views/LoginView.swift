@@ -6,16 +6,16 @@
 //  Created by Alaa Ayman on 28/06/2026.
 //
 
-
 import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel = DIContainer.shared.makeLoginViewModel()
-    var router: AppRouter
+    @Environment(AppRouter.self) private var router
+
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
-            
+
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     Image.appLogo
@@ -55,14 +55,14 @@ struct LoginView: View {
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) { 
+                        AppButton(title: AppStrings.Auth.login, verticalPadding: 20) {
                             viewModel.login()
                         }
                         .disabled(viewModel.isLoading)
-                        
+
                         AppButton(title: AppStrings.Auth.loginWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
-                        
-                        Button(AppStrings.Auth.loginAsGuest) { 
+
+                        Button(AppStrings.Auth.loginAsGuest) {
                             viewModel.loginAsGuest()
                         }
                         .appTextStyle(.body, color: .cyanPrimary)
@@ -74,16 +74,11 @@ struct LoginView: View {
                     HStack {
                         Spacer()
                         (
-                            Text(AppStrings.Auth.termsPrefix)
-                                .foregroundColor(.gray)
-                            + Text(AppStrings.Auth.privacyPolicy)
-                                .foregroundColor(.cyanPrimary)
-                            + Text(AppStrings.Auth.and)
-                                .foregroundColor(.gray)
-                            + Text(AppStrings.Auth.termsConditions)
-                                .foregroundColor(.cyanPrimary)
-                            + Text(".")
-                                .foregroundColor(.gray)
+                            Text(AppStrings.Auth.termsPrefix).foregroundColor(.gray)
+                            + Text(AppStrings.Auth.privacyPolicy).foregroundColor(.cyanPrimary)
+                            + Text(AppStrings.Auth.and).foregroundColor(.gray)
+                            + Text(AppStrings.Auth.termsConditions).foregroundColor(.cyanPrimary)
+                            + Text(".").foregroundColor(.gray)
                         )
                         .font(.system(size: 12, weight: .regular))
                         .multilineTextAlignment(.center)
@@ -97,9 +92,7 @@ struct LoginView: View {
         }
         .navigationBarBackButtonHidden(true)
         .overlay {
-            if viewModel.isLoading {
-                CustomLoadingView()
-            }
+            if viewModel.isLoading { CustomLoadingView() }
         }
         .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
             Button(AppStrings.General.ok, role: .cancel) { }

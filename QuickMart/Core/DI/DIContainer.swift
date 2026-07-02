@@ -6,6 +6,7 @@
 //
 
 // App/DI/DIContainer.swift
+
 import Apollo
 import Foundation
 
@@ -15,24 +16,24 @@ public final class DIContainer {
     private init() {}
 
     private(set) lazy var apolloClient: ApolloClient = {
-        let store = ApolloStore()
-        let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
-        let transport = RequestChainNetworkTransport(
-            interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
-        return ApolloClient(networkTransport: transport, store: store)
-    }()
+           let store = ApolloStore()
+           let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
+           let transport = RequestChainNetworkTransport(
+               interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
+           return ApolloClient(networkTransport: transport, store: store)
+       }()
 
-    // MARK: - Home Repository (single instance shared across home use cases)
-    private func makeHomeRepository() -> HomeRepositoryProtocol {
-        MockHomeRepository()
-    }
+       // MARK: - Home Repository (shared)
+       private lazy var homeRepository: HomeRepositoryProtocol = {
+           HomeRepositoryImpl(remoteDataSource: HomeRemoteDataSource(client: graphQLClient))
+       }()
 
     // MARK: - Home
     private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
-        FetchBannersUseCase(repository: makeHomeRepository())
+        FetchBannersUseCase(repository: homeRepository)
     }
     private func makeFetchLatestProductsUseCase() -> FetchLatestProductsUseCaseProtocol {
-        FetchLatestProductsUseCase(repository: makeHomeRepository())
+        FetchLatestProductsUseCase(repository: homeRepository)
     }
     func makeHomeViewModel() -> HomeViewModel {
         HomeViewModel(
@@ -43,20 +44,19 @@ public final class DIContainer {
 
     // MARK: - Brand
     private func makeFetchBrandsUseCase() -> FetchBrandsUseCaseProtocol {
-        FetchBrandsUseCase(repository: makeHomeRepository())
+        FetchBrandsUseCase(repository: homeRepository)
     }
     func makeBrandViewModel() -> BrandViewModel {
         BrandViewModel(fetchBrandsUseCase: makeFetchBrandsUseCase())
     }
 
-    // MARK: -  Category
+    // MARK: - Home Category
     private func makeFetchCategoriesUseCase() -> FetchCategoriesUseCaseProtocol {
-        FetchCategoriesUseCase(repository: makeHomeRepository())
+        FetchCategoriesUseCase(repository: homeRepository)
     }
     func makeCategoryViewModel() -> CategoryViewModel {
         CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
     }
-
     // MARK: - Cart
     private func makeRemoteCartDataSource() -> RemoteCartDataSource {
         RemoteCartDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
@@ -73,5 +73,4 @@ public final class DIContainer {
     func makeCartViewModel() -> CartViewModel {
         CartViewModel(useCases: makeCartUseCases())
     }
- 
 }

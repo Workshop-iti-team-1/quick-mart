@@ -6,6 +6,7 @@
 //
 
 
+
 import SwiftUI
 
 struct HomeBrandCell: View {
@@ -19,19 +20,43 @@ struct HomeBrandCell: View {
                     .frame(width: 64, height: 64)
                     .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
 
-                Group {
-                    if item.isSystemImage {
-                        Image(systemName: item.imageName)
+                if let imageName = item.imageName {
+                    if item.isSystemImage == true {
+                        Image(systemName: imageName)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 28, height: 28)
                             .foregroundColor(.cyanPrimary)
                     } else {
-                        Image(item.imageName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 28, height: 28)
+                        AsyncImage(url: URL(string: imageName)) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 64, height: 64)
+                                    .clipShape(Circle())
+                            case .failure:
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.grey150)
+                            case .empty:
+                                ProgressView()
+                                    .frame(width: 28, height: 28)
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
                     }
+                } else {
+                    // no image at all — fallback
+                    Image(systemName: "photo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.grey150)
                 }
             }
 
@@ -42,5 +67,3 @@ struct HomeBrandCell: View {
         }
     }
 }
-
-

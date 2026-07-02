@@ -5,7 +5,9 @@
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
+
 import Foundation
+import Combine
 
 @MainActor
 final class CategoryViewModel: ObservableObject {
@@ -14,6 +16,7 @@ final class CategoryViewModel: ObservableObject {
     @Published private(set) var errorMessage: String? = nil
 
     private let fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol
+    private var cancellables = Set<AnyCancellable>()
 
     init(fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol) {
         self.fetchCategoriesUseCase = fetchCategoriesUseCase
@@ -22,7 +25,17 @@ final class CategoryViewModel: ObservableObject {
     func loadCategories() {
         isLoading = true
         errorMessage = nil
-        categories = fetchCategoriesUseCase.execute()
-        isLoading = false
+
+        fetchCategoriesUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.localizedDescription
+                }
+            } receiveValue: { [weak self] categories in
+                self?.categories = categories
+            }
+            .store(in: &cancellables)
     }
 }

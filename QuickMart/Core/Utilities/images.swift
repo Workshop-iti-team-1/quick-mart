@@ -15,4 +15,8 @@ extension Image {
     static let onboarding3 = Image("onboarding3")
     static let appLogo = Image("quickmartApp")
     static let googleIcon = Image("google")
+    static let women = Image("women")
+    static let men  = Image("men")
+    static let kid = Image("kid")
+    static let sale = Image("sale")
 }

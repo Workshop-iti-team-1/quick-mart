@@ -6,13 +6,12 @@
 //
 
 
-
 import Foundation
+import Combine
 
 protocol HomeRepositoryProtocol {
     func fetchBanners() -> [BannerItem]
     func fetchLatestProducts() -> [ProductItem]
-    func fetchBrands() -> [BrandItem]
-    func fetchCategories() -> [CategoryItem]
-    
+    func fetchBrands() -> AnyPublisher<[BrandItem], Error>
+    func fetchCategories() -> AnyPublisher<[CategoryItem], Error>
 }

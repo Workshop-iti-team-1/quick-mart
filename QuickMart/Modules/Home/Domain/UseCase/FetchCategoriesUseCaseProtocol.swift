@@ -5,11 +5,11 @@
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-
 import Foundation
+import Combine
 
 protocol FetchCategoriesUseCaseProtocol {
-    func execute() -> [CategoryItem]
+    func execute() -> AnyPublisher<[CategoryItem], Error>
 }
 
 struct FetchCategoriesUseCase: FetchCategoriesUseCaseProtocol {
@@ -19,7 +19,7 @@ struct FetchCategoriesUseCase: FetchCategoriesUseCaseProtocol {
         self.repository = repository
     }
 
-    func execute() -> [CategoryItem] {
+    func execute() -> AnyPublisher<[CategoryItem], Error> {
         repository.fetchCategories()
     }
 }
