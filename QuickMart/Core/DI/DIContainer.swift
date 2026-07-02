@@ -57,5 +57,21 @@ public final class DIContainer {
         CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
     }
 
+    // MARK: - Cart
+    private func makeRemoteCartDataSource() -> RemoteCartDataSource {
+        RemoteCartDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
+    }
+    
+    private func makeCartRepository() -> CartRepository {
+        CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource())
+    }
+    
+    private func makeCartUseCases() -> CartUseCases {
+        CartUseCasesImpl(repository: makeCartRepository())
+    }
+    
+    func makeCartViewModel() -> CartViewModel {
+        CartViewModel(useCases: makeCartUseCases())
+    }
  
 }
