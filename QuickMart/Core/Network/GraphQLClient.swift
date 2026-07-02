@@ -35,10 +35,48 @@ class TokenInterceptor: ApolloInterceptor {
     }
 }
 
+class LoggingInterceptor: ApolloInterceptor {
+    var id: String = UUID().uuidString
+    
+    func interceptAsync<Operation: GraphQLOperation>(
+        chain: RequestChain,
+        request: HTTPRequest<Operation>,
+        response: HTTPResponse<Operation>?,
+        completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void
+    ) {
+        print("\n🚀 [GraphQL Request]: \(Operation.operationName)")
+        if let variables = request.operation.__variables {
+            print("📦 [Variables]: \(variables)")
+        }
+        
+        chain.proceedAsync(
+            request: request,
+            response: response,
+            interceptor: self
+        ) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("✅ [GraphQL Response]: \(Operation.operationName)")
+                if let data = graphQLResult.data {
+                    print("📊 [Data]: \(data)")
+                }
+                if let errors = graphQLResult.errors {
+                    print("❌ [Errors]: \(errors)")
+                }
+            case .failure(let error):
+                print("🚨 [GraphQL Error]: \(Operation.operationName) - \(error.localizedDescription)")
+            }
+            print("--------------------------------------------------\n")
+            completion(result)
+        }
+    }
+}
+
 class NetworkInterceptorProvider: DefaultInterceptorProvider {
     override func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
         var interceptors = super.interceptors(for: operation)
         interceptors.insert(TokenInterceptor(), at: 0)
+        interceptors.insert(LoggingInterceptor(), at: 0)
         return interceptors
     }
 }
@@ -52,7 +90,7 @@ final class GraphQLClient: ShopifyGraphQLClientProtocol {
     
     func performQuery<Query: GraphQLQuery>(query: Query) async throws -> Query.Data {
         return try await withCheckedThrowingContinuation { continuation in
-            apollo.fetch(query: query) { result in
+            apollo.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { result in
                 switch result {
                 case .success(let graphQLResult):
                     if let data = graphQLResult.data {

@@ -27,16 +27,18 @@ struct CustomToolbar: ToolbarContent {
                     Image(systemName: "cart")
                         .font(.system(size: 20, weight: .medium))
                         .foregroundColor(.appBlack)
-                        .padding(.vertical, 12)
-
+                        .padding(.trailing, 14)
+                        .padding(.top, 4)
+                        
                     if cartCount > 0 {
                         Text("\(cartCount)")
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundColor(.appWhite)
-                            .padding(3)
-                            .background(Color.appRed)
-                            .clipShape(Circle())
-                            .offset(x: 8, y: 2)
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
+                            .frame(minWidth: 16, minHeight: 16)
+                            .background(Color.cyanPrimary)
+                            .clipShape(Capsule())
                     }
                 }
             }

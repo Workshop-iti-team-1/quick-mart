@@ -11,4 +11,5 @@ import Combine
 
 protocol HomeRemoteDataSourceProtocol {
     func fetchCollections(first: Int) -> AnyPublisher<[CollectionModel], Error>
+    func getProduct(id: String) async throws -> ShopifyAPI.GetProductQuery.Data.Product
 }

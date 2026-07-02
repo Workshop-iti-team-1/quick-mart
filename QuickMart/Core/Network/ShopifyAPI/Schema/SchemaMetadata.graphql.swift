@@ -78,10 +78,16 @@ extension ShopifyAPI {
       case "ProductConnection": return ShopifyAPI.Objects.ProductConnection
       case "ProductEdge": return ShopifyAPI.Objects.ProductEdge
       case "PageInfo": return ShopifyAPI.Objects.PageInfo
+      case "ProductPriceRange": return ShopifyAPI.Objects.ProductPriceRange
+      case "MoneyV2": return ShopifyAPI.Objects.MoneyV2
+      case "ImageConnection": return ShopifyAPI.Objects.ImageConnection
+      case "ImageEdge": return ShopifyAPI.Objects.ImageEdge
+      case "ProductVariantConnection": return ShopifyAPI.Objects.ProductVariantConnection
+      case "ProductVariantEdge": return ShopifyAPI.Objects.ProductVariantEdge
+      case "SelectedOption": return ShopifyAPI.Objects.SelectedOption
       case "Mutation": return ShopifyAPI.Objects.Mutation
       case "CartCreatePayload": return ShopifyAPI.Objects.CartCreatePayload
       case "CartCost": return ShopifyAPI.Objects.CartCost
-      case "MoneyV2": return ShopifyAPI.Objects.MoneyV2
       case "BaseCartLineConnection": return ShopifyAPI.Objects.BaseCartLineConnection
       case "BaseCartLineEdge": return ShopifyAPI.Objects.BaseCartLineEdge
       case "CartLineCost": return ShopifyAPI.Objects.CartLineCost
@@ -92,7 +98,6 @@ extension ShopifyAPI {
       case "UserError": return ShopifyAPI.Objects.UserError
       case "UserErrorsShopPayPaymentRequestSessionUserErrors": return ShopifyAPI.Objects.UserErrorsShopPayPaymentRequestSessionUserErrors
       case "CartDiscountCode": return ShopifyAPI.Objects.CartDiscountCode
-      case "SelectedOption": return ShopifyAPI.Objects.SelectedOption
       case "CartLinesAddPayload": return ShopifyAPI.Objects.CartLinesAddPayload
       case "CartLinesUpdatePayload": return ShopifyAPI.Objects.CartLinesUpdatePayload
       case "CartLinesRemovePayload": return ShopifyAPI.Objects.CartLinesRemovePayload

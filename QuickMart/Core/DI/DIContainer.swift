@@ -62,7 +62,7 @@ public final class DIContainer {
     }
 
     private func makeCartRepository() -> CartRepository {
-        CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource())
+        CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource(), commonRemoteDataSource: makeCommonRemoteDataSource())
     }
 
     private func makeCartUseCases() -> CartUseCases {
@@ -72,6 +72,33 @@ public final class DIContainer {
     func makeCartViewModel() -> CartViewModel {
         CartViewModel(useCases: makeCartUseCases())
     }
+    // MARK: - Root
+    func makeRootViewModel() -> RootViewModel {
+        RootViewModel(cartUseCases: makeCartUseCases())
+    }
+    
+    // MARK: - Common
+    private func makeCommonRemoteDataSource() -> CommonRemoteDataSourceProtocol {
+        CommonRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
+    }
+    
+    private func makeCommonRepository() -> CommonRepositoryProtocol {
+        CommonRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
+    }
+    
+    private func makeAddToCartUseCase() -> AddToCartUseCaseProtocol {
+        AddToCartUseCase(repository: makeCommonRepository())
+    }
+    
+    // MARK: - Product Details
+    private func makeGetProductDetailsUseCase() -> GetProductDetailsUseCaseProtocol {
+        GetProductDetailsUseCase(repository: homeRepository)
+    }
+    
+    func makeProductDetailsViewModel(productId: String) -> ProductDetailsViewModel {
+        ProductDetailsViewModel(productId: productId, getProductDetailsUseCase: makeGetProductDetailsUseCase(), addToCartUseCase: makeAddToCartUseCase())
+    }
+
     // MARK: - Private Assembly
 
     private var searchRepository: SearchRepositoryProtocol {
