@@ -32,4 +32,13 @@ final class HomeRemoteDataSource: HomeRemoteDataSourceProtocol {
         }
         .eraseToAnyPublisher()
     }
+
+    func getProduct(id: String) async throws -> ShopifyAPI.GetProductQuery.Data.Product {
+        let query = ShopifyAPI.GetProductQuery(id: id)
+        let response = try await client.performQuery(query: query)
+        guard let product = response.product else {
+            throw NSError(domain: "ProductNotFound", code: 404, userInfo: nil)
+        }
+        return product
+    }
 }

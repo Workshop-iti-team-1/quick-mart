@@ -62,6 +62,10 @@ final class AppRouter {
             CategoryDetailView(category: item)
         case .forgotPassword:
             ForgotPasswordView(router: self)
+        case .productDetails(let productId):
+            ProductDetailsView(viewModel: self.diContainer.makeProductDetailsViewModel(productId: productId))
+        case .cart:
+            CartView(router: self)
         case .search:
             // Search is fullScreenCover — this path handles deep-link push edge cases
             SearchView(viewModel: diContainer.makeSearchViewModel())

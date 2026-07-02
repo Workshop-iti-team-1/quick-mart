@@ -9,8 +9,6 @@ import Foundation
 
 protocol CartUseCases {
     func getCart() async throws -> Cart?
-    func createCart() async throws -> Cart
-    func addLine(variantId: String, quantity: Int) async throws -> Cart
     func updateLine(lineId: String, quantity: Int) async throws -> Cart
     func removeLine(lineId: String) async throws -> Cart
     func applyDiscount(code: String) async throws -> Cart
@@ -26,14 +24,6 @@ class CartUseCasesImpl: CartUseCases {
     
     func getCart() async throws -> Cart? {
         return try await repository.getCart()
-    }
-    
-    func createCart() async throws -> Cart {
-        return try await repository.createCart()
-    }
-    
-    func addLine(variantId: String, quantity: Int) async throws -> Cart {
-        return try await repository.addLine(variantId: variantId, quantity: quantity)
     }
     
     func updateLine(lineId: String, quantity: Int) async throws -> Cart {

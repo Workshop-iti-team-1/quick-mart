@@ -26,13 +26,15 @@ struct CartView: View {
                 }
             case .empty:
                 EmptyCartView {
-                    // Switch tab to Home or Categories
-                    // In MainTabView we would ideally have a way to change tab,
-                    // or just pop to root
+
                     router.popToRoot()
                 }
             case .populated:
                 populatedCartView
+            }
+            
+            if viewModel.isUpdating {
+                CustomLoadingView()
             }
         }
         .onAppear {
@@ -42,6 +44,11 @@ struct CartView: View {
             Button(AppStrings.General.ok, role: .cancel) { }
         } message: {
             Text(viewModel.errorMessage ?? "")
+        }
+        .alert(AppStrings.General.success, isPresented: $viewModel.showDiscountAlert) {
+            Button(AppStrings.General.ok, role: .cancel) { }
+        } message: {
+            Text(viewModel.discountMessage)
         }
         .sheet(isPresented: $showVoucherSheet) {
             if #available(iOS 16.0, *) {

@@ -23,6 +23,9 @@ final class CartViewModel: ObservableObject {
         didSet { showError = errorMessage != nil }
     }
     @Published var showError = false
+    @Published var showDiscountAlert = false
+    @Published var discountMessage = ""
+    @Published var isUpdating = false
     @Published var isCheckoutUrlPresented = false
     
     private let useCases: CartUseCases
@@ -58,44 +61,52 @@ final class CartViewModel: ObservableObject {
     
     func updateQuantity(lineId: String, newQuantity: Int) {
         guard newQuantity > 0 else { return }
-        
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.updateLine(lineId: lineId, quantity: newQuantity)
                 self.cart = updatedCart
+                NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
                 if updatedCart.lines.isEmpty {
                     self.viewState = .empty
                 }
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     
     func removeLine(lineId: String) {
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.removeLine(lineId: lineId)
                 self.cart = updatedCart
+                NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
                 if updatedCart.lines.isEmpty {
                     self.viewState = .empty
                 }
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     
     func applyDiscount(code: String) {
         guard !code.isEmpty else { return }
-        
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.applyDiscount(code: code)
                 self.cart = updatedCart
+                self.discountMessage = AppStrings.Cart.discountAppliedMessage
+                self.showDiscountAlert = true
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     
@@ -111,6 +122,7 @@ final class CartViewModel: ObservableObject {
         useCases.clearCart()
         cart = nil
         viewState = .empty
+        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
         loadCart() // This will create a new cart when needed next time
     }
 }
