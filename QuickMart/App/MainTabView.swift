@@ -25,7 +25,7 @@ struct MainTabView: View {
                 case .search:
                     SearchView(viewModel: DIContainer.shared.makeSearchViewModel())
                 case .cart:
-                    Text("My Cart")
+                    CartView(router: router)
                 case .wishlist:
                     Text("Wishlist")
                 case .profile:

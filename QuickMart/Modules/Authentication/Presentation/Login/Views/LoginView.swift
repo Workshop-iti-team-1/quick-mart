@@ -102,13 +102,11 @@ struct LoginView: View {
         .onChange(of: viewModel.isAuthenticated) { authenticated in
             if authenticated {
                 router.popToRoot()
-                router.push(.home)
             }
         }
         .onChange(of: viewModel.isGuestAuthenticated) { isGuest in
             if isGuest {
                 router.popToRoot()
-                router.push(.home)
             }
         }
     }

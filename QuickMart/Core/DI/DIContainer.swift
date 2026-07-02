@@ -53,6 +53,21 @@ public final class DIContainer {
     func makeCategoryViewModel() -> CategoryViewModel {
         CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
     }
+    // MARK: - Cart
+    private func makeRemoteCartDataSource() -> RemoteCartDataSource {
+        RemoteCartDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
+    }
+    
+    private func makeCartRepository() -> CartRepository {
+        CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource())
+    }
+    
+    private func makeCartUseCases() -> CartUseCases {
+        CartUseCasesImpl(repository: makeCartRepository())
+    }
+    
+    func makeCartViewModel() -> CartViewModel {
+        CartViewModel(useCases: makeCartUseCases())
 
     // MARK: - Private Assembly
 
@@ -73,8 +88,8 @@ public final class DIContainer {
     @MainActor
     func makeSearchViewModel() -> SearchViewModel {
         SearchViewModel(
-            searchProductsUseCase: searchProductsUseCase,
             fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
+            searchProductsUseCase: searchProductsUseCase,
             fetchCategoriesUseCase: makeFetchCategoriesUseCase(), // reused from DIContainer
             fetchBrandsUseCase: makeFetchBrandsUseCase(),         // reused from DIContainer
             repository: searchRepository

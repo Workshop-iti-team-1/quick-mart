@@ -79,13 +79,25 @@ extension ShopifyAPI {
       case "ProductEdge": return ShopifyAPI.Objects.ProductEdge
       case "PageInfo": return ShopifyAPI.Objects.PageInfo
       case "Mutation": return ShopifyAPI.Objects.Mutation
-      case "CustomerCreatePayload": return ShopifyAPI.Objects.CustomerCreatePayload
-      case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError
+      case "CartCreatePayload": return ShopifyAPI.Objects.CartCreatePayload
+      case "CartCost": return ShopifyAPI.Objects.CartCost
+      case "MoneyV2": return ShopifyAPI.Objects.MoneyV2
+      case "BaseCartLineConnection": return ShopifyAPI.Objects.BaseCartLineConnection
+      case "BaseCartLineEdge": return ShopifyAPI.Objects.BaseCartLineEdge
+      case "CartLineCost": return ShopifyAPI.Objects.CartLineCost
       case "CartUserError": return ShopifyAPI.Objects.CartUserError
+      case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError
       case "MetafieldDeleteUserError": return ShopifyAPI.Objects.MetafieldDeleteUserError
       case "MetafieldsSetUserError": return ShopifyAPI.Objects.MetafieldsSetUserError
       case "UserError": return ShopifyAPI.Objects.UserError
       case "UserErrorsShopPayPaymentRequestSessionUserErrors": return ShopifyAPI.Objects.UserErrorsShopPayPaymentRequestSessionUserErrors
+      case "CartDiscountCode": return ShopifyAPI.Objects.CartDiscountCode
+      case "SelectedOption": return ShopifyAPI.Objects.SelectedOption
+      case "CartLinesAddPayload": return ShopifyAPI.Objects.CartLinesAddPayload
+      case "CartLinesUpdatePayload": return ShopifyAPI.Objects.CartLinesUpdatePayload
+      case "CartLinesRemovePayload": return ShopifyAPI.Objects.CartLinesRemovePayload
+      case "CartDiscountCodesUpdatePayload": return ShopifyAPI.Objects.CartDiscountCodesUpdatePayload
+      case "CustomerCreatePayload": return ShopifyAPI.Objects.CustomerCreatePayload
       case "CustomerAccessTokenCreatePayload": return ShopifyAPI.Objects.CustomerAccessTokenCreatePayload
       case "CustomerAccessToken": return ShopifyAPI.Objects.CustomerAccessToken
       case "CustomerRecoverPayload": return ShopifyAPI.Objects.CustomerRecoverPayload
