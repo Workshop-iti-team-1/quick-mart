@@ -16,29 +16,27 @@ public final class DIContainer {
     private init() {}
 
     private(set) lazy var apolloClient: ApolloClient = {
-           let store = ApolloStore()
-           let provider = NetworkInterceptorProvider(client: URLSessionClient(), store: store)
-           let transport = RequestChainNetworkTransport(
-               interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
-           return ApolloClient(networkTransport: transport, store: store)
-       }()
+        let store = ApolloStore()
+        let provider = NetworkInterceptorProvider(
+            client: URLSessionClient(), store: store)
+        let transport = RequestChainNetworkTransport(
+            interceptorProvider: provider, endpointURL: ShopifyConfig.storeURL)
+        return ApolloClient(networkTransport: transport, store: store)
+    }()
 
-       // MARK: - Home Repository (shared)
-       private lazy var homeRepository: HomeRepositoryProtocol = {
-           HomeRepositoryImpl(remoteDataSource: HomeRemoteDataSource(client: graphQLClient))
-       }()
+    // MARK: - Home Repository (shared)
+    private lazy var homeRepository: HomeRepositoryProtocol = {
+        HomeRepositoryImpl(
+            remoteDataSource: HomeRemoteDataSource(client: graphQLClient))
+    }()
 
     // MARK: - Home
     private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
         FetchBannersUseCase(repository: homeRepository)
     }
-    private func makeFetchLatestProductsUseCase() -> FetchLatestProductsUseCaseProtocol {
-        FetchLatestProductsUseCase(repository: homeRepository)
-    }
     func makeHomeViewModel() -> HomeViewModel {
         HomeViewModel(
-            fetchBannersUseCase: makeFetchBannersUseCase(),
-            fetchLatestProductsUseCase: makeFetchLatestProductsUseCase()
+            fetchBannersUseCase: makeFetchBannersUseCase()
         )
     }
 
@@ -51,7 +49,8 @@ public final class DIContainer {
     }
 
     // MARK: - Home Category
-    private func makeFetchCategoriesUseCase() -> FetchCategoriesUseCaseProtocol {
+    private func makeFetchCategoriesUseCase() -> FetchCategoriesUseCaseProtocol
+    {
         FetchCategoriesUseCase(repository: homeRepository)
     }
     func makeCategoryViewModel() -> CategoryViewModel {
@@ -61,16 +60,42 @@ public final class DIContainer {
     private func makeRemoteCartDataSource() -> RemoteCartDataSource {
         RemoteCartDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
     }
-    
+
     private func makeCartRepository() -> CartRepository {
         CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource())
     }
-    
+
     private func makeCartUseCases() -> CartUseCases {
         CartUseCasesImpl(repository: makeCartRepository())
     }
-    
+
     func makeCartViewModel() -> CartViewModel {
         CartViewModel(useCases: makeCartUseCases())
+    }
+    // MARK: - Private Assembly
+
+    private var searchRepository: SearchRepositoryProtocol {
+        MockSearchRepository()
+        // Future: ShopifySearchRepository(client: rawGraphQLClient)
+    }
+
+    private var searchProductsUseCase: SearchProductsUseCaseProtocol {
+        SearchProductsUseCase(repository: searchRepository)
+    }
+
+    private var fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol {
+        FetchSubCategoriesUseCase(repository: searchRepository)
+    }
+
+    // MARK: - Public Factory
+    @MainActor
+    func makeSearchViewModel() -> SearchViewModel {
+        SearchViewModel(
+            searchProductsUseCase: searchProductsUseCase,
+            fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
+            fetchCategoriesUseCase: makeFetchCategoriesUseCase(),  // reused from DIContainer
+            fetchBrandsUseCase: makeFetchBrandsUseCase(),  // reused from DIContainer
+            repository: searchRepository
+        )
     }
 }

@@ -6,8 +6,8 @@
 //  AppRouter.swift
 //  QuickMart
 
-import SwiftUI
 import Observation
+import SwiftUI
 
 @Observable
 final class AppRouter {
@@ -62,6 +62,17 @@ final class AppRouter {
             CategoryDetailView(category: item)
         case .forgotPassword:
             ForgotPasswordView(router: self)
+        case .search:
+            // Search is fullScreenCover — this path handles deep-link push edge cases
+            SearchView(viewModel: diContainer.makeSearchViewModel())
         }
+    }
+    // MARK: - Search (fullScreenCover factory)
+    // Call this from any view that presents search modally:
+    // .fullScreenCover(isPresented: $showSearch) { router.searchView() }
+
+    @MainActor
+    func searchView() -> SearchView {
+        SearchView(viewModel: diContainer.makeSearchViewModel())
     }
 }

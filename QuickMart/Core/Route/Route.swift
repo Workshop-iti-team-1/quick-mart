@@ -13,4 +13,5 @@ enum Route: Hashable {
     case forgotPassword
     case allBrands
     case categoryDetail(CategoryItem)
+    case search
 }
