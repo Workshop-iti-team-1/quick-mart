@@ -15,4 +15,5 @@ enum Route: Hashable {
     case categoryDetail(CategoryItem)
     case productDetails(productId: String)
     case cart
+    case search
 }

@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct LatestProductsSection: View {
-    let items: [ProductItem]
+    let items: [ProductSearchItem]
     let onSeeAll: () -> Void
     @Environment(AppRouter.self) var router
 
