@@ -24,5 +24,4 @@ query GetCollections($first: Int!, $after: String) {
       endCursor
     }
   }
-}
-
+} 
