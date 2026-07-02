@@ -22,7 +22,7 @@ struct OrderSummaryView: View {
                     .appTextStyle(.body, color: .gray)
                 Spacer()
                 Text("\(cost.subtotalAmount, specifier: "%.2f") \(cost.currencyCode)")
-                    .appTextStyle(.body, color: .primary)
+                    .appTextStyle(.body, color: .gray)
             }
             
             HStack {
@@ -31,26 +31,28 @@ struct OrderSummaryView: View {
                 Spacer()
                 // Mocking $0.00 since Shopify often calculates shipping at checkout
                 Text("0.00 \(cost.currencyCode)")
-                    .appTextStyle(.body, color: .primary)
+                    .appTextStyle(.body, color: .gray)
             }
             
             HStack {
                 Text(AppStrings.Cart.total)
-                    .appTextStyle(.label, color: .primary)
+                    .appTextStyle(.heading2, color: .primary)
                 Spacer()
                 Text("\(cost.totalAmount, specifier: "%.2f") \(cost.currencyCode)")
                     .appTextStyle(.heading2, color: .primary)
             }
             
-            AppButton(title: "\(AppStrings.Cart.checkout) (\(itemCount))", verticalPadding: 16) {
-                onCheckout()
+            Button(action: onCheckout) {
+                Text("\(AppStrings.Cart.checkout) (\(itemCount))")
+                    .appTextStyle(.button, color: .white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
             }
+            .background(Color.cyanPrimary)
+            .cornerRadius(12)
             .padding(.top, 8)
         }
         .padding(16)
-        .background(Color.backGround)
-        .cornerRadius(16, corners: [.topLeft, .topRight])
-        .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: -5)
     }
 }
 

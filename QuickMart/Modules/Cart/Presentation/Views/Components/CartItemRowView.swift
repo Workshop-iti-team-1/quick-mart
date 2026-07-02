@@ -41,6 +41,8 @@ struct CartItemRowView: View {
                         .lineLimit(2)
                     
                     Spacer()
+                    
+                 
                 }
                 
                 Text(item.merchandise.title) // Variant title
