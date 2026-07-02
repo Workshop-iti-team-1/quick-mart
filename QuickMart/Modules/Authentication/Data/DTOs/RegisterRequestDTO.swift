@@ -14,5 +14,4 @@ struct RegisterRequestDTO: Encodable {
     let password: String
     let acceptsMarketing: Bool
     
-
 }
