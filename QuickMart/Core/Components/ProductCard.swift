@@ -9,10 +9,10 @@
 
 import SwiftUI
 struct ProductCard: View {
-    let item: ProductItem
+    let item: ProductSearchItem
     @State private var isFavorite: Bool
 
-    init(item: ProductItem) {
+    init(item: ProductSearchItem) {
         self.item = item
         _isFavorite = State(initialValue: item.isFavorite)
     }
@@ -44,7 +44,7 @@ struct ProductCard: View {
                     .padding(8)
             }
 
-            ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
+//            ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
 
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)

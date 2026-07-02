@@ -13,7 +13,7 @@ final class HomeViewModel: ObservableObject {
 
    
     @Published private(set) var banners: [BannerItem] = []
-    @Published private(set) var latestProducts: [ProductItem] = []
+    @Published private(set) var latestProducts: [ProductSearchItem] = []
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = nil
 

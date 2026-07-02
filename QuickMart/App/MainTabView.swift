@@ -26,7 +26,7 @@ struct MainTabView: View {
                         onCart: { viewModel.select(.cart) }
                     )
                 case .search:
-                    Text("Search")
+                    SearchView(viewModel: DIContainer.shared.makeSearchViewModel())
                 case .cart:
                     Text("My Cart")
                 case .wishlist:

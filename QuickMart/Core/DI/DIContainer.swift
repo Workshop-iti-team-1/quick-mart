@@ -57,5 +57,30 @@ public final class DIContainer {
         CategoryViewModel(fetchCategoriesUseCase: makeFetchCategoriesUseCase())
     }
 
- 
+    // MARK: - Private Assembly
+
+    private var searchRepository: SearchRepositoryProtocol {
+        MockSearchRepository()
+        // Future: ShopifySearchRepository(client: rawGraphQLClient)
+    }
+
+    private var searchProductsUseCase: SearchProductsUseCaseProtocol {
+        SearchProductsUseCase(repository: searchRepository)
+    }
+
+    private var fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol {
+        FetchSubCategoriesUseCase(repository: searchRepository)
+    }
+
+    // MARK: - Public Factory
+    @MainActor
+    func makeSearchViewModel() -> SearchViewModel {
+        SearchViewModel(
+            searchProductsUseCase: searchProductsUseCase,
+            fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
+            fetchCategoriesUseCase: makeFetchCategoriesUseCase(), // reused from DIContainer
+            fetchBrandsUseCase: makeFetchBrandsUseCase(),         // reused from DIContainer
+            repository: searchRepository
+        )
+    }
 }
