@@ -13,3 +13,4 @@ extension DIContainer {
         return GraphQLClient(apollo: self.apolloClient)
     }
 }
+
