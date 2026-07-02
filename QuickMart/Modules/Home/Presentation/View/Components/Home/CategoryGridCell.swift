@@ -5,7 +5,7 @@
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-// Features/Category/Presentation/Components/CategoryGridCell.swift
+
 import SwiftUI
 
 struct CategoryGridCell: View {
@@ -14,28 +14,30 @@ struct CategoryGridCell: View {
     var body: some View {
         VStack(spacing: 14) {
             ZStack {
-                // Background is only needed if using a transparent system image
-                if item.isSystemImage {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.cyan50)
-                        .frame(width: 150, height: 150)
-                }
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.cyan50)
+                    .frame(width: 150, height: 150)
 
-                Group {
-                    if item.isSystemImage {
-                        Image(systemName: item.imageName)
+                if let imageName = item.imageName {
+                    if item.isSystemImage == true {
+                        Image(systemName: imageName)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
                             .foregroundColor(.cyanPrimary)
                     } else {
-                        // Custom image styling: Fills the entire box cleanly
-                        Image(item.imageName)
+                        Image(imageName)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 150, height: 150) // Matches the full background size
-                            .clipShape(RoundedRectangle(cornerRadius: 12)) // Keeps the rounded corners
+                            .frame(width: 150, height: 150)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
+                } else {
+                    Image(systemName: "square.grid.2x2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(.grey150)
                 }
             }
 

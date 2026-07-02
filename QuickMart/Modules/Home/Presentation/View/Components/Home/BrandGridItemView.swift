@@ -8,24 +8,17 @@
 import SwiftUI
 
 struct BrandGridItemView: View {
-
-    // MARK: - Input
-
     let item: BrandItem
 
-    // MARK: - Private Constants
-
     private enum Layout {
-        static let cornerRadius: CGFloat   = 12
-        static let iconSize: CGFloat       = 48
-        static let cardPadding: CGFloat    = 16
-        static let shadowRadius: CGFloat   = 4
-        static let shadowY: CGFloat        = 2
-        static let shadowOpacity: Double   = 0.06
+        static let cornerRadius: CGFloat       = 12
+        static let iconSize: CGFloat           = 48
+        static let cardPadding: CGFloat        = 16
+        static let shadowRadius: CGFloat       = 4
+        static let shadowY: CGFloat            = 2
+        static let shadowOpacity: Double       = 0.06
         static let spacingIconToLabel: CGFloat = 10
     }
-
-    // MARK: - Body
 
     var body: some View {
         VStack(spacing: Layout.spacingIconToLabel) {
@@ -37,23 +30,44 @@ struct BrandGridItemView: View {
         .background(cardBackground)
     }
 
-    // MARK: - Sub-views
-
     @ViewBuilder
     private var iconView: some View {
-        Group {
-            if item.isSystemImage {
-                Image(systemName: item.imageName)
+        if let imageName = item.imageName {
+            if item.isSystemImage == true {
+                Image(systemName: imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: Layout.iconSize, height: Layout.iconSize)
                     .foregroundColor(.cyanPrimary)
             } else {
-                Image(item.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: Layout.iconSize, height: Layout.iconSize)
+                AsyncImage(url: URL(string: imageName)) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: Layout.iconSize, height: Layout.iconSize)
+                            .clipShape(RoundedRectangle(cornerRadius: Layout.cornerRadius))
+                    case .failure:
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: Layout.iconSize, height: Layout.iconSize)
+                            .foregroundColor(.grey150)
+                    case .empty:
+                        ProgressView()
+                            .frame(width: Layout.iconSize, height: Layout.iconSize)
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
             }
+        } else {
+            Image(systemName: "photo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: Layout.iconSize, height: Layout.iconSize)
+                .foregroundColor(.grey150)
         }
     }
 
@@ -76,8 +90,6 @@ struct BrandGridItemView: View {
             )
     }
 }
-
-// MARK: - Preview
 
 #Preview {
     BrandGridItemView(

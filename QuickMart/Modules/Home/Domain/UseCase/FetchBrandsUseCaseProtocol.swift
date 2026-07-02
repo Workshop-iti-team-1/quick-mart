@@ -4,31 +4,22 @@
 //
 //  Created by Alaa Ayman on 01/07/2026.
 //
-import Foundation
 
-// MARK: - Protocol
+import Foundation
+import Combine
 
 protocol FetchBrandsUseCaseProtocol {
-    func execute() -> [BrandItem]
+    func execute() -> AnyPublisher<[BrandItem], Error>
 }
 
-// MARK: - Implementation
-
 struct FetchBrandsUseCase: FetchBrandsUseCaseProtocol {
-
-    // MARK: - Dependency
-
     private let repository: HomeRepositoryProtocol
-
-    // MARK: - Init
 
     init(repository: HomeRepositoryProtocol) {
         self.repository = repository
     }
 
-    // MARK: - Business Logic
-
-    func execute() -> [BrandItem] {
+    func execute() -> AnyPublisher<[BrandItem], Error> {
         repository.fetchBrands()
     }
 }

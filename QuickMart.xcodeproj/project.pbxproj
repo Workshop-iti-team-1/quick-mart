@@ -40,6 +40,12 @@
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
 		5C0EFC4F2CB246B4B660D6BB /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06899A606A38A5FA1706BB46 /* SchemaMetadata.graphql.swift */; };
+		5F552A132FF6636100D34320 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A122FF6635800D34320 /* CollectionModel.swift */; };
+		5F552A1A2FF6642C00D34320 /* CollectionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A192FF6642200D34320 /* CollectionMapper.swift */; };
+		5F552A1C2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */; };
+		5F552A1E2FF664BF00D34320 /* HomeRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A1D2FF664B100D34320 /* HomeRemoteDataSource.swift */; };
+		5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A202FF6654F00D34320 /* HomeRepositoryImpl.swift */; };
+		5F552A232FF677CD00D34320 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F552A222FF677CD00D34320 /* CategoryDetailView.swift */; };
 		5F5DB5E62FF5819300908285 /* AllBrandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E52FF5819300908285 /* AllBrandsView.swift */; };
 		5F5DB5E82FF581BE00908285 /* BrandGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E72FF581BE00908285 /* BrandGridItemView.swift */; };
 		5F5DB5EA2FF5822C00908285 /* BrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */; };
@@ -237,6 +243,12 @@
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		5DCAB1584A0DB0A23102B89B /* Trackable.graphql.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Trackable.graphql.swift; sourceTree = "<group>"; };
+		5F552A122FF6635800D34320 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
+		5F552A192FF6642200D34320 /* CollectionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMapper.swift; sourceTree = "<group>"; };
+		5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
+		5F552A1D2FF664B100D34320 /* HomeRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataSource.swift; sourceTree = "<group>"; };
+		5F552A202FF6654F00D34320 /* HomeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryImpl.swift; sourceTree = "<group>"; };
+		5F552A222FF677CD00D34320 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		5F5DB5E52FF5819300908285 /* AllBrandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBrandsView.swift; sourceTree = "<group>"; };
 		5F5DB5E72FF581BE00908285 /* BrandGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandGridItemView.swift; sourceTree = "<group>"; };
 		5F5DB5E92FF5822C00908285 /* BrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewModel.swift; sourceTree = "<group>"; };
@@ -608,10 +620,37 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		5F74F4082FF61DE900DE42F6 /* DataSource */ = {
+		5F552A0E2FF6632300D34320 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F552A122FF6635800D34320 /* CollectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F552A162FF663F200D34320 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				5F552A192FF6642200D34320 /* CollectionMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		5F552A1F2FF6653700D34320 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				5F552A202FF6654F00D34320 /* HomeRepositoryImpl.swift */,
+				5F840A892FF31CE700BB18C7 /* MockHomeRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		5F552A262FF6891400D34320 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
 				5F74F40B2FF61E1F00DE42F6 /* Home.graphql */,
+				5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */,
+				5F552A1D2FF664B100D34320 /* HomeRemoteDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -727,7 +766,6 @@
 		5F840A682FF3191E00BB18C7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5F74F4082FF61DE900DE42F6 /* DataSource */,
 				5F840A6B2FF3194E00BB18C7 /* Presentation */,
 				5F840A6A2FF3193D00BB18C7 /* Data */,
 				5F840A692FF3192B00BB18C7 /* Domain */,
@@ -748,7 +786,10 @@
 		5F840A6A2FF3193D00BB18C7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5F840A892FF31CE700BB18C7 /* MockHomeRepository.swift */,
+				5F552A262FF6891400D34320 /* DataSource */,
+				5F552A1F2FF6653700D34320 /* Repository */,
+				5F552A162FF663F200D34320 /* Mapper */,
+				5F552A0E2FF6632300D34320 /* Model */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -765,6 +806,7 @@
 		5F840A6D2FF3197C00BB18C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5F552A222FF677CD00D34320 /* CategoryDetailView.swift */,
 				5F5DB5E52FF5819300908285 /* AllBrandsView.swift */,
 				5F840A742FF31A0E00BB18C7 /* Components */,
 				5F840A722FF319FF00BB18C7 /* HomeView.swift */,
@@ -1256,6 +1298,7 @@
 				F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */,
 				5F74F40F2FF6209800DE42F6 /* GetCollectionsQuery.graphql.swift in Sources */,
 				5F5DB5E82FF581BE00908285 /* BrandGridItemView.swift in Sources */,
+				5F552A132FF6636100D34320 /* CollectionModel.swift in Sources */,
 				9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */,
 				DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */,
 				F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */,
@@ -1264,6 +1307,7 @@
 				261A5B2B394AB22A645F271E /* OnboardingTextContainerView.swift in Sources */,
 				C921832A67FB45E399B37411 /* OnboardingTopCardView.swift in Sources */,
 				5F840A862FF31BB300BB18C7 /* BannerItem.swift in Sources */,
+				5F552A232FF677CD00D34320 /* CategoryDetailView.swift in Sources */,
 				5F7563C02FF6341600BDB660 /* CategoryGridCell.swift in Sources */,
 				5F74F5192FF6308100DE42F6 /* FetchCategoriesUseCaseProtocol.swift in Sources */,
 				5F74F4C02FF6233600DE42F6 /* Article.graphql.swift in Sources */,
@@ -1312,6 +1356,7 @@
 				5F74F4EA2FF6233600DE42F6 /* CustomerAccessToken.graphql.swift in Sources */,
 				5F74F4EB2FF6233600DE42F6 /* CustomerRecoverPayload.graphql.swift in Sources */,
 				5F74F4EC2FF6233600DE42F6 /* Metafield.graphql.swift in Sources */,
+				5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */,
 				5F74F4ED2FF6233600DE42F6 /* SearchQuerySuggestion.graphql.swift in Sources */,
 				5F74F4EE2FF6233600DE42F6 /* GenericFile.graphql.swift in Sources */,
 				5F74F4EF2FF6233600DE42F6 /* Comment.graphql.swift in Sources */,
@@ -1333,6 +1378,7 @@
 				B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */,
 				5F74F5132FF62F7A00DE42F6 /* CategoryItem.swift in Sources */,
 				5F74F50F2FF62E7900DE42F6 /* HomeCategoriesSection.swift in Sources */,
+				5F552A1A2FF6642C00D34320 /* CollectionMapper.swift in Sources */,
 				65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */,
 				AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */,
 				B9EC8BA9D39C1EA1B2DC31BF /* AppStrings.swift in Sources */,
@@ -1363,7 +1409,9 @@
 				DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */,
 				1C494194884F29089BC26E72 /* LoginResponseDTO.swift in Sources */,
 				BFFB154A5B878704916D544C /* CustomLoadingView.swift in Sources */,
+				5F552A1E2FF664BF00D34320 /* HomeRemoteDataSource.swift in Sources */,
 				98B60399B78AA82923551283 /* String+Validation.swift in Sources */,
+				5F552A1C2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift in Sources */,
 				941B5A9C57FD9CD7C5DF3D3F /* GraphQLClient.swift in Sources */,
 				18519BE8EC9C19AD8D48C63A /* ShopifyAPI.graphql.swift in Sources */,
 				882F41DA5195F8775151AC5F /* RegisterCustomerMutation.graphql.swift in Sources */,
