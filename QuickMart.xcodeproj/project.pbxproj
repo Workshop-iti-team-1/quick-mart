@@ -322,6 +322,10 @@
 		D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B082302FF700DC0011F64A /* ShopifySearchRepository.swift */; };
 		DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E7477EA51BCBA5A046101 /* images.swift */; };
 		DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB407902B34A12003729580C /* RegisterResponseDTO.swift */; };
+		DECCB60F2FF696F500F0A8C0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */; };
+		DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */; };
+		DECCB6142FF6ADB400F0A8C0 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */; };
+		DECCB6162FF6ADFE00F0A8C0 /* MenuRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */; };
 		DFCA6316A229031D81765A74 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449E3371C690013C22FFECF /* color.swift */; };
 		E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */; };
 		F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D676201016FCACC6E578BECA /* AppTextStyle.swift */; };
@@ -663,6 +667,10 @@
 		D4B082302FF700DC0011F64A /* ShopifySearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifySearchRepository.swift; sourceTree = "<group>"; };
 		D4D1B8082FEFDF650082FE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D676201016FCACC6E578BECA /* AppTextStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppTextStyle.swift; sourceTree = "<group>"; };
+		DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCard.swift; sourceTree = "<group>"; };
+		DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
+		DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRaw.swift; sourceTree = "<group>"; };
 		E449E3371C690013C22FFECF /* color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 		F11684F704246EE1B731ABEA /* AppConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		F45CCB23672A7E1B9F37B9C5 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -1973,8 +1981,28 @@
 		DECCB60C2FF68D0900F0A8C0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DECCB6102FF69E1400F0A8C0 /* Components */,
+				DECCB60D2FF696DF00F0A8C0 /* View */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DECCB60D2FF696DF00F0A8C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DECCB6102FF69E1400F0A8C0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */,
+				DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */,
+				DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		EC28505D5B8EDE524FBBF4F6 /* DTOs */ = {
@@ -2161,7 +2189,12 @@
 				5FA216F02FF8F0B700DBA613 /* FavoriteLocalDataSourceProtocol.swift in Sources */,
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
+<<<<<<< HEAD
 				D4A1B2872FF6898900735C4D /* SubCategory.swift in Sources */,
+=======
+				5F840A882FF31BD200BB18C7 /* ProductItem.swift in Sources */,
+				DECCB6142FF6ADB400F0A8C0 /* MenuSection.swift in Sources */,
+>>>>>>> c8ea2a9 (design profile screen)
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
 				5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */,
 				D4B0822B2FF6FF7C0011F64A /* SearchResultPage.swift in Sources */,
@@ -2209,6 +2242,7 @@
 				5F74F5192FF6308100DE42F6 /* FetchCategoriesUseCaseProtocol.swift in Sources */,
 				5F365C172FF84D360082DE82 /* SearchablePickerView.swift in Sources */,
 				5F74F50B2FF62E2900DE42F6 /* HomeBrandCell.swift in Sources */,
+<<<<<<< HEAD
 				5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */,
 				D4A1B2942FF68C6A00735C4D /* SearchViewModel.swift in Sources */,
 				D4A1B2892FF689AA00735C4D /* SearchFilters.swift in Sources */,
@@ -2223,6 +2257,52 @@
 				D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */,
 				D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */,
 				D4A1B2962FF68CE400735C4D /* FetchSubCategoriesUseCase.swift in Sources */,
+=======
+				5F74F4CC2FF6233600DE42F6 /* MailingAddress.graphql.swift in Sources */,
+				5F74F4CD2FF6233600DE42F6 /* Customer.graphql.swift in Sources */,
+				5F74F4CE2FF6233600DE42F6 /* Cart.graphql.swift in Sources */,
+				5F74F4CF2FF6233600DE42F6 /* ProductVariant.graphql.swift in Sources */,
+				5F74F4D02FF6233600DE42F6 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
+				5F74F4D12FF6233600DE42F6 /* CollectionConnection.graphql.swift in Sources */,
+				5F74F4D22FF6233600DE42F6 /* Page.graphql.swift in Sources */,
+				5F74F4D32FF6233600DE42F6 /* Product.graphql.swift in Sources */,
+				5F74F4D42FF6233600DE42F6 /* Metaobject.graphql.swift in Sources */,
+				5F74F4D52FF6233600DE42F6 /* Model3d.graphql.swift in Sources */,
+				5F74F4D62FF6233600DE42F6 /* Order.graphql.swift in Sources */,
+				5F74F4D72FF6233600DE42F6 /* MetafieldDeleteUserError.graphql.swift in Sources */,
+				5F74F4D82FF6233600DE42F6 /* ComponentizableCartLine.graphql.swift in Sources */,
+				5F74F4D92FF6233600DE42F6 /* CompanyLocation.graphql.swift in Sources */,
+				5F74F4DA2FF6233600DE42F6 /* UrlRedirect.graphql.swift in Sources */,
+				5F74F4DB2FF6233600DE42F6 /* CartUserError.graphql.swift in Sources */,
+				5F74F4DC2FF6233600DE42F6 /* QueryRoot.graphql.swift in Sources */,
+				5F74F4DD2FF6233600DE42F6 /* ExternalVideo.graphql.swift in Sources */,
+				5F74F4DE2FF6233600DE42F6 /* Video.graphql.swift in Sources */,
+				5F74F4DF2FF6233600DE42F6 /* MediaImage.graphql.swift in Sources */,
+				5F74F4E02FF6233600DE42F6 /* CartLine.graphql.swift in Sources */,
+				5F74F4E12FF6233600DE42F6 /* Mutation.graphql.swift in Sources */,
+				DECCB6162FF6ADFE00F0A8C0 /* MenuRaw.swift in Sources */,
+				5F74F4E22FF6233600DE42F6 /* PageInfo.graphql.swift in Sources */,
+				5F74F4E32FF6233600DE42F6 /* CustomerCreatePayload.graphql.swift in Sources */,
+				5F74F4E42FF6233600DE42F6 /* ShopPolicy.graphql.swift in Sources */,
+				5F74F4E52FF6233600DE42F6 /* MenuItem.graphql.swift in Sources */,
+				5F74F4E62FF6233600DE42F6 /* TaxonomyCategory.graphql.swift in Sources */,
+				5F74F4E72FF6233600DE42F6 /* AppliedGiftCard.graphql.swift in Sources */,
+				5F74F4E82FF6233600DE42F6 /* Shop.graphql.swift in Sources */,
+				5F74F4E92FF6233600DE42F6 /* ProductOptionValue.graphql.swift in Sources */,
+				5F74F4EA2FF6233600DE42F6 /* CustomerAccessToken.graphql.swift in Sources */,
+				5F74F4EB2FF6233600DE42F6 /* CustomerRecoverPayload.graphql.swift in Sources */,
+				5F74F4EC2FF6233600DE42F6 /* Metafield.graphql.swift in Sources */,
+				5F74F4ED2FF6233600DE42F6 /* SearchQuerySuggestion.graphql.swift in Sources */,
+				5F74F4EE2FF6233600DE42F6 /* GenericFile.graphql.swift in Sources */,
+				5F74F4EF2FF6233600DE42F6 /* Comment.graphql.swift in Sources */,
+				5F74F4F02FF6233600DE42F6 /* CustomerAccessTokenCreatePayload.graphql.swift in Sources */,
+				5F74F4F12FF6233600DE42F6 /* MediaPresentation.graphql.swift in Sources */,
+				5F74F4F22FF6233600DE42F6 /* MetafieldsSetUserError.graphql.swift in Sources */,
+				5F74F4F32FF6233600DE42F6 /* Market.graphql.swift in Sources */,
+				5F74F4F42FF6233600DE42F6 /* ProductConnection.graphql.swift in Sources */,
+				5F74F4F52FF6233600DE42F6 /* ProductOption.graphql.swift in Sources */,
+				5F74F4F62FF6233600DE42F6 /* ShopPayInstallmentsProductVariantPricing.graphql.swift in Sources */,
+>>>>>>> c8ea2a9 (design profile screen)
 				5F74F5072FF62CEA00DE42F6 /* CustomTabBar.swift in Sources */,
 				5F365D2C2FF853C30082DE82 /* SellingPlan.graphql.swift in Sources */,
 				5F365D2D2FF853C30082DE82 /* RecoverPasswordMutation.graphql.swift in Sources */,
@@ -2408,8 +2488,12 @@
 				57EB4E515FDAFAD064E4EC86 /* Apollo+NetworkError.swift in Sources */,
 				E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */,
 				15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */,
+<<<<<<< HEAD
 				5FA216EA2FF8F05A00DBA613 /* FavoriteUseCases.swift in Sources */,
 				5FA216FD2FF8F18000DBA613 /* WishlistRowView.swift in Sources */,
+=======
+				DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */,
+>>>>>>> c8ea2a9 (design profile screen)
 				15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */,
 				15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */,
 				5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */,
@@ -2428,7 +2512,11 @@
 				DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */,
 				1C494194884F29089BC26E72 /* LoginResponseDTO.swift in Sources */,
 				BFFB154A5B878704916D544C /* CustomLoadingView.swift in Sources */,
+<<<<<<< HEAD
 				5F552A1E2FF664BF00D34320 /* HomeRemoteDataSource.swift in Sources */,
+=======
+				DECCB60F2FF696F500F0A8C0 /* ProfileView.swift in Sources */,
+>>>>>>> c8ea2a9 (design profile screen)
 				98B60399B78AA82923551283 /* String+Validation.swift in Sources */,
 				5F552A1C2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift in Sources */,
 				5F365C602FF8509F0082DE82 /* AddressModel.swift in Sources */,
