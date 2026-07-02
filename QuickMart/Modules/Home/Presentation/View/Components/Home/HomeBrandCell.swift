@@ -1,22 +1,23 @@
 //
-//  HomeCategoryCell.swift
+//  HomeBrandCell.swift
 //  QuickMart
 //
-//  Created by Alaa Ayman on 29/06/2026.
+//  Created by Alaa Ayman on 01/07/2026.
 //
 
 
 import SwiftUI
 
-struct HomeCategoryCell: View {
+struct HomeBrandCell: View {
     let item: BrandItem
 
     var body: some View {
         VStack(spacing: 8) {
             ZStack {
-                RoundedRectangle(cornerRadius: 12)
+                Circle()
                     .fill(Color.grey50)
-                    .frame(width: 60, height: 60)
+                    .frame(width: 64, height: 64)
+                    .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
 
                 Group {
                     if item.isSystemImage {
@@ -38,27 +39,8 @@ struct HomeCategoryCell: View {
                 .appTextStyle(.caption, color: .appBlack)
                 .multilineTextAlignment(.center)
                 .lineLimit(1)
-                .frame(width: 68)
         }
     }
 }
 
-// MARK: - Section
-struct HomeCategoriesSection: View {
-    let items: [BrandItem]
-    let onSeeAll: () -> Void
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            SectionHeader(title: "Categories", onSeeAll: onSeeAll)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(items) { item in
-                        HomeCategoryCell(item: item)
-                    }
-                }
-            }
-        }
-    }
-}

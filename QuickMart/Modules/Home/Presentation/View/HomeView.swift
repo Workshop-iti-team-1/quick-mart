@@ -5,26 +5,46 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
-
+//
+//  HomeView.swift
+//  QuickMart
+//
+//  Created by Alaa Ayman on 29/06/2026.
+//
 
 import SwiftUI
+
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     @StateObject private var brandViewModel = DIContainer.shared.makeBrandViewModel()
+    @StateObject private var categoryViewModel = DIContainer.shared.makeCategoryViewModel()
     let router: AppRouter
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
+
+                // MARK: - Banner
                 if !viewModel.banners.isEmpty {
                     AdBannerPager(items: viewModel.banners)
                 }
+
+                // MARK: - Brands
                 if !brandViewModel.brands.isEmpty {
-                    HomeCategoriesSection(
+                    HomeBrandsSection(
                         items: brandViewModel.brands,
-                        onSeeAll: { router.push(.category) }
+                        onSeeAll: { router.push(.allBrands) }
                     )
                 }
+
+                // MARK: - Categories 2x2
+                if !categoryViewModel.categories.isEmpty {
+                    HomeCategoriesSection(
+                        items: categoryViewModel.categories
+                    )
+                }
+
+                // MARK: - Latest Products
                 if !viewModel.latestProducts.isEmpty {
                     LatestProductsSection(
                         items: viewModel.latestProducts,
@@ -32,7 +52,7 @@ struct HomeView: View {
                     )
                 }
                 
-            
+                // MARK: - Test Logout
                 Button(action: {
                     SessionManager.shared.logout()
                 }) {
@@ -51,10 +71,10 @@ struct HomeView: View {
         }
         .background(Color.backGround.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
-        .customToolbar(onSearch: {  })
         .onAppear {
             viewModel.loadHome()
             brandViewModel.loadBrands()
+            categoryViewModel.loadCategories()
         }
     }
 }

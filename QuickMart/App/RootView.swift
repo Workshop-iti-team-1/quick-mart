@@ -23,7 +23,7 @@ struct RootView: View {
                         OnboardingView(router: router)
                     }
                 case .guest, .loggedIn:
-                    router.destination(for: .home)
+                    MainTabView(router: router)
                 }
             }
             .navigationDestination(for: Route.self) { route in
