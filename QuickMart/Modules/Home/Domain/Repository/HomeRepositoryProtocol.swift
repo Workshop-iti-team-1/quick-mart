@@ -14,4 +14,5 @@ protocol HomeRepositoryProtocol {
     func fetchLatestProducts() -> [ProductItem]
     func fetchBrands() -> AnyPublisher<[BrandItem], Error>
     func fetchCategories() -> AnyPublisher<[CategoryItem], Error>
+    func getProductDetails(id: String) async throws -> ProductDetails
 }

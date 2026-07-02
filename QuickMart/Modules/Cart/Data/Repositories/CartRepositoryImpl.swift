@@ -42,32 +42,32 @@ class CartRepositoryImpl: CartRepository {
     
     func updateLine(lineId: String, quantity: Int) async throws -> Cart {
         guard let cartId = getCartId() else { throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "No Cart"]) }
-        let result = try await remoteDataSource.updateLine(cartId: cartId, lineId: lineId, quantity: quantity)
+        _ = try await remoteDataSource.updateLine(cartId: cartId, lineId: lineId, quantity: quantity)
         
-        guard let apiCart = result?.cart else {
-            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to update item in cart"])
+        guard let updatedCart = try await getCart() else {
+            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch updated cart"])
         }
-        return mapToCart(apiCart: apiCart)
+        return updatedCart
     }
     
     func removeLine(lineId: String) async throws -> Cart {
         guard let cartId = getCartId() else { throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "No Cart"]) }
-        let result = try await remoteDataSource.removeLine(cartId: cartId, lineId: lineId)
+        _ = try await remoteDataSource.removeLine(cartId: cartId, lineId: lineId)
         
-        guard let apiCart = result?.cart else {
-            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to remove item from cart"])
+        guard let updatedCart = try await getCart() else {
+            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch updated cart"])
         }
-        return mapToCart(apiCart: apiCart)
+        return updatedCart
     }
     
     func applyDiscount(code: String) async throws -> Cart {
         guard let cartId = getCartId() else { throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "No Cart"]) }
-        let result = try await remoteDataSource.applyDiscount(cartId: cartId, code: code)
+        _ = try await remoteDataSource.applyDiscount(cartId: cartId, code: code)
         
-        guard let apiCart = result?.cart else {
-            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to apply discount"])
+        guard let updatedCart = try await getCart() else {
+            throw NSError(domain: "Cart", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch updated cart"])
         }
-        return mapToCart(apiCart: apiCart)
+        return updatedCart
     }
     
     func clearCart() {
@@ -130,38 +130,5 @@ class CartRepositoryImpl: CartRepository {
         )
     }
     
-
-    // Update Lines Mapper
-    private func mapToCart(apiCart: ShopifyAPI.UpdateCartLinesMutation.Data.CartLinesUpdate.Cart) -> Cart {
-        let cost = CartCost(
-            subtotalAmount: Double(apiCart.cost.subtotalAmount.amount) ?? 0.0,
-            totalAmount: Double(apiCart.cost.totalAmount.amount) ?? 0.0,
-            totalTaxAmount: nil,
-            currencyCode: apiCart.cost.totalAmount.currencyCode.rawValue
-        )
-        return Cart(id: apiCart.id, checkoutUrl: "", totalQuantity: apiCart.totalQuantity, cost: cost, lines: [], discountCodes: [])
-    }
-    
-    // Remove Lines Mapper
-    private func mapToCart(apiCart: ShopifyAPI.RemoveCartLinesMutation.Data.CartLinesRemove.Cart) -> Cart {
-        let cost = CartCost(
-            subtotalAmount: Double(apiCart.cost.subtotalAmount.amount) ?? 0.0,
-            totalAmount: Double(apiCart.cost.totalAmount.amount) ?? 0.0,
-            totalTaxAmount: nil,
-            currencyCode: apiCart.cost.totalAmount.currencyCode.rawValue
-        )
-        return Cart(id: apiCart.id, checkoutUrl: "", totalQuantity: apiCart.totalQuantity, cost: cost, lines: [], discountCodes: [])
-    }
-    
-    // Apply Discount Mapper
-    private func mapToCart(apiCart: ShopifyAPI.ApplyDiscountCodeMutation.Data.CartDiscountCodesUpdate.Cart) -> Cart {
-        let cost = CartCost(
-            subtotalAmount: Double(apiCart.cost.subtotalAmount.amount) ?? 0.0,
-            totalAmount: Double(apiCart.cost.totalAmount.amount) ?? 0.0,
-            totalTaxAmount: nil,
-            currencyCode: apiCart.cost.totalAmount.currencyCode.rawValue
-        )
-        let discounts = apiCart.discountCodes.map { CartDiscountCode(code: $0.code, applicable: $0.applicable) }
-        return Cart(id: apiCart.id, checkoutUrl: "", totalQuantity: 0, cost: cost, lines: [], discountCodes: discounts)
-    }
+    // Extra Mappers for mutations were removed because we just re-fetch the entire cart using getCart()
 }

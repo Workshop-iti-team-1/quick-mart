@@ -56,7 +56,7 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
     func fetchLatestProducts() -> [ProductItem] {
         [
             ProductItem(
-                id: "1",
+                id: "gid://shopify/Product/8923761246406",
                 name: "Nike Air Jordan Retro",
                 price: 126.00,
                 originalPrice: 156.00,
@@ -66,7 +66,7 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
                 colorCount: 5
             ),
             ProductItem(
-                id: "2",
+                id: "gid://shopify/Product/8923713994950",
                 name: "Classic Black Glasses",
                 price: 8.50,
                 originalPrice: 10.00,
@@ -76,7 +76,7 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
                 colorCount: 7
             ),
             ProductItem(
-                id: "3",
+                id: "gid://shopify/Product/8923714027718",
                 name: "Wireless Earbuds Pro",
                 price: 49.99,
                 originalPrice: 69.99,
@@ -116,5 +116,61 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
                     .map { $0.toCategoryEntity() }
             }
             .eraseToAnyPublisher()
+    }
+
+    func getProductDetails(id: String) async throws -> ProductDetails {
+        let productResponse = try await remoteDataSource.getProduct(id: id)
+        
+        let images = productResponse.images.edges.map { edge in
+            ProductImage(id: edge.node.id ?? "", url: edge.node.url, altText: edge.node.altText)
+        }
+        
+        let options = productResponse.options.map { option in
+            ProductOption(id: option.id, name: option.name, values: option.values)
+        }
+        
+        let variants = productResponse.variants.edges.map { edge in
+            ProductDetailsVariant(
+                id: edge.node.id,
+                title: edge.node.title,
+                availableForSale: edge.node.availableForSale,
+                quantityAvailable: edge.node.quantityAvailable,
+                price: Double(edge.node.price.amount) ?? 0.0,
+                currencyCode: edge.node.price.currencyCode.rawValue,
+                compareAtPrice: edge.node.compareAtPrice.flatMap { Double($0.amount) },
+                selectedOptions: edge.node.selectedOptions.map { SelectedOption(name: $0.name, value: $0.value) },
+                imageURL: edge.node.image?.url
+            )
+        }
+        
+        var rating: Double = 0.0
+        var reviewsCount: Int = 0
+        
+        for metafield in productResponse.metafields.compactMap({ $0 }) {
+            if metafield.key == "rating", let val = Double(metafield.value) {
+                rating = val
+            } else if metafield.key == "rating_count", let val = Int(metafield.value) {
+                reviewsCount = val
+            }
+        }
+        
+        return ProductDetails(
+            id: productResponse.id,
+            title: productResponse.title,
+            description: productResponse.descriptionHtml,
+            vendor: productResponse.vendor,
+            productType: productResponse.productType,
+            tags: productResponse.tags,
+            availableForSale: productResponse.availableForSale,
+            minPrice: Double(productResponse.priceRange.minVariantPrice.amount) ?? 0.0,
+            maxPrice: Double(productResponse.priceRange.maxVariantPrice.amount) ?? 0.0,
+            currencyCode: productResponse.priceRange.minVariantPrice.currencyCode.rawValue,
+            compareAtPrice: Double(productResponse.compareAtPriceRange.minVariantPrice.amount),
+            images: images,
+            options: options,
+            variants: variants,
+            rating: rating,
+            reviewsCount: reviewsCount
+        )
     }
 }

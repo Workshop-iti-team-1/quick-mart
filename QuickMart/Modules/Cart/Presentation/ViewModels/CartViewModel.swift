@@ -23,6 +23,7 @@ final class CartViewModel: ObservableObject {
         didSet { showError = errorMessage != nil }
     }
     @Published var showError = false
+    @Published var isUpdating = false
     @Published var isCheckoutUrlPresented = false
     
     private let useCases: CartUseCases
@@ -58,7 +59,7 @@ final class CartViewModel: ObservableObject {
     
     func updateQuantity(lineId: String, newQuantity: Int) {
         guard newQuantity > 0 else { return }
-        
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.updateLine(lineId: lineId, quantity: newQuantity)
@@ -69,10 +70,12 @@ final class CartViewModel: ObservableObject {
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     
     func removeLine(lineId: String) {
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.removeLine(lineId: lineId)
@@ -83,12 +86,13 @@ final class CartViewModel: ObservableObject {
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     
     func applyDiscount(code: String) {
         guard !code.isEmpty else { return }
-        
+        isUpdating = true
         Task {
             do {
                 let updatedCart = try await useCases.applyDiscount(code: code)
@@ -96,6 +100,7 @@ final class CartViewModel: ObservableObject {
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+            self.isUpdating = false
         }
     }
     

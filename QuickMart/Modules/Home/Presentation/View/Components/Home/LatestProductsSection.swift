@@ -26,7 +26,7 @@ struct LatestProductsSection: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items) { item in
                     Button(action: {
-                        router.push(.productDetails(product: item))
+                        router.push(.productDetails(productId: item.id))
                     }) {
                         ProductCard(item: item)
                     }

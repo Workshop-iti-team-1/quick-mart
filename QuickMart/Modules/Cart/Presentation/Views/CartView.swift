@@ -34,6 +34,10 @@ struct CartView: View {
             case .populated:
                 populatedCartView
             }
+            
+            if viewModel.isUpdating {
+                CustomLoadingView()
+            }
         }
         .onAppear {
             viewModel.loadCart()

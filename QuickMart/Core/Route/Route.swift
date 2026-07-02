@@ -13,5 +13,6 @@ enum Route: Hashable {
     case forgotPassword
     case allBrands
     case categoryDetail(CategoryItem)
-    case productDetails(product: ProductItem)
+    case productDetails(productId: String)
+    case cart
 }

@@ -75,6 +75,8 @@ enum AppStrings {
         static let addToCart = String(localized: "ProductDetails_addToCart", defaultValue: "Add To Cart")
         static let addedToCartMessage = String(localized: "ProductDetails_addedToCartMessage", defaultValue: "The product has been added to your cart")
         static let viewCart = String(localized: "ProductDetails_viewCart", defaultValue: "View Cart")
+        static let outOfStock = String(localized: "ProductDetails_outOfStock", defaultValue: "This product is currently out of stock.")
+        static let selectOptionsFirst = String(localized: "ProductDetails_selectOptionsFirst", defaultValue: "Please select options first or variant unavailable")
     }
     
     enum General {

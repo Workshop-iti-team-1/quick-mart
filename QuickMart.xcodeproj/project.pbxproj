@@ -238,6 +238,8 @@
 		E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */; };
 		F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D676201016FCACC6E578BECA /* AppTextStyle.swift */; };
 		F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684F704246EE1B731ABEA /* AppConstants.swift */; };
+		6A5335F592687DF9E824D4FC /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF880445C2234B6AE73C0461 /* ProductDetails.swift */; };
+		41465AEEBBBB0DD9CD1A2F7E /* GetProductDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FB5336EF9D5E58A302DE6A /* GetProductDetailsUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -493,6 +495,8 @@
 		F45CCB23672A7E1B9F37B9C5 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		F4D6D05E3D4FF19300607EC7 /* LoginResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginResponseDTO.swift; sourceTree = "<group>"; };
 		FDFF40E7CEED51AE00537F4C /* OnboardingBottomActionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingBottomActionView.swift; sourceTree = "<group>"; };
+		FF880445C2234B6AE73C0461 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
+		B2FB5336EF9D5E58A302DE6A /* GetProductDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductDetailsUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -1033,6 +1037,7 @@
 		5F840A6F2FF3199600BB18C7 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B2FB5336EF9D5E58A302DE6A /* GetProductDetailsUseCase.swift */,
 				5F74F5182FF6306F00DE42F6 /* FetchCategoriesUseCaseProtocol.swift */,
 				5F5DB5ED2FF5829700908285 /* FetchBrandsUseCaseProtocol.swift */,
 				5F840A812FF31B2300BB18C7 /* FetchBannersUseCaseProtocol.swift */,
@@ -1052,6 +1057,7 @@
 		5F840A712FF319DC00BB18C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FF880445C2234B6AE73C0461 /* ProductDetails.swift */,
 				5F74F5122FF62F7A00DE42F6 /* CategoryItem.swift */,
 				5F5DB5EF2FF582E400908285 /* BrandItem.swift */,
 				5F840A872FF31BD200BB18C7 /* ProductItem.swift */,
@@ -1505,6 +1511,8 @@
 				BB0011223344556677889906 /* ProductDetailsView.swift in Sources */,
 				BB0011223344556677889907 /* ProductDetailsViewModel.swift in Sources */,
 				D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */,
+				6A5335F592687DF9E824D4FC /* ProductDetails.swift in Sources */,
+				41465AEEBBBB0DD9CD1A2F7E /* GetProductDetailsUseCase.swift in Sources */,
 				5F840A8E2FF31E2900BB18C7 /* SectionHeader.swift in Sources */,
 				5F840A842FF31B7900BB18C7 /* HomeRepositoryProtocol.swift in Sources */,
 				D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */,

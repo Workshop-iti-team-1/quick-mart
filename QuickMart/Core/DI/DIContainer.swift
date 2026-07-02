@@ -88,7 +88,11 @@ public final class DIContainer {
     }
     
     // MARK: - Product Details
-    func makeProductDetailsViewModel(product: ProductItem) -> ProductDetailsViewModel {
-        ProductDetailsViewModel(product: product, addToCartUseCase: makeAddToCartUseCase())
+    private func makeGetProductDetailsUseCase() -> GetProductDetailsUseCaseProtocol {
+        GetProductDetailsUseCase(repository: homeRepository)
+    }
+    
+    func makeProductDetailsViewModel(productId: String) -> ProductDetailsViewModel {
+        ProductDetailsViewModel(productId: productId, getProductDetailsUseCase: makeGetProductDetailsUseCase(), addToCartUseCase: makeAddToCartUseCase())
     }
 }
