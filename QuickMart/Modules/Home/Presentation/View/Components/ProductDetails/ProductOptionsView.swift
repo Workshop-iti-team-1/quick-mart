@@ -16,7 +16,7 @@ struct ProductOptionsView: View {
             if option.name.lowercased() == "color" && !option.values.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(AppStrings.ProductDetails.color)
-                        .appTextStyle(.button, color: Color.appBlack)
+                        .appTextStyle(.button, color: .primary)
                     
                     HStack(spacing: 12) {
                         ForEach(option.values, id: \.self) { colorName in
@@ -24,7 +24,7 @@ struct ProductOptionsView: View {
                                 .fill(getColor(for: colorName))
                                 .frame(width: 32, height: 32)
                                 .overlay(
-                                    Circle().stroke(Color.appBlack, lineWidth: viewModel.selectedColor == colorName ? 2 : 0)
+                                    Circle().stroke(Color.primary, lineWidth: viewModel.selectedColor == colorName ? 2 : 0)
                                 )
                                 .onTapGesture {
                                     viewModel.selectedColor = colorName
@@ -35,20 +35,20 @@ struct ProductOptionsView: View {
             } else if !option.values.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(option.name)
-                        .appTextStyle(.button, color: Color.appBlack)
+                        .appTextStyle(.button, color: .primary)
                     
                     HStack(spacing: 12) {
                         ForEach(option.values, id: \.self) { val in
                             Text(val.uppercased())
-                                .appTextStyle(.label, color: viewModel.selectedSize == val ? Color.appWhite : Color.appBlack)
+                                .appTextStyle(.label, color: viewModel.selectedSize == val ? Color.backGround : .primary)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
                                 .background(
                                     Capsule()
-                                        .fill(viewModel.selectedSize == val ? Color.appBlack : Color.appWhite)
+                                        .fill(viewModel.selectedSize == val ? Color.primary : Color.clear)
                                 )
                                 .overlay(
-                                    Capsule().stroke(Color.grey100, lineWidth: viewModel.selectedSize == val ? 0 : 1)
+                                    Capsule().stroke(viewModel.selectedSize == val ? Color.clear : Color.grey100, lineWidth: 1)
                                 )
                                 .onTapGesture {
                                     viewModel.selectedSize = val

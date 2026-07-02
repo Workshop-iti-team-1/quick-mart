@@ -17,13 +17,14 @@ struct ProductImageHeader: View {
                     switch phase {
                     case .empty:
                         ProgressView()
-                            .frame(height: 300)
+                            .frame(height: 380)
                             .frame(maxWidth: .infinity)
                     case .success(let image):
                         image
                             .resizable()
-                            .scaledToFill()
-                            .frame(height: 300)
+                            .scaledToFit()
+                            .padding(24)
+                            .frame(height: 380)
                             .frame(maxWidth: .infinity)
                             .clipped()
                     case .failure:
@@ -32,22 +33,20 @@ struct ProductImageHeader: View {
                             .scaledToFit()
                             .frame(height: 100)
                             .foregroundColor(.gray)
-                            .frame(height: 300)
+                            .frame(height: 380)
                             .frame(maxWidth: .infinity)
                     @unknown default:
                         EmptyView()
                     }
                 }
                 .background(Color.grey50)
-                .cornerRadius(24, corners: [.bottomLeft, .bottomRight])
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 300)
+                    .frame(height: 380)
                     .padding()
                     .background(Color.grey50)
-                    .cornerRadius(24, corners: [.bottomLeft, .bottomRight])
             }
         }
     }

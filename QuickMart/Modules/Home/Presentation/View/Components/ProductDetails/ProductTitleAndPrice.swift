@@ -13,14 +13,14 @@ struct ProductTitleAndPrice: View {
     var body: some View {
         HStack(alignment: .top) {
             Text(product.title)
-                .appTextStyle(.heading2, color: Color.appBlack)
+                .appTextStyle(.heading2, color: .primary)
                 .lineLimit(2)
             
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
                 Text("$\(String(format: "%.2f", product.minPrice))")
-                    .appTextStyle(.heading2, color: Color.appBlack)
+                    .appTextStyle(.heading2, color: .primary)
                 
                 if let originalPrice = product.compareAtPrice {
                     Text("$\(String(format: "%.2f", originalPrice))")

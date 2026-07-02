@@ -26,9 +26,7 @@ struct CartView: View {
                 }
             case .empty:
                 EmptyCartView {
-                    // Switch tab to Home or Categories
-                    // In MainTabView we would ideally have a way to change tab,
-                    // or just pop to root
+
                     router.popToRoot()
                 }
             case .populated:

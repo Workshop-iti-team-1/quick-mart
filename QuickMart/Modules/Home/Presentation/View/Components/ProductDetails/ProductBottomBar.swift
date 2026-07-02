@@ -19,20 +19,19 @@ struct ProductBottomBar: View {
             }) {
                 if viewModel.isAddingToCart {
                     Text(AppStrings.ProductDetails.buyNow)
-                        .appTextStyle(.button, color: Color.appBlack)
+                        .appTextStyle(.button, color: .primary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
 
                 } else {
                     Text(AppStrings.ProductDetails.buyNow)
-                        .appTextStyle(.button, color: Color.appBlack)
+                        .appTextStyle(.button, color: .primary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
                 }
             }
-            .background(Color.appWhite)
+            .background(Color.clear)
             .cornerRadius(16)
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appBlack, lineWidth: 1))
             .disabled(viewModel.isAddingToCart)
             
             Button(action: {
@@ -42,20 +41,20 @@ struct ProductBottomBar: View {
             }) {
                 HStack {
                     Text(AppStrings.ProductDetails.addToCart)
-                        .appTextStyle(.button, color: Color.appWhite)
+                        .appTextStyle(.button, color: .white)
                     Image(systemName: "cart")
-                        .foregroundColor(Color.appWhite)
+                        .foregroundColor(.white)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
-                .background(Color.appBlack)
+                .background(Color.cyanPrimary)
                 .cornerRadius(16)
             }
             .disabled(viewModel.isAddingToCart)
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 16)
-        .background(Color.appWhite)
+        .background(Color.backGround)
         .shadow(color: Color.black.opacity(0.05), radius: 10, y: -5)
     }
 }

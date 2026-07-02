@@ -12,12 +12,10 @@ struct ProductDetailsView: View {
     @Environment(AppRouter.self) var router
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
             
             VStack(spacing: 0) {
-                appBar
-                
                 if viewModel.isLoadingProduct {
                     Spacer()
                     CustomLoadingView()
@@ -28,6 +26,12 @@ struct ProductDetailsView: View {
                 } else if let errorMessage = viewModel.errorMessage {
                     errorView(message: errorMessage)
                 }
+            }
+            .ignoresSafeArea(edges: .top)
+            
+            VStack {
+                appBar
+                Spacer()
             }
             
             if viewModel.showToast {
@@ -62,11 +66,8 @@ struct ProductDetailsView: View {
             Button(action: { router.pop() }) {
                 Image(systemName: "arrow.left")
                     .font(.title2)
-                    .foregroundColor(Color.appBlack)
+                    .foregroundColor(.primary)
                     .padding(8)
-                    .background(Color.appWhite)
-                    .clipShape(Circle())
-                    .shadow(color: .black.opacity(0.1), radius: 4)
             }
             Spacer()
             Button(action: {
@@ -76,11 +77,8 @@ struct ProductDetailsView: View {
             }) {
                 Image(systemName: (viewModel.productDetails?.isFavorite ?? false) ? "heart.fill" : "heart")
                     .font(.title2)
-                    .foregroundColor((viewModel.productDetails?.isFavorite ?? false) ? .red : Color.appBlack)
+                    .foregroundColor((viewModel.productDetails?.isFavorite ?? false) ? .red : .primary)
                     .padding(8)
-                    .background(Color.appWhite)
-                    .clipShape(Circle())
-                    .shadow(color: .black.opacity(0.1), radius: 4)
             }
         }
         .padding(.horizontal, 24)
@@ -92,7 +90,7 @@ struct ProductDetailsView: View {
     @ViewBuilder
     private func contentView(for product: ProductDetails) -> some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 0) {
                 ProductImageHeader(product: product)
                 
                 VStack(alignment: .leading, spacing: 20) {
@@ -108,6 +106,9 @@ struct ProductDetailsView: View {
                     ProductQuantityView(viewModel: viewModel)
                 }
                 .padding(24)
+                .background(Color.backGround)
+                .cornerRadius(24, corners: [.topLeft, .topRight])
+                .padding(.top, -24)
             }
         }
     }
