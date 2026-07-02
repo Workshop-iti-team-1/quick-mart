@@ -72,10 +72,12 @@ struct ProductDetailsView: View {
     private var appBar: some View {
         HStack {
             Button(action: { router.pop() }) {
-                Image(systemName: "arrow.left")
-                    .font(.title2)
-                    .foregroundColor(.primary)
-                    .padding(8)
+                HStack(spacing: 4) {
+                    Image(systemName: "chevron.backward")
+                        .font(.system(size: 20, weight: .semibold))
+                }
+                .foregroundColor(.appBlack)
+                .padding(8)
             }
             Spacer()
             Button(action: {
@@ -85,7 +87,7 @@ struct ProductDetailsView: View {
             }) {
                 Image(systemName: (viewModel.productDetails?.isFavorite ?? false) ? "heart.fill" : "heart")
                     .font(.title2)
-                    .foregroundColor((viewModel.productDetails?.isFavorite ?? false) ? .red : .primary)
+                    .foregroundColor((viewModel.productDetails?.isFavorite ?? false) ? .red : .appBlack)
                     .padding(8)
             }
         }

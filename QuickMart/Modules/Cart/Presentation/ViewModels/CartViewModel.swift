@@ -66,6 +66,7 @@ final class CartViewModel: ObservableObject {
             do {
                 let updatedCart = try await useCases.updateLine(lineId: lineId, quantity: newQuantity)
                 self.cart = updatedCart
+                NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
                 if updatedCart.lines.isEmpty {
                     self.viewState = .empty
                 }
@@ -82,6 +83,7 @@ final class CartViewModel: ObservableObject {
             do {
                 let updatedCart = try await useCases.removeLine(lineId: lineId)
                 self.cart = updatedCart
+                NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
                 if updatedCart.lines.isEmpty {
                     self.viewState = .empty
                 }
@@ -120,6 +122,7 @@ final class CartViewModel: ObservableObject {
         useCases.clearCart()
         cart = nil
         viewState = .empty
+        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
         loadCart() // This will create a new cart when needed next time
     }
 }

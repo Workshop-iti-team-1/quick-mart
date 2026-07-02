@@ -104,6 +104,7 @@ final class ProductDetailsViewModel: ObservableObject {
         do {
             try await addToCartUseCase.execute(variantId: variantId, quantity: quantity)
             isAddingToCart = false
+            NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
             
             if buyNow {
                 navigateToCart = true

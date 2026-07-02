@@ -74,6 +74,11 @@ public final class DIContainer {
         CartViewModel(useCases: makeCartUseCases())
     }
     
+    // MARK: - Root
+    func makeRootViewModel() -> RootViewModel {
+        RootViewModel(cartUseCases: makeCartUseCases())
+    }
+    
     // MARK: - Common
     private func makeCommonRemoteDataSource() -> CommonRemoteDataSourceProtocol {
         CommonRemoteDataSource(client: GraphQLClient(apollo: apolloClient))

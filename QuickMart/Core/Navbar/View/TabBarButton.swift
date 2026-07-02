@@ -17,22 +17,23 @@ struct TabBarButton: View {
     var body: some View {
         Button(action: onTap) {
             VStack(spacing: 4) {
-                ZStack(alignment: .topTrailing) {
                     Image(systemName: tab.iconName)
                         .font(.system(size: 22, weight: isSelected ? .semibold : .regular))
                         .foregroundColor(isSelected ? .cyanPrimary : .grayText)
                         .frame(width: 28, height: 28)
-
-                    if tab == .cart && cartCount > 0 {
-                        Text("\(cartCount)")
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundColor(.appWhite)
-                            .padding(3)
-                            .background(Color.appRed)
-                            .clipShape(Circle())
-                            .offset(x: 8, y: -6)
-                    }
-                }
+                        .overlay(alignment: .topTrailing) {
+                            if tab == .cart && cartCount > 0 {
+                                Text("\(cartCount)")
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .frame(minWidth: 16, minHeight: 16)
+                                    .background(Color.cyanPrimary)
+                                    .clipShape(Capsule())
+                                    .offset(x: 4, y: -4)
+                            }
+                        }
 
                 Text(tab.title)
                     .appTextStyle(.caption, color: isSelected ? .cyanPrimary : .grayText)

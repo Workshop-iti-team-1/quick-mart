@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @StateObject private var viewModel = RootViewModel()
+    @StateObject private var viewModel = DIContainer.shared.makeRootViewModel()
     @Environment(AppRouter.self) private var router
 
     var body: some View {
