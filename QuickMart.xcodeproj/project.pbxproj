@@ -31,7 +31,6 @@
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
 		5F365C172FF84D360082DE82 /* SearchablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C162FF84D360082DE82 /* SearchablePickerView.swift */; };
-		5F365C1A2FF84D630082DE82 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C192FF84D630082DE82 /* ProfileView.swift */; };
 		5F365C1C2FF84D920082DE82 /* AddressFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C1B2FF84D920082DE82 /* AddressFormView.swift */; };
 		5F365C1E2FF84DA80082DE82 /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C1D2FF84DA80082DE82 /* AddressListView.swift */; };
 		5F365C212FF84E330082DE82 /* AddressRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C202FF84E330082DE82 /* AddressRowView.swift */; };
@@ -222,6 +221,7 @@
 		5F7844E72FF8562200F6D3C7 /* AddressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844E62FF8562200F6D3C7 /* AddressListViewModel.swift */; };
 		5F7844E92FF8564E00F6D3C7 /* AddressEventsBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844E82FF8564E00F6D3C7 /* AddressEventsBus.swift */; };
 		5F7844EB2FF8574800F6D3C7 /* CountryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844EA2FF8574800F6D3C7 /* CountryDataProvider.swift */; };
+		5F7845122FF86DBA00F6D3C7 /* MockProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */; };
 		5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A722FF319FF00BB18C7 /* HomeView.swift */; };
 		5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */; };
 		5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */; };
@@ -361,7 +361,6 @@
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		5F365C162FF84D360082DE82 /* SearchablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePickerView.swift; sourceTree = "<group>"; };
-		5F365C192FF84D630082DE82 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5F365C1B2FF84D920082DE82 /* AddressFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFormView.swift; sourceTree = "<group>"; };
 		5F365C1D2FF84DA80082DE82 /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
 		5F365C202FF84E330082DE82 /* AddressRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressRowView.swift; sourceTree = "<group>"; };
@@ -552,6 +551,7 @@
 		5F7844E62FF8562200F6D3C7 /* AddressListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewModel.swift; sourceTree = "<group>"; };
 		5F7844E82FF8564E00F6D3C7 /* AddressEventsBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEventsBus.swift; sourceTree = "<group>"; };
 		5F7844EA2FF8574800F6D3C7 /* CountryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDataProvider.swift; sourceTree = "<group>"; };
+		5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileView.swift; sourceTree = "<group>"; };
 		5F840A722FF319FF00BB18C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatches.swift; sourceTree = "<group>"; };
 		5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestProductsSection.swift; sourceTree = "<group>"; };
@@ -892,8 +892,8 @@
 		5F365C182FF84D410082DE82 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */,
 				5F365C202FF84E330082DE82 /* AddressRowView.swift */,
-				5F365C192FF84D630082DE82 /* ProfileView.swift */,
 				5F365C1B2FF84D920082DE82 /* AddressFormView.swift */,
 				5F365C162FF84D360082DE82 /* SearchablePickerView.swift */,
 			);
@@ -1974,7 +1974,6 @@
 				D4A1B2872FF6898900735C4D /* SubCategory.swift in Sources */,
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
 				5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */,
-				5F365C1A2FF84D630082DE82 /* ProfileView.swift in Sources */,
 				D4B0822B2FF6FF7C0011F64A /* SearchResultPage.swift in Sources */,
 				5F365C622FF850B10082DE82 /* CountriesResponseModel.swift in Sources */,
 				5F365C1E2FF84DA80082DE82 /* AddressListView.swift in Sources */,
@@ -2044,6 +2043,7 @@
 				5F365D352FF853C30082DE82 /* Media.graphql.swift in Sources */,
 				5F365D362FF853C30082DE82 /* CartInput.graphql.swift in Sources */,
 				5F365D372FF853C30082DE82 /* Video.graphql.swift in Sources */,
+				5F7845122FF86DBA00F6D3C7 /* MockProfileView.swift in Sources */,
 				5F365D382FF853C30082DE82 /* CompanyContact.graphql.swift in Sources */,
 				5F365D392FF853C30082DE82 /* SearchResultItemConnection.graphql.swift in Sources */,
 				5F365D3A2FF853C30082DE82 /* Image.graphql.swift in Sources */,
