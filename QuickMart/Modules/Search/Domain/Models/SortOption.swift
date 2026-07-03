@@ -32,6 +32,6 @@ enum SortOption: String, CaseIterable, Identifiable, Hashable {
 
     /// Maps to the Shopify `reverse` query parameter
     var reverseOrder: Bool {
-        self == .priceHighToLow
+        self == .priceHighToLow || self == .newest
     }
 }

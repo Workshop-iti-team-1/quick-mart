@@ -9,8 +9,6 @@
 
 import Foundation
 
-// MARK: - Protocol
-
 protocol SearchProductsUseCaseProtocol {
     func execute(
         query: String,
@@ -18,8 +16,6 @@ protocol SearchProductsUseCaseProtocol {
         after: String?
     ) async throws -> (products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?)
 }
-
-// MARK: - Implementation
 
 struct SearchProductsUseCase: SearchProductsUseCaseProtocol {
 
@@ -41,14 +37,14 @@ struct SearchProductsUseCase: SearchProductsUseCaseProtocol {
             after: after
         )
 
-        // Client-side category filtering.
-        // Shopify search API doesn't natively support collection: scoping yet.
-        // Remove this block once Shopify adds collection-scoped search —
-        // the query builder in the repository already has the slot ready.
+        // Client-side category filter.
+        // Checks ALL of a product's collection handles against selected category handles.
+        // A product passes if ANY of its handles matches ANY selected category (OR logic).
         if !filters.selectedCategoryIDs.isEmpty {
             result.products = result.products.filter { product in
-                guard let categoryID = product.categoryID else { return false }
-                return filters.selectedCategoryIDs.contains(categoryID)
+                !Set(product.categoryHandles)
+                    .intersection(filters.selectedCategoryIDs)
+                    .isEmpty
             }
         }
 

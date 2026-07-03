@@ -5,8 +5,6 @@
 //  Created by Mina_Wagdy on 02/07/2026.
 //
 
-// Features/Search/Data/Repositories/MockSearchRepository.swift
-
 import Foundation
 
 final class MockSearchRepository: SearchRepositoryProtocol {
@@ -28,17 +26,20 @@ final class MockSearchRepository: SearchRepositoryProtocol {
             ? Self.mockProducts
             : Self.mockProducts.filter { $0.name.lowercased().contains(q) }
 
-        // Apply same client-side filter logic for mock parity
+        // Apply same client-side filter logic for mock parity using the new array
         if !filters.selectedCategoryIDs.isEmpty {
             results = results.filter {
-                filters.selectedCategoryIDs.contains($0.categoryID ?? "")
+                // Keep the product if its category array intersects with the selected filters
+                !filters.selectedCategoryIDs.isDisjoint(with: $0.categoryHandles)
             }
         }
+        
         if !filters.selectedSubCategoryIDs.isEmpty {
             results = results.filter {
                 filters.selectedSubCategoryIDs.contains($0.subCategoryID ?? "")
             }
         }
+        
         if !filters.selectedBrandIDs.isEmpty {
             results = results.filter {
                 filters.selectedBrandIDs.contains($0.brandID ?? "")
@@ -91,37 +92,37 @@ final class MockSearchRepository: SearchRepositoryProtocol {
             id: "1", name: "Loop silicone strong headphones",
             imageName: "headphones", price: 15.25, originalPrice: [20.00],
             colorNames: ["appBlue", "appPurple", "appOrange"], colorCount: 5,
-            categoryID: "men", subCategoryID: "accessories", brandID: "nike"
+            categoryHandles: ["men", "sale"], subCategoryID: "accessories", brandID: "nike"
         ),
         ProductSearchItem(
             id: "2", name: "K800 Ultra smart watch",
             imageName: "applewatch", price: 32.00, originalPrice: [35.00],
             colorNames: ["appBlack", "grey100"], colorCount: 4,
-            categoryID: "women", subCategoryID: "accessories", brandID: "adidas"
+            categoryHandles: ["women"], subCategoryID: "accessories", brandID: "adidas"
         ),
         ProductSearchItem(
             id: "3", name: "P47 Wireless headphones",
             imageName: "headphones", price: 38.45, originalPrice: [42.75],
             colorNames: ["appBlue", "appBlack", "appRed"], colorCount: 3,
-            categoryID: "men", subCategoryID: "accessories", brandID: "puma"
+            categoryHandles: ["men"], subCategoryID: "accessories", brandID: "puma"
         ),
         ProductSearchItem(
             id: "4", name: "M6 IP67 headphones",
             imageName: "headphones.circle.fill", price: 12.00, originalPrice: [18.00],
             colorNames: ["appOrange", "grey150"], colorCount: 5,
-            categoryID: "women", subCategoryID: "accessories", brandID: "nike"
+            categoryHandles: ["women", "sale"], subCategoryID: "accessories", brandID: "nike"
         ),
         ProductSearchItem(
             id: "5", name: "D20 Bluetooth smart headphones",
             imageName: "headphones", price: 25.25, originalPrice: [30.00],
             colorNames: ["appBlue", "appBlack", "appYellow"], colorCount: 3,
-            categoryID: "kids", subCategoryID: "accessories", brandID: "adidas"
+            categoryHandles: ["kids"], subCategoryID: "accessories", brandID: "adidas"
         ),
         ProductSearchItem(
             id: "6", name: "D18s Smart headphones",
             imageName: "headphones.circle", price: 17.15, originalPrice: [22.00],
             colorNames: ["grey50"], colorCount: 2,
-            categoryID: "sale", subCategoryID: "accessories", brandID: "puma"
+            categoryHandles: ["sale"], subCategoryID: "accessories", brandID: "puma"
         ),
     ]
 }

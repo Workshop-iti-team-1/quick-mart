@@ -14,6 +14,7 @@ import Combine
 final class SearchViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
+    private var currentSearchTask: Task<Void, Never>?
 
     // MARK: - Search State
 
@@ -85,11 +86,16 @@ final class SearchViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] query in
                 guard let self else { return }
-                Task { await self.performSearch(query: query, resetPagination: true) }
+                
+                // Cancel the previous network request if the user is still typing
+                self.currentSearchTask?.cancel()
+                
+                self.currentSearchTask = Task {
+                    await self.performSearch(query: query, resetPagination: true)
+                }
             }
             .store(in: &cancellables)
     }
-
     // MARK: - Initial Load
 
     /// Called from SearchView.task — loads first page of all products on appear.
@@ -103,16 +109,16 @@ final class SearchViewModel: ObservableObject {
     /// Core fetch method. `resetPagination: true` for new queries/filter changes.
     /// `resetPagination: false` only used internally by `loadNextPage()`.
     func performSearch(query: String, resetPagination: Bool) async {
-        guard !isSearching else { return }
+        // ❌ DELETE THIS LINE: guard !isSearching else { return }
 
         let trimmed = query.trimmingCharacters(in: .whitespaces)
 
         if resetPagination {
             currentCursor = nil
             searchResults = []
+            isSearching = true // Set loading state here
         }
-
-        isSearching = true
+        
         errorMessage = nil
 
         do {
@@ -122,10 +128,12 @@ final class SearchViewModel: ObservableObject {
                 after: resetPagination ? nil : currentCursor
             )
 
+            // ✅ Check if the user typed another letter while we were waiting
+            if Task.isCancelled { return }
+
             if resetPagination {
                 searchResults = result.products
             } else {
-                // Append for pagination — deduplicate by ID defensively
                 let existingIDs = Set(searchResults.map(\.id))
                 let newProducts = result.products.filter { !existingIDs.contains($0.id) }
                 searchResults.append(contentsOf: newProducts)
@@ -135,11 +143,16 @@ final class SearchViewModel: ObservableObject {
             currentCursor = result.endCursor
 
         } catch {
-            errorMessage = error.localizedDescription
-            if resetPagination { searchResults = [] }
+            // ✅ Only show errors if the task wasn't intentionally cancelled
+            if !Task.isCancelled {
+                errorMessage = error.localizedDescription
+                if resetPagination { searchResults = [] }
+            }
         }
 
-        isSearching = false
+        if !Task.isCancelled && resetPagination {
+            isSearching = false
+        }
     }
 
     /// Called when the grid reaches the last item — loads the next cursor page.

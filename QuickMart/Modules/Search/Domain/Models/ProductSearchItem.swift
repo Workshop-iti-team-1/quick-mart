@@ -26,7 +26,7 @@ struct ProductSearchItem: Identifiable, Hashable {
     var isFavorite: Bool
 
     // MARK: - Filter Keys (optional — nil-safe in all filter logic)
-    let categoryID: String?
+    let categoryHandles: [String]   // ALL collection handles — replaces single categoryID
     let subCategoryID: String?
     let brandID: String?
 
@@ -41,7 +41,7 @@ struct ProductSearchItem: Identifiable, Hashable {
         colorNames: [String] = [],
         colorCount: Int = 0,
         isFavorite: Bool = false,
-        categoryID: String? = nil,
+        categoryHandles:  [String]  = [],
         subCategoryID: String? = nil,
         brandID: String? = nil
     ) {
@@ -54,7 +54,7 @@ struct ProductSearchItem: Identifiable, Hashable {
         self.colorNames = colorNames
         self.colorCount = colorCount
         self.isFavorite = isFavorite
-        self.categoryID = categoryID
+        self.categoryHandles = categoryHandles
         self.subCategoryID = subCategoryID
         self.brandID = brandID
     }
