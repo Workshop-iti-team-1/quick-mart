@@ -11,6 +11,7 @@ struct SearchView: View {
 
     @StateObject private var viewModel: SearchViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppRouter.self) private var router
     @FocusState private var isSearchFocused: Bool
 
     // MARK: - Init
@@ -143,29 +144,37 @@ struct SearchView: View {
     }
 
     // MARK: - Recent Searches
-    private var recentSearchesView: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("RECENT SEARCH")
-                .appTextStyle(.caption, color: .grayText)
-                .padding(.horizontal, Layout.horizontalPad)
-                .padding(.bottom, 4)
+        private var recentSearchesView: some View {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("RECENT SEARCH")
+                    .appTextStyle(.caption, color: .grayText)
+                    .padding(.horizontal, Layout.horizontalPad)
+                    .padding(.bottom, 4)
 
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
+                List {
                     ForEach(viewModel.recentSearches, id: \.self) { query in
                         RecentSearchRowView(query: query) {
                             viewModel.selectRecentSearch(query)
                             isSearchFocused = false // Drop keyboard to reveal results
                         }
-                        .padding(.horizontal, Layout.horizontalPad)
-                        Divider()
-                            .padding(.leading, Layout.horizontalPad)
+                        // Styling to match your previous custom UI
+                        .listRowInsets(EdgeInsets(top: 0, leading: Layout.horizontalPad, bottom: 0, trailing: Layout.horizontalPad))
+                        .listRowSeparatorTint(Color.grey100)
+                        .listRowBackground(Color.backGround)
+                    }
+                    .onDelete { indexSet in
+                        // Map the swiped index to the actual query string and remove it
+                        for index in indexSet {
+                            let queryToDelete = viewModel.recentSearches[index]
+                            viewModel.removeRecentSearch(queryToDelete)
+                        }
                     }
                 }
+                .listStyle(.plain) // Removes default List styling
+                .scrollContentBackground(.hidden) // Ensures your background color shows through
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-    }
 
     // MARK: - Active Search
     @ViewBuilder
@@ -181,16 +190,27 @@ struct SearchView: View {
     }
 
     private var resultsGrid: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
-                ForEach(viewModel.searchResults) { item in
-                    ProductCard(item: item) // Ensure ProductCard is implemented elsewhere
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
+                    ForEach(viewModel.searchResults) { item in
+                        Button {
+                            // 1. Dismiss the fullScreenCover
+                            dismiss()
+                            // 2. Push the detail view onto the main stack
+                            dismiss()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                router.push(.productDetails(productId: item.id))
+                            }
+                        } label: {
+                            ProductCard(item: item)
+                        }
+                        .buttonStyle(.plain) // Prevents the whole card from looking like a default text button
+                    }
                 }
+                .padding(.horizontal, Layout.horizontalPad)
+                .padding(.bottom, 24)
             }
-            .padding(.horizontal, Layout.horizontalPad)
-            .padding(.bottom, 24)
         }
-    }
 
     private var emptyStateView: some View {
         VStack(spacing: 16) {
