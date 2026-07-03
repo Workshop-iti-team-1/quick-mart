@@ -34,22 +34,15 @@ struct ProductBottomBar: View {
             .cornerRadius(16)
             .disabled(viewModel.isAddingToCart)
             
-            Button(action: {
-                Task {
-                    await viewModel.addToCart(buyNow: false)
+            AppButton(
+                title: AppStrings.ProductDetails.addToCart,
+                icon: "cart",
+                action: {
+                    Task {
+                        await viewModel.addToCart(buyNow: false)
+                    }
                 }
-            }) {
-                HStack {
-                    Text(AppStrings.ProductDetails.addToCart)
-                        .appTextStyle(.button, color: .white)
-                    Image(systemName: "cart")
-                        .foregroundColor(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color.cyanPrimary)
-                .cornerRadius(16)
-            }
+            )
             .disabled(viewModel.isAddingToCart)
         }
         .padding(.horizontal, 24)

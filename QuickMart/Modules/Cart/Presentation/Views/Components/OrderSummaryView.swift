@@ -29,7 +29,7 @@ struct OrderSummaryView: View {
                 Text(AppStrings.Cart.shippingCost)
                     .appTextStyle(.body, color: .gray)
                 Spacer()
-                // Mocking $0.00 since Shopify often calculates shipping at checkout
+     
                 Text("0.00 \(cost.currencyCode)")
                     .appTextStyle(.body, color: .gray)
             }
@@ -42,21 +42,14 @@ struct OrderSummaryView: View {
                     .appTextStyle(.heading2, color: .primary)
             }
             
-            Button(action: onCheckout) {
-                Text("\(AppStrings.Cart.checkout) (\(itemCount))")
-                    .appTextStyle(.button, color: .white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-            }
-            .background(Color.cyanPrimary)
-            .cornerRadius(12)
-            .padding(.top, 8)
+            AppButton(title: "\(AppStrings.Cart.checkout) (\(itemCount))", action:onCheckout)
+        
         }
         .padding(16)
     }
 }
 
-// Helper for corner radius
+
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )

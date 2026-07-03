@@ -101,8 +101,14 @@ final class CartViewModel: ObservableObject {
             do {
                 let updatedCart = try await useCases.applyDiscount(code: code)
                 self.cart = updatedCart
-                self.discountMessage = AppStrings.Cart.discountAppliedMessage
-                self.showDiscountAlert = true
+                
+                if let appliedCode = updatedCart.discountCodes.first(where: { $0.code == code }), !appliedCode.applicable {
+                    self.discountMessage = AppStrings.Cart.discountInvalidMessage
+                    self.showDiscountAlert = true
+                } else {
+                    self.discountMessage = AppStrings.Cart.discountAppliedMessage
+                    self.showDiscountAlert = true
+                }
             } catch {
                 self.errorMessage = error.localizedDescription
             }

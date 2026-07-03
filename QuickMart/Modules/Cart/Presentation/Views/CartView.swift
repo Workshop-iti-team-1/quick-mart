@@ -64,7 +64,6 @@ struct CartView: View {
             }
         }
         .sheet(isPresented: $viewModel.isCheckoutUrlPresented, onDismiss: {
-            // Assume checkout was completed when webview dismissed
             viewModel.clearCartAfterCheckout()
         }) {
             if let cart = viewModel.cart, let url = URL(string: cart.checkoutUrl) {
@@ -75,7 +74,7 @@ struct CartView: View {
     
     private var populatedCartView: some View {
         VStack(spacing: 0) {
-            // Custom Navigation Bar for Cart
+      
             HStack {
                 Text(AppStrings.Cart.myCart)
                     .appTextStyle(.heading2, color: .primary)
@@ -111,7 +110,7 @@ struct CartView: View {
                         }
                     }
                     .padding(.top, 16)
-                    .padding(.bottom, 120) // Give space for order info
+                    .padding(.bottom, 120) 
                 }
                 
                 OrderSummaryView(
@@ -126,7 +125,7 @@ struct CartView: View {
     }
 }
 
-// Helper view to open Safari inside the app
+
 struct SafariView: UIViewControllerRepresentable {
     let url: URL
     

@@ -37,7 +37,7 @@ struct AppButton: View {
 
     private var textColor: Color {
         switch style {
-        case .primary: return Color(UIColor.systemBackground)
+        case .primary: return Color(UIColor.white)
         case .secondary: return Color.primary
         }
     }
@@ -47,7 +47,7 @@ struct AppButton: View {
         switch style {
         case .primary:
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.primary)
+                .fill(Color.appButton)
         case .secondary:
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.3), lineWidth: 1.5)

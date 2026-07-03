@@ -63,6 +63,7 @@ enum AppStrings {
         static let enterVoucherCode = String(localized: "Cart_enterVoucherCode", defaultValue: "Enter Voucher Code")
         static let apply = String(localized: "Cart_apply", defaultValue: "Apply")
         static let discountAppliedMessage = String(localized: "Cart_discountAppliedMessage", defaultValue: "The discount code has been applied successfully.")
+        static let discountInvalidMessage = String(localized: "Cart_discountInvalidMessage", defaultValue: "The discount code is invalid or not applicable.")
     }
     
     enum ProductDetails {
