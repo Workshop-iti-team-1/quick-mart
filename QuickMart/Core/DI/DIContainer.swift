@@ -131,4 +131,24 @@ public final class DIContainer {
                 repository: searchRepository
             )
         }
+    
+    
+    private func makeAddressRemoteDataSource() -> AddressRemoteDataSourceProtocol {
+        AddressRemoteDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
+    }
+    private func makeAddressRepository() -> AddressRepositoryProtocol {
+        AddressRepositoryImpl(remoteDataSource: makeAddressRemoteDataSource())
+    }
+    func makeAddressUseCases() -> AddressUseCases {
+        AddressUseCasesImpl(repository: makeAddressRepository())
+    }
+    
+    private lazy var countryRemoteDataSource: CountryRemoteDataSourceProtocol = CountryRemoteDataSourceImpl()
+    private lazy var countryRepository: CountryRepositoryProtocol = CountryRepositoryImpl(remoteDataSource: countryRemoteDataSource)
+    private func makeFetchCountriesUseCase() -> FetchCountriesUseCaseProtocol {
+        FetchCountriesUseCase(repository: countryRepository)
+    }
+    private(set) lazy var countryDataProvider: CountryDataProvider = CountryDataProvider(
+        fetchCountriesUseCase: makeFetchCountriesUseCase()
+    )
 }
