@@ -34,7 +34,8 @@ struct MainTabView: View {
                 case .wishlist:
                     Text("Wishlist")
                 case .profile:
-                    Text("Profile")
+            
+                    MockProfileView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

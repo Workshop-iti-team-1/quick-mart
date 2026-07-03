@@ -16,4 +16,6 @@ enum Route: Hashable {
     case productDetails(productId: String)
     case cart
     case search(filters: SearchFilters? = nil)
+    case shippingAddresses
+    case addressForm(Address?)
 }

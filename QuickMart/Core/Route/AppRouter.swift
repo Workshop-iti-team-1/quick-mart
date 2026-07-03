@@ -85,6 +85,19 @@ final class AppRouter {
             SearchView(
                 viewModel: diContainer.makeSearchViewModel(
                     initialFilters: filters ?? SearchFilters()))
+        case .shippingAddresses:
+            AddressListView(viewModel: AddressListViewModel(useCases: self.diContainer.makeAddressUseCases()))
+            // AppRouter.destination(for:) — update the .addressForm case
+            case .addressForm(let address):
+                AddressFormView(
+                    viewModel: AddressFormViewModel(
+                        useCases: self.diContainer.makeAddressUseCases(),
+                        countryProvider: self.diContainer.countryDataProvider,
+                        editingAddress: address
+                    ),
+                    router: self
+                )
+     
         }
     }
     // MARK: - Search (fullScreenCover factory)
