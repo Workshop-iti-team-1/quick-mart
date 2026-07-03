@@ -11,6 +11,7 @@ import Foundation
 struct CategoryItem: Identifiable, Hashable {
     let id: String
     let name: String
+    let handle: String?
     let imageName: String?
     let isSystemImage: Bool?
 }

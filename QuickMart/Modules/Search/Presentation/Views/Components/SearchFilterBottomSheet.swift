@@ -68,7 +68,6 @@ struct SearchFilterBottomSheet: View {
     }
 
     // MARK: - Categories
-
     private var categoriesSection: some View {
         CollapsibleFilterSection(
             title: "Categories",
@@ -76,12 +75,30 @@ struct SearchFilterBottomSheet: View {
             selectedCount: viewModel.pendingFilters.selectedCategoryIDs.count
         ) {
             ForEach(viewModel.filterCategories) { category in
+                let key = category.handle ?? category.id
                 CheckboxRowView(
                     title: category.name.uppercased(),
-                    isSelected: viewModel.pendingFilters.selectedCategoryIDs
-                        .contains(category.id)
+                    isSelected: viewModel.pendingFilters.selectedCategoryIDs.contains(key)
                 ) {
-                    viewModel.toggleCategory(category.id)
+                    viewModel.toggleCategory(key)
+                }
+            }
+        }
+    }
+
+    // MARK: - Brands
+    private var brandsSection: some View {
+        CollapsibleFilterSection(
+            title: "Brands",
+            isExpanded: $isBrandsExpanded,
+            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
+        ) {
+            ForEach(viewModel.filterBrands) { brand in
+                CheckboxRowView(
+                    title: brand.name.uppercased(),
+                    isSelected: viewModel.pendingFilters.selectedBrandIDs.contains(brand.name)
+                ) {
+                    viewModel.toggleBrand(brand.name)
                 }
             }
         }
@@ -107,25 +124,25 @@ struct SearchFilterBottomSheet: View {
         }
     }
 
-    // MARK: - Brands
-
-    private var brandsSection: some View {
-        CollapsibleFilterSection(
-            title: "Brands",
-            isExpanded: $isBrandsExpanded,
-            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
-        ) {
-            ForEach(viewModel.filterBrands) { brand in
-                CheckboxRowView(
-                    title: brand.name.uppercased(),
-                    isSelected: viewModel.pendingFilters.selectedBrandIDs
-                        .contains(brand.id)
-                ) {
-                    viewModel.toggleBrand(brand.id)
-                }
-            }
-        }
-    }
+//    // MARK: - Brands
+//
+//    private var brandsSection: some View {
+//        CollapsibleFilterSection(
+//            title: "Brands",
+//            isExpanded: $isBrandsExpanded,
+//            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
+//        ) {
+//            ForEach(viewModel.filterBrands) { brand in
+//                CheckboxRowView(
+//                    title: brand.name.uppercased(),
+//                    isSelected: viewModel.pendingFilters.selectedBrandIDs
+//                        .contains(brand.id)
+//                ) {
+//                    viewModel.toggleBrand(brand.id)
+//                }
+//            }
+//        }
+//    }
 
     // MARK: - Sorting (single-select enforced by ViewModel)
 

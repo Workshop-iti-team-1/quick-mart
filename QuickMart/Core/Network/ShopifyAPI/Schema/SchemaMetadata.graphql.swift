@@ -85,6 +85,10 @@ extension ShopifyAPI {
       case "ProductVariantConnection": return ShopifyAPI.Objects.ProductVariantConnection
       case "ProductVariantEdge": return ShopifyAPI.Objects.ProductVariantEdge
       case "SelectedOption": return ShopifyAPI.Objects.SelectedOption
+      case "SearchResultItemConnection": return ShopifyAPI.Objects.SearchResultItemConnection
+      case "SearchResultItemEdge": return ShopifyAPI.Objects.SearchResultItemEdge
+      case "StringConnection": return ShopifyAPI.Objects.StringConnection
+      case "StringEdge": return ShopifyAPI.Objects.StringEdge
       case "Mutation": return ShopifyAPI.Objects.Mutation
       case "CartCreatePayload": return ShopifyAPI.Objects.CartCreatePayload
       case "CartCost": return ShopifyAPI.Objects.CartCost

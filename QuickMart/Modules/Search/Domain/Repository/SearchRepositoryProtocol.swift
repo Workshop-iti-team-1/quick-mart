@@ -8,7 +8,12 @@
 import Foundation
 
 protocol SearchRepositoryProtocol {
-    func searchProducts(query: String, filters: SearchFilters) async throws -> [ProductSearchItem]
+    func searchProducts(
+        query: String,
+        filters: SearchFilters,
+        after: String?
+    ) async throws -> (products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?)
+
     func fetchSubCategories() async throws -> [SubCategory]
     func fetchRecentSearches() -> [String]
     func saveRecentSearch(_ query: String)

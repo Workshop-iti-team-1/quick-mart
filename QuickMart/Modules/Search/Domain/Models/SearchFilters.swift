@@ -14,7 +14,7 @@ import Foundation
 /// - selectedSubCategoryIDs → `productTypes` filter array
 /// - selectedBrandIDs      → `vendor` filter array
 /// - selectedSort          → `sortKey` + `reverse` on products query
-struct SearchFilters: Equatable {
+struct SearchFilters: Equatable, Hashable {
 
     // MARK: - State (OR within section, AND across sections)
 

@@ -13,6 +13,8 @@ struct AllBrandsView: View {
 
     @StateObject private var viewModel: BrandViewModel
 
+    @Environment(AppRouter.self) private var router
+
     // MARK: - Init
 
     init(viewModel: BrandViewModel) {
@@ -22,11 +24,11 @@ struct AllBrandsView: View {
     // MARK: - Private Constants
 
     private enum Layout {
-        static let columns: Int               = 2
-        static let gridSpacing: CGFloat       = 12
+        static let columns: Int = 2
+        static let gridSpacing: CGFloat = 12
         static let horizontalPadding: CGFloat = 16
-        static let topPadding: CGFloat        = 12
-        static let bottomPadding: CGFloat     = 24
+        static let topPadding: CGFloat = 12
+        static let bottomPadding: CGFloat = 24
     }
 
     private var gridColumns: [GridItem] {
@@ -60,7 +62,14 @@ struct AllBrandsView: View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
                 ForEach(viewModel.brands) { item in
-                    BrandGridItemView(item: item)
+                    Button {
+                        var filters = SearchFilters()
+                        filters.selectedBrandIDs.insert(item.name)
+                        router.switchTab(to: .search, with: filters)
+                    } label: {
+                        BrandGridItemView(item: item)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, Layout.horizontalPadding)

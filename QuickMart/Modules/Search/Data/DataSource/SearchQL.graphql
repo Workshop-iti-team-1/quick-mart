@@ -1,0 +1,91 @@
+query SearchProducts(
+    $query: String!
+    $first: Int!
+    $after: String
+    $sortKey: SearchSortKeys
+    $reverse: Boolean
+) {
+    search(
+        query: $query
+        types: PRODUCT
+        first: $first
+        after: $after
+        sortKey: $sortKey
+        reverse: $reverse
+    ) {
+        edges {
+            node {
+                ... on Product {
+                    id
+                    title
+                    vendor
+                    productType
+                    availableForSale
+                    priceRange {
+                        minVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                        maxVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                    }
+                    compareAtPriceRange {
+                        minVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                    }
+                    images(first: 1) {
+                        edges {
+                            node {
+                                url
+                                altText
+                            }
+                        }
+                    }
+                    collections(first: 10) {
+                        edges {
+                            node {
+                                id
+                                handle
+                            }
+                        }
+                    }
+                    variants(first: 1) {
+                        edges {
+                            node {
+                                id
+                                availableForSale
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        totalCount
+    }
+}
+
+# ─────────────────────────────────────────────
+# OPERATION 2 — Product Types (Sub-Categories)
+#
+# Maps to FetchSubCategoriesUseCase.execute()
+# Populates the Sub-Categories section of the filter sheet.
+#
+# Shopify returns a StringConnection of all distinct product types
+# in the store. No Home operation covers this.
+# ─────────────────────────────────────────────
+
+query FetchProductTypes($first: Int!) {
+    productTypes(first: $first) {
+        edges {
+            node
+        }
+    }
+}

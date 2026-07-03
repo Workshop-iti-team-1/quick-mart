@@ -37,6 +37,7 @@ extension CollectionModel {
         CategoryItem(
             id: id,
             name: title,
+            handle: handle,
             imageName: assetImage(for: handle),
             isSystemImage: false
         )

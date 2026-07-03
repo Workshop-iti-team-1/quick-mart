@@ -16,17 +16,30 @@ final class AppRouter {
 
     var path = NavigationPath()
 
-    // MARK: - Dependencies
+    // 1. Add global tab state
+    var selectedTab: TabItem = .home
 
+    // 2. Add the filter mailbox
+    var queuedSearchFilters: SearchFilters? = nil
+
+    // MARK: - Dependencies
     private let diContainer: DIContainer
 
     // MARK: - Init
-
     init(diContainer: DIContainer = .shared) {
         self.diContainer = diContainer
     }
 
     // MARK: - Navigation Intents
+
+    // 3. Add the tab switching method
+    func switchTab(to tab: TabItem, with filters: SearchFilters? = nil) {
+        if let filters = filters {
+            self.queuedSearchFilters = filters
+        }
+        self.selectedTab = tab
+        self.popToRoot()
+    }
 
     func push(_ route: Route) {
         path.append(route)
@@ -63,12 +76,15 @@ final class AppRouter {
         case .forgotPassword:
             ForgotPasswordView(router: self)
         case .productDetails(let productId):
-            ProductDetailsView(viewModel: self.diContainer.makeProductDetailsViewModel(productId: productId))
+            ProductDetailsView(
+                viewModel: self.diContainer.makeProductDetailsViewModel(
+                    productId: productId))
         case .cart:
             CartView(router: self)
-        case .search:
-            // Search is fullScreenCover — this path handles deep-link push edge cases
-            SearchView(viewModel: diContainer.makeSearchViewModel())
+        case .search(let filters):
+            SearchView(
+                viewModel: diContainer.makeSearchViewModel(
+                    initialFilters: filters ?? SearchFilters()))
         }
     }
     // MARK: - Search (fullScreenCover factory)
@@ -77,6 +93,8 @@ final class AppRouter {
 
     @MainActor
     func searchView() -> SearchView {
-        SearchView(viewModel: diContainer.makeSearchViewModel())
+        SearchView(
+            viewModel: diContainer.makeSearchViewModel(
+                initialFilters: SearchFilters()))
     }
 }
