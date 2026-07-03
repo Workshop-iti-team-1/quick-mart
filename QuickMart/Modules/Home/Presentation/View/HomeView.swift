@@ -9,8 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    @StateObject private var brandViewModel = DIContainer.shared.makeBrandViewModel()
-    @StateObject private var categoryViewModel = DIContainer.shared.makeCategoryViewModel()
+    @StateObject private var brandViewModel = DIContainer.shared
+        .makeBrandViewModel()
+    @StateObject private var categoryViewModel = DIContainer.shared
+        .makeCategoryViewModel()
     @Environment(AppRouter.self) private var router
 
     var body: some View {
@@ -24,15 +26,25 @@ struct HomeView: View {
                 if !brandViewModel.brands.isEmpty {
                     HomeBrandsSection(
                         items: brandViewModel.brands,
-                        onSeeAll: { router.push(.allBrands) }
+                        onSeeAll: { router.push(.allBrands) },
+                        onBrandTap: { brand in
+                            var filters = SearchFilters()
+                            filters.selectedBrandIDs.insert(brand.name)
+                            router.switchTab(to: .search, with: filters)
+                        }
                     )
                 }
 
                 if !categoryViewModel.categories.isEmpty {
                     HomeCategoriesSection(
                         items: categoryViewModel.categories,
-                       
-                        onCategoryTap: { router.push(.categoryDetail($0)) }
+                        onCategoryTap: { category in
+                            var filters = SearchFilters()
+                            filters.selectedCategoryIDs.insert(
+                                category.handle ?? category.name.lowercased()
+                            )
+                            router.switchTab(to: .search, with: filters)
+                        }
                     )
                 }
 

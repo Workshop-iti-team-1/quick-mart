@@ -121,13 +121,14 @@ public final class DIContainer {
     // MARK: - Public Factory
 
     @MainActor
-    func makeSearchViewModel() -> SearchViewModel {
-        SearchViewModel(
-            searchProductsUseCase: searchProductsUseCase,
-            fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
-            fetchCategoriesUseCase: makeFetchCategoriesUseCase(), // reused from Home
-            fetchBrandsUseCase: makeFetchBrandsUseCase(),         // reused from Home
-            repository: searchRepository
-        )
-    }
+        func makeSearchViewModel(initialFilters: SearchFilters = SearchFilters()) -> SearchViewModel {
+            SearchViewModel(
+                initialFilters: initialFilters,
+                searchProductsUseCase: searchProductsUseCase,
+                fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
+                fetchCategoriesUseCase: makeFetchCategoriesUseCase(),
+                fetchBrandsUseCase: makeFetchBrandsUseCase(),
+                repository: searchRepository
+            )
+        }
 }

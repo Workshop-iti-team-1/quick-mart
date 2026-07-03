@@ -5,10 +5,9 @@
 //  Created by Mina_Wagdy on 02/07/2026.
 //
 
-// Features/Search/Presentation/ViewModels/SearchViewModel.swift
 
-import Foundation
 import Combine
+import Foundation
 
 @MainActor
 final class SearchViewModel: ObservableObject {
@@ -61,6 +60,7 @@ final class SearchViewModel: ObservableObject {
     // MARK: - Init
 
     init(
+        initialFilters: SearchFilters = SearchFilters(),
         searchProductsUseCase: SearchProductsUseCaseProtocol,
         fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol,
         fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol,
@@ -72,6 +72,9 @@ final class SearchViewModel: ObservableObject {
         self.fetchCategoriesUseCase = fetchCategoriesUseCase
         self.fetchBrandsUseCase = fetchBrandsUseCase
         self.repository = repository
+
+        self.appliedFilters = initialFilters
+        self.pendingFilters = initialFilters
 
         recentSearches = repository.fetchRecentSearches()
         setupSearchDebounce()
@@ -86,16 +89,28 @@ final class SearchViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] query in
                 guard let self else { return }
-                
+
                 // Cancel the previous network request if the user is still typing
                 self.currentSearchTask?.cancel()
-                
+
                 self.currentSearchTask = Task {
-                    await self.performSearch(query: query, resetPagination: true)
+                    await self.performSearch(
+                        query: query, resetPagination: true)
                 }
             }
             .store(in: &cancellables)
     }
+
+    // MARK: - External Intents (Tab Bar Navigation)
+        func applyExternalFilters(_ filters: SearchFilters) {
+            self.appliedFilters = filters
+            self.pendingFilters = filters
+            self.searchText = "" // Clear previous search text
+            
+            Task {
+                await performSearch(query: "", resetPagination: true)
+            }
+        }
     // MARK: - Initial Load
 
     /// Called from SearchView.task — loads first page of all products on appear.
@@ -109,16 +124,14 @@ final class SearchViewModel: ObservableObject {
     /// Core fetch method. `resetPagination: true` for new queries/filter changes.
     /// `resetPagination: false` only used internally by `loadNextPage()`.
     func performSearch(query: String, resetPagination: Bool) async {
-        // ❌ DELETE THIS LINE: guard !isSearching else { return }
-
         let trimmed = query.trimmingCharacters(in: .whitespaces)
 
         if resetPagination {
             currentCursor = nil
             searchResults = []
-            isSearching = true // Set loading state here
+            isSearching = true  // Set loading state here
         }
-        
+
         errorMessage = nil
 
         do {
@@ -128,22 +141,24 @@ final class SearchViewModel: ObservableObject {
                 after: resetPagination ? nil : currentCursor
             )
 
-            // ✅ Check if the user typed another letter while we were waiting
+            // Check if the user typed another letter while we were waiting
             if Task.isCancelled { return }
 
             if resetPagination {
                 searchResults = result.products
             } else {
                 let existingIDs = Set(searchResults.map(\.id))
-                let newProducts = result.products.filter { !existingIDs.contains($0.id) }
+                let newProducts = result.products.filter {
+                    !existingIDs.contains($0.id)
+                }
                 searchResults.append(contentsOf: newProducts)
             }
 
-            hasNextPage   = result.hasNextPage
+            hasNextPage = result.hasNextPage
             currentCursor = result.endCursor
 
         } catch {
-            // ✅ Only show errors if the task wasn't intentionally cancelled
+            //  Only show errors if the task wasn't intentionally cancelled
             if !Task.isCancelled {
                 errorMessage = error.localizedDescription
                 if resetPagination { searchResults = [] }
@@ -220,14 +235,16 @@ final class SearchViewModel: ObservableObject {
     // Categories and brands reuse existing Home use cases — no duplicate network calls.
 
     private func loadFilterData() async {
-        async let cats    = fetchCategoriesUseCase.execute().asyncValue()
-        async let brands  = fetchBrandsUseCase.execute().asyncValue()
+        async let cats = fetchCategoriesUseCase.execute().asyncValue()
+        async let brands = fetchBrandsUseCase.execute().asyncValue()
         async let subCats = fetchSubCategoriesUseCase.execute()
 
         do {
-            let (categories, fetchedBrands, subCategories) = try await (cats, brands, subCats)
-            filterCategories    = categories
-            filterBrands        = processFilterBrands(fetchedBrands)
+            let (categories, fetchedBrands, subCategories) = try await (
+                cats, brands, subCats
+            )
+            filterCategories = categories
+            filterBrands = processFilterBrands(fetchedBrands)
             filterSubCategories = subCategories
         } catch {
             // Non-fatal: filter sheet renders with whatever data loaded successfully
@@ -239,8 +256,11 @@ final class SearchViewModel: ObservableObject {
     /// sort remaining alphabetically.
     /// When Shopify adds a dedicated vendor/brand endpoint, replace only this method.
     private func processFilterBrands(_ brands: [BrandItem]) -> [BrandItem] {
-        let mainCategories: Set<String> = ["MEN", "WOMEN", "KID", "KIDS", "SALE"]
-        return brands
+        let mainCategories: Set<String> = [
+            "MEN", "WOMEN", "KID", "KIDS", "SALE",
+        ]
+        return
+            brands
             .filter { !mainCategories.contains($0.name.uppercased()) }
             .sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
