@@ -24,7 +24,7 @@ struct VoucherBottomSheet: View {
                 text: $voucherCode
             )
             
-            AppButton(title: AppStrings.Cart.apply, verticalPadding: 16,) {
+            AppButton(title: AppStrings.Cart.apply, verticalPadding: 16) {
                 onApply(voucherCode)
                 isPresented = false
             }
