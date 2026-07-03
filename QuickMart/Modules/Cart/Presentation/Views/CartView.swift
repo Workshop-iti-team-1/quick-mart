@@ -11,6 +11,8 @@ import SafariServices
 struct CartView: View {
     @StateObject private var viewModel = DIContainer.shared.makeCartViewModel()
     @State private var showVoucherSheet = false
+    @State private var showDeleteConfirmation = false
+    @State private var itemToDeleteId: String?
     let router: AppRouter
     
     var body: some View {
@@ -70,6 +72,31 @@ struct CartView: View {
                 SafariView(url: url)
             }
         }
+        .sheet(isPresented: $showDeleteConfirmation) {
+            if #available(iOS 16.0, *) {
+                CartDeleteConfirmationSheet(
+                    isPresented: $showDeleteConfirmation,
+                    onDelete: {
+                        if let id = itemToDeleteId {
+                            viewModel.removeLine(lineId: id)
+                            itemToDeleteId = nil
+                        }
+                    }
+                )
+                .presentationDetents([.height(250)])
+                .presentationDragIndicator(.visible)
+            } else {
+                CartDeleteConfirmationSheet(
+                    isPresented: $showDeleteConfirmation,
+                    onDelete: {
+                        if let id = itemToDeleteId {
+                            viewModel.removeLine(lineId: id)
+                            itemToDeleteId = nil
+                        }
+                    }
+                )
+            }
+        }
     }
     
     private var populatedCartView: some View {
@@ -103,7 +130,8 @@ struct CartView: View {
                                     viewModel.updateQuantity(lineId: item.id, newQuantity: item.quantity - 1)
                                 },
                                 onDelete: {
-                                    viewModel.removeLine(lineId: item.id)
+                                    itemToDeleteId = item.id
+                                    showDeleteConfirmation = true
                                 }
                             )
                             .padding(.horizontal, 16)

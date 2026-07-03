@@ -64,6 +64,8 @@ enum AppStrings {
         static let apply = String(localized: "Cart_apply", defaultValue: "Apply")
         static let discountAppliedMessage = String(localized: "Cart_discountAppliedMessage", defaultValue: "The discount code has been applied successfully.")
         static let discountInvalidMessage = String(localized: "Cart_discountInvalidMessage", defaultValue: "The discount code is invalid or not applicable.")
+        static let deleteProductTitle = String(localized: "Cart_deleteProductTitle", defaultValue: "Delete product from cart")
+        static let deleteProductButton = String(localized: "Cart_deleteProductButton", defaultValue: "Delete (1) product")
     }
     
     enum ProductDetails {
