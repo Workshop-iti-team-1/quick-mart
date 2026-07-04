@@ -221,7 +221,6 @@
 		5F7844E72FF8562200F6D3C7 /* AddressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844E62FF8562200F6D3C7 /* AddressListViewModel.swift */; };
 		5F7844E92FF8564E00F6D3C7 /* AddressEventsBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844E82FF8564E00F6D3C7 /* AddressEventsBus.swift */; };
 		5F7844EB2FF8574800F6D3C7 /* CountryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7844EA2FF8574800F6D3C7 /* CountryDataProvider.swift */; };
-		5F7845122FF86DBA00F6D3C7 /* MockProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */; };
 		5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A722FF319FF00BB18C7 /* HomeView.swift */; };
 		5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */; };
 		5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */; };
@@ -572,7 +571,6 @@
 		5F7844E62FF8562200F6D3C7 /* AddressListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewModel.swift; sourceTree = "<group>"; };
 		5F7844E82FF8564E00F6D3C7 /* AddressEventsBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEventsBus.swift; sourceTree = "<group>"; };
 		5F7844EA2FF8574800F6D3C7 /* CountryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDataProvider.swift; sourceTree = "<group>"; };
-		5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileView.swift; sourceTree = "<group>"; };
 		5F840A722FF319FF00BB18C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5F840A752FF31A4500BB18C7 /* ColorSwatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatches.swift; sourceTree = "<group>"; };
 		5F840A772FF31A7E00BB18C7 /* LatestProductsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestProductsSection.swift; sourceTree = "<group>"; };
@@ -934,7 +932,6 @@
 		5F365C182FF84D410082DE82 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5F7845112FF86DA100F6D3C7 /* MockProfileView.swift */,
 				5F365C202FF84E330082DE82 /* AddressRowView.swift */,
 				5F365C1B2FF84D920082DE82 /* AddressFormView.swift */,
 				5F365C162FF84D360082DE82 /* SearchablePickerView.swift */,
@@ -1855,7 +1852,6 @@
 		D4A91EDE2FF0259B007B11D2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-
 				5FA216D62FF8EE6A00DBA613 /* Wishlist */,
 				5F365C102FF84CDF0082DE82 /* Address */,
 				D4A1B2772FF668E600735C4D /* Search */,
@@ -2213,7 +2209,6 @@
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
 				D4A1B2872FF6898900735C4D /* SubCategory.swift in Sources */,
-				5F840A882FF31BD200BB18C7 /* ProductItem.swift in Sources */,
 				DECCB6142FF6ADB400F0A8C0 /* MenuSection.swift in Sources */,
 				D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */,
 				5F840A782FF31A7E00BB18C7 /* LatestProductsSection.swift in Sources */,
@@ -2246,7 +2241,6 @@
 				49E07C1824415F2404D0613D /* AppButton.swift in Sources */,
 				F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */,
 				DE8869532FF6EA9100860250 /* ProfileViewModel.swift in Sources */,
-				5F74F40F2FF6209800DE42F6 /* GetCollectionsQuery.graphql.swift in Sources */,
 				5F5DB5E82FF581BE00908285 /* BrandGridItemView.swift in Sources */,
 				5F552A132FF6636100D34320 /* CollectionModel.swift in Sources */,
 				9F40D156A75B82DFBE7AD533 /* UserDefaultsKeys.swift in Sources */,
@@ -2279,51 +2273,8 @@
 				D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */,
 				D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */,
 				D4A1B2962FF68CE400735C4D /* FetchSubCategoriesUseCase.swift in Sources */,
-				5F74F4CC2FF6233600DE42F6 /* MailingAddress.graphql.swift in Sources */,
-				5F74F4CD2FF6233600DE42F6 /* Customer.graphql.swift in Sources */,
-				5F74F4CE2FF6233600DE42F6 /* Cart.graphql.swift in Sources */,
 				DEE282402FF7F85C00B4F59E /* UserEntity.swift in Sources */,
-				5F74F4CF2FF6233600DE42F6 /* ProductVariant.graphql.swift in Sources */,
-				5F74F4D02FF6233600DE42F6 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
-				5F74F4D12FF6233600DE42F6 /* CollectionConnection.graphql.swift in Sources */,
-				5F74F4D22FF6233600DE42F6 /* Page.graphql.swift in Sources */,
-				5F74F4D32FF6233600DE42F6 /* Product.graphql.swift in Sources */,
-				5F74F4D42FF6233600DE42F6 /* Metaobject.graphql.swift in Sources */,
-				5F74F4D52FF6233600DE42F6 /* Model3d.graphql.swift in Sources */,
-				5F74F4D62FF6233600DE42F6 /* Order.graphql.swift in Sources */,
-				5F74F4D72FF6233600DE42F6 /* MetafieldDeleteUserError.graphql.swift in Sources */,
-				5F74F4D82FF6233600DE42F6 /* ComponentizableCartLine.graphql.swift in Sources */,
-				5F74F4D92FF6233600DE42F6 /* CompanyLocation.graphql.swift in Sources */,
-				5F74F4DA2FF6233600DE42F6 /* UrlRedirect.graphql.swift in Sources */,
-				5F74F4DB2FF6233600DE42F6 /* CartUserError.graphql.swift in Sources */,
-				5F74F4DC2FF6233600DE42F6 /* QueryRoot.graphql.swift in Sources */,
-				5F74F4DD2FF6233600DE42F6 /* ExternalVideo.graphql.swift in Sources */,
-				5F74F4DE2FF6233600DE42F6 /* Video.graphql.swift in Sources */,
-				5F74F4DF2FF6233600DE42F6 /* MediaImage.graphql.swift in Sources */,
-				5F74F4E02FF6233600DE42F6 /* CartLine.graphql.swift in Sources */,
-				5F74F4E12FF6233600DE42F6 /* Mutation.graphql.swift in Sources */,
 				DECCB6162FF6ADFE00F0A8C0 /* MenuRaw.swift in Sources */,
-				5F74F4E22FF6233600DE42F6 /* PageInfo.graphql.swift in Sources */,
-				5F74F4E32FF6233600DE42F6 /* CustomerCreatePayload.graphql.swift in Sources */,
-				5F74F4E42FF6233600DE42F6 /* ShopPolicy.graphql.swift in Sources */,
-				5F74F4E52FF6233600DE42F6 /* MenuItem.graphql.swift in Sources */,
-				5F74F4E62FF6233600DE42F6 /* TaxonomyCategory.graphql.swift in Sources */,
-				5F74F4E72FF6233600DE42F6 /* AppliedGiftCard.graphql.swift in Sources */,
-				5F74F4E82FF6233600DE42F6 /* Shop.graphql.swift in Sources */,
-				5F74F4E92FF6233600DE42F6 /* ProductOptionValue.graphql.swift in Sources */,
-				5F74F4EA2FF6233600DE42F6 /* CustomerAccessToken.graphql.swift in Sources */,
-				5F74F4EB2FF6233600DE42F6 /* CustomerRecoverPayload.graphql.swift in Sources */,
-				5F74F4EC2FF6233600DE42F6 /* Metafield.graphql.swift in Sources */,
-				5F74F4ED2FF6233600DE42F6 /* SearchQuerySuggestion.graphql.swift in Sources */,
-				5F74F4EE2FF6233600DE42F6 /* GenericFile.graphql.swift in Sources */,
-				5F74F4EF2FF6233600DE42F6 /* Comment.graphql.swift in Sources */,
-				5F74F4F02FF6233600DE42F6 /* CustomerAccessTokenCreatePayload.graphql.swift in Sources */,
-				5F74F4F12FF6233600DE42F6 /* MediaPresentation.graphql.swift in Sources */,
-				5F74F4F22FF6233600DE42F6 /* MetafieldsSetUserError.graphql.swift in Sources */,
-				5F74F4F32FF6233600DE42F6 /* Market.graphql.swift in Sources */,
-				5F74F4F42FF6233600DE42F6 /* ProductConnection.graphql.swift in Sources */,
-				5F74F4F52FF6233600DE42F6 /* ProductOption.graphql.swift in Sources */,
-				5F74F4F62FF6233600DE42F6 /* ShopPayInstallmentsProductVariantPricing.graphql.swift in Sources */,
 				5F74F5072FF62CEA00DE42F6 /* CustomTabBar.swift in Sources */,
 				5F365D2C2FF853C30082DE82 /* SellingPlan.graphql.swift in Sources */,
 				5F365D2D2FF853C30082DE82 /* RecoverPasswordMutation.graphql.swift in Sources */,
@@ -2341,7 +2292,6 @@
 				5FA216E72FF8F04300DBA613 /* FavoriteRepositoryProtocol.swift in Sources */,
 				5F365D362FF853C30082DE82 /* CartInput.graphql.swift in Sources */,
 				5F365D372FF853C30082DE82 /* Video.graphql.swift in Sources */,
-				5F7845122FF86DBA00F6D3C7 /* MockProfileView.swift in Sources */,
 				5F365D382FF853C30082DE82 /* CompanyContact.graphql.swift in Sources */,
 				5F365D392FF853C30082DE82 /* SearchResultItemConnection.graphql.swift in Sources */,
 				5F365D3A2FF853C30082DE82 /* Image.graphql.swift in Sources */,
