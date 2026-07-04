@@ -55,6 +55,7 @@ enum AppStrings {
         static let emptyCartTitle = String(localized: "Cart_emptyCartTitle", defaultValue: "Your cart is empty")
         static let emptyCartMessage = String(localized: "Cart_emptyCartMessage", defaultValue: "Looks like you have not added anything in your cart. Go ahead and explore top categories.")
         static let exploreCategories = String(localized: "Cart_exploreCategories", defaultValue: "Explore Categories")
+        static let exploreBrands = String(localized: "Cart_exploreBrands", defaultValue: "Explore Brands")
         
         static let guestCartTitle = String(localized: "Cart_guestCartTitle", defaultValue: "Login to view cart")
         static let guestCartMessage = String(localized: "Cart_guestCartMessage", defaultValue: "Please login to your account to view your cart and checkout.")
