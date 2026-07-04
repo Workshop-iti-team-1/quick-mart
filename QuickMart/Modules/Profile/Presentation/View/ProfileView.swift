@@ -30,12 +30,14 @@ struct ProfileView: View {
                     MenuSection(title: AppStrings.Profile.supportInfo, items: viewModel.supportItems, router: router)
                     
                     MenuSection(title: AppStrings.Profile.accountManagement, items: viewModel.accountItems, router: router) { item, isOn in
-                        print("\(item.title) is now \(isOn)")
+                        if item.title == AppStrings.Profile.darkTheme {
+                            UserDefaults.standard.set(isOn, forKey: "isDarkMode")
+                        }
                     }
                     Spacer()
                 }
                 .padding(.top, 24)
-                .background(Color.appWhite)
+                .background(Color.backGround)
                 .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))
                 .frame(minHeight: UIScreen.main.bounds.height)
             }

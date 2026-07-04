@@ -35,9 +35,10 @@ class ProfileViewModel : ObservableObject{
     }
     
     var accountItems: [MenuItem] {
-        [
+        let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        return [
             MenuItem(icon: "lock", title: AppStrings.Profile.changePassword, trailing: .chevron(route: .changePassword)),
-            MenuItem(icon: "mobile", title: AppStrings.Profile.darkTheme, trailing: .toggle(isOn: true))
+            MenuItem(icon: "mobile", title: AppStrings.Profile.darkTheme, trailing: .toggle(isOn: isDarkMode))
         ]
     }
     

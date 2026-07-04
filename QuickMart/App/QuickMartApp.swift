@@ -22,13 +22,14 @@ struct QuickMartApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var router = AppRouter()
     @StateObject private var sessionManager = SessionManager.shared
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(router)
                 .environmentObject(sessionManager)
-
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
