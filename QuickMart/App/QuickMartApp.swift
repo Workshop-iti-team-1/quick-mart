@@ -28,6 +28,7 @@ struct QuickMartApp: App {
             RootView()
                 .environment(router)
                 .environmentObject(sessionManager)
+
         }
     }
 }
