@@ -5,7 +5,6 @@
 //  Created by Mina_Wagdy on 02/07/2026.
 //
 
-
 import Combine
 import Foundation
 
@@ -16,6 +15,13 @@ final class SearchViewModel: ObservableObject {
     private var currentSearchTask: Task<Void, Never>?
     private var currentPredictiveTask: Task<Void, Never>?
 
+    // MARK: - Constants
+
+    /// Used to distinguish root categories from brand collections
+    private let mainCategoryNames: Set<String> = [
+        "MEN", "WOMEN", "KID", "KIDS", "SALE",
+    ]
+
     // MARK: - Search State
 
     @Published var searchText: String = ""
@@ -23,12 +29,12 @@ final class SearchViewModel: ObservableObject {
     @Published private(set) var recentSearches: [String] = []
     @Published private(set) var isSearching: Bool = false
     @Published private(set) var errorMessage: String? = nil
-    
+
     // MARK: - Predictive State
 
-    @Published private(set) var predictiveSuggestions: [PredictiveSuggestion] = []
+    @Published private(set) var predictiveSuggestions: [PredictiveSuggestion] =
+        []
     @Published private(set) var isPredictiveSearching: Bool = false
-
 
     // MARK: - Pagination State
 
@@ -63,7 +69,8 @@ final class SearchViewModel: ObservableObject {
     private let fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol
     private let fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol
     private let fetchBrandsUseCase: FetchBrandsUseCaseProtocol
-    private let fetchPredictiveSearchUseCase: FetchPredictiveSearchUseCaseProtocol
+    private let fetchPredictiveSearchUseCase:
+        FetchPredictiveSearchUseCaseProtocol
     private let repository: SearchRepositoryProtocol
 
     // MARK: - Init
@@ -112,7 +119,7 @@ final class SearchViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     /// Separate 200ms debounce — faster than full search, lightweight call.
     /// Only fires when text is non-empty; clears suggestions immediately on empty.
     private func setupPredictiveDebounce() {
@@ -134,7 +141,7 @@ final class SearchViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     // MARK: - Predictive Intents
     private func loadPredictive(query: String) async {
         isPredictiveSearching = true
@@ -165,12 +172,18 @@ final class SearchViewModel: ObservableObject {
             searchText = product.title
             repository.saveRecentSearch(product.title)
             recentSearches = repository.fetchRecentSearches()
-            Task { await performSearch(query: product.title, resetPagination: true) }
+            Task {
+                await performSearch(query: product.title, resetPagination: true)
+            }
 
         case .collection(let collection):
             // Apply collection as a category filter — same key as SearchFilters.selectedCategoryIDs
             var filters = SearchFilters()
-            filters.selectedCategoryIDs.insert(collection.handle)
+            if mainCategoryNames.contains(collection.handle.uppercased()) {
+                filters.selectedCategoryIDs.insert(collection.handle)
+            } else {
+                filters.selectedBrandIDs.insert(collection.title)
+            }
             appliedFilters = filters
             pendingFilters = filters
             searchText = ""
@@ -183,17 +196,17 @@ final class SearchViewModel: ObservableObject {
         predictiveSuggestions = []
         isPredictiveSearching = false
     }
-    
+
     // MARK: - External Intents (Tab Bar Navigation)
-        func applyExternalFilters(_ filters: SearchFilters) {
-            self.appliedFilters = filters
-            self.pendingFilters = filters
-            self.searchText = "" // Clear previous search text
-            
-            Task {
-                await performSearch(query: "", resetPagination: true)
-            }
+    func applyExternalFilters(_ filters: SearchFilters) {
+        self.appliedFilters = filters
+        self.pendingFilters = filters
+        self.searchText = ""  // Clear previous search text
+
+        Task {
+            await performSearch(query: "", resetPagination: true)
         }
+    }
     // MARK: - Initial Load
 
     /// Called from SearchView.task — loads first page of all products on appear.
@@ -335,16 +348,10 @@ final class SearchViewModel: ObservableObject {
         }
     }
 
-    /// Business rule: skip first 3 dummy collections; remove main category collections;
-    /// sort remaining alphabetically.
-    /// When Shopify adds a dedicated vendor/brand endpoint, replace only this method.
     private func processFilterBrands(_ brands: [BrandItem]) -> [BrandItem] {
-        let mainCategories: Set<String> = [
-            "MEN", "WOMEN", "KID", "KIDS", "SALE",
-        ]
         return
             brands
-            .filter { !mainCategories.contains($0.name.uppercased()) }
+            .filter { !mainCategoryNames.contains($0.name.uppercased()) }
             .sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
 }
