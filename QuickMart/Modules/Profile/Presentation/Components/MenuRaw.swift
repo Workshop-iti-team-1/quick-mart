@@ -33,41 +33,27 @@ struct MenuRow: View {
             if case let .chevron(route) = trailing { router.push(route) }
         } label: {
             HStack(spacing: 14) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10).fill(Color.grey50).frame(width: 36, height: 36)
-                    Image(icon).font(.system(size: 15, weight: .medium)).foregroundColor(.appBlack)
-                }
-                Text(title).appTextStyle(.body, color: .appBlack)
+                Image(icon).font(.system(size: 24, weight: .medium)).foregroundColor(.grey150)
+                Text(title).appTextStyle(.body, color: .grey150)
                 Spacer()
                 switch trailing {
                 case .chevron:
-                    Image(systemName: "chevron.right").font(.system(size: 13, weight: .semibold)).foregroundColor(.grey150)
+                    Image(systemName: "chevron.right").font(.system(size: 13, weight: .semibold)).foregroundColor(.grey150)     .padding(.trailing, 20)
                 case .toggle:
-                    Toggle("", isOn: $toggleValue).labelsHidden().tint(.cyanPrimary)
+                    Toggle("", isOn: $toggleValue).scaleEffect(0.6).labelsHidden().tint(.cyanPrimary)
                         .onChange(of: toggleValue) { newValue in onToggleChange?(newValue) }
                 }
             }
+            .padding(.leading, 20)
             .padding(.vertical, 10)
         }
         .buttonStyle(.plain)
-        .disabled({ if case .toggle = trailing { return true }; return false }())
     }
 }
 
 
-// MARK: - Models
-struct MenuItem: Identifiable {
-    enum Trailing {
-        case chevron(route: Route)
-        case toggle(isOn: Bool)
-    }
-    let id = UUID()
-    let icon: String
-    let title: String
-    let trailing: Trailing
-}
 
-// MARK: - Components
+
 struct ProfileSectionHeader: View {
     let title: String
     var body: some View {

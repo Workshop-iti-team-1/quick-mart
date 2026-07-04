@@ -16,12 +16,17 @@ struct MenuSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ProfileSectionHeader(title: title)
-            VStack(spacing: 0) {
+            .padding(.horizontal, 18)
+
+            VStack(spacing: 3) {
                 ForEach(items) { item in
                     MenuRow(icon: item.icon, title: item.title, trailing: item.trailing, router: router, onToggleChange: { onToggle(item, $0) })
-                    if item.id != items.last?.id { Divider().padding(.leading, 50) }
+
+
+                    if item.id != items.last?.id { Divider()}
                 }
             }
+            Divider()
         }
     }
 }

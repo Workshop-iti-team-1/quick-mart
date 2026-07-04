@@ -8,69 +8,70 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
     var router: AppRouter
-    
-    private var personalItems: [MenuItem] {
-        [
-            MenuItem(icon: "box", title: AppStrings.Profile.shippingAddress, trailing: .chevron(route: .shippingAddress)),
-            MenuItem(icon: "card-tick", title: AppStrings.Profile.paymentMethod, trailing: .chevron(route: .paymentMethod)),
-            MenuItem(icon: "document-text", title: AppStrings.Profile.orderHistory, trailing: .chevron(route: .orderHistory))
-        ]
-    }
-    
-    private var supportItems: [MenuItem] {
-        [
-            MenuItem(icon:"shield-tick", title: AppStrings.Profile.privacyPolicy, trailing: .chevron(route: .privacyPolicy)),
-            MenuItem(icon:"receipt-edit", title: AppStrings.Profile.termsConditions, trailing: .chevron(route: .termsAndConditions)),
-            MenuItem(icon:"message-question", title: AppStrings.Profile.faqs, trailing: .chevron(route: .faqs))
-        ]
-    }
-    
-    private var accountItems: [MenuItem] {
-        [
-            MenuItem(icon: "lock", title: AppStrings.Profile.changePassword, trailing: .chevron(route: .changePassword)),
-            MenuItem(icon: "mobile", title: AppStrings.Profile.darkTheme, trailing: .toggle(isOn: true))
-        ]
-    }
+    @StateObject private var viewModel = ProfileViewModel()
     
     var body: some View {
-        ScrollView {
-            ZStack(alignment: .top) {
-                // Background color for the whole screen
-                Color.backGround.ignoresSafeArea()
-                
-                VStack(spacing: 0) {
-                    // Profile Card
+        ZStack(alignment:.topLeading){
+            Color.cyanPrimary.ignoresSafeArea()
+            ScrollView{
+                if let user = viewModel.user {
                     ProfileHeaderCard(
-                        name: "Ahmed El-Sayyad Mohamed",
-                        email: "ahmedelsayyad123@gmail.com",
-                        avatarImageURL: nil
-                    )
-                    .padding(.top, 8)
-                    .padding(.bottom, 20)
-                    
-                    // Main Content Section
-                    VStack(alignment: .leading, spacing: 0) {
-                        MenuSection(title: AppStrings.Profile.personalInfo, items: personalItems, router: router)
-                        MenuSection(title: AppStrings.Profile.supportInfo, items: supportItems, router: router)
-                        MenuSection(title: AppStrings.Profile.accountManagement, items: accountItems, router: router) { item, isOn in
-                            print("\(item.title) is now \(isOn)")
-                        }
+                        user: user
+                    ){
+                        // handle logout here
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 24)
-                    .padding(.bottom, 40)
-                    .background(Color.appWhite) // Set your desired background color here
-                    .clipShape(RoundedCorner(radius: 20, corners: [.topLeft, .topRight]))
                 }
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    
+                    MenuSection(title: AppStrings.Profile.personalInfo, items: viewModel.personalItems, router: router)
+                    
+                    MenuSection(title: AppStrings.Profile.supportInfo, items: viewModel.supportItems, router: router)
+                    
+                    MenuSection(title: AppStrings.Profile.accountManagement, items: viewModel.accountItems, router: router) { item, isOn in
+                        print("\(item.title) is now \(isOn)")
+                    }
+                    Spacer()
+                }
+                .padding(.top, 24)
+                .background(Color.appWhite)
+                .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))
+                .frame(minHeight: UIScreen.main.bounds.height)
             }
+        
+            
         }
-        .background(Color.backGround)
     }
 }
 
-// MARK: - Helper for Rounded Corners
+/*
+ 
+ ScrollView {
+     VStack(spacing: 0) {
+         ProfileHeaderCard(
+             name: "Ahmed Raza",
+             email: "ahmedraza@gmail.com",
+             avatarImageURL: nil
+         )
+         .padding(.top, 20)
+         .padding(.bottom, 30)
+         VStack(alignment: .leading, spacing: 0) {
+             MenuSection(title: AppStrings.Profile.personalInfo, items: viewModel.personalItems, router: router)
+             MenuSection(title: AppStrings.Profile.supportInfo, items: viewModel.supportItems, router: router)
+             MenuSection(title: AppStrings.Profile.accountManagement, items: viewModel.accountItems, router: router) { item, isOn in
+                 print("\(item.title) is now \(isOn)")
+             }
+             
+          
+             Spacer(minLength: 50)
+         }
+         .padding(.horizontal, 20)
+         .padding(.top, 24)
+         .background(Color.appWhite)
+         .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))
+     }}
+ */
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners

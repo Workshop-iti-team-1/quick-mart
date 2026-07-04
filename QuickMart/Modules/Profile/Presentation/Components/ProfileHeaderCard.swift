@@ -8,50 +8,68 @@ import SwiftUI
 
 struct ProfileHeaderCard: View {
     
-    let name: String
-    let email: String
-    let avatarImageURL: String?
+    let user: UserEntity
     var onLogoutTap: (() -> Void)? = nil
 
     var body: some View {
-        
         HStack(spacing: 12) {
-        
             avatarView
+            
             VStack(alignment: .leading, spacing: 2) {
-                Text(name).appTextStyle(.button, color: .appWhite)
-                Text(email).appTextStyle(.caption, color: .appWhite.opacity(0.85))
+                Text(user.name ?? "Unknown")
+                    .appTextStyle(.button, color: .appWhite)
+                
+                Text(user.email ?? "Unknown")
+                    .appTextStyle(.button, color: .appWhite)
             }
+            
             Spacer()
-            Button { onLogoutTap?() } label: {
-                Image("logout").font(.system(size: 22)).foregroundColor(.appWhite)
+            
+            Button {
+                onLogoutTap?()
+            } label: {
+                Image("logout")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(.appWhite)
             }
         }
         .padding(16)
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color.cyanPrimary))
-        .padding(.horizontal, 16)
     }
 
     @ViewBuilder
     private var avatarView: some View {
-        
-        if let profileImageUrl = avatarImageURL, UIImage(named: profileImageUrl) != nil {
-        
-            Image(profileImageUrl).resizable().scaledToFill().frame(width: 48, height: 48).clipShape(Circle())
+        if let urlString = user.avatarImageURL, let url = URL(string: urlString) {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                        .frame(width: 48, height: 48)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 48, height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                case .failure:
+                    placeholderView
+                @unknown default:
+                    placeholderView
+                }
+            }
         } else {
-            
-            Circle().fill(Color.appWhite.opacity(0.3)).frame(width: 48, height: 48)
-                .overlay(Image(systemName: "person.fill").foregroundColor(.appWhite))
+            placeholderView
         }
     }
-}
 
-#Preview {
-    ProfileHeaderCard(
-        name: "Ahmed El-Sayyad",
-        email: "ahmed@example.com",
-        avatarImageURL: nil,
-        onLogoutTap: { print("Logout tapped") }
-    )
-    .background(Color.black.opacity(0.05))
+    private var placeholderView: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(Color.appWhite.opacity(0.3))
+            .frame(width: 48, height: 48)
+            .overlay(
+                Image(systemName: "person.fill")
+                    .foregroundColor(.appWhite)
+            )
+    }
 }
