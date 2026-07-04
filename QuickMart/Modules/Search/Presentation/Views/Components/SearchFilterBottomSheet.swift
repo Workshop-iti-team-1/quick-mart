@@ -126,7 +126,7 @@ struct SearchFilterBottomSheet: View {
         ) {
             ForEach(viewModel.filterSubCategories) { sub in
                 CheckboxRowView(
-                    title: sub.name,
+                    title: sub.name.uppercased(),
                     isSelected: viewModel.pendingFilters.selectedSubCategoryIDs
                         .contains(sub.id)
                 ) {
@@ -135,26 +135,6 @@ struct SearchFilterBottomSheet: View {
             }
         }
     }
-
-    //    // MARK: - Brands
-    //
-    //    private var brandsSection: some View {
-    //        CollapsibleFilterSection(
-    //            title: "Brands",
-    //            isExpanded: $isBrandsExpanded,
-    //            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
-    //        ) {
-    //            ForEach(viewModel.filterBrands) { brand in
-    //                CheckboxRowView(
-    //                    title: brand.name.uppercased(),
-    //                    isSelected: viewModel.pendingFilters.selectedBrandIDs
-    //                        .contains(brand.id)
-    //                ) {
-    //                    viewModel.toggleBrand(brand.id)
-    //                }
-    //            }
-    //        }
-    //    }
 
     // MARK: - Sorting (single-select enforced by ViewModel)
 
@@ -167,7 +147,7 @@ struct SearchFilterBottomSheet: View {
         ) {
             ForEach(SortOption.allCases) { option in
                 CheckboxRowView(
-                    title: option.rawValue,
+                    title: option.rawValue.uppercased(),
                     isSelected: viewModel.pendingFilters.selectedSort == option
                 ) {
                     viewModel.selectSort(option)
