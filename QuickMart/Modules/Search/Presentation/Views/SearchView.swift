@@ -132,7 +132,7 @@ struct SearchView: View {
         } label: {
             ZStack(alignment: .topTrailing) {
                 Image(systemName: "slider.horizontal.3")
-                    .font(.system(size: 16))
+                    .font(.system(size: 20))
                     .foregroundColor(
                         viewModel.hasActiveFilters ? .cyanPrimary : .appBlack)
 
@@ -159,7 +159,7 @@ struct SearchView: View {
             predictiveView
 
         } else {
-            // State 3/4: Unfocused → full results or empty state
+            // State 3: Unfocused → full results or empty state
             activeSearchContent
         }
     }
@@ -178,7 +178,6 @@ struct SearchView: View {
                         viewModel.selectRecentSearch(query)
                         isSearchFocused = false  // Drop keyboard to reveal results
                     }
-                    // Styling to match your previous custom UI
                     .listRowInsets(
                         EdgeInsets(
                             top: 0, leading: Layout.horizontalPad, bottom: 0,
