@@ -103,7 +103,23 @@ final class AppRouter {
             ProductDetailsView(
                 viewModel: self.diContainer.makeProductDetailsViewModel(productId: product.id, preloadedProduct: product)
             )
-     
+            
+        case .profile:
+            ProfileView(router: self)
+        case .shippingAddress:
+            ProfileView(router: self)
+        case .paymentMethod:
+            ProfileView(router: self)
+        case .orderHistory:
+            ProfileView(router: self)
+        case .privacyPolicy:
+            ProfileView(router: self)
+        case .termsAndConditions:
+            ProfileView(router: self)
+        case .faqs:
+            ProfileView(router: self)
+        case .changePassword:
+            ProfileView(router: self)
         }
     }
     // MARK: - Search (fullScreenCover factory)

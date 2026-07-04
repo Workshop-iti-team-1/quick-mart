@@ -131,4 +131,22 @@ enum AppStrings {
         static let unauthorized = String(localized: "Network_unauthorized", defaultValue: "Invalid Storefront Access Token.")
         static let rateLimited = String(localized: "Network_rateLimited", defaultValue: "Too many requests. Please slow down.")
     }
+    
+    enum Profile {
+        static let title = String(localized: "Profile_title", defaultValue: "Profile")
+        static let personalInfo = String(localized: "Profile_personalInfo", defaultValue: "Personal Information")
+        static let shippingAddress = String(localized: "Profile_shippingAddress", defaultValue: "Shipping Address")
+        static let paymentMethod = String(localized: "Profile_paymentMethod", defaultValue: "Payment Method")
+        static let orderHistory = String(localized: "Profile_orderHistory", defaultValue: "Order History")
+        
+        static let supportInfo = String(localized: "Profile_supportInfo", defaultValue: "Support & Information")
+        static let privacyPolicy = String(localized: "Profile_privacyPolicy", defaultValue: "Privacy Policy")
+        static let termsConditions = String(localized: "Profile_termsConditions", defaultValue: "Terms & Conditions")
+        static let faqs = String(localized: "Profile_faqs", defaultValue: "FAQs")
+        
+        static let accountManagement = String(localized: "Profile_accountManagement", defaultValue: "Account Management")
+        static let changePassword = String(localized: "Profile_changePassword", defaultValue: "Change Password")
+        static let darkTheme = String(localized: "Profile_darkTheme", defaultValue: "Dark Theme")
+    }
+    
 }
