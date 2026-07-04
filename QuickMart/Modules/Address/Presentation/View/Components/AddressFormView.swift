@@ -6,14 +6,7 @@
 //
 
 
-//
-//  AddressFormView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 02/07/2026.
-//
 
-// Presentation/Address/AddressFormView.swift
 import SwiftUI
 
 struct AddressFormView: View {
@@ -54,19 +47,22 @@ struct AddressFormView: View {
                     Text(error).appTextStyle(.caption, color: .appRed)
                 }
 
-                Button {
-                    viewModel.save()
-                } label: {
-                    Group {
-                        if viewModel.isSaving { ProgressView().tint(.appWhite) }
-                        else { Text("Save").appTextStyle(.button, color: .appWhite) }
+                Group {
+                    if viewModel.isSaving {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 18)
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.appButton.opacity(0.6)))
+                    } else {
+                        AppButton(title: "Save") {
+                            viewModel.save()
+                        }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.appBlack)
-                    .cornerRadius(12)
                 }
-                .disabled(viewModel.isSaving)
                 .padding(.top, 8)
             }
             .padding()

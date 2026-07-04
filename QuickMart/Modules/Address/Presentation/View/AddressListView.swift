@@ -6,12 +6,6 @@
 //
 
 
-//
-//  AddressListView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 02/07/2026.
-
 import SwiftUI
 
 struct AddressListView: View {
@@ -39,8 +33,6 @@ struct AddressListView: View {
                             onEdit: { router.push(.addressForm(address)) },
                             onSetDefault: { viewModel.setDefault(address) }
                         )
-                        // No .onDelete(perform:) anywhere — that's the native list-edit delete
-                        // affordance and it bypasses this guard entirely if present.
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             if !address.isDefault {
                                 Button(role: .destructive) {
@@ -104,32 +96,56 @@ struct AddressListView: View {
     }
 
     private var emptyState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "shippingbox").font(.system(size: 40)).foregroundColor(.grey150)
-            Text("No addresses yet").appTextStyle(.body, color: .grayText)
-            Button { router.push(.addressForm(nil)) } label: {
-                Text("Add Address")
-                    .appTextStyle(.button, color: .appWhite)
-                    .padding(.horizontal, 24).padding(.vertical, 12)
-                    .background(Color.appBlack)
-                    .cornerRadius(10)
+        VStack(spacing: 24) {
+            ZStack {
+                Circle()
+                    .fill(Color.cyan50)
+                    .frame(width: 120, height: 120)
+                Image(systemName: "shippingbox.fill")
+                    .font(.system(size: 44))
+                    .foregroundColor(.cyan50)
             }
+            VStack(spacing: 8) {
+                Text("No addresses yet")
+                    .appTextStyle(.heading2, color: .appBlack)
+                Text("Add a shipping address to speed up checkout next time.")
+                    .appTextStyle(.body, color: .grayText)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+            }
+            AppButton(title: "Add Address", icon: "plus") {
+                router.push(.addressForm(nil))
+            }
+            .padding(.horizontal, 48)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.bottom, 60)
     }
 
     private var guestState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "lock.fill").font(.system(size: 40)).foregroundColor(.grey150)
-            Text("Please log in to manage addresses").appTextStyle(.body, color: .grayText)
-            Button { router.push(.login) } label: {
-                Text("Log In")
-                    .appTextStyle(.button, color: .appWhite)
-                    .padding(.horizontal, 24).padding(.vertical, 12)
-                    .background(Color.appBlack)
-                    .cornerRadius(10)
+        VStack(spacing: 24) {
+            ZStack {
+                Circle()
+                    .fill(Color.cyan50)
+                    .frame(width: 120, height: 120)
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 40))
+                    .foregroundColor(.cyanPrimary)
             }
+            VStack(spacing: 8) {
+                Text("Please log in")
+                    .appTextStyle(.heading2, color: .appBlack)
+                Text("Log in to add and manage your shipping addresses.")
+                    .appTextStyle(.body, color: .grayText)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+            }
+            AppButton(title: "Log In", icon: "arrow.right") {
+                router.push(.login)
+            }
+            .padding(.horizontal, 48)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.bottom, 60)
     }
 }

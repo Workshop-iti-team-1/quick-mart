@@ -6,13 +6,6 @@
 //
 
 
-//
-//  AddressListViewModel.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 02/07/2026.
-//
-
 import Combine
 import Foundation
 

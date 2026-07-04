@@ -27,7 +27,6 @@ class SessionManager: ObservableObject {
         self.firebaseAuth = firebaseAuth
     }
     
-    /// Call this AFTER FirebaseApp.configure() has completed
     func configure() {
         checkUserStatus()
     }
@@ -39,7 +38,6 @@ class SessionManager: ObservableObject {
             } else if getToken() != nil {
                 currentState = .loggedIn
             } else {
-                // Firebase user exists but no Shopify token — treat as guest
                 currentState = .guest
             }
         } else {
@@ -64,5 +62,12 @@ class SessionManager: ObservableObject {
     
     func getToken() -> String? {
         return UserDefaults.standard.string(forKey: UserDefaultsKeys.customerAccessToken)
+    }
+
+    /// Scoping key for anything user-specific stored locally (e.g. favorites).
+    /// Every Firebase user — including anonymous/guest sessions — has a stable UID,
+    /// so this correctly separates guest favorites from each logged-in account's favorites.
+    var currentUserId: String {
+        firebaseAuth.getCurrentUser()?.uid ?? "unauthenticated"
     }
 }
