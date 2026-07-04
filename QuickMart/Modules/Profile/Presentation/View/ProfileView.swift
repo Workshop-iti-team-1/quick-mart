@@ -13,13 +13,21 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack(alignment:.topLeading){
-            Color.cyanPrimary.ignoresSafeArea()
+            Color.backGround.ignoresSafeArea()
+            
+            VStack {
+                Color.cyanPrimary
+                    .frame(height: 300)
+                Spacer()
+            }
+            .ignoresSafeArea()
+
             ScrollView{
                 if let user = viewModel.user {
                     ProfileHeaderCard(
                         user: user
                     ){
-                        // handle logout here
+                        SessionManager.shared.logout()
                     }
                 }
                 

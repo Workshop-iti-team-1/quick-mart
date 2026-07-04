@@ -47,18 +47,6 @@ struct HomeView: View {
                         }
                     )
                 }
-
-                Button {
-                    SessionManager.shared.logout()
-                } label: {
-                    Text("Test Logout")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(12)
-                }
             }
             .padding(.horizontal, 16)
             .padding(.top, 12)
