@@ -168,6 +168,15 @@
 		15C2276B2FF9574F004E3E90 /* BaseCartLineConnection.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C226672FF9574F004E3E90 /* BaseCartLineConnection.graphql.swift */; };
 		15C2276C2FF9574F004E3E90 /* RegisterCustomerMutation.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2262C2FF9574F004E3E90 /* RegisterCustomerMutation.graphql.swift */; };
 		15C2276D2FF9574F004E3E90 /* Metafield.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C226992FF9574F004E3E90 /* Metafield.graphql.swift */; };
+		15C227712FF95B6E004E3E90 /* DIContainer+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227702FF95B6E004E3E90 /* DIContainer+Profile.swift */; };
+		15C227732FF95B90004E3E90 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227722FF95B90004E3E90 /* OrderHistoryView.swift */; };
+		15C227752FF95BAC004E3E90 /* OrderHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227742FF95BAC004E3E90 /* OrderHistoryViewModel.swift */; };
+		15C227772FF95BBD004E3E90 /* OrderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227762FF95BBD004E3E90 /* OrderCardView.swift */; };
+		15C227792FF95BD1004E3E90 /* EmptyOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227782FF95BD1004E3E90 /* EmptyOrderView.swift */; };
+		15C2277C2FF95C61004E3E90 /* OrderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2277B2FF95C61004E3E90 /* OrderEntity.swift */; };
+		15C227812FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2277D2FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift */; };
+		15C227822FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2277F2FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift */; };
+		15C227852FF95DBC004E3E90 /* ProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227832FF95DBC004E3E90 /* ProfileRepositoryImpl.swift */; };
 		15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36C2FF1F3030091D036 /* Customer.swift */; };
 		15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36E2FF1F30B0091D036 /* AuthToken.swift */; };
 		15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */; };
@@ -533,6 +542,15 @@
 		15C226CA2FF9574F004E3E90 /* SchemaConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaConfiguration.swift; sourceTree = "<group>"; };
 		15C226CB2FF9574F004E3E90 /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
 		15C226CD2FF9574F004E3E90 /* ShopifyAPI.graphql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyAPI.graphql.swift; sourceTree = "<group>"; };
+		15C227702FF95B6E004E3E90 /* DIContainer+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DIContainer+Profile.swift"; sourceTree = "<group>"; };
+		15C227722FF95B90004E3E90 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
+		15C227742FF95BAC004E3E90 /* OrderHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewModel.swift; sourceTree = "<group>"; };
+		15C227762FF95BBD004E3E90 /* OrderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardView.swift; sourceTree = "<group>"; };
+		15C227782FF95BD1004E3E90 /* EmptyOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyOrderView.swift; sourceTree = "<group>"; };
+		15C2277B2FF95C61004E3E90 /* OrderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEntity.swift; sourceTree = "<group>"; };
+		15C2277D2FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		15C2277F2FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomerOrdersUseCase.swift; sourceTree = "<group>"; };
+		15C227832FF95DBC004E3E90 /* ProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryImpl.swift; sourceTree = "<group>"; };
 		15D4B36C2FF1F3030091D036 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		15D4B36E2FF1F30B0091D036 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthError.swift; sourceTree = "<group>"; };
@@ -996,6 +1014,30 @@
 			path = ShopifyAPI;
 			sourceTree = "<group>";
 		};
+		15C2277E2FF95C6C004E3E90 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				15C2277D2FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		15C227802FF95C6C004E3E90 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				15C2277F2FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		15C227842FF95DBC004E3E90 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				15C227832FF95DBC004E3E90 /* ProfileRepositoryImpl.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		15F124502FF4569B00428612 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,6 +1131,7 @@
 				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
 				48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */,
 				A010C97AB517F86089C948F8 /* DIContainer+Network.swift */,
+				15C227702FF95B6E004E3E90 /* DIContainer+Profile.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -2010,6 +2053,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8869522FF6EA9100860250 /* ProfileViewModel.swift */,
+				15C227742FF95BAC004E3E90 /* OrderHistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2028,6 +2072,7 @@
 			isa = PBXGroup;
 			children = (
 				15C224D82FF956EF004E3E90 /* DataSource */,
+				15C227842FF95DBC004E3E90 /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2036,6 +2081,8 @@
 			isa = PBXGroup;
 			children = (
 				DEE2823E2FF7F83F00B4F59E /* Entity */,
+				15C2277E2FF95C6C004E3E90 /* Repository */,
+				15C227802FF95C6C004E3E90 /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -2054,6 +2101,7 @@
 			isa = PBXGroup;
 			children = (
 				DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */,
+				15C227722FF95B90004E3E90 /* OrderHistoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2065,6 +2113,8 @@
 				DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */,
 				DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */,
 				DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */,
+				15C227762FF95BBD004E3E90 /* OrderCardView.swift */,
+				15C227782FF95BD1004E3E90 /* EmptyOrderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2073,6 +2123,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE2823F2FF7F85C00B4F59E /* UserEntity.swift */,
+				15C2277B2FF95C61004E3E90 /* OrderEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -2270,10 +2321,12 @@
 				5F365C622FF850B10082DE82 /* CountriesResponseModel.swift in Sources */,
 				5F365C1E2FF84DA80082DE82 /* AddressListView.swift in Sources */,
 				5F365C5D2FF850730082DE82 /* AddressRepositoryImpl.swift in Sources */,
+				15C227752FF95BAC004E3E90 /* OrderHistoryViewModel.swift in Sources */,
 				5F365C582FF850270082DE82 /* CountryRemoteDataSourceImpl.swift in Sources */,
 				5F365C5B2FF8505D0082DE82 /* CountryRepositoryImpl.swift in Sources */,
 				5F365C562FF850110082DE82 /* CountryRemoteDataSourceProtocol.swift in Sources */,
 				5F365C212FF84E330082DE82 /* AddressRowView.swift in Sources */,
+				15C227852FF95DBC004E3E90 /* ProfileRepositoryImpl.swift in Sources */,
 				D4B082282FF6FF500011F64A /* SearchRemoteDataSource.swift in Sources */,
 				D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */,
 				5F74F5172FF6304900DE42F6 /* CategoryViewModel.swift in Sources */,
@@ -2301,6 +2354,7 @@
 				DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */,
 				F39367A71C7937F3D59CEB11 /* AppTextStyle.swift in Sources */,
 				DFCA6316A229031D81765A74 /* color.swift in Sources */,
+				15C227792FF95BD1004E3E90 /* EmptyOrderView.swift in Sources */,
 				BC43438CFEB6647875F94D0E /* OnboardingBottomActionView.swift in Sources */,
 				261A5B2B394AB22A645F271E /* OnboardingTextContainerView.swift in Sources */,
 				C921832A67FB45E399B37411 /* OnboardingTopCardView.swift in Sources */,
@@ -2321,6 +2375,7 @@
 				D4A1B29A2FF68D4700735C4D /* CheckboxRowView.swift in Sources */,
 				D4A1B29E2FF68EC900735C4D /* RecentSearchRowView.swift in Sources */,
 				D4A1B28F2FF68ABC00735C4D /* SearchProductsUseCase.swift in Sources */,
+				15C2277C2FF95C61004E3E90 /* OrderEntity.swift in Sources */,
 				D4A1B28B2FF689DF00735C4D /* ProductSearchItem.swift in Sources */,
 				D4A1B2922FF68B7800735C4D /* MockSearchRepository.swift in Sources */,
 				5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */,
@@ -2350,6 +2405,7 @@
 				B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */,
 				5F7844DB2FF8556800F6D3C7 /* Address.swift in Sources */,
 				D4A1B2A02FF68EE500735C4D /* SearchFilterBottomSheet.swift in Sources */,
+				15C227712FF95B6E004E3E90 /* DIContainer+Profile.swift in Sources */,
 				5F74F5132FF62F7A00DE42F6 /* CategoryItem.swift in Sources */,
 				5F74F50F2FF62E7900DE42F6 /* HomeCategoriesSection.swift in Sources */,
 				5F552A1A2FF6642C00D34320 /* CollectionMapper.swift in Sources */,
@@ -2439,6 +2495,8 @@
 				15C2270F2FF9574F004E3E90 /* DeleteCustomerAddressMutation.graphql.swift in Sources */,
 				15C227102FF9574F004E3E90 /* SearchResultItemConnection.graphql.swift in Sources */,
 				15C227112FF9574F004E3E90 /* Mutation.graphql.swift in Sources */,
+				15C227812FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift in Sources */,
+				15C227822FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift in Sources */,
 				15C227122FF9574F004E3E90 /* SelectedOption.graphql.swift in Sources */,
 				15C227132FF9574F004E3E90 /* AddCustomerAddressMutation.graphql.swift in Sources */,
 				15C227142FF9574F004E3E90 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
@@ -2447,6 +2505,7 @@
 				15C227172FF9574F004E3E90 /* Order.graphql.swift in Sources */,
 				15C227182FF9574F004E3E90 /* SearchSortKeys.graphql.swift in Sources */,
 				15C227192FF9574F004E3E90 /* CartAddressInput.graphql.swift in Sources */,
+				15C227732FF95B90004E3E90 /* OrderHistoryView.swift in Sources */,
 				15C2271A2FF9574F004E3E90 /* ScriptDiscountApplication.graphql.swift in Sources */,
 				15C2271B2FF9574F004E3E90 /* BaseCartLine.graphql.swift in Sources */,
 				15C2271C2FF9574F004E3E90 /* CustomerAddressCreatePayload.graphql.swift in Sources */,
@@ -2548,6 +2607,7 @@
 				992D6DAC238046E366A7EBBE /* LoginRequestDTO.swift in Sources */,
 				5F74F5052FF62CDC00DE42F6 /* TabBarButton.swift in Sources */,
 				5F7844DF2FF855A600F6D3C7 /* AddressRepositoryProtocol.swift in Sources */,
+				15C227772FF95BBD004E3E90 /* OrderCardView.swift in Sources */,
 				DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */,
 				1C494194884F29089BC26E72 /* LoginResponseDTO.swift in Sources */,
 				BFFB154A5B878704916D544C /* CustomLoadingView.swift in Sources */,

@@ -111,7 +111,7 @@ final class AppRouter {
         case .paymentMethod:
             ProfileView(router: self)
         case .orderHistory:
-            ProfileView(router: self)
+            OrderHistoryView(viewModel: diContainer.makeOrderHistoryViewModel())
         case .privacyPolicy:
             ProfileView(router: self)
         case .termsAndConditions:
