@@ -18,4 +18,6 @@ enum Route: Hashable {
     case search(filters: SearchFilters? = nil)
     case shippingAddresses
     case addressForm(Address?)
+    case favoriteDetail(ProductDetails)
+    case wishlist
 }

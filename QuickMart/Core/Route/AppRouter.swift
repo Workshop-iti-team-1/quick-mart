@@ -97,6 +97,12 @@ final class AppRouter {
                     ),
                     router: self
                 )
+        case .wishlist:
+            WishlistView()
+        case .favoriteDetail(let product):
+            ProductDetailsView(
+                viewModel: self.diContainer.makeProductDetailsViewModel(productId: product.id, preloadedProduct: product)
+            )
      
         }
     }

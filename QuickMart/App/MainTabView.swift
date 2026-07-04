@@ -32,7 +32,7 @@ struct MainTabView: View {
                 case .cart:
                     CartView(router: router)
                 case .wishlist:
-                    Text("Wishlist")
+                    WishlistView()
                 case .profile:
             
                     MockProfileView()
