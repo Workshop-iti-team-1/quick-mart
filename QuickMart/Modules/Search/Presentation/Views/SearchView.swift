@@ -37,7 +37,12 @@ struct SearchView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.backGround.ignoresSafeArea()
+            Color.backGround
+                .ignoresSafeArea()
+                .contentShape(Rectangle())  // Ensures the whole area is tappable
+                .onTapGesture {
+                    isSearchFocused = false  //  Drops the keyboard
+                }
 
             VStack(spacing: 0) {
                 //headerView
@@ -192,6 +197,7 @@ struct SearchView: View {
             }
             .listStyle(.plain)  // Removes default List styling
             .scrollContentBackground(.hidden)  // Ensures your background color shows through
+            .scrollDismissesKeyboard(.immediately)
         }
         .frame(
             maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -244,6 +250,7 @@ struct SearchView: View {
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.immediately)
 
         } else if !viewModel.isPredictiveSearching {
             // Non-empty query but no suggestions returned
@@ -290,7 +297,7 @@ struct SearchView: View {
             }
             .padding(.horizontal, Layout.horizontalPad)
             .padding(.bottom, 24)
-        }
+        }.scrollDismissesKeyboard(.immediately)
     }
 
     private var emptyStateView: some View {
