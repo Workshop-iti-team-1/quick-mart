@@ -5,16 +5,12 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
+
 import SwiftUI
 
 struct ProductCard: View {
     let item: ProductSearchItem
-    @State private var isFavorite: Bool
-
-    init(item: ProductSearchItem) {
-        self.item = item
-        _isFavorite = State(initialValue: item.isFavorite)
-    }
+    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -50,20 +46,29 @@ struct ProductCard: View {
                         }
                     )
 
-                FavoriteButton(isFavorite: $isFavorite)
-                    .padding(8)
+                FavoriteButton(
+                    isFavorite: .init(
+                        get: { favouriteViewModel.isFavorite(item.id) },
+                        set: { _ in } // mutation happens in onToggle, not here
+                    ),
+                    onToggle: { newValue in
+                        let product = item.toMinimalProductDetails()
+                        if newValue {
+                            favouriteViewModel.addFavorite(product)
+                        } else {
+                            favouriteViewModel.removeFavorite(id: item.id)
+                        }
+                    }
+                )
+                .padding(8)
             }
-
             ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
-
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)
                 .lineLimit(1)
-
             HStack(spacing: 6) {
                 Text(String(format: "$%.2f", item.price))
                     .appTextStyle(.label, color: .appBlack)
-
                 if let originalPriceText = formattedOriginalPrice {
                     Text(originalPriceText)
                         .appTextStyle(.caption, color: .grayText)
