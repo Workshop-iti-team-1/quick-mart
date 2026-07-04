@@ -10,8 +10,10 @@ import Foundation
 import Combine
 
 protocol HomeRepositoryProtocol {
-    func fetchBanners() -> [BannerItem]
+   
+    func fetchBanners() async throws -> [BannerItem]
     func fetchBrands() -> AnyPublisher<[BrandItem], Error>
     func fetchCategories() -> AnyPublisher<[CategoryItem], Error>
     func getProductDetails(id: String) async throws -> ProductDetails
 }
+

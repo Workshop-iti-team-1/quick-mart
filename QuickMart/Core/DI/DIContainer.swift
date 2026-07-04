@@ -26,11 +26,13 @@ public final class DIContainer {
     }()
 
     // MARK: - Home Repository (shared)
+  
     private lazy var homeRepository: HomeRepositoryProtocol = {
         HomeRepositoryImpl(
-            remoteDataSource: HomeRemoteDataSource(client: graphQLClient))
+            remoteDataSource: HomeRemoteDataSource(client: graphQLClient),
+            discountDataSource: DiscountDataSource()
+        )
     }()
-
     // MARK: - Home
     private func makeFetchBannersUseCase() -> FetchBannersUseCaseProtocol {
         FetchBannersUseCase(repository: homeRepository)

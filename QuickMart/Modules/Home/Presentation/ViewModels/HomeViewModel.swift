@@ -6,31 +6,31 @@
 //
 
 
+
 import Foundation
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-
-   
     @Published private(set) var banners: [BannerItem] = []
-    @Published private(set) var latestProducts: [ProductSearchItem] = []
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = nil
 
-   
     private let fetchBannersUseCase: FetchBannersUseCaseProtocol
 
-    init(
-        fetchBannersUseCase: FetchBannersUseCaseProtocol
-    ) {
+    init(fetchBannersUseCase: FetchBannersUseCaseProtocol) {
         self.fetchBannersUseCase = fetchBannersUseCase
     }
 
-   
     func loadHome() {
         isLoading = true
         errorMessage = nil
-        banners = fetchBannersUseCase.execute()
-        isLoading = false
+        Task {
+            do {
+                banners = try await fetchBannersUseCase.execute()
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            isLoading = false
+        }
     }
 }

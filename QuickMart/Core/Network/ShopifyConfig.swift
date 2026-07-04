@@ -8,7 +8,6 @@
 import Foundation
 
 struct ShopifyConfig {
-
     static var storeURL: URL {
         let urlString = value(for: "STORE_URL").replacingOccurrences(of: "\\", with: "")
         guard let url = URL(string: urlString) else {
@@ -17,17 +16,18 @@ struct ShopifyConfig {
         return url
     }
 
-    static var storefrontToken: String {
-        value(for: "STOREFRONT_TOKEN")
+    static var adminURL: URL {
+        let urlString = value(for: "ADMIN_STORE_URL").replacingOccurrences(of: "\\", with: "")
+        guard let url = URL(string: urlString) else {
+            fatalError("Key ADMIN_STORE_URL is missing or empty in Info.plist")
+        }
+        return url
     }
 
-    static var apiKey: String {
-        value(for: "API_KEY")
-    }
-
-    static var apiSecretKey: String {
-        value(for: "API_SECRET_KEY")
-    }
+    static var storefrontToken: String { value(for: "STOREFRONT_TOKEN") }
+    static var apiKey: String { value(for: "API_KEY") }
+    static var apiSecretKey: String { value(for: "API_SECRET_KEY") }
+    static var adminToken: String { value(for: "ADMIN_TOKEN") }
 
     static var apolloHeaders: [String: String] {
         [
@@ -36,14 +36,12 @@ struct ShopifyConfig {
         ]
     }
 
-   
     private static func value(for key: String) -> String {
         guard
             let value = Bundle.main.object(forInfoDictionaryKey: key) as? String,
             !value.isEmpty
-        else {
-            fatalError("Key \(key) is missing or empty in Info.plist")
-        }
+        else { fatalError("Key \(key) is missing or empty in Info.plist") }
         return value
     }
 }
+

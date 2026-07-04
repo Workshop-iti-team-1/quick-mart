@@ -6,11 +6,10 @@
 //
 
 
-
 import Foundation
 
 protocol FetchBannersUseCaseProtocol {
-    func execute() -> [BannerItem]
+    func execute() async throws -> [BannerItem]
 }
 
 struct FetchBannersUseCase: FetchBannersUseCaseProtocol {
@@ -20,7 +19,8 @@ struct FetchBannersUseCase: FetchBannersUseCaseProtocol {
         self.repository = repository
     }
 
-    func execute() -> [BannerItem] {
-        repository.fetchBanners()
+    func execute() async throws -> [BannerItem] {
+        try await repository.fetchBanners()
     }
 }
+

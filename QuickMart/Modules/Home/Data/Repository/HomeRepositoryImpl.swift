@@ -10,48 +10,23 @@ import Combine
 
 final class HomeRepositoryImpl: HomeRepositoryProtocol {
     private let remoteDataSource: HomeRemoteDataSourceProtocol
+    private let discountDataSource: DiscountDataSourceProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(remoteDataSource: HomeRemoteDataSourceProtocol) {
-        self.remoteDataSource = remoteDataSource
-    }
+    init(
+         remoteDataSource: HomeRemoteDataSourceProtocol,
+         discountDataSource: DiscountDataSourceProtocol
+     ) {
+         self.remoteDataSource = remoteDataSource
+         self.discountDataSource = discountDataSource
+     }
 
     
 
-    func fetchBanners() -> [BannerItem] {
-        [
-            BannerItem(
-                id: "1",
-                discount: "30% OFF",
-                subtitle: "On Headphones",
-                title: "Exclusive Sales",
-                imageName: "headphones",
-                isSystemImage: true,
-                gradientStart: "appBlue",
-                gradientEnd: "cyanPrimary"
-            ),
-            BannerItem(
-                id: "2",
-                discount: "20% OFF",
-                subtitle: "On Sneakers",
-                title: "Fresh Drops",
-                imageName: "shoe",
-                isSystemImage: true,
-                gradientStart: "appPurple",
-                gradientEnd: "appPink"
-            ),
-            BannerItem(
-                id: "3",
-                discount: "15% OFF",
-                subtitle: "On Eyewear",
-                title: "Style Up",
-                imageName: "eyeglasses",
-                isSystemImage: true,
-                gradientStart: "appMerigold",
-                gradientEnd: "appOrange"
-            ),
-        ]
-    }
+    func fetchBanners() async throws -> [BannerItem] {
+          let discounts = try await discountDataSource.fetchActiveDiscounts()
+          return discounts.enumerated().map { $0.element.toBannerItem(index: $0.offset) }
+      }
 
 
     func fetchBrands() -> AnyPublisher<[BrandItem], Error> {
@@ -131,3 +106,4 @@ final class HomeRepositoryImpl: HomeRepositoryProtocol {
         )
     }
 }
+

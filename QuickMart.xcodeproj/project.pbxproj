@@ -120,6 +120,11 @@
 		5FA216FD2FF8F18000DBA613 /* WishlistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA216FC2FF8F18000DBA613 /* WishlistRowView.swift */; };
 		5FA216FF2FF8F18E00DBA613 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA216FE2FF8F18E00DBA613 /* WishlistView.swift */; };
 		5FA217012FF8F90B00DBA613 /* ProductSearchItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA217002FF8F8FD00DBA613 /* ProductSearchItemMapper.swift */; };
+		5FC3A34B2FF981FF00285375 /* DiscountDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34A2FF981FF00285375 /* DiscountDataSourceProtocol.swift */; };
+		5FC3A34D2FF9822F00285375 /* DiscountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */; };
+		5FC3A34F2FF9828B00285375 /* DiscountMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */; };
+		5FC3A3512FF982D100285375 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A3502FF982D100285375 /* DiscountModel.swift */; };
+		5FC3A3802FF9932800285375 /* Config.local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */; };
 		65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985C743BC269621E90D1CB3 /* Route.swift */; };
 		6A5335F592687DF9E824D4FC /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF880445C2234B6AE73C0461 /* ProductDetails.swift */; };
 		6DB926588223269EDEFE4C83 /* RegisterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CFA3F34C465D3BADAE0A0 /* RegisterRequestDTO.swift */; };
@@ -502,6 +507,11 @@
 		5FA216FC2FF8F18000DBA613 /* WishlistRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistRowView.swift; sourceTree = "<group>"; };
 		5FA216FE2FF8F18E00DBA613 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		5FA217002FF8F8FD00DBA613 /* ProductSearchItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchItemMapper.swift; sourceTree = "<group>"; };
+		5FC3A34A2FF981FF00285375 /* DiscountDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountDataSourceProtocol.swift; sourceTree = "<group>"; };
+		5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountDataSource.swift; sourceTree = "<group>"; };
+		5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountMapper.swift; sourceTree = "<group>"; };
+		5FC3A3502FF982D100285375 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
+		5FC3A37F2FF9932800285375 /* Config.local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		6C127E4B8B2EA37B5662334F /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		6CEF6214DE88C80686522218 /* RegisterUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterUseCase.swift; sourceTree = "<group>"; };
 		6E4A7C98EDFD3702DC235866 /* AuthRemoteDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -1086,6 +1096,7 @@
 		5F552A0E2FF6632300D34320 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5FC3A3502FF982D100285375 /* DiscountModel.swift */,
 				5F552A122FF6635800D34320 /* CollectionModel.swift */,
 			);
 			path = Model;
@@ -1094,6 +1105,7 @@
 		5F552A162FF663F200D34320 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */,
 				5F552A192FF6642200D34320 /* CollectionMapper.swift */,
 			);
 			path = Mapper;
@@ -1111,9 +1123,11 @@
 		5F552A262FF6891400D34320 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */,
+				5FC3A34A2FF981FF00285375 /* DiscountDataSourceProtocol.swift */,
 				5F74F40B2FF61E1F00DE42F6 /* Home.graphql */,
-				5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */,
 				5F552A1D2FF664B100D34320 /* HomeRemoteDataSource.swift */,
+				5F552A1B2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1988,6 +2002,7 @@
 				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
 				6C127E4B8B2EA37B5662334F /* RootView.swift */,
 				150DD8E42FF2CEE500D89DCE /* Config.xcconfig */,
+				5FC3A37F2FF9932800285375 /* Config.local.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2277,6 +2292,7 @@
 				D4B080F22FF6FE520011F64A /* SearchQL.graphql in Resources */,
 				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
 				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
+				5FC3A3802FF9932800285375 /* Config.local.xcconfig in Resources */,
 				5F74F40C2FF61E3100DE42F6 /* Home.graphql in Resources */,
 				1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */,
 				5F365C292FF84F1F0082DE82 /* Address.graphql in Resources */,
@@ -2329,6 +2345,7 @@
 				D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */,
 				15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */,
 				5FA216F02FF8F0B700DBA613 /* FavoriteLocalDataSourceProtocol.swift in Sources */,
+				5FC3A3512FF982D100285375 /* DiscountModel.swift in Sources */,
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
 				D4A1B2872FF6898900735C4D /* SubCategory.swift in Sources */,
@@ -2397,6 +2414,7 @@
 				D4A1B28F2FF68ABC00735C4D /* SearchProductsUseCase.swift in Sources */,
 				15C2277C2FF95C61004E3E90 /* OrderEntity.swift in Sources */,
 				D4A1B28B2FF689DF00735C4D /* ProductSearchItem.swift in Sources */,
+				5FC3A34D2FF9822F00285375 /* DiscountDataSource.swift in Sources */,
 				D4A1B2922FF68B7800735C4D /* MockSearchRepository.swift in Sources */,
 				5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */,
 				D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */,
@@ -2606,8 +2624,10 @@
 				D4459F382FF97393004EE855 /* PageInfo.graphql.swift in Sources */,
 				D4459F392FF97393004EE855 /* Menu.graphql.swift in Sources */,
 				D4459F3A2FF97393004EE855 /* DeleteCustomerAddressMutation.graphql.swift in Sources */,
+				5FC3A34F2FF9828B00285375 /* DiscountMapper.swift in Sources */,
 				D4459F3B2FF97393004EE855 /* QueryRoot.graphql.swift in Sources */,
 				D4459F3C2FF97393004EE855 /* SearchResultItemEdge.graphql.swift in Sources */,
+				5FC3A34B2FF981FF00285375 /* DiscountDataSourceProtocol.swift in Sources */,
 				D4459F3D2FF97393004EE855 /* Article.graphql.swift in Sources */,
 				D4459F3E2FF97393004EE855 /* SearchResultItem.graphql.swift in Sources */,
 				D4459F3F2FF97393004EE855 /* CartDeliveryCoordinatesPreferenceInput.graphql.swift in Sources */,
@@ -2689,7 +2709,7 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 150DD8E42FF2CEE500D89DCE /* Config.xcconfig */;
+			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2751,7 +2771,7 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 150DD8E42FF2CEE500D89DCE /* Config.xcconfig */;
+			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2806,7 +2826,7 @@
 		};
 		584C12AE2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 150DD8E42FF2CEE500D89DCE /* Config.xcconfig */;
+			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2837,7 +2857,7 @@
 		};
 		584C12AF2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 150DD8E42FF2CEE500D89DCE /* Config.xcconfig */;
+			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

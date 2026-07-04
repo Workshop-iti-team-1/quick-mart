@@ -6,7 +6,6 @@
 //
 
 
-
 import Foundation
 
 struct BannerItem: Identifiable, Hashable {
@@ -14,8 +13,10 @@ struct BannerItem: Identifiable, Hashable {
     let discount: String
     let subtitle: String
     let title: String
+    let code: String
     let imageName: String
     let isSystemImage: Bool
-    let gradientStart: String  
+    let gradientStart: String
     let gradientEnd: String
 }
+
