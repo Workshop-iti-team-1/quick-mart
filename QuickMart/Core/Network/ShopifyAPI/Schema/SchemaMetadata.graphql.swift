@@ -90,17 +90,23 @@ extension ShopifyAPI {
       case "StringConnection": return ShopifyAPI.Objects.StringConnection
       case "StringEdge": return ShopifyAPI.Objects.StringEdge
       case "Mutation": return ShopifyAPI.Objects.Mutation
+      case "CustomerDefaultAddressUpdatePayload": return ShopifyAPI.Objects.CustomerDefaultAddressUpdatePayload
+      case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError
+      case "CartUserError": return ShopifyAPI.Objects.CartUserError
+      case "MetafieldDeleteUserError": return ShopifyAPI.Objects.MetafieldDeleteUserError
+      case "MetafieldsSetUserError": return ShopifyAPI.Objects.MetafieldsSetUserError
+      case "UserError": return ShopifyAPI.Objects.UserError
+      case "UserErrorsShopPayPaymentRequestSessionUserErrors": return ShopifyAPI.Objects.UserErrorsShopPayPaymentRequestSessionUserErrors
+      case "CustomerAddressDeletePayload": return ShopifyAPI.Objects.CustomerAddressDeletePayload
+      case "CustomerAddressUpdatePayload": return ShopifyAPI.Objects.CustomerAddressUpdatePayload
+      case "CustomerAddressCreatePayload": return ShopifyAPI.Objects.CustomerAddressCreatePayload
+      case "MailingAddressConnection": return ShopifyAPI.Objects.MailingAddressConnection
+      case "MailingAddressEdge": return ShopifyAPI.Objects.MailingAddressEdge
       case "CartCreatePayload": return ShopifyAPI.Objects.CartCreatePayload
       case "CartCost": return ShopifyAPI.Objects.CartCost
       case "BaseCartLineConnection": return ShopifyAPI.Objects.BaseCartLineConnection
       case "BaseCartLineEdge": return ShopifyAPI.Objects.BaseCartLineEdge
       case "CartLineCost": return ShopifyAPI.Objects.CartLineCost
-      case "CartUserError": return ShopifyAPI.Objects.CartUserError
-      case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError
-      case "MetafieldDeleteUserError": return ShopifyAPI.Objects.MetafieldDeleteUserError
-      case "MetafieldsSetUserError": return ShopifyAPI.Objects.MetafieldsSetUserError
-      case "UserError": return ShopifyAPI.Objects.UserError
-      case "UserErrorsShopPayPaymentRequestSessionUserErrors": return ShopifyAPI.Objects.UserErrorsShopPayPaymentRequestSessionUserErrors
       case "CartDiscountCode": return ShopifyAPI.Objects.CartDiscountCode
       case "CartLinesAddPayload": return ShopifyAPI.Objects.CartLinesAddPayload
       case "CartLinesUpdatePayload": return ShopifyAPI.Objects.CartLinesUpdatePayload

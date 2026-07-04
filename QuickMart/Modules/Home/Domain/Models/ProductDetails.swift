@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductDetails: Identifiable, Hashable {
+struct ProductDetails: Identifiable, Hashable, Codable {
     let id: String
     let title: String
     let description: String
@@ -15,35 +15,35 @@ struct ProductDetails: Identifiable, Hashable {
     let productType: String
     let tags: [String]
     let availableForSale: Bool
-    
+
     let minPrice: Double
     let maxPrice: Double
     let currencyCode: String
     let compareAtPrice: Double?
-    
+
     let images: [ProductImage]
     let options: [ProductOption]
     let variants: [ProductDetailsVariant]
-    
+
     let rating: Double
     let reviewsCount: Int
-    
+
     var isFavorite: Bool = false
 }
 
-struct ProductImage: Hashable {
+struct ProductImage: Hashable, Codable {
     let id: String
     let url: String
     let altText: String?
 }
 
-struct ProductOption: Hashable {
+struct ProductOption: Hashable, Codable {
     let id: String
     let name: String
     let values: [String]
 }
 
-struct ProductDetailsVariant: Identifiable, Hashable {
+struct ProductDetailsVariant: Identifiable, Hashable, Codable {
     let id: String
     let title: String
     let availableForSale: Bool
@@ -55,7 +55,7 @@ struct ProductDetailsVariant: Identifiable, Hashable {
     let imageURL: String?
 }
 
-struct SelectedOption: Hashable {
+struct SelectedOption: Hashable, Codable {
     let name: String
     let value: String
 }
