@@ -12,16 +12,16 @@ struct SearchFilterBottomSheet: View {
     @ObservedObject var viewModel: SearchViewModel
 
     // Each section tracks its own expansion independently
-    @State private var isCategoriesExpanded:   Bool = true
+    @State private var isCategoriesExpanded: Bool = true
     @State private var isSubCategoriesExpanded: Bool = false
-    @State private var isBrandsExpanded:        Bool = false
-    @State private var isSortExpanded:          Bool = true
+    @State private var isBrandsExpanded: Bool = false
+    @State private var isSortExpanded: Bool = true
 
     private enum Layout {
-        static let horizontalPad: CGFloat  = 16
-        static let applyHeight: CGFloat    = 50
-        static let cornerRadius: CGFloat   = 12
-        static let headerTopPad: CGFloat   = 20
+        static let horizontalPad: CGFloat = 16
+        static let applyHeight: CGFloat = 50
+        static let cornerRadius: CGFloat = 12
+        static let headerTopPad: CGFloat = 20
     }
 
     var body: some View {
@@ -78,7 +78,8 @@ struct SearchFilterBottomSheet: View {
                 let key = category.handle ?? category.id
                 CheckboxRowView(
                     title: category.name.uppercased(),
-                    isSelected: viewModel.pendingFilters.selectedCategoryIDs.contains(key)
+                    isSelected: viewModel.pendingFilters.selectedCategoryIDs
+                        .contains(key)
                 ) {
                     viewModel.toggleCategory(key)
                 }
@@ -93,14 +94,25 @@ struct SearchFilterBottomSheet: View {
             isExpanded: $isBrandsExpanded,
             selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
         ) {
-            ForEach(viewModel.filterBrands) { brand in
-                CheckboxRowView(
-                    title: brand.name.uppercased(),
-                    isSelected: viewModel.pendingFilters.selectedBrandIDs.contains(brand.name)
-                ) {
-                    viewModel.toggleBrand(brand.name)
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                ],
+                alignment: .leading,
+                spacing: 12
+            ) {
+                ForEach(viewModel.filterBrands) { brand in
+                    CheckboxRowView(
+                        title: brand.name.uppercased(),
+                        isSelected: viewModel.pendingFilters.selectedBrandIDs
+                            .contains(brand.name)
+                    ) {
+                        viewModel.toggleBrand(brand.name)
+                    }
                 }
             }
+            .padding(.top, 8)
         }
     }
 
@@ -124,25 +136,25 @@ struct SearchFilterBottomSheet: View {
         }
     }
 
-//    // MARK: - Brands
-//
-//    private var brandsSection: some View {
-//        CollapsibleFilterSection(
-//            title: "Brands",
-//            isExpanded: $isBrandsExpanded,
-//            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
-//        ) {
-//            ForEach(viewModel.filterBrands) { brand in
-//                CheckboxRowView(
-//                    title: brand.name.uppercased(),
-//                    isSelected: viewModel.pendingFilters.selectedBrandIDs
-//                        .contains(brand.id)
-//                ) {
-//                    viewModel.toggleBrand(brand.id)
-//                }
-//            }
-//        }
-//    }
+    //    // MARK: - Brands
+    //
+    //    private var brandsSection: some View {
+    //        CollapsibleFilterSection(
+    //            title: "Brands",
+    //            isExpanded: $isBrandsExpanded,
+    //            selectedCount: viewModel.pendingFilters.selectedBrandIDs.count
+    //        ) {
+    //            ForEach(viewModel.filterBrands) { brand in
+    //                CheckboxRowView(
+    //                    title: brand.name.uppercased(),
+    //                    isSelected: viewModel.pendingFilters.selectedBrandIDs
+    //                        .contains(brand.id)
+    //                ) {
+    //                    viewModel.toggleBrand(brand.id)
+    //                }
+    //            }
+    //        }
+    //    }
 
     // MARK: - Sorting (single-select enforced by ViewModel)
 
@@ -150,7 +162,8 @@ struct SearchFilterBottomSheet: View {
         CollapsibleFilterSection(
             title: "Sorting",
             isExpanded: $isSortExpanded,
-            selectedCount: viewModel.pendingFilters.selectedSort != .featured ? 1 : 0
+            selectedCount: viewModel.pendingFilters.selectedSort != .featured
+                ? 1 : 0
         ) {
             ForEach(SortOption.allCases) { option in
                 CheckboxRowView(
