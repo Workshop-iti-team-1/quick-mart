@@ -8,10 +8,8 @@
 // Configuration settings file format documentation can be found at:
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 STORE_URL = https:\/\/mad46-ios-team1.myshopify.com\/api\/2025-01\/graphql.json
-STOREFRONT_TOKEN = 3c9028a33a8408566d10ac7c7d9107d1
-API_KEY = your_real_api_key_here
-API_SECRET_KEY = your_real_secret_key_here
-
-
-
-
+STOREFRONT_TOKEN = YOUR_STOREFRONT_TOKEN
+API_KEY = YOUR_API_KEY
+API_SECRET_KEY = YOUR_API_SECRET_KEY
+ADMIN_TOKEN = YOUR_ADMIN_TOKEN
+ADMIN_STORE_URL = https:\/\/mad46-ios-team1.myshopify.com\/admin\/api\/2025-01\/graphql.json

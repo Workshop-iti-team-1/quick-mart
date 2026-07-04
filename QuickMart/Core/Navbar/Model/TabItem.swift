@@ -10,17 +10,17 @@ import Foundation
 
 enum TabItem: Int, CaseIterable {
     case home
+    case wishlist
     case search
     case cart
-    case wishlist
     case profile
 
     var title: String {
         switch self {
         case .home:     return "Home"
+        case .wishlist: return "Wishlist"
         case .search:   return "Search"
         case .cart:     return "My Cart"
-        case .wishlist: return "Wishlist"
         case .profile:  return "Profile"
         }
     }
@@ -28,9 +28,9 @@ enum TabItem: Int, CaseIterable {
     var iconName: String {
         switch self {
         case .home:     return "house.fill"
+        case .wishlist: return "heart"
         case .search:   return "magnifyingglass"
         case .cart:     return "cart"
-        case .wishlist: return "heart"
         case .profile:  return "person"
         }
     }
