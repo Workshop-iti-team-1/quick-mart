@@ -23,4 +23,11 @@ protocol SearchRemoteDataSourceProtocol {
     /// Fetches all distinct product types (Sub-Categories).
     /// Returns a Combine publisher — consistent with HomeRemoteDataSourceProtocol.
     func fetchProductTypes(first: Int) -> AnyPublisher<[String], Error>
+    
+    /// Lightweight predictive/autocomplete search.
+    /// Fires on every keystroke (debounced) while the user is typing.
+    /// Returns product + collection suggestions — not full product models.
+    func fetchPredictiveSuggestions(
+        query: String
+    ) -> AnyPublisher<PredictiveSearchResultDTO, Error>
 }

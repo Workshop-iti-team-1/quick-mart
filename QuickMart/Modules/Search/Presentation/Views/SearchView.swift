@@ -37,7 +37,12 @@ struct SearchView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.backGround.ignoresSafeArea()
+            Color.backGround
+                .ignoresSafeArea()
+                .contentShape(Rectangle())  // Ensures the whole area is tappable
+                .onTapGesture {
+                    isSearchFocused = false  //  Drops the keyboard
+                }
 
             VStack(spacing: 0) {
                 //headerView
@@ -127,7 +132,7 @@ struct SearchView: View {
         } label: {
             ZStack(alignment: .topTrailing) {
                 Image(systemName: "slider.horizontal.3")
-                    .font(.system(size: 16))
+                    .font(.system(size: 20))
                     .foregroundColor(
                         viewModel.hasActiveFilters ? .cyanPrimary : .appBlack)
 
@@ -145,11 +150,16 @@ struct SearchView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        // Show Recent Searches ONLY when the user is actively typing/focused AND there's no query yet
         if isSearchFocused && viewModel.searchText.isEmpty {
+            // State 1: Focused, no text → recent searches
             recentSearchesView
+
+        } else if isSearchFocused && !viewModel.searchText.isEmpty {
+            // State 2: Focused, typing → predictive suggestions
+            predictiveView
+
         } else {
-            // Shows "All Products" when text is empty & unfocused, or "Filtered Results" when typing
+            // State 3: Unfocused → full results or empty state
             activeSearchContent
         }
     }
@@ -168,7 +178,6 @@ struct SearchView: View {
                         viewModel.selectRecentSearch(query)
                         isSearchFocused = false  // Drop keyboard to reveal results
                     }
-                    // Styling to match your previous custom UI
                     .listRowInsets(
                         EdgeInsets(
                             top: 0, leading: Layout.horizontalPad, bottom: 0,
@@ -187,11 +196,73 @@ struct SearchView: View {
             }
             .listStyle(.plain)  // Removes default List styling
             .scrollContentBackground(.hidden)  // Ensures your background color shows through
+            .scrollDismissesKeyboard(.immediately)
         }
         .frame(
             maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
+    // MARK: - Predictive Suggestions
 
+    @ViewBuilder
+    private var predictiveView: some View {
+        if viewModel.isPredictiveSearching
+            && viewModel.predictiveSuggestions.isEmpty
+        {
+            // First load — subtle inline spinner, not full-screen
+            HStack {
+                ProgressView()
+                    .scaleEffect(0.8)
+                Text("Searching...")
+                    .appTextStyle(.caption, color: .grayText)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+        } else if viewModel.hasPredictiveSuggestions {
+            List {
+                ForEach(viewModel.predictiveSuggestions) { suggestion in
+
+                    let dynamicLabel: String? = {
+                        if case .collection(let collection) = suggestion {
+                            return viewModel.getCollectionLabel(
+                                for: collection.title)
+                        }
+                        return nil
+                    }()
+
+                    PredictiveSuggestionRowView(
+                        suggestion: suggestion, collectionLabel: dynamicLabel
+                    ) {
+                        viewModel.selectSuggestion(suggestion)
+                        isSearchFocused = false
+                    }
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: 0,
+                            leading: Layout.horizontalPad,
+                            bottom: 0,
+                            trailing: Layout.horizontalPad
+                        )
+                    )
+                    .listRowSeparatorTint(Color.grey100)
+                    .listRowBackground(Color.backGround)
+                }
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.immediately)
+
+        } else if !viewModel.isPredictiveSearching {
+            // Non-empty query but no suggestions returned
+            VStack(spacing: 12) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 36))
+                    .foregroundColor(.grey100)
+                Text("No suggestions found")
+                    .appTextStyle(.body, color: .grayText)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
     // MARK: - Active Search
     @ViewBuilder
     private var activeSearchContent: some View {
@@ -225,7 +296,7 @@ struct SearchView: View {
             }
             .padding(.horizontal, Layout.horizontalPad)
             .padding(.bottom, 24)
-        }
+        }.scrollDismissesKeyboard(.immediately)
     }
 
     private var emptyStateView: some View {

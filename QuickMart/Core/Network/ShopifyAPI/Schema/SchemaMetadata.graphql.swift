@@ -101,6 +101,7 @@ extension ShopifyAPI {
       case "OrderLineItemConnection": return ShopifyAPI.Objects.OrderLineItemConnection
       case "OrderLineItemEdge": return ShopifyAPI.Objects.OrderLineItemEdge
       case "OrderLineItem": return ShopifyAPI.Objects.OrderLineItem
+      case "PredictiveSearchResult": return ShopifyAPI.Objects.PredictiveSearchResult
       case "Mutation": return ShopifyAPI.Objects.Mutation
       case "CustomerDefaultAddressUpdatePayload": return ShopifyAPI.Objects.CustomerDefaultAddressUpdatePayload
       case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError

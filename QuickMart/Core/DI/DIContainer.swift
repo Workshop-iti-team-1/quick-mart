@@ -128,6 +128,9 @@ public final class DIContainer {
     private var fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol {
         FetchSubCategoriesUseCase(repository: searchRepository)
     }
+    private var fetchPredictiveSearchUseCase: FetchPredictiveSearchUseCaseProtocol {
+        FetchPredictiveSearchUseCase(repository: searchRepository)
+    }
 
     // MARK: - Public Factory
 
@@ -139,6 +142,7 @@ public final class DIContainer {
             fetchSubCategoriesUseCase: fetchSubCategoriesUseCase,
             fetchCategoriesUseCase: makeFetchCategoriesUseCase(),
             fetchBrandsUseCase: makeFetchBrandsUseCase(),
+            fetchPredictiveSearchUseCase: fetchPredictiveSearchUseCase,
             repository: searchRepository
         )
     }

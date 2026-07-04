@@ -8,7 +8,7 @@ extension ShopifyAPI {
     static let operationName: String = "SearchProducts"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchProducts($query: String!, $first: Int!, $after: String, $sortKey: SearchSortKeys, $reverse: Boolean) { search( query: $query types: PRODUCT first: $first after: $after sortKey: $sortKey reverse: $reverse ) { __typename edges { __typename node { __typename ... on Product { id title vendor productType availableForSale priceRange { __typename minVariantPrice { __typename amount currencyCode } maxVariantPrice { __typename amount currencyCode } } compareAtPriceRange { __typename minVariantPrice { __typename amount currencyCode } } images(first: 1) { __typename edges { __typename node { __typename url altText } } } collections(first: 10) { __typename edges { __typename node { __typename id handle } } } variants(first: 1) { __typename edges { __typename node { __typename id availableForSale } } } } } } pageInfo { __typename hasNextPage endCursor } totalCount } }"#
+        #"query SearchProducts($query: String!, $first: Int!, $after: String, $sortKey: SearchSortKeys, $reverse: Boolean) { search( query: $query types: PRODUCT first: $first after: $after sortKey: $sortKey reverse: $reverse ) { __typename edges { __typename node { __typename ... on Product { id title vendor productType availableForSale priceRange { __typename minVariantPrice { __typename amount currencyCode } maxVariantPrice { __typename amount currencyCode } } compareAtPriceRange { __typename minVariantPrice { __typename amount } } images(first: 1) { __typename edges { __typename node { __typename url altText } } } collections(first: 10) { __typename edges { __typename node { __typename id handle } } } variants(first: 1) { __typename edges { __typename node { __typename id availableForSale } } } } } } pageInfo { __typename hasNextPage endCursor } totalCount } }"#
       ))
 
     public var query: String
@@ -251,13 +251,10 @@ extension ShopifyAPI {
                   static var __selections: [ApolloAPI.Selection] { [
                     .field("__typename", String.self),
                     .field("amount", ShopifyAPI.Decimal.self),
-                    .field("currencyCode", GraphQLEnum<ShopifyAPI.CurrencyCode>.self),
                   ] }
 
                   /// Decimal money amount.
                   var amount: ShopifyAPI.Decimal { __data["amount"] }
-                  /// Currency of the money.
-                  var currencyCode: GraphQLEnum<ShopifyAPI.CurrencyCode> { __data["currencyCode"] }
                 }
               }
 
