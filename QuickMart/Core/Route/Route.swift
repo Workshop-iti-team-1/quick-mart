@@ -20,4 +20,12 @@ enum Route: Hashable {
     case addressForm(Address?)
     case favoriteDetail(ProductDetails)
     case wishlist
+    case profile
+    case shippingAddress
+    case paymentMethod
+    case orderHistory
+    case privacyPolicy
+    case termsAndConditions
+    case faqs
+    case changePassword
 }

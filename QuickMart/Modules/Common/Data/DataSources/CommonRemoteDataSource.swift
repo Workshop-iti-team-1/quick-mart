@@ -16,7 +16,7 @@ class CommonRemoteDataSource: CommonRemoteDataSourceProtocol {
     
     func getCart(cartId: String) async throws -> ShopifyAPI.GetCartQuery.Data.Cart? {
         let query = ShopifyAPI.GetCartQuery(cartId: cartId)
-        let data = try await client.performQuery(query: query)
+        let data = try await client.performQuery(query: query, cachePolicy: .fetchIgnoringCacheData)
         return data.cart
     }
     
