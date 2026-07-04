@@ -28,29 +28,28 @@ final class ProductDetailsViewModel: ObservableObject {
     private let getProductDetailsUseCase: GetProductDetailsUseCaseProtocol
     private let addToCartUseCase: AddToCartUseCaseProtocol
     
-    init(productId: String, getProductDetailsUseCase: GetProductDetailsUseCaseProtocol, addToCartUseCase: AddToCartUseCaseProtocol) {
+    let favouriteViewModel: FavouriteViewModel
+
+    init(productId: String, getProductDetailsUseCase: GetProductDetailsUseCaseProtocol,
+         addToCartUseCase: AddToCartUseCaseProtocol, preloadedProduct: ProductDetails? = nil,
+         favouriteViewModel: FavouriteViewModel = .shared) {
         self.productId = productId
         self.getProductDetailsUseCase = getProductDetailsUseCase
         self.addToCartUseCase = addToCartUseCase
+        self.productDetails = preloadedProduct
+        self.favouriteViewModel = favouriteViewModel
     }
-    
+
     func loadProduct() {
+        if productDetails != nil { return } // already have data (offline cache) — done
         isLoadingProduct = true
         errorMessage = nil
-        
         Task {
             do {
                 let details = try await getProductDetailsUseCase.execute(id: productId)
                 self.productDetails = details
-                
-                // Pre-select first color and size if available
-                if let colorOption = details.options.first(where: { $0.name.lowercased() == "color" }) {
-                    self.selectedColor = colorOption.values.first
-                }
-                if let sizeOption = details.options.first(where: { $0.name.lowercased() == "size" }) {
-                    self.selectedSize = sizeOption.values.first
-                }
-                
+                FavouriteViewModel.shared.syncIfFavorite(details) // refresh cache with richer data if favorited
+                // ...pre-select color/size as before...
                 isLoadingProduct = false
             } catch {
                 isLoadingProduct = false

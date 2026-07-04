@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @StateObject var viewModel: ProductDetailsViewModel
+    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared   // ← added
     @Environment(AppRouter.self) var router
     
     var body: some View {
@@ -66,29 +67,31 @@ struct ProductDetailsView: View {
             Text(AppStrings.ProductDetails.guestAlertMessage)
         }
     }
-    
-    // MARK: - Subviews
-    
+
     private var appBar: some View {
         HStack {
             Button(action: { router.pop() }) {
                 HStack(spacing: 4) {
-                    Image(systemName: "chevron.backward")
-                        .font(.system(size: 20, weight: .semibold))
+                    Image(systemName: "chevron.backward").font(.system(size: 20, weight: .semibold))
                 }
                 .foregroundColor(.appBlack)
                 .padding(8)
             }
             Spacer()
-            Button(action: {
-                if viewModel.productDetails != nil {
-                    viewModel.productDetails?.isFavorite.toggle()
-                }
-            }) {
-                Image(systemName: (viewModel.productDetails?.isFavorite ?? false) ? "heart.fill" : "heart")
-                    .font(.title2)
-                    .foregroundColor((viewModel.productDetails?.isFavorite ?? false) ? .red : .appBlack)
-                    .padding(8)
+            if let product = viewModel.productDetails {
+                FavoriteButton(
+                    isFavorite: .init(
+                        get: { favouriteViewModel.isFavorite(product.id) },   // ← reads the OBSERVED instance
+                        set: { _ in }
+                    ),
+                    onToggle: { newValue in
+                        if newValue {
+                            favouriteViewModel.addFavorite(product)           // ← same
+                        } else {
+                            favouriteViewModel.removeFavorite(id: product.id) // ← same
+                        }
+                    }
+                )
             }
         }
         .padding(.horizontal, 24)
@@ -122,8 +125,6 @@ struct ProductDetailsView: View {
             }
         }
     }
-    
-
     
     private func errorView(message: String) -> some View {
         VStack {
