@@ -19,4 +19,5 @@ extension Image {
     static let men  = Image("men")
     static let kid = Image("kid")
     static let sale = Image("sale")
+    static let noOrders = Image("noOrders")
 }

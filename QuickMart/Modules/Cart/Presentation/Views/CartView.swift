@@ -28,8 +28,7 @@ struct CartView: View {
                 }
             case .empty:
                 EmptyCartView {
-
-                    router.popToRoot()
+                    router.push(.allBrands)
                 }
             case .populated:
                 populatedCartView

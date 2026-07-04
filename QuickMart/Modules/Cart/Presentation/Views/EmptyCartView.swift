@@ -27,7 +27,7 @@ struct EmptyCartView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
             
-            AppButton(title: AppStrings.Cart.exploreCategories, verticalPadding: 16) {
+            AppButton(title: AppStrings.Cart.exploreBrands, verticalPadding: 16) {
                 onExploreTapped()
             }
             .padding(.horizontal, 32)

@@ -70,12 +70,16 @@ struct ProductDetailsView: View {
 
     private var appBar: some View {
         HStack {
-            Button(action: { router.pop() }) {
-                HStack(spacing: 4) {
-                    Image(systemName: "chevron.backward").font(.system(size: 20, weight: .semibold))
-                }
-                .foregroundColor(.appBlack)
-                .padding(8)
+            Button(action: {
+                router.pop()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.appBlack)
+                    .frame(width: 40, height: 40)
+                    .background(Color.backGround)
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
             }
             Spacer()
             if let product = viewModel.productDetails {

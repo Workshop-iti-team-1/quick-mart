@@ -84,7 +84,7 @@ public final class DIContainer {
     private func makeCommonRemoteDataSource() -> CommonRemoteDataSourceProtocol {
         CommonRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
     }
-
+    
     private func makeCommonRepository() -> CommonRepositoryProtocol {
         CommonRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
     }

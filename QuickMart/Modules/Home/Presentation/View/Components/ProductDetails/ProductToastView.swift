@@ -18,7 +18,7 @@ struct ProductToastView: View {
                     .foregroundColor(Color.cyanPrimary)
                 
                 Text(AppStrings.ProductDetails.addedToCartMessage)
-                    .appTextStyle(.label, color: Color.appWhite)
+                    .appTextStyle(.label, color: Color.appDarkBlack)
                 
                 Spacer()
                 

@@ -34,4 +34,5 @@ extension Color {
     static let appPink = Color("appPink")
     static let appButton = Color("AppButton")
     static let primaryButtonBackground = Color("appBlack")
+    static let appDarkBlack = Color("appDarkBlack")
 }
