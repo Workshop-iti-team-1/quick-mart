@@ -354,4 +354,12 @@ final class SearchViewModel: ObservableObject {
             .filter { !mainCategoryNames.contains($0.name.uppercased()) }
             .sorted { $0.name.lowercased() < $1.name.lowercased() }
     }
+
+    // MARK: - UI Helpers
+
+    /// Returns "Category" for main categories and "Brand" for everything else.
+    func getCollectionLabel(for title: String) -> String {
+        return mainCategoryNames.contains(title.uppercased())
+            ? "Category" : "Brand"
+    }
 }

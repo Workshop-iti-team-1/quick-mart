@@ -10,13 +10,14 @@ import SwiftUI
 struct PredictiveSuggestionRowView: View {
 
     let suggestion: PredictiveSuggestion
+    var collectionLabel: String?
     let onTap: () -> Void
 
     private enum Layout {
-        static let imageSize: CGFloat       = 40
-        static let cornerRadius: CGFloat    = 8
-        static let rowVerticalPad: CGFloat  = 10
-        static let spacing: CGFloat         = 12
+        static let imageSize: CGFloat = 40
+        static let cornerRadius: CGFloat = 8
+        static let rowVerticalPad: CGFloat = 10
+        static let spacing: CGFloat = 12
     }
 
     var body: some View {
@@ -118,7 +119,7 @@ struct PredictiveSuggestionRowView: View {
                     .appTextStyle(.label, color: .appBlack)
                     .lineLimit(1)
 
-                Text("Collection")
+                Text(collectionLabel ?? "Collection")
                     .appTextStyle(.caption, color: .grayText)
             }
         }
@@ -157,6 +158,7 @@ struct PredictiveSuggestionRowView: View {
                     imageURL: nil
                 )
             ),
+            collectionLabel: "Collection",
             onTap: {}
         )
         Divider()
@@ -170,6 +172,7 @@ struct PredictiveSuggestionRowView: View {
                     imageURL: nil
                 )
             ),
+            collectionLabel: "Collection",
             onTap: {}
         )
     }

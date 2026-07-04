@@ -215,7 +215,18 @@ struct SearchView: View {
         } else if viewModel.hasPredictiveSuggestions {
             List {
                 ForEach(viewModel.predictiveSuggestions) { suggestion in
-                    PredictiveSuggestionRowView(suggestion: suggestion) {
+
+                    let dynamicLabel: String? = {
+                        if case .collection(let collection) = suggestion {
+                            return viewModel.getCollectionLabel(
+                                for: collection.title)
+                        }
+                        return nil
+                    }()
+
+                    PredictiveSuggestionRowView(
+                        suggestion: suggestion, collectionLabel: dynamicLabel
+                    ) {
                         viewModel.selectSuggestion(suggestion)
                         isSearchFocused = false
                     }
