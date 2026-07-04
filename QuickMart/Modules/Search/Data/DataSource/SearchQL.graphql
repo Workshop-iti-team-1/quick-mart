@@ -1,3 +1,6 @@
+# ─────────────────────────────────────────────
+# OPERATION 1 — Global Product Search
+# ─────────────────────────────────────────────
 query SearchProducts(
     $query: String!
     $first: Int!
@@ -22,70 +25,66 @@ query SearchProducts(
                     productType
                     availableForSale
                     priceRange {
-                        minVariantPrice {
-                            amount
-                            currencyCode
-                        }
-                        maxVariantPrice {
-                            amount
-                            currencyCode
-                        }
+                        minVariantPrice { amount currencyCode }
+                        maxVariantPrice { amount currencyCode }
                     }
                     compareAtPriceRange {
-                        minVariantPrice {
-                            amount
-                            currencyCode
-                        }
+                        minVariantPrice { amount }
                     }
                     images(first: 1) {
-                        edges {
-                            node {
-                                url
-                                altText
-                            }
-                        }
+                        edges { node { url altText } }
                     }
                     collections(first: 10) {
-                        edges {
-                            node {
-                                id
-                                handle
-                            }
-                        }
+                        edges { node { id handle } }
                     }
                     variants(first: 1) {
-                        edges {
-                            node {
-                                id
-                                availableForSale
-                            }
-                        }
+                        edges { node { id availableForSale } }
                     }
                 }
             }
         }
-        pageInfo {
-            hasNextPage
-            endCursor
-        }
+        pageInfo { hasNextPage endCursor }
         totalCount
     }
 }
 
 # ─────────────────────────────────────────────
 # OPERATION 2 — Product Types (Sub-Categories)
-#
-# Maps to FetchSubCategoriesUseCase.execute()
-# Populates the Sub-Categories section of the filter sheet.
-#
-# Shopify returns a StringConnection of all distinct product types
-# in the store. No Home operation covers this.
 # ─────────────────────────────────────────────
-
 query FetchProductTypes($first: Int!) {
     productTypes(first: $first) {
-        edges {
-            node
+        edges { node }
+    }
+}
+
+# ─────────────────────────────────────────────
+# OPERATION 3 — Predictive / Autocomplete Search
+#
+# Fires on every keystroke (debounced 200ms).
+# Returns lightweight product + collection suggestions.
+# Does NOT replace the full search — it drives the
+# autocomplete overlay while the user is still typing.
+#
+# types: [PRODUCT, COLLECTION] matches the example provided.
+# ─────────────────────────────────────────────
+query PredictiveSearch($query: String!) {
+    predictiveSearch(query: $query, types: [PRODUCT, COLLECTION]) {
+        products {
+            id
+            title
+            vendor
+            priceRange {
+                minVariantPrice { amount currencyCode }
+            }
+            images(first: 1) {
+                edges { node { url altText } }
+            }
+        }
+        collections {
+            id
+            title
+            handle
+            image { url altText }
         }
     }
 }

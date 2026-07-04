@@ -145,11 +145,16 @@ struct SearchView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        // Show Recent Searches ONLY when the user is actively typing/focused AND there's no query yet
         if isSearchFocused && viewModel.searchText.isEmpty {
+            // State 1: Focused, no text → recent searches
             recentSearchesView
+
+        } else if isSearchFocused && !viewModel.searchText.isEmpty {
+            // State 2: Focused, typing → predictive suggestions
+            predictiveView
+
         } else {
-            // Shows "All Products" when text is empty & unfocused, or "Filtered Results" when typing
+            // State 3/4: Unfocused → full results or empty state
             activeSearchContent
         }
     }
@@ -191,7 +196,56 @@ struct SearchView: View {
         .frame(
             maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
+    // MARK: - Predictive Suggestions
 
+    @ViewBuilder
+    private var predictiveView: some View {
+        if viewModel.isPredictiveSearching
+            && viewModel.predictiveSuggestions.isEmpty
+        {
+            // First load — subtle inline spinner, not full-screen
+            HStack {
+                ProgressView()
+                    .scaleEffect(0.8)
+                Text("Searching...")
+                    .appTextStyle(.caption, color: .grayText)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+        } else if viewModel.hasPredictiveSuggestions {
+            List {
+                ForEach(viewModel.predictiveSuggestions) { suggestion in
+                    PredictiveSuggestionRowView(suggestion: suggestion) {
+                        viewModel.selectSuggestion(suggestion)
+                        isSearchFocused = false
+                    }
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: 0,
+                            leading: Layout.horizontalPad,
+                            bottom: 0,
+                            trailing: Layout.horizontalPad
+                        )
+                    )
+                    .listRowSeparatorTint(Color.grey100)
+                    .listRowBackground(Color.backGround)
+                }
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+
+        } else if !viewModel.isPredictiveSearching {
+            // Non-empty query but no suggestions returned
+            VStack(spacing: 12) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 36))
+                    .foregroundColor(.grey100)
+                Text("No suggestions found")
+                    .appTextStyle(.body, color: .grayText)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
     // MARK: - Active Search
     @ViewBuilder
     private var activeSearchContent: some View {

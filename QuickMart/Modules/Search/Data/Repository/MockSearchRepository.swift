@@ -11,7 +11,7 @@ final class MockSearchRepository: SearchRepositoryProtocol {
 
     private let recentSearchesKey = "com.quickmart.recentSearches.mock"
 
-    // MARK: - SearchRepositoryProtocol
+    // MARK: - Search Products
 
     func searchProducts(
         query: String,
@@ -26,20 +26,18 @@ final class MockSearchRepository: SearchRepositoryProtocol {
             ? Self.mockProducts
             : Self.mockProducts.filter { $0.name.lowercased().contains(q) }
 
-        // Apply same client-side filter logic for mock parity using the new array
         if !filters.selectedCategoryIDs.isEmpty {
             results = results.filter {
-                // Keep the product if its category array intersects with the selected filters
                 !filters.selectedCategoryIDs.isDisjoint(with: $0.categoryHandles)
             }
         }
-        
+
         if !filters.selectedSubCategoryIDs.isEmpty {
             results = results.filter {
                 filters.selectedSubCategoryIDs.contains($0.subCategoryID ?? "")
             }
         }
-        
+
         if !filters.selectedBrandIDs.isEmpty {
             results = results.filter {
                 filters.selectedBrandIDs.contains($0.brandID ?? "")
@@ -55,6 +53,8 @@ final class MockSearchRepository: SearchRepositoryProtocol {
         return (products: results, hasNextPage: false, endCursor: nil)
     }
 
+    // MARK: - Sub Categories
+
     func fetchSubCategories() async throws -> [SubCategory] {
         [
             SubCategory(id: "accessories", name: "Accessories"),
@@ -64,6 +64,53 @@ final class MockSearchRepository: SearchRepositoryProtocol {
             SubCategory(id: "t-shirts",    name: "T-Shirts"),
         ]
     }
+
+    // MARK: - Predictive Suggestions
+
+    func fetchPredictiveSuggestions(
+        query: String
+    ) async throws -> [PredictiveSuggestion] {
+        try await Task.sleep(nanoseconds: 150_000_000) // Simulate 0.15s latency
+
+        let q = query.lowercased().trimmingCharacters(in: .whitespaces)
+        guard !q.isEmpty else { return [] }
+
+        // Product suggestions — filter mock products by name
+        let productSuggestions: [PredictiveSuggestion] = Self.mockProducts
+            .filter { $0.name.lowercased().contains(q) }
+            .prefix(5)
+            .map { item in
+                .product(
+                    PredictiveProduct(
+                        id: item.id,
+                        title: item.name,
+                        vendor: item.brandID ?? "",
+                        minPrice: item.price,
+                        currencyCode: "USD",
+                        imageURL: nil
+                    )
+                )
+            }
+
+        // Collection suggestions — filter mock categories by name
+        let collectionSuggestions: [PredictiveSuggestion] = Self.mockCollections
+            .filter { $0.title.lowercased().contains(q) }
+            .prefix(3)
+            .map { collection in
+                .collection(
+                    PredictiveCollection(
+                        id: collection.id,
+                        title: collection.title,
+                        handle: collection.handle,
+                        imageURL: nil
+                    )
+                )
+            }
+
+        return productSuggestions + collectionSuggestions
+    }
+
+    // MARK: - Recent Searches
 
     func fetchRecentSearches() -> [String] {
         UserDefaults.standard.stringArray(forKey: recentSearchesKey) ?? []
@@ -85,7 +132,7 @@ final class MockSearchRepository: SearchRepositoryProtocol {
         UserDefaults.standard.set(searches, forKey: recentSearchesKey)
     }
 
-    // MARK: - Mock Data
+    // MARK: - Mock Products
 
     private static let mockProducts: [ProductSearchItem] = [
         ProductSearchItem(
@@ -124,5 +171,20 @@ final class MockSearchRepository: SearchRepositoryProtocol {
             colorNames: ["grey50"], colorCount: 2,
             categoryHandles: ["sale"], subCategoryID: "accessories", brandID: "puma"
         ),
+    ]
+
+    // MARK: - Mock Collections
+
+    private struct MockCollection {
+        let id: String
+        let title: String
+        let handle: String
+    }
+
+    private static let mockCollections: [MockCollection] = [
+        MockCollection(id: "c1", title: "Men",   handle: "men"),
+        MockCollection(id: "c2", title: "Women", handle: "women"),
+        MockCollection(id: "c3", title: "Kids",  handle: "kids"),
+        MockCollection(id: "c4", title: "Sale",  handle: "sale"),
     ]
 }

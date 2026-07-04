@@ -14,6 +14,7 @@ final class SearchViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     private var currentSearchTask: Task<Void, Never>?
+    private var currentPredictiveTask: Task<Void, Never>?
 
     // MARK: - Search State
 
@@ -22,6 +23,12 @@ final class SearchViewModel: ObservableObject {
     @Published private(set) var recentSearches: [String] = []
     @Published private(set) var isSearching: Bool = false
     @Published private(set) var errorMessage: String? = nil
+    
+    // MARK: - Predictive State
+
+    @Published private(set) var predictiveSuggestions: [PredictiveSuggestion] = []
+    @Published private(set) var isPredictiveSearching: Bool = false
+
 
     // MARK: - Pagination State
 
@@ -46,6 +53,7 @@ final class SearchViewModel: ObservableObject {
     var isSearchActive: Bool {
         !searchText.trimmingCharacters(in: .whitespaces).isEmpty
     }
+    var hasPredictiveSuggestions: Bool { !predictiveSuggestions.isEmpty }
     var hasResults: Bool { !searchResults.isEmpty }
     var hasActiveFilters: Bool { !appliedFilters.isEmpty }
 
@@ -55,6 +63,7 @@ final class SearchViewModel: ObservableObject {
     private let fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol
     private let fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol
     private let fetchBrandsUseCase: FetchBrandsUseCaseProtocol
+    private let fetchPredictiveSearchUseCase: FetchPredictiveSearchUseCaseProtocol
     private let repository: SearchRepositoryProtocol
 
     // MARK: - Init
@@ -65,12 +74,14 @@ final class SearchViewModel: ObservableObject {
         fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol,
         fetchCategoriesUseCase: FetchCategoriesUseCaseProtocol,
         fetchBrandsUseCase: FetchBrandsUseCaseProtocol,
+        fetchPredictiveSearchUseCase: FetchPredictiveSearchUseCaseProtocol,
         repository: SearchRepositoryProtocol
     ) {
         self.searchProductsUseCase = searchProductsUseCase
         self.fetchSubCategoriesUseCase = fetchSubCategoriesUseCase
         self.fetchCategoriesUseCase = fetchCategoriesUseCase
         self.fetchBrandsUseCase = fetchBrandsUseCase
+        self.fetchPredictiveSearchUseCase = fetchPredictiveSearchUseCase
         self.repository = repository
 
         self.appliedFilters = initialFilters
@@ -78,6 +89,7 @@ final class SearchViewModel: ObservableObject {
 
         recentSearches = repository.fetchRecentSearches()
         setupSearchDebounce()
+        setupPredictiveDebounce()
     }
 
     // MARK: - Debounce Setup
@@ -100,7 +112,78 @@ final class SearchViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    /// Separate 200ms debounce — faster than full search, lightweight call.
+    /// Only fires when text is non-empty; clears suggestions immediately on empty.
+    private func setupPredictiveDebounce() {
+        $searchText
+            .dropFirst()
+            .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] query in
+                guard let self else { return }
+                let trimmed = query.trimmingCharacters(in: .whitespaces)
+                guard !trimmed.isEmpty else {
+                    self.predictiveSuggestions = []
+                    return
+                }
+                self.currentPredictiveTask?.cancel()
+                self.currentPredictiveTask = Task {
+                    await self.loadPredictive(query: trimmed)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - Predictive Intents
+    private func loadPredictive(query: String) async {
+        isPredictiveSearching = true
+        do {
+            let suggestions = try await fetchPredictiveSearchUseCase.execute(
+                query: query
+            )
+            if !Task.isCancelled {
+                predictiveSuggestions = suggestions
+            }
+        } catch {
+            if !Task.isCancelled {
+                predictiveSuggestions = []
+            }
+        }
+        if !Task.isCancelled {
+            isPredictiveSearching = false
+        }
+    }
 
+    /// Called when the user taps a suggestion row.
+    /// - Product suggestion: sets searchText and commits a full search
+    /// - Collection suggestion: applies it as a category filter immediately
+    func selectSuggestion(_ suggestion: PredictiveSuggestion) {
+        clearPredictive()
+        switch suggestion {
+        case .product(let product):
+            searchText = product.title
+            repository.saveRecentSearch(product.title)
+            recentSearches = repository.fetchRecentSearches()
+            Task { await performSearch(query: product.title, resetPagination: true) }
+
+        case .collection(let collection):
+            // Apply collection as a category filter — same key as SearchFilters.selectedCategoryIDs
+            var filters = SearchFilters()
+            filters.selectedCategoryIDs.insert(collection.handle)
+            appliedFilters = filters
+            pendingFilters = filters
+            searchText = ""
+            Task { await performSearch(query: "", resetPagination: true) }
+        }
+    }
+
+    func clearPredictive() {
+        currentPredictiveTask?.cancel()
+        predictiveSuggestions = []
+        isPredictiveSearching = false
+    }
+    
     // MARK: - External Intents (Tab Bar Navigation)
         func applyExternalFilters(_ filters: SearchFilters) {
             self.appliedFilters = filters

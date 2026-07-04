@@ -4,7 +4,6 @@
 //
 //  Created by Mina_Wagdy on 02/07/2026.
 //
-
 // Features/Search/Data/DataSource/SearchRemoteDataSource.swift
 
 import Foundation
@@ -23,7 +22,7 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
         self.client = client
     }
 
-    // MARK: - SearchRemoteDataSourceProtocol
+    // MARK: - Search Products
 
     func searchProducts(
         query: String,
@@ -36,8 +35,6 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
             guard let self else { return }
             Task {
                 do {
-                    // Fix 1: Apollo enums must be wrapped in GraphQLEnum<T>
-                    // then lifted into GraphQLNullable via .some()
                     let mappedSortKey: GraphQLNullable<GraphQLEnum<ShopifyAPI.SearchSortKeys>>
                     if let sk = sortKey,
                        let key = ShopifyAPI.SearchSortKeys(rawValue: sk) {
@@ -58,7 +55,7 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
                     )
 
                     let response = try await self.client.performQuery(query: apolloQuery)
-                    let page = Self.map(response.search)
+                    let page = Self.mapSearchPage(response.search)
                     promise(.success(page))
 
                 } catch {
@@ -68,6 +65,8 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
         }
         .eraseToAnyPublisher()
     }
+
+    // MARK: - Fetch Product Types
 
     func fetchProductTypes(first: Int) -> AnyPublisher<[String], Error> {
         Future { [weak self] promise in
@@ -88,16 +87,42 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
         .eraseToAnyPublisher()
     }
 
-    // MARK: - Mapping
+    // MARK: - Predictive Search
 
-    private static func map(
+    func fetchPredictiveSuggestions(
+        query: String
+    ) -> AnyPublisher<PredictiveSearchResultDTO, Error> {
+        Future { [weak self] promise in
+            guard let self else { return }
+            Task {
+                do {
+                    let apolloQuery = ShopifyAPI.PredictiveSearchQuery(query: query)
+                    let response = try await self.client.performQuery(query: apolloQuery)
+                    guard let predictiveSearch = response.predictiveSearch else {
+                        promise(.success(
+                            PredictiveSearchResultDTO(products: [], collections: [])
+                        ))
+                        return
+                    }
+                    let dto = Self.mapPredictive(predictiveSearch)
+                    promise(.success(dto))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    // MARK: - Search Page Mapping
+
+    private static func mapSearchPage(
         _ search: ShopifyAPI.SearchProductsQuery.Data.Search
     ) -> SearchResultPage {
         let nodes = search.edges.compactMap { edge -> SearchProductNode? in
             guard let product = edge.node.asProduct else { return nil }
-            return mapProduct(product)
+            return mapSearchProduct(product)
         }
-
         return SearchResultPage(
             products: nodes,
             hasNextPage: search.pageInfo.hasNextPage,
@@ -106,23 +131,16 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
         )
     }
 
-    private static func mapProduct(
+    private static func mapSearchProduct(
         _ product: ShopifyAPI.SearchProductsQuery.Data.Search.Edge.Node.AsProduct
     ) -> SearchProductNode {
-
-        let minPrice = Double(product.priceRange.minVariantPrice.amount) ?? 0.0
-        let maxPrice = Double(product.priceRange.maxVariantPrice.amount) ?? 0.0
-
-        let compareAtPrice = product.compareAtPriceRange.minVariantPrice.amount
+        let minPrice  = Double(product.priceRange.minVariantPrice.amount) ?? 0.0
+        let maxPrice  = Double(product.priceRange.maxVariantPrice.amount) ?? 0.0
+        let compareAt = product.compareAtPriceRange.minVariantPrice.amount
             .flatMap { Double(String(describing: $0)) }
-
-        // Fix 2: CurrencyCode is GraphQLEnum<ShopifyAPI.CurrencyCode>
-        // Use .value to unwrap the enum, then .rawValue for the String
-        let currencyCode = product.priceRange.minVariantPrice.currencyCode
-            .value?.rawValue ?? ""
-
-        let imageNode   = product.images.edges.first?.node
-        let collections = product.collections.edges.map(\.node.handle)
+        let currencyCode   = product.priceRange.minVariantPrice.currencyCode.value?.rawValue ?? ""
+        let imageNode      = product.images.edges.first?.node
+        let collections    = product.collections.edges.map(\.node.handle)
         let firstVariantID = product.variants.edges.first?.node.id
 
         return SearchProductNode(
@@ -133,12 +151,49 @@ final class SearchRemoteDataSource: SearchRemoteDataSourceProtocol {
             availableForSale: product.availableForSale,
             minPrice: minPrice,
             maxPrice: maxPrice,
-            compareAtPrice: compareAtPrice,
+            compareAtPrice: compareAt,
             currencyCode: currencyCode,
             imageURL: imageNode?.url,
             imageAltText: imageNode?.altText ?? nil,
             collectionHandles: collections,
             firstVariantID: firstVariantID
+        )
+    }
+
+    // MARK: - Predictive Mapping
+
+    private static func mapPredictive(
+        _ data: ShopifyAPI.PredictiveSearchQuery.Data.PredictiveSearch
+    ) -> PredictiveSearchResultDTO {
+
+        let products = data.products.map { product -> PredictiveProductDTO in
+            let amount = Double(product.priceRange.minVariantPrice.amount) ?? 0.0
+            let currency = product.priceRange.minVariantPrice.currencyCode.value?.rawValue ?? ""
+            let imageNode = product.images.edges.first?.node
+            return PredictiveProductDTO(
+                id: product.id,
+                title: product.title,
+                vendor: product.vendor,
+                minPrice: amount,
+                currencyCode: currency,
+                imageURL: imageNode?.url,
+                imageAltText: imageNode?.altText ?? nil
+            )
+        }
+
+        let collections = data.collections.map { collection -> PredictiveCollectionDTO in
+            PredictiveCollectionDTO(
+                id: collection.id,
+                title: collection.title,
+                handle: collection.handle,
+                imageURL: collection.image?.url,
+                imageAltText: collection.image?.altText ?? nil
+            )
+        }
+
+        return PredictiveSearchResultDTO(
+            products: products,
+            collections: collections
         )
     }
 }

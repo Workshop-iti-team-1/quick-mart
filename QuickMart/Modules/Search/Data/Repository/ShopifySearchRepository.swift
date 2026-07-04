@@ -5,8 +5,8 @@
 //  Created by Mina_Wagdy on 02/07/2026.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class ShopifySearchRepository: SearchRepositoryProtocol {
 
@@ -24,13 +24,16 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
         query: String,
         filters: SearchFilters,
         after: String?
-    ) async throws -> (products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?) {
+    ) async throws -> (
+        products: [ProductSearchItem], hasNextPage: Bool, endCursor: String?
+    ) {
 
         let sortKey = filters.selectedSort.shopifySortKey
         let reverse = filters.selectedSort.reverseOrder
         let effectiveQuery = buildQuery(query: query, filters: filters)
 
-        let page: SearchResultPage = try await remoteDataSource
+        let page: SearchResultPage =
+            try await remoteDataSource
             .searchProducts(
                 query: effectiveQuery,
                 first: 20,
@@ -50,7 +53,8 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
     }
 
     func fetchSubCategories() async throws -> [SubCategory] {
-        let types: [String] = try await remoteDataSource
+        let types: [String] =
+            try await remoteDataSource
             .fetchProductTypes(first: 250)
             .asyncValue()
 
@@ -60,6 +64,47 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
                 name: type
             )
         }
+    }
+    
+    // MARK: - Predictive Suggestions
+
+    func fetchPredictiveSuggestions(
+        query: String
+    ) async throws -> [PredictiveSuggestion] {
+
+        let dto: PredictiveSearchResultDTO =
+            try await remoteDataSource
+            .fetchPredictiveSuggestions(query: query)
+            .asyncValue()
+
+        // Products first, then collections — consistent ordering
+        var suggestions: [PredictiveSuggestion] = []
+
+        suggestions += dto.products.map { product in
+            .product(
+                PredictiveProduct(
+                    id: product.id,
+                    title: product.title,
+                    vendor: product.vendor,
+                    minPrice: product.minPrice,
+                    currencyCode: product.currencyCode,
+                    imageURL: product.imageURL.flatMap { URL(string: $0) }
+                )
+            )
+        }
+
+        suggestions += dto.collections.map { collection in
+            .collection(
+                PredictiveCollection(
+                    id: collection.id,
+                    title: collection.title,
+                    handle: collection.handle,
+                    imageURL: collection.imageURL.flatMap { URL(string: $0) }
+                )
+            )
+        }
+
+        return suggestions
     }
 
     func fetchRecentSearches() -> [String] {
@@ -90,7 +135,7 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
         if !trimmed.isEmpty {
             // Appending the wildcard enables partial-word matching
-                parts.append("\(trimmed)*")
+            parts.append("\(trimmed)*")
         }
 
         // Fix: quote vendor names to handle spaces and special characters
@@ -117,7 +162,9 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
 
     // MARK: - Domain Mapping
 
-    private static func mapToDomain(_ node: SearchProductNode) -> ProductSearchItem {
+    private static func mapToDomain(_ node: SearchProductNode)
+        -> ProductSearchItem
+    {
         ProductSearchItem(
             id: node.id,
             name: node.title,
@@ -128,7 +175,7 @@ final class ShopifySearchRepository: SearchRepositoryProtocol {
             colorNames: [],
             colorCount: 0,
             isFavorite: false,
-            categoryHandles: node.collectionHandles,    // ← ALL handles, not just .first
+            categoryHandles: node.collectionHandles,  // ← ALL handles, not just .first
             subCategoryID: node.productType.isEmpty ? nil : node.productType,
             brandID: node.vendor.isEmpty ? nil : node.vendor
         )
