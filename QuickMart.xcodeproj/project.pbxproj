@@ -130,7 +130,6 @@
 		6DB926588223269EDEFE4C83 /* RegisterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CFA3F34C465D3BADAE0A0 /* RegisterRequestDTO.swift */; };
 		7A7BE68B58B207DEA8C8D97B /* ShopifyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */; };
 		7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */; };
-		8167018E04ABB1C620C2695A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C167F3C5D3DBCF2DBF66AAE /* Network.swift */; };
 		853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C127E4B8B2EA37B5662334F /* RootView.swift */; };
 		941B5A9C57FD9CD7C5DF3D3F /* GraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F21E447B37FAA60289BA670 /* GraphQLClient.swift */; };
 		98B60399B78AA82923551283 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B89A7F0D4E1F3C3BB0304 /* String+Validation.swift */; };
@@ -147,7 +146,6 @@
 		AA2579AC9026EF9EF3A6CB50 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7553ECC63FC025BF82070C77 /* AppRouter.swift */; };
 		AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */; };
 		B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9EDA13CE49B1F1041FAC3 /* OnboardingView.swift */; };
-		B881614CF6208277EE5B4066 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A590FB53538058F74EF77941 /* NetworkService.swift */; };
 		B9EC8BA9D39C1EA1B2DC31BF /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DCE8A385D97C5EFE3DD83A /* AppStrings.swift */; };
 		BB0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */; };
 		BB0011223344556677889902 /* CommonRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889902 /* CommonRemoteDataSource.swift */; };
@@ -417,7 +415,6 @@
 		1AE9EDA13CE49B1F1041FAC3 /* OnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2F21E447B37FAA60289BA670 /* GraphQLClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GraphQLClient.swift; sourceTree = "<group>"; };
 		48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DIContainer+Auth.swift"; sourceTree = "<group>"; };
-		4C167F3C5D3DBCF2DBF66AAE /* Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		57D20BE86A4B20A54AA6EA3F /* CustomLoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
 		584C12832FEFFA2000F61A1B /* QuickMart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickMart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		584C12992FEFFA2300F61A1B /* QuickMartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickMartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -524,7 +521,6 @@
 		9AC0D39A7C03F2056714E13A /* AuthRepositoryImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImpl.swift; sourceTree = "<group>"; };
 		9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShopifyConfig.swift; sourceTree = "<group>"; };
 		A010C97AB517F86089C948F8 /* DIContainer+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DIContainer+Network.swift"; sourceTree = "<group>"; };
-		A590FB53538058F74EF77941 /* NetworkService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSourceProtocol.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSourceProtocol.swift; sourceTree = SOURCE_ROOT; };
 		AA0011223344556677889902 /* CommonRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSource.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSource.swift; sourceTree = SOURCE_ROOT; };
 		AA0011223344556677889903 /* CommonRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRepositoryImpl.swift; path = QuickMart/Modules/Common/Data/Repositories/CommonRepositoryImpl.swift; sourceTree = SOURCE_ROOT; };
@@ -2024,8 +2020,6 @@
 				ABEE1E582DDC9A04B5029A9D /* NetworkError.swift */,
 				1A25156AF2CD212F46842181 /* Apollo+NetworkError.swift */,
 				2F21E447B37FAA60289BA670 /* GraphQLClient.swift */,
-				4C167F3C5D3DBCF2DBF66AAE /* Network.swift */,
-				A590FB53538058F74EF77941 /* NetworkService.swift */,
 				D4459EC02FF97393004EE855 /* ShopifyAPI */,
 			);
 			path = Network;
@@ -2669,8 +2663,6 @@
 				5FA216FF2FF8F18E00DBA613 /* WishlistView.swift in Sources */,
 				D4A1B2A62FF6A0E300735C4D /* Publisher+Async.swift in Sources */,
 				2EC0D9ABAD110E10B9D40FC1 /* DIContainer+Network.swift in Sources */,
-				8167018E04ABB1C620C2695A /* Network.swift in Sources */,
-				B881614CF6208277EE5B4066 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
