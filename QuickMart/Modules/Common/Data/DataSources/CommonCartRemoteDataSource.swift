@@ -1,13 +1,18 @@
 //
-//  CommonRemoteDataSource.swift
+//  CommonCartRemoteDataSource.swift
 //  QuickMart
 //
 //  Created by siam on 2/07/2026.
 //
 
 import Foundation
+protocol CommonCartRemoteDataSourceProtocol {
+    func getCart(cartId: String) async throws -> ShopifyAPI.GetCartQuery.Data.Cart?
+    func createCart(variantId: String, quantity: Int) async throws -> String?
+    func addLine(cartId: String, variantId: String, quantity: Int) async throws
+}
 
-class CartRemoteDataSource: CommonRemoteDataSourceProtocol {
+class CommonCartRemoteDataSource: CommonCartRemoteDataSourceProtocol {
     private let client: ShopifyGraphQLClientProtocol
     
     init(client: ShopifyGraphQLClientProtocol) {

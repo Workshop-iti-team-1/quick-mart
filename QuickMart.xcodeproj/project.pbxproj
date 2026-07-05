@@ -156,10 +156,9 @@
 		AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B670DBA77F0404C70DCD8 /* LoginUseCase.swift */; };
 		B14B93AABAA3BEC3D701CCF7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9EDA13CE49B1F1041FAC3 /* OnboardingView.swift */; };
 		B9EC8BA9D39C1EA1B2DC31BF /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DCE8A385D97C5EFE3DD83A /* AppStrings.swift */; };
-		BB0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */; };
-		BB0011223344556677889902 /* CommonRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889902 /* CommonRemoteDataSource.swift */; };
-		BB0011223344556677889903 /* CommonRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889903 /* CommonRepositoryImpl.swift */; };
-		BB0011223344556677889904 /* CommonRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889904 /* CommonRepositoryProtocol.swift */; };
+		BB0011223344556677889902 /* CommonCartRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889902 /* CommonCartRemoteDataSource.swift */; };
+		BB0011223344556677889903 /* CommonCartRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889903 /* CommonCartRepositoryImpl.swift */; };
+		BB0011223344556677889904 /* CommonCartRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889904 /* CommonCartRepositoryProtocol.swift */; };
 		BB0011223344556677889905 /* AddToCartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889905 /* AddToCartUseCase.swift */; };
 		BB0011223344556677889906 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889906 /* ProductDetailsView.swift */; };
 		BB0011223344556677889907 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0011223344556677889907 /* ProductDetailsViewModel.swift */; };
@@ -538,10 +537,9 @@
 		9AC0D39A7C03F2056714E13A /* AuthRepositoryImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImpl.swift; sourceTree = "<group>"; };
 		9CE31073432D446BE0CF0978 /* ShopifyConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShopifyConfig.swift; sourceTree = "<group>"; };
 		A010C97AB517F86089C948F8 /* DIContainer+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DIContainer+Network.swift"; sourceTree = "<group>"; };
-		AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSourceProtocol.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSourceProtocol.swift; sourceTree = SOURCE_ROOT; };
-		AA0011223344556677889902 /* CommonRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRemoteDataSource.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonRemoteDataSource.swift; sourceTree = SOURCE_ROOT; };
-		AA0011223344556677889903 /* CommonRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRepositoryImpl.swift; path = QuickMart/Modules/Common/Data/Repositories/CommonRepositoryImpl.swift; sourceTree = SOURCE_ROOT; };
-		AA0011223344556677889904 /* CommonRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonRepositoryProtocol.swift; path = QuickMart/Modules/Common/Domain/Repositories/CommonRepositoryProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889902 /* CommonCartRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonCartRemoteDataSource.swift; path = QuickMart/Modules/Common/Data/DataSources/CommonCartRemoteDataSource.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889903 /* CommonCartRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonCartRepositoryImpl.swift; path = QuickMart/Modules/Common/Data/Repositories/CommonCartRepositoryImpl.swift; sourceTree = SOURCE_ROOT; };
+		AA0011223344556677889904 /* CommonCartRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonCartRepositoryProtocol.swift; path = QuickMart/Modules/Common/Domain/Repositories/CommonCartRepositoryProtocol.swift; sourceTree = SOURCE_ROOT; };
 		AA0011223344556677889905 /* AddToCartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToCartUseCase.swift; path = QuickMart/Modules/Common/Domain/UseCases/AddToCartUseCase.swift; sourceTree = SOURCE_ROOT; };
 		AA0011223344556677889906 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsView.swift; path = QuickMart/Modules/Home/Presentation/View/ProductDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		AA0011223344556677889907 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewModel.swift; path = QuickMart/Modules/Home/Presentation/ViewModels/ProductDetailsViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -1583,8 +1581,7 @@
 			isa = PBXGroup;
 			children = (
 				15E10F952FFAC7DD00E6E7AF /* CurrencyRemoteDataSource.swift */,
-				AA0011223344556677889902 /* CommonRemoteDataSource.swift */,
-				AA0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift */,
+				AA0011223344556677889902 /* CommonCartRemoteDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1593,7 +1590,7 @@
 			isa = PBXGroup;
 			children = (
 				15E10F982FFAD20F00E6E7AF /* CurrencyRepositoryImpl.swift */,
-				AA0011223344556677889903 /* CommonRepositoryImpl.swift */,
+				AA0011223344556677889903 /* CommonCartRepositoryImpl.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1612,7 +1609,7 @@
 			isa = PBXGroup;
 			children = (
 				15E10F9A2FFAD24B00E6E7AF /* CurrencyRepositoryProtocol.swift */,
-				AA0011223344556677889904 /* CommonRepositoryProtocol.swift */,
+				AA0011223344556677889904 /* CommonCartRepositoryProtocol.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -2362,10 +2359,9 @@
 				AA0011223344556677889925 /* ProductQuantityView.swift in Sources */,
 				AA0011223344556677889926 /* ProductBottomBar.swift in Sources */,
 				AA0011223344556677889927 /* ProductToastView.swift in Sources */,
-				BB0011223344556677889901 /* CommonRemoteDataSourceProtocol.swift in Sources */,
-				BB0011223344556677889902 /* CommonRemoteDataSource.swift in Sources */,
-				BB0011223344556677889903 /* CommonRepositoryImpl.swift in Sources */,
-				BB0011223344556677889904 /* CommonRepositoryProtocol.swift in Sources */,
+				BB0011223344556677889902 /* CommonCartRemoteDataSource.swift in Sources */,
+				BB0011223344556677889903 /* CommonCartRepositoryImpl.swift in Sources */,
+				BB0011223344556677889904 /* CommonCartRepositoryProtocol.swift in Sources */,
 				BB0011223344556677889905 /* AddToCartUseCase.swift in Sources */,
 				BB0011223344556677889906 /* ProductDetailsView.swift in Sources */,
 				BB0011223344556677889907 /* ProductDetailsViewModel.swift in Sources */,

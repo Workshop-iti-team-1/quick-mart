@@ -1,5 +1,5 @@
 //
-//  CommonRepositoryImpl.swift
+//  CommonCartRepositoryImpl.swift
 //  QuickMart
 //
 //  Created by siam on 2/07/2026.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CartRepositoryImpl: CommonRepositoryProtocol {
-    private let remoteDataSource: CommonRemoteDataSourceProtocol
+class CommonCartRepositoryImpl: CommonCartRepositoryProtocol {
+    private let remoteDataSource: CommonCartRemoteDataSourceProtocol
     
-    init(remoteDataSource: CommonRemoteDataSourceProtocol) {
+    init(remoteDataSource: CommonCartRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
     }
     
@@ -19,22 +19,22 @@ class CartRepositoryImpl: CommonRepositoryProtocol {
         
         if !cartId.isEmpty {
             do {
-                // Try to get cart to verify it exists and is valid
+               
                 let cart = try await remoteDataSource.getCart(cartId: cartId)
                 if cart != nil {
-                    // Valid, so add line
+              
                     try await remoteDataSource.addLine(cartId: cartId, variantId: variantId, quantity: quantity)
                     return
                 } else {
-                    // Cart not found or invalid
+               
                     try await createNewCartAndAdd(variantId: variantId, quantity: quantity)
                 }
             } catch {
-                // If it fails (e.g. expired or invalid ID), create a new one
+                
                 try await createNewCartAndAdd(variantId: variantId, quantity: quantity)
             }
         } else {
-            // No cart ID in local storage
+         
             try await createNewCartAndAdd(variantId: variantId, quantity: quantity)
         }
     }

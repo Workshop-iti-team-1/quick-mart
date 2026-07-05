@@ -9,9 +9,9 @@ import Foundation
 
 class CartRepositoryImpl: CartRepository {
     private let remoteDataSource: RemoteCartDataSource
-    private let commonRemoteDataSource: CommonRemoteDataSourceProtocol
+    private let commonRemoteDataSource: CommonCartRemoteDataSourceProtocol
     
-    init(remoteDataSource: RemoteCartDataSource, commonRemoteDataSource: CommonRemoteDataSourceProtocol) {
+    init(remoteDataSource: RemoteCartDataSource, commonRemoteDataSource: CommonCartRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
         self.commonRemoteDataSource = commonRemoteDataSource
     }

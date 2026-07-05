@@ -86,12 +86,12 @@ public final class DIContainer {
     }
 
     // MARK: - Common
-    private func makeCommonRemoteDataSource() -> CommonRemoteDataSourceProtocol {
-        CommonRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
+    private func makeCommonRemoteDataSource() -> CommonCartRemoteDataSourceProtocol {
+        CommonCartRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
     }
     
-    private func makeCommonRepository() -> CommonRepositoryProtocol {
-        CommonRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
+    private func makeCommonRepository() -> CommonCartRepositoryProtocol {
+        CommonCartRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
     }
 
     private func makeAddToCartUseCase() -> AddToCartUseCaseProtocol {

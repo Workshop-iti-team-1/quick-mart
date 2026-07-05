@@ -1,5 +1,5 @@
 //
-//  CommonRepositoryProtocol.swift
+//  CommonCartRepositoryProtocol.swift
 //  QuickMart
 //
 //  Created by siam on 2/07/2026.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CartRepositoryProtocol {
+protocol CommonCartRepositoryProtocol {
     func addToCart(variantId: String, quantity: Int) async throws
 }
