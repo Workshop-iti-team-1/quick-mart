@@ -4,6 +4,7 @@
 //
 //  Created by siam on 2/07/2026.
 //
+// Features/Cart/Presentation/Views/CartView.swift
 
 import SwiftUI
 import SafariServices
@@ -13,12 +14,12 @@ struct CartView: View {
     @State private var showVoucherSheet = false
     @State private var showDeleteConfirmation = false
     @State private var itemToDeleteId: String?
-    let router: AppRouter
-    
+    @Environment(AppRouter.self) private var router
+
     var body: some View {
         ZStack {
             Color.backGround.ignoresSafeArea()
-            
+
             switch viewModel.viewState {
             case .loading:
                 CustomLoadingView()
@@ -33,7 +34,7 @@ struct CartView: View {
             case .populated:
                 populatedCartView
             }
-            
+
             if viewModel.isUpdating {
                 CustomLoadingView()
             }
@@ -64,13 +65,6 @@ struct CartView: View {
                 }
             }
         }
-        .sheet(isPresented: $viewModel.isCheckoutUrlPresented, onDismiss: {
-            viewModel.clearCartAfterCheckout()
-        }) {
-            if let cart = viewModel.cart, let url = URL(string: cart.checkoutUrl) {
-                SafariView(url: url)
-            }
-        }
         .sheet(isPresented: $showDeleteConfirmation) {
             if #available(iOS 16.0, *) {
                 CartDeleteConfirmationSheet(
@@ -97,16 +91,17 @@ struct CartView: View {
             }
         }
     }
-    
+
+    // MARK: - Populated Cart
+
     private var populatedCartView: some View {
         VStack(spacing: 0) {
-      
             HStack {
                 Text(AppStrings.Cart.myCart)
                     .appTextStyle(.heading2, color: .primary)
-                
+
                 Spacer()
-                
+
                 Button(action: { showVoucherSheet = true }) {
                     Text(AppStrings.Cart.voucherCode)
                         .appTextStyle(.body, color: .cyanPrimary)
@@ -115,7 +110,7 @@ struct CartView: View {
             .padding(.horizontal, 16)
             .padding(.top, 16)
             .padding(.bottom, 8)
-            
+
             if let cart = viewModel.cart {
                 ScrollView {
                     LazyVStack(spacing: 16) {
@@ -123,10 +118,16 @@ struct CartView: View {
                             CartItemRowView(
                                 item: item,
                                 onIncrement: {
-                                    viewModel.updateQuantity(lineId: item.id, newQuantity: item.quantity + 1)
+                                    viewModel.updateQuantity(
+                                        lineId: item.id,
+                                        newQuantity: item.quantity + 1
+                                    )
                                 },
                                 onDecrement: {
-                                    viewModel.updateQuantity(lineId: item.id, newQuantity: item.quantity - 1)
+                                    viewModel.updateQuantity(
+                                        lineId: item.id,
+                                        newQuantity: item.quantity - 1
+                                    )
                                 },
                                 onDelete: {
                                     itemToDeleteId = item.id
@@ -137,14 +138,16 @@ struct CartView: View {
                         }
                     }
                     .padding(.top, 16)
-                    .padding(.bottom, 120) 
+                    .padding(.bottom, 120)
                 }
-                
+
+                // Proceed to Checkout — pushes CheckoutView with current cart
                 OrderSummaryView(
                     cost: cart.cost,
                     itemCount: cart.totalQuantity,
                     onCheckout: {
-                        viewModel.checkout()
+                        // Fix: push checkout route with cart instead of opening WebView
+                        router.push(.checkout(cart))
                     }
                 )
             }
@@ -152,15 +155,19 @@ struct CartView: View {
     }
 }
 
+// MARK: - Safari View (kept for reference — no longer used for checkout)
 
 struct SafariView: UIViewControllerRepresentable {
     let url: URL
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        return SFSafariViewController(url: url)
+
+    func makeUIViewController(
+        context: UIViewControllerRepresentableContext<SafariView>
+    ) -> SFSafariViewController {
+        SFSafariViewController(url: url)
     }
-    
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
-        // No update needed
-    }
+
+    func updateUIViewController(
+        _ uiViewController: SFSafariViewController,
+        context: UIViewControllerRepresentableContext<SafariView>
+    ) {}
 }

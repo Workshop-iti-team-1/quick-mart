@@ -183,4 +183,32 @@ public final class DIContainer {
     }
     private lazy var favoriteRepository: FavoriteRepositoryProtocol =
         FavoriteRepositoryImpl(localDataSource: favoriteLocalDataSource)
+    
+    // MARK: - Checkout
+
+    private func makeCheckoutRemoteDataSource() -> CheckoutRemoteDataSourceProtocol {
+        CheckoutRemoteDataSource()
+    }
+
+    private func makeCheckoutRepository() -> CheckoutRepositoryProtocol {
+        CheckoutRepositoryImpl(
+            remoteDataSource: makeCheckoutRemoteDataSource()
+        )
+    }
+
+    private func makePlaceOrderUseCase() -> PlaceOrderUseCaseProtocol {
+        PlaceOrderUseCase(repository: makeCheckoutRepository())
+    }
+
+    // MARK: - Public Factory
+
+    @MainActor
+    func makeCheckoutViewModel(cart: Cart) -> CheckoutViewModel {
+        CheckoutViewModel(
+            cart: cart,
+            placeOrderUseCase: makePlaceOrderUseCase(),
+            addressUseCases: makeAddressUseCases(),
+            cartUseCases: makeCartUseCases()
+        )
+    }
 }

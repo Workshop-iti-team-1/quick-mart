@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cart: Equatable {
+struct Cart: Equatable, Hashable {
     let id: String
     let checkoutUrl: String
     let totalQuantity: Int
@@ -16,27 +16,27 @@ struct Cart: Equatable {
     let discountCodes: [CartDiscountCode]
 }
 
-struct CartCost: Equatable {
+struct CartCost: Equatable,Hashable {
     let subtotalAmount: Double
     let totalAmount: Double
     let totalTaxAmount: Double?
     let currencyCode: String
 }
 
-struct CartLine: Equatable, Identifiable {
+struct CartLine: Equatable, Identifiable,Hashable {
     let id: String
     let quantity: Int
     let cost: CartLineCost
     let merchandise: ProductVariant
 }
 
-struct CartLineCost: Equatable {
+struct CartLineCost: Equatable,Hashable {
     let totalAmount: Double
     let amountPerQuantity: Double?
     let currencyCode: String
 }
 
-struct ProductVariant: Equatable, Identifiable {
+struct ProductVariant: Equatable, Identifiable, Hashable {
     let id: String
     let title: String
     let price: Double
@@ -48,7 +48,7 @@ struct ProductVariant: Equatable, Identifiable {
     let productVendor: String
 }
 
-struct CartDiscountCode: Equatable {
+struct CartDiscountCode: Equatable,Hashable {
     let code: String
     let applicable: Bool
 }
