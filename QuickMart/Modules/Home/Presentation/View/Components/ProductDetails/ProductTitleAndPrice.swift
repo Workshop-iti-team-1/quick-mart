@@ -15,7 +15,6 @@ struct ProductTitleAndPrice: View {
         HStack(alignment: .top) {
             Text(product.title)
                 .appTextStyle(.heading2, color: .primary)
-                .lineLimit(2)
             
             Spacer()
             

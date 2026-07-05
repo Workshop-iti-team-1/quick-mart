@@ -72,8 +72,10 @@ enum AppStrings {
     
     enum ProductDetails {
         static let topRated = String(localized: "ProductDetails_topRated", defaultValue: "Top Rated")
-        static let freeShipping = String(localized: "ProductDetails_freeShipping", defaultValue: "Free Shipping")
+        static let theTitle = String(localized: "ProductDetails_theTitle", defaultValue: "Product Details")
         static let readMore = String(localized: "ProductDetails_readMore", defaultValue: "Read more")
+        static let readLess = String(localized: "ProductDetails_readLess", defaultValue: "Read less")
+        static let freeShipping = String(localized: "ProductDetails_freeShipping", defaultValue: "Free Shipping")
         static let color = String(localized: "ProductDetails_color", defaultValue: "Color")
         static let size = String(localized: "ProductDetails_size", defaultValue: "Size")
         static let quantity = String(localized: "ProductDetails_quantity", defaultValue: "Quantity")
