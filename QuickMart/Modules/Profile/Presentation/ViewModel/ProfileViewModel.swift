@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ProfileViewModel : ObservableObject{
     
     @Published var user: UserEntity?
+    @AppStorage("selectedCurrency") var selectedCurrency: String = AppConstants.defultAppCurrency
     
     init(){
         self.user = UserEntity(
@@ -38,7 +40,8 @@ class ProfileViewModel : ObservableObject{
         let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
         return [
             MenuItem(icon: "lock", title: AppStrings.Profile.changePassword, trailing: .chevron(route: .changePassword)),
-            MenuItem(icon: "mobile", title: AppStrings.Profile.darkTheme, trailing: .toggle(isOn: isDarkMode))
+            MenuItem(icon: "mobile", title: AppStrings.Profile.darkTheme, trailing: .toggle(isOn: isDarkMode)),
+            MenuItem(icon: "dollarsign.circle", title: AppStrings.Profile.currency, trailing: .chevron(route: .currencyPicker, value: selectedCurrency))
         ]
     }
     

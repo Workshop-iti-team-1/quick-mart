@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @StateObject var viewModel: ProductDetailsViewModel
-    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared   // ← added
+    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared   
     @Environment(AppRouter.self) var router
     
     var body: some View {

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class CurrencyManagerSrevice: ObservableObject{
+class CurrencyManagerService: ObservableObject{
     @Published var rates: [String:Double] = [:]
     @AppStorage("selectedCurrency") var selectedCurrency: String = AppConstants.defultAppCurrency
     private let getRatesUseCase : GetCurrencyRatesUseCaseProtocol

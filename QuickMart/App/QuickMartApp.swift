@@ -22,7 +22,7 @@ struct QuickMartApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var router = AppRouter()
     @StateObject private var sessionManager = DIContainer.shared.sessionManager
-    @StateObject private var currencyManager: CurrencyManagerSrevice
+    @StateObject private var currencyManager: CurrencyManagerService
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
     init() {

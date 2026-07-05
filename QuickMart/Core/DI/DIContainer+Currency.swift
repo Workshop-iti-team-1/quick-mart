@@ -18,7 +18,20 @@ extension DIContainer {
         GetCurrencyRatesUseCase(repository: currencyRepository)
     }
     
-    func makeCurrencyManagerService() -> CurrencyManagerSrevice {
-        CurrencyManagerSrevice(getRatesUseCase: getCurrencyRatesUseCase)
-    }
+    @MainActor
+    func makeCurrencyManagerService() -> CurrencyManagerService {
+            CurrencyManagerService(getRatesUseCase: getCurrencyRatesUseCase)
+        }
+        
+       
+    @MainActor
+    func makeCurrencyPickerViewModel() -> CurrencyPickerViewModel {
+                 return CurrencyPickerViewModel()
+        }
+        
+    @MainActor
+    func makeCurrencyPickerView() -> CurrencyPickerView {
+            let viewModel = makeCurrencyPickerViewModel()
+            return CurrencyPickerView(viewModel: viewModel)
+        }
 }

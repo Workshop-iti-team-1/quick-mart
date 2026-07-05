@@ -28,4 +28,5 @@ enum Route: Hashable {
     case termsAndConditions
     case faqs
     case changePassword
+    case currencyPicker
 }

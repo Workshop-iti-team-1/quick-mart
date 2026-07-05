@@ -26,8 +26,12 @@
 		15E10F992FFAD22500E6E7AF /* CurrencyRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F982FFAD20F00E6E7AF /* CurrencyRepositoryImpl.swift */; };
 		15E10F9B2FFAD26200E6E7AF /* CurrencyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F9A2FFAD24B00E6E7AF /* CurrencyRepositoryProtocol.swift */; };
 		15E10FA12FFAD30900E6E7AF /* GetCurrencyRatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA02FFAD30400E6E7AF /* GetCurrencyRatesUseCase.swift */; };
-		15E10FA42FFADE0E00E6E7AF /* CurrencyManagerSrevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */; };
+		15E10FA42FFADE0E00E6E7AF /* CurrencyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA32FFADDFB00E6E7AF /* CurrencyManagerService.swift */; };
 		15E10FA62FFAE28800E6E7AF /* DIContainer+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA52FFAE26300E6E7AF /* DIContainer+Currency.swift */; };
+		15E10FA82FFAE88E00E6E7AF /* CurrencyPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA72FFAE88C00E6E7AF /* CurrencyPickerViewModel.swift */; };
+		15E10FB12FFAED8600E6E7AF /* CurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FB02FFAED8400E6E7AF /* CurrencyPickerView.swift */; };
+		15E10FB32FFAF00200E6E7AF /* searchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FB22FFAF00100E6E7AF /* searchBar.swift */; };
+		15E10FB52FFAF09200E6E7AF /* currencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FB42FFAF09000E6E7AF /* currencyRow.swift */; };
 		15F124552FF456CA00428612 /* GuestLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F124542FF456CA00428612 /* GuestLoginUseCase.swift */; };
 		15F124572FF4643A00428612 /* RecoverPasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F124562FF4643A00428612 /* RecoverPasswordUseCase.swift */; };
 		15F1245D2FF4644F00428612 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1245A2FF4644F00428612 /* ForgotPasswordView.swift */; };
@@ -361,7 +365,6 @@
 		D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B082302FF700DC0011F64A /* ShopifySearchRepository.swift */; };
 		DB485DB7F1E08F3D6FC59A88 /* images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E7477EA51BCBA5A046101 /* images.swift */; };
 		DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB407902B34A12003729580C /* RegisterResponseDTO.swift */; };
-		DE8869502FF6E8B900860250 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE88694F2FF6E8AC00860250 /* MenuItem.swift */; };
 		DE8869532FF6EA9100860250 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8869522FF6EA9100860250 /* ProfileViewModel.swift */; };
 		DECCB60F2FF696F500F0A8C0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */; };
 		DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */; };
@@ -414,8 +417,12 @@
 		15E10F982FFAD20F00E6E7AF /* CurrencyRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryImpl.swift; sourceTree = "<group>"; };
 		15E10F9A2FFAD24B00E6E7AF /* CurrencyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryProtocol.swift; sourceTree = "<group>"; };
 		15E10FA02FFAD30400E6E7AF /* GetCurrencyRatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrencyRatesUseCase.swift; sourceTree = "<group>"; };
-		15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManagerSrevice.swift; sourceTree = "<group>"; };
+		15E10FA32FFADDFB00E6E7AF /* CurrencyManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManagerService.swift; sourceTree = "<group>"; };
 		15E10FA52FFAE26300E6E7AF /* DIContainer+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DIContainer+Currency.swift"; sourceTree = "<group>"; };
+		15E10FA72FFAE88C00E6E7AF /* CurrencyPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewModel.swift; sourceTree = "<group>"; };
+		15E10FB02FFAED8400E6E7AF /* CurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerView.swift; sourceTree = "<group>"; };
+		15E10FB22FFAF00100E6E7AF /* searchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchBar.swift; sourceTree = "<group>"; };
+		15E10FB42FFAF09000E6E7AF /* currencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currencyRow.swift; sourceTree = "<group>"; };
 		15F124542FF456CA00428612 /* GuestLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestLoginUseCase.swift; sourceTree = "<group>"; };
 		15F124562FF4643A00428612 /* RecoverPasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordUseCase.swift; sourceTree = "<group>"; };
 		15F124582FF4644F00428612 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -748,7 +755,6 @@
 		D4B082302FF700DC0011F64A /* ShopifySearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifySearchRepository.swift; sourceTree = "<group>"; };
 		D4D1B8082FEFDF650082FE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D676201016FCACC6E578BECA /* AppTextStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppTextStyle.swift; sourceTree = "<group>"; };
-		DE88694F2FF6E8AC00860250 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		DE8869522FF6EA9100860250 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCard.swift; sourceTree = "<group>"; };
@@ -768,6 +774,8 @@
 		15E10F912FFAC5A900E6E7AF /* DTOs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DTOs; sourceTree = "<group>"; };
 		15E10F9C2FFAD27400E6E7AF /* Entity */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Entity; sourceTree = "<group>"; };
 		15E10FA22FFADDCF00E6E7AF /* Firebase */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Firebase; sourceTree = "<group>"; };
+		15E10FA92FFAE8A700E6E7AF /* UiModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UiModel; sourceTree = "<group>"; };
+		15E10FAD2FFAE99E00E6E7AF /* UiModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UiModel; sourceTree = "<group>"; };
 		15F1D5A62FF67D6300EA9832 /* Cart */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Cart; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -826,7 +834,7 @@
 		15F124502FF4569B00428612 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */,
+				15E10FA32FFADDFB00E6E7AF /* CurrencyManagerService.swift */,
 				15E10FA22FFADDCF00E6E7AF /* Firebase */,
 			);
 			path = Services;
@@ -1545,6 +1553,7 @@
 		C519C718EDEE31B4F261B340 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				15E10FAD2FFAE99E00E6E7AF /* UiModel */,
 				9ECDF3B07B764516B43BA710 /* Components */,
 				455AFC5E9CD4988B22D0081A /* Views */,
 			);
@@ -2100,6 +2109,7 @@
 		DE8869512FF6EA4A00860250 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				15E10FA72FFAE88C00E6E7AF /* CurrencyPickerViewModel.swift */,
 				DE8869522FF6EA9100860250 /* ProfileViewModel.swift */,
 				15C227742FF95BAC004E3E90 /* OrderHistoryViewModel.swift */,
 			);
@@ -2138,6 +2148,7 @@
 		DECCB60C2FF68D0900F0A8C0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				15E10FA92FFAE8A700E6E7AF /* UiModel */,
 				DECCB6102FF69E1400F0A8C0 /* Components */,
 				DE8869512FF6EA4A00860250 /* ViewModel */,
 				DECCB60D2FF696DF00F0A8C0 /* View */,
@@ -2148,6 +2159,7 @@
 		DECCB60D2FF696DF00F0A8C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				15E10FB02FFAED8400E6E7AF /* CurrencyPickerView.swift */,
 				DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */,
 				15C227722FF95B90004E3E90 /* OrderHistoryView.swift */,
 			);
@@ -2157,7 +2169,8 @@
 		DECCB6102FF69E1400F0A8C0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				DE88694F2FF6E8AC00860250 /* MenuItem.swift */,
+				15E10FB42FFAF09000E6E7AF /* currencyRow.swift */,
+				15E10FB22FFAF00100E6E7AF /* searchBar.swift */,
 				DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */,
 				DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */,
 				DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */,
@@ -2207,6 +2220,8 @@
 				15E10F912FFAC5A900E6E7AF /* DTOs */,
 				15E10F9C2FFAD27400E6E7AF /* Entity */,
 				15E10FA22FFADDCF00E6E7AF /* Firebase */,
+				15E10FA92FFAE8A700E6E7AF /* UiModel */,
+				15E10FAD2FFAE99E00E6E7AF /* UiModel */,
 				15F1D5A62FF67D6300EA9832 /* Cart */,
 			);
 			name = QuickMart;
@@ -2392,7 +2407,6 @@
 				5FA135AF2FF168EB005F9FA6 /* LoginViewModel.swift in Sources */,
 				5FA135B02FF168EB005F9FA6 /* LoginView.swift in Sources */,
 				5F840A7E2FF31AEC00BB18C7 /* HomeViewModel.swift in Sources */,
-				DE8869502FF6E8B900860250 /* MenuItem.swift in Sources */,
 				5F840A8A2FF31CE800BB18C7 /* MockHomeRepository.swift in Sources */,
 				5FA135B62FF169EC005F9FA6 /* RegisterViewModel.swift in Sources */,
 				5F840A7C2FF31AC100BB18C7 /* BannerSlide.swift in Sources */,
@@ -2435,6 +2449,7 @@
 				5FC3A34D2FF9822F00285375 /* DiscountDataSource.swift in Sources */,
 				D4A1B2922FF68B7800735C4D /* MockSearchRepository.swift in Sources */,
 				5F552A212FF6655A00D34320 /* HomeRepositoryImpl.swift in Sources */,
+				15E10FB52FFAF09200E6E7AF /* currencyRow.swift in Sources */,
 				D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */,
 				D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */,
 				D4A1B2962FF68CE400735C4D /* FetchSubCategoriesUseCase.swift in Sources */,
@@ -2449,6 +2464,7 @@
 				5F7844DD2FF8557E00F6D3C7 /* CountryRepositoryProtocol.swift in Sources */,
 				5FA216F92FF8F12000DBA613 /* FavouriteViewModel.swift in Sources */,
 				5F7844D92FF8554F00F6D3C7 /* Country.swift in Sources */,
+				15E10FB32FFAF00200E6E7AF /* searchBar.swift in Sources */,
 				5F7844E12FF855C200F6D3C7 /* FetchCountriesUseCaseProtocol.swift in Sources */,
 				5F7844E52FF8560600F6D3C7 /* AddressFormViewModel.swift in Sources */,
 				5F7844E32FF855D900F6D3C7 /* AddressUseCases.swift in Sources */,
@@ -2585,7 +2601,7 @@
 				D4459F002FF97393004EE855 /* UrlRedirect.graphql.swift in Sources */,
 				15E10F9B2FFAD26200E6E7AF /* CurrencyRepositoryProtocol.swift in Sources */,
 				D4459F012FF97393004EE855 /* MediaImage.graphql.swift in Sources */,
-				15E10FA42FFADE0E00E6E7AF /* CurrencyManagerSrevice.swift in Sources */,
+				15E10FA42FFADE0E00E6E7AF /* CurrencyManagerService.swift in Sources */,
 				D4459F022FF97393004EE855 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
 				D4459F032FF97393004EE855 /* CartLinesAddPayload.graphql.swift in Sources */,
 				D4459F042FF97393004EE855 /* Market.graphql.swift in Sources */,
@@ -2634,6 +2650,7 @@
 				D4459F2E2FF97393004EE855 /* CustomerCreatePayload.graphql.swift in Sources */,
 				D4459F2F2FF97393004EE855 /* MetafieldsSetUserError.graphql.swift in Sources */,
 				D4459F302FF97393004EE855 /* GenericFile.graphql.swift in Sources */,
+				15E10FA82FFAE88E00E6E7AF /* CurrencyPickerViewModel.swift in Sources */,
 				D4459F312FF97393004EE855 /* CollectionEdge.graphql.swift in Sources */,
 				D4459F322FF97393004EE855 /* SchemaConfiguration.swift in Sources */,
 				D4459F332FF97393004EE855 /* ProductVariantConnection.graphql.swift in Sources */,
@@ -2676,6 +2693,7 @@
 				D4459F552FF97393004EE855 /* ProductPriceRange.graphql.swift in Sources */,
 				D4459F562FF97393004EE855 /* SellingPlan.graphql.swift in Sources */,
 				D4459F572FF97393004EE855 /* Collection.graphql.swift in Sources */,
+				15E10FB12FFAED8600E6E7AF /* CurrencyPickerView.swift in Sources */,
 				D4459F582FF97393004EE855 /* Video.graphql.swift in Sources */,
 				D4459F592FF97393004EE855 /* CartLinesUpdatePayload.graphql.swift in Sources */,
 				D4459F5A2FF97393004EE855 /* BaseCartLineEdge.graphql.swift in Sources */,

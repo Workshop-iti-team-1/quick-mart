@@ -120,6 +120,8 @@ final class AppRouter {
             ProfileView(router: self)
         case .changePassword:
             ProfileView(router: self)
+        case .currencyPicker:
+            CurrencyPickerView(viewModel: CurrencyPickerViewModel())
         }
     }
     // MARK: - Search (fullScreenCover factory)
