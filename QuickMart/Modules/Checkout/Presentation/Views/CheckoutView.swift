@@ -4,6 +4,7 @@
 //
 //  Created by Mina_Wagdy on 05/07/2026.
 //
+// Features/Checkout/Presentation/Views/CheckoutView.swift
 
 import SwiftUI
 
@@ -11,13 +12,14 @@ struct CheckoutView: View {
 
     @StateObject private var viewModel: CheckoutViewModel
     @Environment(AppRouter.self) private var router
+    @State private var isAddressPickerPresented: Bool = false
 
     private enum Layout {
-        static let horizontalPad: CGFloat = 16
+        static let horizontalPad: CGFloat  = 16
         static let sectionSpacing: CGFloat = 24
-        static let buttonHeight: CGFloat = 52
-        static let buttonRadius: CGFloat = 12
-        static let bottomPad: CGFloat = 32
+        static let buttonHeight: CGFloat   = 52
+        static let buttonRadius: CGFloat   = 12
+        static let bottomPad: CGFloat      = 32
     }
 
     // MARK: - Init
@@ -32,7 +34,6 @@ struct CheckoutView: View {
         ZStack(alignment: .bottom) {
             Color.backGround.ignoresSafeArea()
 
-            // Scrollable content
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
 
@@ -40,7 +41,7 @@ struct CheckoutView: View {
                     CheckoutAddressCard(
                         selectedAddress: viewModel.selectedAddress,
                         onChangeTap: {
-                            router.push(.shippingAddresses)
+                            isAddressPickerPresented = true
                         }
                     )
 
@@ -54,11 +55,9 @@ struct CheckoutView: View {
                 }
                 .padding(.horizontal, Layout.horizontalPad)
                 .padding(.top, 16)
-                // Extra bottom padding so content isn't hidden behind pay button
                 .padding(.bottom, Layout.buttonHeight + Layout.bottomPad + 32)
             }
 
-            // Pinned pay button
             payButton
                 .padding(.horizontal, Layout.horizontalPad)
                 .padding(.bottom, Layout.bottomPad)
@@ -67,6 +66,22 @@ struct CheckoutView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.loadAddresses()
+        }
+        // Independent address picker sheet
+        // Does NOT push shippingAddresses or touch the user's default address
+        .sheet(isPresented: $isAddressPickerPresented) {
+            CheckoutAddressPickerView(
+                addresses: viewModel.addresses,
+                selectedAddress: viewModel.selectedAddress,
+                onSelect: { address in
+                    viewModel.selectedAddress = address
+                },
+                onAddNew: {
+                    // Push to existing address form flow
+                    // AddressEventsBus will notify CheckoutViewModel when saved
+                    router.push(.shippingAddresses)
+                }
+            )
         }
         // Apple Pay simulated sheet
         .sheet(isPresented: $viewModel.isApplePaySheetPresented) {
@@ -146,58 +161,5 @@ struct CheckoutView: View {
             let total = String(format: "$%.2f", viewModel.cart.cost.totalAmount)
             return "Place Order · \(total)"
         }
-    }
-}
-
-// MARK: - Preview
-
-#Preview {
-    NavigationStack {
-        CheckoutView(
-            viewModel: CheckoutViewModel(
-                cart: Cart(
-                    id: "1",
-                    checkoutUrl: "",
-                    totalQuantity: 2,
-                    cost: CartCost(
-                        subtotalAmount: 47.40,
-                        totalAmount: 47.40,
-                        totalTaxAmount: nil,
-                        currencyCode: "USD"
-                    ),
-                    lines: [],
-                    discountCodes: []
-                ),
-                placeOrderUseCase: PlaceOrderUseCase(
-                    repository: CheckoutRepositoryImpl(
-                        remoteDataSource: CheckoutRemoteDataSource()
-                    )
-                ),
-                addressUseCases: AddressUseCasesImpl(
-                    repository: AddressRepositoryImpl(
-                        remoteDataSource: AddressRemoteDataSourceImpl(
-                            client: GraphQLClient(
-                                apollo: DIContainer.shared.apolloClient
-                            )
-                        )
-                    )
-                ),
-                cartUseCases: CartUseCasesImpl(
-                    repository: CartRepositoryImpl(
-                        remoteDataSource: RemoteCartDataSourceImpl(
-                            client: GraphQLClient(
-                                apollo: DIContainer.shared.apolloClient
-                            )
-                        ),
-                        commonRemoteDataSource: CommonRemoteDataSource(
-                            client: GraphQLClient(
-                                apollo: DIContainer.shared.apolloClient
-                            )
-                        )
-                    )
-                )
-            )
-        )
-        .environment(AppRouter())
     }
 }

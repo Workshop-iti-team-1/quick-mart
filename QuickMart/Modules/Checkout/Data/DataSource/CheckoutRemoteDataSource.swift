@@ -17,7 +17,7 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
 
     // MARK: - Fetch Customer ID (Storefront API)
 
-    func fetchCustomerId(customerAccessToken: String) async throws -> String { /// Should be refatored to utilize apollo auto schema generation
+    func fetchCustomerId(customerAccessToken: String) async throws -> String {
         let query = """
         query GetCustomerId($customerAccessToken: String!) {
             customer(customerAccessToken: $customerAccessToken) {
@@ -26,6 +26,11 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
         }
         """
 
+        let body: [String: Any] = [
+            "query": query,
+            "variables": ["customerAccessToken": customerAccessToken]
+        ]
+
         var request = URLRequest(url: ShopifyConfig.storeURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -33,20 +38,23 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             ShopifyConfig.storefrontToken,
             forHTTPHeaderField: "X-Shopify-Storefront-Access-Token"
         )
-        request.httpBody = try JSONSerialization.data(withJSONObject: [
-            "query": query,
-            "variables": ["customerAccessToken": customerAccessToken]
-        ])
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         let (data, response) = try await session.data(for: request)
         try validateHTTPResponse(response)
 
-        guard
-            let json        = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let dataObj     = json["data"] as? [String: Any],
-            let customer    = dataObj["customer"] as? [String: Any],
-            let customerId  = customer["id"] as? String
-        else {
+        let decoded = try JSONDecoder().decode(
+            StorefrontCustomerResponse.self,
+            from: data
+        )
+
+        if let errors = decoded.errors, !errors.isEmpty {
+            throw CheckoutError.orderCreationFailed(
+                errors.map(\.message).joined(separator: "\n")
+            )
+        }
+
+        guard let customerId = decoded.data?.customer?.id else {
             throw CheckoutError.customerNotFound
         }
 
@@ -81,11 +89,11 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
         ]
 
         var orderInput: [String: Any] = [
-            "customerId":        customerId,
-            "financialStatus":   paymentMethod.shopifyFinancialStatus,
-            "lineItems":         lineItems,
-            "shippingAddress":   shippingAddress,
-            "note":              "Placed via QuickMart iOS — \(paymentMethod.rawValue)"
+            "customerId":      customerId,
+            "financialStatus": paymentMethod.shopifyFinancialStatus,
+            "lineItems":       lineItems,
+            "shippingAddress": shippingAddress,
+            "note":            "Placed via QuickMart iOS — \(paymentMethod.rawValue)"
         ]
 
         // Apple Pay simulation: include a PAID SALE transaction
@@ -123,6 +131,11 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
         }
         """
 
+        let body: [String: Any] = [
+            "query":     mutation,
+            "variables": ["order": orderInput]
+        ]
+
         var request = URLRequest(url: ShopifyConfig.adminURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -130,54 +143,46 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             ShopifyConfig.adminToken,
             forHTTPHeaderField: "X-Shopify-Access-Token"
         )
-        request.httpBody = try JSONSerialization.data(withJSONObject: [
-            "query":     mutation,
-            "variables": ["order": orderInput]
-        ])
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         let (data, response) = try await session.data(for: request)
         try validateHTTPResponse(response)
 
-        return try parsePlacedOrder(from: data, paymentMethod: paymentMethod, cart: cart)
-    }
+        let decoded = try JSONDecoder().decode(
+            AdminOrderCreateResponse.self,
+            from: data
+        )
 
-    // MARK: - Parsing
+        // Surface top-level GraphQL errors first
+        if let errors = decoded.errors, !errors.isEmpty {
+            throw CheckoutError.orderCreationFailed(
+                errors.map(\.message).joined(separator: "\n")
+            )
+        }
 
-    private func parsePlacedOrder(
-        from data: Data,
-        paymentMethod: PaymentMethod,
-        cart: Cart
-    ) throws -> PlacedOrder {
-        guard
-            let json        = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let dataObj     = json["data"] as? [String: Any],
-            let orderCreate = dataObj["orderCreate"] as? [String: Any]
-        else {
+        guard let payload = decoded.data?.orderCreate else {
             throw CheckoutError.invalidResponse
         }
 
-        // Surface Admin API userErrors before attempting to parse order
-        if let userErrors = orderCreate["userErrors"] as? [[String: Any]],
-           !userErrors.isEmpty {
-            let messages = userErrors
-                .compactMap { $0["message"] as? String }
+        // Surface Admin API userErrors
+        if !payload.userErrors.isEmpty {
+            let messages = payload.userErrors
+                .map(\.message)
                 .joined(separator: "\n")
             throw CheckoutError.orderCreationFailed(messages)
         }
 
-        guard
-            let order      = orderCreate["order"] as? [String: Any],
-            let id         = order["id"] as? String,
-            let name       = order["name"] as? String  // "#1001"
-        else {
+        guard let order = payload.order else {
             throw CheckoutError.invalidResponse
         }
 
-        // name is "#1001" — strip the # and parse to Int
-        let orderNumber = Int(name.replacingOccurrences(of: "#", with: "")) ?? 0
+        // name is "#1001" — strip # and parse to Int
+        let orderNumber = Int(
+            order.name.replacingOccurrences(of: "#", with: "")
+        ) ?? 0
 
         return PlacedOrder(
-            id: id,
+            id: order.id,
             orderNumber: orderNumber,
             totalAmount: cart.cost.totalAmount,
             currencyCode: cart.cost.currencyCode,

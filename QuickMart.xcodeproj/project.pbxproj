@@ -366,6 +366,10 @@
 		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
 		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
 		D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */; };
+		D4AF191A2FFB06D00050688B /* DiscountResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF19192FFB06C30050688B /* DiscountResponseDTO.swift */; };
+		D4AF191D2FFB074B0050688B /* CheckoutResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF191C2FFB07480050688B /* CheckoutResponseDTO.swift */; };
+		D4AF191F2FFB083A0050688B /* CheckoutAddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */; };
+		D4AF19212FFB09DD0050688B /* OrderStatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF19202FFB09DB0050688B /* OrderStatusBadge.swift */; };
 		D4B080F22FF6FE520011F64A /* SearchQL.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D4B080F12FF6FE4B0011F64A /* SearchQL.graphql */; };
 		D4B082282FF6FF500011F64A /* SearchRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B082272FF6FF4D0011F64A /* SearchRemoteDataSource.swift */; };
 		D4B0822B2FF6FF7C0011F64A /* SearchResultPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B0822A2FF6FF790011F64A /* SearchResultPage.swift */; };
@@ -765,6 +769,10 @@
 		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyGraphQLClientProtocol.swift; sourceTree = "<group>"; };
+		D4AF19192FFB06C30050688B /* DiscountResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountResponseDTO.swift; sourceTree = "<group>"; };
+		D4AF191C2FFB07480050688B /* CheckoutResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutResponseDTO.swift; sourceTree = "<group>"; };
+		D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressPickerView.swift; sourceTree = "<group>"; };
+		D4AF19202FFB09DB0050688B /* OrderStatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusBadge.swift; sourceTree = "<group>"; };
 		D4B080F12FF6FE4B0011F64A /* SearchQL.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SearchQL.graphql; sourceTree = "<group>"; };
 		D4B082272FF6FF4D0011F64A /* SearchRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRemoteDataSource.swift; sourceTree = "<group>"; };
 		D4B0822A2FF6FF790011F64A /* SearchResultPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultPage.swift; sourceTree = "<group>"; };
@@ -1127,6 +1135,7 @@
 		5F552A0E2FF6632300D34320 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF19192FFB06C30050688B /* DiscountResponseDTO.swift */,
 				5FC3A3502FF982D100285375 /* DiscountModel.swift */,
 				5F552A122FF6635800D34320 /* CollectionModel.swift */,
 			);
@@ -1902,6 +1911,7 @@
 		D49571912FFAC1BB000B7E3F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */,
 				D49571982FFAC2AD000B7E3F /* CheckoutOrderSummaryView.swift */,
 				D49571962FFAC295000B7E3F /* ApplePaySimulatedSheet.swift */,
 				D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */,
@@ -1942,6 +1952,7 @@
 		D49BB7D02FFAA2010047E358 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF191B2FFB07340050688B /* DTOs */,
 				D49BB7E02FFAA7810047E358 /* Repository */,
 				D49BB7D62FFAA3520047E358 /* DataSource */,
 			);
@@ -2204,6 +2215,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		D4AF191B2FFB07340050688B /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				D4AF191C2FFB07480050688B /* CheckoutResponseDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
 		D4B082292FF6FF730011F64A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -2283,6 +2302,7 @@
 		DECCB6102FF69E1400F0A8C0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF19202FFB09DB0050688B /* OrderStatusBadge.swift */,
 				DE88694F2FF6E8AC00860250 /* MenuItem.swift */,
 				DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */,
 				DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */,
@@ -2529,6 +2549,7 @@
 				5F840A7C2FF31AC100BB18C7 /* BannerSlide.swift in Sources */,
 				5FA135B72FF169EC005F9FA6 /* SignupView.swift in Sources */,
 				853152CBDF5201C8DE9B0949 /* RootView.swift in Sources */,
+				D4AF19212FFB09DD0050688B /* OrderStatusBadge.swift in Sources */,
 				49E07C1824415F2404D0613D /* AppButton.swift in Sources */,
 				F43EB64763B4F93291DD6D89 /* AppConstants.swift in Sources */,
 				DE8869532FF6EA9100860250 /* ProfileViewModel.swift in Sources */,
@@ -2604,6 +2625,7 @@
 				5F365C912FF8530E0082DE82 /* CountryMapper.swift in Sources */,
 				D4092FA92FF92AB200702CFE /* PredictiveSearchDTO.swift in Sources */,
 				7A7BE68B58B207DEA8C8D97B /* ShopifyConfig.swift in Sources */,
+				D4AF191F2FFB083A0050688B /* CheckoutAddressPickerView.swift in Sources */,
 				D4A1B28D2FF68A9A00735C4D /* SearchRepositoryProtocol.swift in Sources */,
 				5F840A822FF31B2300BB18C7 /* FetchBannersUseCaseProtocol.swift in Sources */,
 				5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */,
@@ -2720,6 +2742,7 @@
 				D4459EFF2FF97393004EE855 /* CartUserError.graphql.swift in Sources */,
 				D4459F002FF97393004EE855 /* UrlRedirect.graphql.swift in Sources */,
 				D4459F012FF97393004EE855 /* MediaImage.graphql.swift in Sources */,
+				D4AF191A2FFB06D00050688B /* DiscountResponseDTO.swift in Sources */,
 				D4459F022FF97393004EE855 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
 				D4459F032FF97393004EE855 /* CartLinesAddPayload.graphql.swift in Sources */,
 				D4459F042FF97393004EE855 /* Market.graphql.swift in Sources */,
@@ -2818,6 +2841,7 @@
 				D4459F5C2FF97393004EE855 /* UpdateCustomerAddressMutation.graphql.swift in Sources */,
 				D4459F5D2FF97393004EE855 /* Metafield.graphql.swift in Sources */,
 				D4459F5E2FF97393004EE855 /* CartLineCost.graphql.swift in Sources */,
+				D4AF191D2FFB074B0050688B /* CheckoutResponseDTO.swift in Sources */,
 				D4459F5F2FF97393004EE855 /* ScriptDiscountApplication.graphql.swift in Sources */,
 				D4459F602FF97393004EE855 /* AddCustomerAddressMutation.graphql.swift in Sources */,
 				D4459F612FF97393004EE855 /* CollectionConnection.graphql.swift in Sources */,

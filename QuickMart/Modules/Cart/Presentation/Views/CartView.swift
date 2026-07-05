@@ -6,8 +6,8 @@
 //
 // Features/Cart/Presentation/Views/CartView.swift
 
-import SwiftUI
 import SafariServices
+import SwiftUI
 
 struct CartView: View {
     @StateObject private var viewModel = DIContainer.shared.makeCartViewModel()
@@ -43,14 +43,25 @@ struct CartView: View {
             viewModel.loadCart()
         }
         .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
-            Button(AppStrings.General.ok, role: .cancel) { }
+            Button(AppStrings.General.ok, role: .cancel) {}
         } message: {
             Text(viewModel.errorMessage ?? "")
         }
-        .alert(AppStrings.General.success, isPresented: $viewModel.showDiscountAlert) {
-            Button(AppStrings.General.ok, role: .cancel) { }
+        .alert(
+            AppStrings.General.success,
+            isPresented: $viewModel.showDiscountAlert
+        ) {
+            Button(AppStrings.General.ok, role: .cancel) {}
         } message: {
             Text(viewModel.discountMessage)
+        }
+        .alert(
+            "Discount Not Applied",
+            isPresented: $viewModel.showDiscountNotApplicableAlert
+        ) {
+            Button(AppStrings.General.ok, role: .cancel) {}
+        } message: {
+            Text(viewModel.discountNotApplicableReason)
         }
         .sheet(isPresented: $showVoucherSheet) {
             if #available(iOS 16.0, *) {
@@ -141,12 +152,11 @@ struct CartView: View {
                     .padding(.bottom, 120)
                 }
 
-                // Proceed to Checkout — pushes CheckoutView with current cart
                 OrderSummaryView(
                     cost: cart.cost,
                     itemCount: cart.totalQuantity,
+                    discountCodes: cart.discountCodes,
                     onCheckout: {
-                        // Fix: push checkout route with cart instead of opening WebView
                         router.push(.checkout(cart))
                     }
                 )
