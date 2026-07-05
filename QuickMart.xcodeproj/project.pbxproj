@@ -26,9 +26,8 @@
 		15E10F992FFAD22500E6E7AF /* CurrencyRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F982FFAD20F00E6E7AF /* CurrencyRepositoryImpl.swift */; };
 		15E10F9B2FFAD26200E6E7AF /* CurrencyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F9A2FFAD24B00E6E7AF /* CurrencyRepositoryProtocol.swift */; };
 		15E10FA12FFAD30900E6E7AF /* GetCurrencyRatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA02FFAD30400E6E7AF /* GetCurrencyRatesUseCase.swift */; };
-		15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */; };
-		15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */; };
-		15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1244F2FF4569B00428612 /* FirebaseUser.swift */; };
+		15E10FA42FFADE0E00E6E7AF /* CurrencyManagerSrevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */; };
+		15E10FA62FFAE28800E6E7AF /* DIContainer+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10FA52FFAE26300E6E7AF /* DIContainer+Currency.swift */; };
 		15F124552FF456CA00428612 /* GuestLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F124542FF456CA00428612 /* GuestLoginUseCase.swift */; };
 		15F124572FF4643A00428612 /* RecoverPasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F124562FF4643A00428612 /* RecoverPasswordUseCase.swift */; };
 		15F1245D2FF4644F00428612 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F1245A2FF4644F00428612 /* ForgotPasswordView.swift */; };
@@ -415,9 +414,8 @@
 		15E10F982FFAD20F00E6E7AF /* CurrencyRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryImpl.swift; sourceTree = "<group>"; };
 		15E10F9A2FFAD24B00E6E7AF /* CurrencyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryProtocol.swift; sourceTree = "<group>"; };
 		15E10FA02FFAD30400E6E7AF /* GetCurrencyRatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrencyRatesUseCase.swift; sourceTree = "<group>"; };
-		15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthError.swift; sourceTree = "<group>"; };
-		15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
-		15F1244F2FF4569B00428612 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManagerSrevice.swift; sourceTree = "<group>"; };
+		15E10FA52FFAE26300E6E7AF /* DIContainer+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DIContainer+Currency.swift"; sourceTree = "<group>"; };
 		15F124542FF456CA00428612 /* GuestLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestLoginUseCase.swift; sourceTree = "<group>"; };
 		15F124562FF4643A00428612 /* RecoverPasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordUseCase.swift; sourceTree = "<group>"; };
 		15F124582FF4644F00428612 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -769,6 +767,7 @@
 		15C224D82FF956EF004E3E90 /* DataSource */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DataSource; sourceTree = "<group>"; };
 		15E10F912FFAC5A900E6E7AF /* DTOs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DTOs; sourceTree = "<group>"; };
 		15E10F9C2FFAD27400E6E7AF /* Entity */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Entity; sourceTree = "<group>"; };
+		15E10FA22FFADDCF00E6E7AF /* Firebase */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Firebase; sourceTree = "<group>"; };
 		15F1D5A62FF67D6300EA9832 /* Cart */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Cart; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -824,14 +823,13 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		15F124502FF4569B00428612 /* Firebase */ = {
+		15F124502FF4569B00428612 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				15F1244D2FF4569B00428612 /* FirebaseAuthError.swift */,
-				15F1244E2FF4569B00428612 /* FirebaseAuthService.swift */,
-				15F1244F2FF4569B00428612 /* FirebaseUser.swift */,
+				15E10FA32FFADDFB00E6E7AF /* CurrencyManagerSrevice.swift */,
+				15E10FA22FFADDCF00E6E7AF /* Firebase */,
 			);
-			path = Firebase;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		15F124592FF4644F00428612 /* ViewModels */ = {
@@ -914,6 +912,7 @@
 		489F77F3FD94E054576B4E45 /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				15E10FA52FFAE26300E6E7AF /* DIContainer+Currency.swift */,
 				D4A91EF02FF025AE007B11D2 /* DIContainer.swift */,
 				48840F1497E4F0900AEC51E1 /* DIContainer+Auth.swift */,
 				A010C97AB517F86089C948F8 /* DIContainer+Network.swift */,
@@ -2073,7 +2072,7 @@
 				2713FAB5D66D903311E7CB7A /* theme */,
 				3F3A17423400352EE053FFD1 /* Route */,
 				489F77F3FD94E054576B4E45 /* DI */,
-				15F124502FF4569B00428612 /* Firebase */,
+				15F124502FF4569B00428612 /* Services */,
 				CC0011223344556677889901 /* Common */,
 			);
 			path = Core;
@@ -2207,6 +2206,7 @@
 				15C224D82FF956EF004E3E90 /* DataSource */,
 				15E10F912FFAC5A900E6E7AF /* DTOs */,
 				15E10F9C2FFAD27400E6E7AF /* Entity */,
+				15E10FA22FFADDCF00E6E7AF /* Firebase */,
 				15F1D5A62FF67D6300EA9832 /* Cart */,
 			);
 			name = QuickMart;
@@ -2483,7 +2483,6 @@
 				7DCAF82AC266DA8713B88BCA /* NetworkError.swift in Sources */,
 				57EB4E515FDAFAD064E4EC86 /* Apollo+NetworkError.swift in Sources */,
 				E1587796B27C00AD71CFA171 /* DIContainer+Auth.swift in Sources */,
-				15F124512FF4569B00428612 /* FirebaseAuthService.swift in Sources */,
 				5FA216EA2FF8F05A00DBA613 /* FavoriteUseCases.swift in Sources */,
 				D4092FAE2FF930DF00702CFE /* FetchPredictiveSearchUseCase.swift in Sources */,
 				15C227812FF95C6C004E3E90 /* ProfileRepositoryProtocol.swift in Sources */,
@@ -2491,8 +2490,6 @@
 				15C227732FF95B90004E3E90 /* OrderHistoryView.swift in Sources */,
 				5FA216FD2FF8F18000DBA613 /* WishlistRowView.swift in Sources */,
 				DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */,
-				15F124522FF4569B00428612 /* FirebaseAuthError.swift in Sources */,
-				15F124532FF4569B00428612 /* FirebaseUser.swift in Sources */,
 				5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */,
 				C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */,
 				AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */,
@@ -2588,6 +2585,7 @@
 				D4459F002FF97393004EE855 /* UrlRedirect.graphql.swift in Sources */,
 				15E10F9B2FFAD26200E6E7AF /* CurrencyRepositoryProtocol.swift in Sources */,
 				D4459F012FF97393004EE855 /* MediaImage.graphql.swift in Sources */,
+				15E10FA42FFADE0E00E6E7AF /* CurrencyManagerSrevice.swift in Sources */,
 				D4459F022FF97393004EE855 /* ShopPayInstallmentsFinancingPlan.graphql.swift in Sources */,
 				D4459F032FF97393004EE855 /* CartLinesAddPayload.graphql.swift in Sources */,
 				D4459F042FF97393004EE855 /* Market.graphql.swift in Sources */,
@@ -2627,6 +2625,7 @@
 				D4459F262FF97393004EE855 /* CartInputMetafieldInput.graphql.swift in Sources */,
 				D4459F272FF97393004EE855 /* ProductConnection.graphql.swift in Sources */,
 				D4459F282FF97393004EE855 /* CreateCartMutation.graphql.swift in Sources */,
+				15E10FA62FFAE28800E6E7AF /* DIContainer+Currency.swift in Sources */,
 				D4459F292FF97393004EE855 /* DeliveryAddressValidationStrategy.graphql.swift in Sources */,
 				D4459F2A2FF97393004EE855 /* CartCost.graphql.swift in Sources */,
 				D4459F2B2FF97393004EE855 /* Shop.graphql.swift in Sources */,

@@ -7,6 +7,7 @@ struct OnboardingItem {
 }
 
 struct AppConstants {
+    static let defultAppCurrency = "USD"
     static let onboardingItems = [
         OnboardingItem(
             title: AppStrings.Onboarding.title1,

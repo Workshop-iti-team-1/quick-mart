@@ -25,6 +25,9 @@ public final class DIContainer {
         return ApolloClient(networkTransport: transport, store: store)
     }()
 
+    private(set) lazy var restClient: RestClientProtocol = RestClient()
+
+    let sessionManager = SessionManager.shared
     // MARK: - Home Repository (shared)
   
     private lazy var homeRepository: HomeRepositoryProtocol = {
