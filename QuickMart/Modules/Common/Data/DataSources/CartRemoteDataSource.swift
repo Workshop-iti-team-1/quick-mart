@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommonRemoteDataSource: CommonRemoteDataSourceProtocol {
+class CartRemoteDataSource: CommonRemoteDataSourceProtocol {
     private let client: ShopifyGraphQLClientProtocol
     
     init(client: ShopifyGraphQLClientProtocol) {

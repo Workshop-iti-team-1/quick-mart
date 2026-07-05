@@ -11,6 +11,7 @@ import SwiftUI
 struct ProductCard: View {
     let item: ProductSearchItem
     @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -67,12 +68,21 @@ struct ProductCard: View {
                 .appTextStyle(.label, color: .appBlack)
                 .lineLimit(1)
             HStack(spacing: 6) {
-                Text(String(format: "$%.2f", item.price))
+                Text(currencyManager.format(defultAppCurrency: item.price))
                     .appTextStyle(.label, color: .appBlack)
-                if let originalPriceText = formattedOriginalPrice {
-                    Text(originalPriceText)
+                if let originalPrice = originalPriceValue, originalPrice > item.price {
+                    Text(currencyManager.format(defultAppCurrency: originalPrice))
                         .appTextStyle(.caption, color: .grayText)
                         .strikethrough(true, color: .grayText)
+                    
+                    let discount = Int(((originalPrice - item.price) / originalPrice) * 100)
+                    Text("-\(discount)%")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 2)
+                        .background(Color.red)
+                        .cornerRadius(4)
                 }
             }
         }
@@ -84,12 +94,9 @@ struct ProductCard: View {
     /// nil / empty  → hidden
     /// [x]          → "$x.xx"
     /// [min, max]   → "$min.xx – $max.xx"
-    private var formattedOriginalPrice: String? {
+    /// Returns the original price for discount comparison
+    private var originalPriceValue: Double? {
         guard let prices = item.originalPrice, !prices.isEmpty else { return nil }
-        if prices.count == 1 {
-            return String(format: "$%.2f", prices[0])
-        }
-        let sorted = prices.sorted()
-        return String(format: "$%.2f – $%.2f", sorted[0], sorted[sorted.count - 1])
+        return prices.max()
     }
 }

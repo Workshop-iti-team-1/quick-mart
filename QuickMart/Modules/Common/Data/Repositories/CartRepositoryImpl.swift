@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommonRepositoryImpl: CommonRepositoryProtocol {
+class CartRepositoryImpl: CommonRepositoryProtocol {
     private let remoteDataSource: CommonRemoteDataSourceProtocol
     
     init(remoteDataSource: CommonRemoteDataSourceProtocol) {

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CommonRepositoryProtocol {
+protocol CartRepositoryProtocol {
     func addToCart(variantId: String, quantity: Int) async throws
 }

@@ -51,6 +51,7 @@ enum AppStrings {
         static let shippingCost = String(localized: "Cart_shippingCost", defaultValue: "Shipping Cost")
         static let total = String(localized: "Cart_total", defaultValue: "Total")
         static let checkout = String(localized: "Cart_checkout", defaultValue: "Checkout")
+        static let discount = String(localized: "Cart_discount", defaultValue: "Discount")
         
         static let emptyCartTitle = String(localized: "Cart_emptyCartTitle", defaultValue: "Your cart is empty")
         static let emptyCartMessage = String(localized: "Cart_emptyCartMessage", defaultValue: "Looks like you have not added anything in your cart. Go ahead and explore top categories.")

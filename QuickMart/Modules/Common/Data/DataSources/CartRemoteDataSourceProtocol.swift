@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CommonRemoteDataSourceProtocol {
+protocol CartRemoteDataSourceProtocol {
     func getCart(cartId: String) async throws -> ShopifyAPI.GetCartQuery.Data.Cart?
     func createCart(variantId: String, quantity: Int) async throws -> String?
     func addLine(cartId: String, variantId: String, quantity: Int) async throws
