@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+// ProductTitleAndPrice.swift
 
 struct ProductTitleAndPrice: View {
     let product: ProductDetails
@@ -15,14 +16,13 @@ struct ProductTitleAndPrice: View {
         HStack(alignment: .top, spacing: 12) {
             
             Text(product.title)
-                .appTextStyle(.heading2, color: .primary)
+                .appTextStyle(.heading3, color: .primary)
+                .fixedSize(horizontal: false, vertical: true) // Allows vertical expansion
                 .layoutPriority(1)
-            
-            Spacer()
-            
+                        
             VStack(alignment: .trailing, spacing: 4) {
                 Text(currencyManager.format(defultAppCurrency: product.minPrice))
-                    .appTextStyle(.heading2, color: .primary)
+                    .appTextStyle(.heading3, color: .primary)
                     .fixedSize(horizontal: true, vertical: false)
                 
                 if let originalPrice = product.compareAtPrice, originalPrice > product.minPrice {
