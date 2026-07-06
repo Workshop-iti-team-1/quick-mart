@@ -358,6 +358,7 @@
 		D4A1B2A02FF68EE500735C4D /* SearchFilterBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1B29F2FF68EE200735C4D /* SearchFilterBottomSheet.swift */; };
 		D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1B2A12FF68F2000735C4D /* SearchView.swift */; };
 		D4A1B2A62FF6A0E300735C4D /* Publisher+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1B2A52FF6A0E100735C4D /* Publisher+Async.swift */; };
+		D4A5C0FD2FFBB39C00CAAA7C /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C0FC2FFBB39900CAAA7C /* OrderDetailView.swift */; };
 		D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF02FF025AE007B11D2 /* DIContainer.swift */; };
 		D4A91EF92FF025AE007B11D2 /* QuickMart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF22FF025AE007B11D2 /* QuickMart.xcdatamodeld */; };
 		D4A91EFA2FF025AE007B11D2 /* QuickMartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91EF32FF025AE007B11D2 /* QuickMartApp.swift */; };
@@ -760,6 +761,7 @@
 		D4A1B29F2FF68EE200735C4D /* SearchFilterBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterBottomSheet.swift; sourceTree = "<group>"; };
 		D4A1B2A12FF68F2000735C4D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D4A1B2A52FF6A0E100735C4D /* Publisher+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Async.swift"; sourceTree = "<group>"; };
+		D4A5C0FC2FFBB39900CAAA7C /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
 		D4A91EEE2FF025AE007B11D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4A91EF02FF025AE007B11D2 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D4A91EF12FF025AE007B11D2 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
@@ -2293,6 +2295,7 @@
 		DECCB60D2FF696DF00F0A8C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4A5C0FC2FFBB39900CAAA7C /* OrderDetailView.swift */,
 				DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */,
 				15C227722FF95B90004E3E90 /* OrderHistoryView.swift */,
 			);
@@ -2483,6 +2486,7 @@
 			files = (
 				D49BB7D82FFAA35C0047E358 /* CheckoutRemoteDataSourceProtocol.swift in Sources */,
 				AA0011223344556677889920 /* ProductImageHeader.swift in Sources */,
+				D4A5C0FD2FFBB39C00CAAA7C /* OrderDetailView.swift in Sources */,
 				AA0011223344556677889921 /* ProductTitleAndPrice.swift in Sources */,
 				AA0011223344556677889922 /* ProductRatingView.swift in Sources */,
 				D49571972FFAC297000B7E3F /* ApplePaySimulatedSheet.swift in Sources */,

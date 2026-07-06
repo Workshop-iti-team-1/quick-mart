@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrderEntity: Equatable, Identifiable {
+struct OrderEntity: Hashable , Identifiable {
     let id: String
     let orderNumber: Int
     let processedAt: Date
@@ -25,13 +25,13 @@ struct OrderEntity: Equatable, Identifiable {
     }
 }
 
-struct DiscountApplicationEntity: Equatable {
+struct DiscountApplicationEntity: Hashable  {
     let code: String
     let percentage: Double?
     let amount: Double?
 }
 
-struct OrderLineItemEntity: Equatable, Identifiable {
+struct OrderLineItemEntity: Hashable , Identifiable {
     let id: String
     let title: String
     let quantity: Int
@@ -40,7 +40,7 @@ struct OrderLineItemEntity: Equatable, Identifiable {
     let imageURL: String?
 }
 
-struct OrderShippingAddressEntity: Equatable {
+struct OrderShippingAddressEntity: Hashable  {
     let firstName: String?
     let lastName: String?
     let address1: String?

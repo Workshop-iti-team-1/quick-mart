@@ -30,4 +30,5 @@ enum Route: Hashable {
     case changePassword
     case checkout(Cart)
     case orderSuccess(PlacedOrder)
+    case orderDetail(OrderEntity)
 }
