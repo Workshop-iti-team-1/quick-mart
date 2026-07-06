@@ -50,7 +50,7 @@ struct ProductCard: View {
                 FavoriteButton(
                     isFavorite: .init(
                         get: { favouriteViewModel.isFavorite(item.id) },
-                        set: { _ in } // mutation happens in onToggle, not here
+                        set: { _ in }
                     ),
                     onToggle: { newValue in
                         let product = item.toMinimalProductDetails()
@@ -63,18 +63,25 @@ struct ProductCard: View {
                 )
                 .padding(8)
             }
+
             ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
+
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)
                 .lineLimit(1)
+
+            // MARK: - Price — keyed on selectedCurrency to force redraw
             HStack(spacing: 6) {
                 Text(currencyManager.format(defultAppCurrency: item.price))
                     .appTextStyle(.label, color: .appBlack)
+                    .id("price-\(item.id)-\(currencyManager.selectedCurrency)")
+
                 if let originalPrice = originalPriceValue, originalPrice > item.price {
                     Text(currencyManager.format(defultAppCurrency: originalPrice))
                         .appTextStyle(.caption, color: .grayText)
                         .strikethrough(true, color: .grayText)
-                    
+                        .id("original-\(item.id)-\(currencyManager.selectedCurrency)")
+
                     let discount = Int(((originalPrice - item.price) / originalPrice) * 100)
                     Text("-\(discount)%")
                         .font(.system(size: 10, weight: .bold))
@@ -88,13 +95,6 @@ struct ProductCard: View {
         }
     }
 
-    // MARK: - Helpers
-
-    /// Formats the originalPrice array for display.
-    /// nil / empty  → hidden
-    /// [x]          → "$x.xx"
-    /// [min, max]   → "$min.xx – $max.xx"
-    /// Returns the original price for discount comparison
     private var originalPriceValue: Double? {
         guard let prices = item.originalPrice, !prices.isEmpty else { return nil }
         return prices.max()
