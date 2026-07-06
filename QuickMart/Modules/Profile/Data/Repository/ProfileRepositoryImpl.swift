@@ -100,4 +100,25 @@ class ProfileRepositoryImpl: ProfileRepositoryProtocol {
             endCursor: ordersData.pageInfo.endCursor
         )
     }
+    
+    
+    func getCustomer() async throws -> UserEntity {
+            let data = try await remoteDataSource.getCustomer()
+            guard let customer = data.customer else {
+                throw NSError(domain: "Profile", code: 404,
+                              userInfo: [NSLocalizedDescriptionKey: "Customer not found"])
+            }
+
+            let firstName = customer.firstName ?? ""
+            let lastName = customer.lastName ?? ""
+            let fullName = [firstName, lastName]
+                .filter { !$0.isEmpty }
+                .joined(separator: " ")
+
+            return UserEntity(
+                name: fullName.isEmpty ? nil : fullName,
+                email: customer.email,
+                avatarImageURL: nil
+            )
+        }
 }
