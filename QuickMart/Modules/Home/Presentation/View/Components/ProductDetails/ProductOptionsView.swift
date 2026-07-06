@@ -10,21 +10,24 @@ import SwiftUI
 struct ProductOptionsView: View {
     let product: ProductDetails
     @ObservedObject var viewModel: ProductDetailsViewModel
-    
+
     var body: some View {
         ForEach(product.options, id: \.id) { option in
             if option.name.lowercased() == "color" && !option.values.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(AppStrings.ProductDetails.color)
                         .appTextStyle(.button, color: .primary)
-                    
+
                     HStack(spacing: 12) {
                         ForEach(option.values, id: \.self) { colorName in
                             Circle()
                                 .fill(getColor(for: colorName))
                                 .frame(width: 32, height: 32)
                                 .overlay(
-                                    Circle().stroke(Color.primary, lineWidth: viewModel.selectedColor == colorName ? 2 : 0)
+                                    Circle().stroke(
+                                        Color.primary,
+                                        lineWidth: viewModel.selectedColor
+                                            == colorName ? 2 : 0)
                                 )
                                 .onTapGesture {
                                     viewModel.selectedColor = colorName
@@ -37,18 +40,33 @@ struct ProductOptionsView: View {
                     Text(option.name)
                         .appTextStyle(.button, color: .primary)
                     
-                    HStack(spacing: 12) {
+                    let columns = [
+                        GridItem(
+                            .adaptive(minimum: 45, maximum: 60), spacing: 12)
+                    ]
+
+                    LazyVGrid(
+                        columns: columns, alignment: .leading, spacing: 12
+                    ) {
                         ForEach(option.values, id: \.self) { val in
                             Text(val.uppercased())
-                                .appTextStyle(.label, color: viewModel.selectedSize == val ? Color.backGround : .primary)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
+                                .appTextStyle(
+                                    .label,
+                                    color: viewModel.selectedSize == val
+                                        ? Color.backGround : .primary
+                                )
+                                .frame(minWidth: 40, minHeight: 40)
                                 .background(
                                     Capsule()
-                                        .fill(viewModel.selectedSize == val ? Color.primary : Color.clear)
+                                        .fill(
+                                            viewModel.selectedSize == val
+                                                ? Color.primary : Color.clear)
                                 )
                                 .overlay(
-                                    Capsule().stroke(viewModel.selectedSize == val ? Color.clear : Color.grey100, lineWidth: 1)
+                                    Capsule().stroke(
+                                        viewModel.selectedSize == val
+                                            ? Color.clear : Color.grey100,
+                                        lineWidth: 1)
                                 )
                                 .onTapGesture {
                                     viewModel.selectedSize = val
@@ -59,7 +77,7 @@ struct ProductOptionsView: View {
             }
         }
     }
-    
+
     private func getColor(for name: String) -> Color {
         switch name.lowercased() {
         case "black": return .black
