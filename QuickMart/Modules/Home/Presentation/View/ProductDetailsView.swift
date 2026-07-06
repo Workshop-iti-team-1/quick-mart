@@ -119,6 +119,19 @@ struct ProductDetailsView: View {
                     ProductTitleAndPrice(product: product)
                     ProductRatingView(product: product)
                     ProductDescriptionView(product: product)
+                    HStack(spacing: 12) {
+                        Button {
+                            router.push(.aiComparisonPicker(baseProduct: product))
+                        } label: {
+                            aiActionLabel(icon: "arrow.left.arrow.right", text: "Compare")
+                        }
+                        Button {
+                            router.push(.aiOutfit(product: product))
+                        } label: {
+                            aiActionLabel(icon: "tshirt", text: "Complete the Look")
+                        }
+                    }
+
                     ProductOptionsView(product: product, viewModel: viewModel)
                     ProductQuantityView(viewModel: viewModel)
                 }
@@ -157,4 +170,15 @@ struct BadgeView: View {
             .background(color)
             .cornerRadius(4)
     }
+}
+private func aiActionLabel(icon: String, text: String) -> some View {
+    HStack(spacing: 6) {
+        Image(systemName: icon).font(.system(size: 13, weight: .semibold))
+        Text(text).appTextStyle(.label)
+    }
+    .foregroundColor(.cyanPrimary)
+    .padding(.horizontal, 12)
+    .padding(.vertical, 8)
+    .background(Color.cyan50)
+    .clipShape(RoundedRectangle(cornerRadius: 10))
 }

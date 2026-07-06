@@ -139,6 +139,14 @@ struct ProfileView: View {
                         UserDefaults.standard.set(isOn, forKey: "isDarkMode")
                     }
                 }
+                MenuSection(
+                    title: "AI Features",
+                    items: [
+                        MenuItem(icon: "sparkles", title: "Shopping Insights", trailing: .chevron(route: .aiInsights)),
+                        MenuItem(icon: "camera.viewfinder", title: "Search by Photo", trailing: .chevron(route: .aiImageSearch))
+                    ],
+                    router: router
+                )
             }
             .padding(.top, 24)
             .background(Color.backGround)
