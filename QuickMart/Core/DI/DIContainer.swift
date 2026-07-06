@@ -199,6 +199,7 @@ public final class DIContainer {
     }
     func makeProfileViewModel() -> ProfileViewModel {
         ProfileViewModel(getCustomerUseCase: makeGetCustomerUseCase())
+    }
     // MARK: - Checkout
 
     private func makeCheckoutRemoteDataSource() -> CheckoutRemoteDataSourceProtocol {

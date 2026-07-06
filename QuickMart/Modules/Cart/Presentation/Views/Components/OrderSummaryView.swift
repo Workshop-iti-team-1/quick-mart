@@ -43,7 +43,8 @@ struct OrderSummaryView: View {
 
             costRow(
                 title: AppStrings.Cart.subtotal,
-                value: formatted(cost.subtotalAmount),
+                value: currencyManager
+                    .format(defultAppCurrency: cost.subtotalAmount),
                 titleColor: .grayText,
                 valueColor: .grayText,
                 strikethrough: hasActiveDiscount
@@ -68,7 +69,7 @@ struct OrderSummaryView: View {
                             Spacer(minLength: 8)
 
                             // Saving amount
-                            Text("- \(formatted(discountAmount))")
+                            Text("- \(currencyManager.format(defultAppCurrency: discountAmount))")
                                 .appTextStyle(.label, color: .cyanPrimary)
                         }
                     }
@@ -84,7 +85,7 @@ struct OrderSummaryView: View {
                     Image(systemName: "gift.fill")
                         .font(.system(size: 11))
                         .foregroundColor(.cyanPrimary)
-                    Text("You save \(formatted(discountAmount))!")
+                    Text("You save \(currencyManager.format(defultAppCurrency: discountAmount))!")
                         .appTextStyle(.caption, color: .cyanPrimary)
                 }
             }
@@ -123,24 +124,28 @@ struct OrderSummaryView: View {
                     .appTextStyle(.heading2, color: .primary)
 
                 Spacer()
-                Text(currencyManager.format(defultAppCurrency: cost.totalAmount))
-                    .appTextStyle(.heading2, color: .primary)
+
 
                 VStack(alignment: .trailing, spacing: 4) {
                     // Original price struck through when discount active
                     if hasActiveDiscount {
-                        Text(formatted(cost.subtotalAmount))
+                        Text(
+                            currencyManager
+                                .format(defultAppCurrency: cost.subtotalAmount)
+                        )
                             .appTextStyle(.caption, color: .grayText)
                             .strikethrough(true, color: .grayText)
                     }
 
                     // Final price — prominent
-                    Text(formatted(cost.totalAmount))
+                    Text(currencyManager.format(defultAppCurrency: cost.totalAmount))
                         .appTextStyle(.heading2, color: .primary)
 
                     // Total saved — shown below final price
                     if hasActiveDiscount {
-                        Text("Saved \(formatted(discountAmount))")
+                        Text(
+                            "Saved \(currencyManager.format(defultAppCurrency: discountAmount))"
+                        )
                             .appTextStyle(.caption, color: .cyanPrimary)
                     }
                 }
@@ -154,12 +159,6 @@ struct OrderSummaryView: View {
             )
         }
         .padding(16)
-    }
-
-    // MARK: - Helpers
-
-    private func formatted(_ amount: Double) -> String {
-        String(format: "%.2f %@", amount, cost.currencyCode)
     }
 
     private func costRow(

@@ -10,15 +10,16 @@ import SwiftUI
 struct CheckoutOrderSummaryView: View {
 
     let cart: Cart
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     private enum Layout {
-        static let cornerRadius: CGFloat  = 12
-        static let padding: CGFloat       = 16
-        static let spacing: CGFloat       = 12
-        static let imageSize: CGFloat     = 48
-        static let shadowOpacity: Double  = 0.06
-        static let shadowRadius: CGFloat  = 4
-        static let shadowY: CGFloat       = 2
+        static let cornerRadius: CGFloat = 12
+        static let padding: CGFloat = 16
+        static let spacing: CGFloat = 12
+        static let imageSize: CGFloat = 48
+        static let shadowOpacity: Double = 0.06
+        static let shadowRadius: CGFloat = 4
+        static let shadowY: CGFloat = 2
     }
 
     var body: some View {
@@ -38,11 +39,13 @@ struct CheckoutOrderSummaryView: View {
 
     private var lineItemsCard: some View {
         VStack(spacing: 0) {
-            ForEach(Array(cart.lines.enumerated()), id: \.element.id) { index, line in
+            ForEach(Array(cart.lines.enumerated()), id: \.element.id) {
+                index, line in
                 lineRow(line: line)
                 if index < cart.lines.count - 1 {
                     Divider()
-                        .padding(.leading, Layout.imageSize + 12 + Layout.padding)
+                        .padding(
+                            .leading, Layout.imageSize + 12 + Layout.padding)
                 }
             }
         }
@@ -53,7 +56,8 @@ struct CheckoutOrderSummaryView: View {
     private func lineRow(line: CartLine) -> some View {
         HStack(spacing: 12) {
             // Product image
-            AsyncImage(url: URL(string: line.merchandise.imageURL ?? "")) { phase in
+            AsyncImage(url: URL(string: line.merchandise.imageURL ?? "")) {
+                phase in
                 switch phase {
                 case .success(let image):
                     image
@@ -90,10 +94,7 @@ struct CheckoutOrderSummaryView: View {
             Spacer(minLength: 0)
 
             Text(
-                String(
-                    format: "$%.2f",
-                    line.cost.totalAmount
-                )
+                currencyManager.format(defultAppCurrency: line.cost.totalAmount)
             )
             .appTextStyle(.label, color: .appBlack)
         }
@@ -107,7 +108,8 @@ struct CheckoutOrderSummaryView: View {
             // Subtotal
             costRow(
                 title: "Subtotal",
-                value: String(format: "$%.2f", cart.cost.subtotalAmount),
+                value: currencyManager.format(
+                    defultAppCurrency: cart.cost.subtotalAmount),
                 titleStyle: .body,
                 valueStyle: .body
             )
@@ -135,7 +137,8 @@ struct CheckoutOrderSummaryView: View {
             if let tax = cart.cost.totalTaxAmount, tax > 0 {
                 costRow(
                     title: "Tax",
-                    value: String(format: "$%.2f", tax),
+                    value: currencyManager.format(
+                        defultAppCurrency: tax),
                     titleStyle: .body,
                     valueStyle: .body
                 )
@@ -146,7 +149,8 @@ struct CheckoutOrderSummaryView: View {
             // Total
             costRow(
                 title: "Total",
-                value: String(format: "$%.2f", cart.cost.totalAmount),
+                value: currencyManager.format(
+                    defultAppCurrency: cart.cost.totalAmount),
                 titleStyle: .label,
                 valueStyle: .heading2
             )
