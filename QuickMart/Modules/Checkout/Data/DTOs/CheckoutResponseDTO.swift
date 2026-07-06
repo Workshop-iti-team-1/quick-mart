@@ -20,6 +20,7 @@ struct StorefrontCustomerData: Decodable {
 
 struct StorefrontCustomerDTO: Decodable {
     let id: String
+    let email: String?
 }
 
 // MARK: - Admin API: Order Create Mutation
@@ -40,7 +41,7 @@ struct AdminOrderCreatePayload: Decodable {
 
 struct AdminOrderDTO: Decodable {
     let id: String
-    let name: String             // "#1001"
+    let name: String  // "#1001"
     let createdAt: String
     let displayFinancialStatus: String
 }

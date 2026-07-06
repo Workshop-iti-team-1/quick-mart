@@ -4,6 +4,7 @@
 //
 //  Created by Mina_Wagdy on 05/07/2026.
 //
+// Features/Checkout/Data/DataSource/CheckoutRemoteDataSource.swift
 
 import Foundation
 
@@ -15,13 +16,29 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
         self.session = session
     }
 
-    // MARK: - Fetch Customer ID (Storefront API)
+    // MARK: - Fetch Customer ID + Email (Storefront API)
+    // Returns both ID and email in one call —
+    // email is required by Admin API orderCreate to trigger
+    // Shopify's native order confirmation email
 
     func fetchCustomerId(customerAccessToken: String) async throws -> String {
+        let (id, _) = try await fetchCustomerDetails(
+            customerAccessToken: customerAccessToken
+        )
+        return id
+    }
+
+    /// Internal method that fetches both customer GID and email.
+    /// Called by placeOrder so both values are available in one network call.
+    private func fetchCustomerDetails(
+        customerAccessToken: String
+    ) async throws -> (id: String, email: String?) {
+
         let query = """
-        query GetCustomerId($customerAccessToken: String!) {
+        query GetCustomerDetails($customerAccessToken: String!) {
             customer(customerAccessToken: $customerAccessToken) {
                 id
+                email
             }
         }
         """
@@ -54,11 +71,11 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             )
         }
 
-        guard let customerId = decoded.data?.customer?.id else {
+        guard let customer = decoded.data?.customer else {
             throw CheckoutError.customerNotFound
         }
 
-        return customerId
+        return (id: customer.id, email: customer.email)
     }
 
     // MARK: - Place Order (Admin API)
@@ -69,6 +86,17 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
         address: Address,
         paymentMethod: PaymentMethod
     ) async throws -> PlacedOrder {
+
+        // Fetch both customer GID and email in one Storefront call.
+        // The email is passed to orderCreate so Shopify's native
+        // Order Confirmation notification fires automatically.
+        guard let token = SessionManager.shared.getToken() else {
+            throw CheckoutError.notLoggedIn
+        }
+
+        let (_, customerEmail) = try await fetchCustomerDetails(
+            customerAccessToken: token
+        )
 
         let lineItems: [[String: Any]] = cart.lines.map { line in
             [
@@ -96,8 +124,16 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             "note":            "Placed via QuickMart iOS — \(paymentMethod.rawValue)"
         ]
 
-        // Apple Pay simulation: include a PAID SALE transaction
-        // COD: no transaction — financialStatus PENDING, cash collected on delivery
+        // ✅ Critical: pass customer email so Shopify fires the
+        // native Order Confirmation notification automatically.
+        // Without this field, Shopify creates the order silently
+        // with no email sent to the customer.
+        if let email = customerEmail, !email.isEmpty {
+            orderInput["email"] = email
+        }
+
+        // Apple Pay simulation: PAID + SALE transaction
+        // COD: PENDING, no transaction — cash collected on delivery
         if paymentMethod == .applePay {
             let amount = String(format: "%.2f", cart.cost.totalAmount)
             orderInput["transactions"] = [
@@ -153,7 +189,6 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             from: data
         )
 
-        // Surface top-level GraphQL errors first
         if let errors = decoded.errors, !errors.isEmpty {
             throw CheckoutError.orderCreationFailed(
                 errors.map(\.message).joined(separator: "\n")
@@ -164,7 +199,6 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             throw CheckoutError.invalidResponse
         }
 
-        // Surface Admin API userErrors
         if !payload.userErrors.isEmpty {
             let messages = payload.userErrors
                 .map(\.message)
@@ -176,7 +210,6 @@ final class CheckoutRemoteDataSource: CheckoutRemoteDataSourceProtocol {
             throw CheckoutError.invalidResponse
         }
 
-        // name is "#1001" — strip # and parse to Int
         let orderNumber = Int(
             order.name.replacingOccurrences(of: "#", with: "")
         ) ?? 0

@@ -26,7 +26,7 @@ final class ApplePayService: NSObject, ApplePayServiceProtocol {
         let request = PKPaymentRequest()
         request.merchantIdentifier = "merchant.com.mock.quickmart" // Must match your .entitlements exact string
         request.supportedNetworks = [.visa, .masterCard, .amex]
-        request.merchantCapabilities = .capability3DS
+        request.merchantCapabilities = [.capability3DS, .capabilityCredit, .capabilityDebit]
         request.countryCode = "US"
         request.currencyCode = currencyCode
         
@@ -38,7 +38,9 @@ final class ApplePayService: NSObject, ApplePayServiceProtocol {
         // 3. Initialize the Controller
         let controller = PKPaymentAuthorizationController(paymentRequest: request)
         controller.delegate = self
-        
+        let canMake = PKPaymentAuthorizationController.canMakePayments()
+            print("Apple Pay: Can make payments? \(canMake)")
+        print("Apple Pay: Presenting sheet for amount: \(amount) \(currencyCode)")
         // 4. Wrap the delegate-based flow in a modern async task
         return await withCheckedContinuation { continuation in
             self.paymentContinuation = continuation
