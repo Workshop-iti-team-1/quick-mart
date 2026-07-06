@@ -11,6 +11,8 @@ struct OrderHistoryView: View {
 
     @StateObject private var viewModel: OrderHistoryViewModel
     @Environment(AppRouter.self) private var router
+    @EnvironmentObject var currencyManager: CurrencyManagerService
+
 
     init(viewModel: OrderHistoryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)

@@ -11,13 +11,14 @@ struct OrderSuccessView: View {
 
     let order: PlacedOrder
     @Environment(AppRouter.self) private var router
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     private enum Layout {
-        static let imageSize: CGFloat      = 220
-        static let horizontalPad: CGFloat  = 24
-        static let buttonHeight: CGFloat   = 52
-        static let buttonRadius: CGFloat   = 12
-        static let spacing: CGFloat        = 16
+        static let imageSize: CGFloat = 220
+        static let horizontalPad: CGFloat = 24
+        static let buttonHeight: CGFloat = 52
+        static let buttonRadius: CGFloat = 12
+        static let spacing: CGFloat = 16
     }
 
     var body: some View {
@@ -41,10 +42,12 @@ struct OrderSuccessView: View {
                     .padding(.bottom, 12)
 
                 // Subtitle
-                Text("Thank you for choosing us! Feel free to continue\nshopping and explore our wide range of products.\nHappy Shopping!")
-                    .appTextStyle(.body, color: .grayText)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 32)
+                Text(
+                    "Thank you for choosing us! Feel free to continue\nshopping and explore our wide range of products.\nHappy Shopping!"
+                )
+                .appTextStyle(.body, color: .grayText)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 32)
 
                 // Order details card
                 orderDetailsCard
@@ -105,11 +108,8 @@ struct OrderSuccessView: View {
 
             detailRow(
                 title: "Total Paid",
-                value: String(
-                    format: "%@ %.2f",
-                    order.currencyCode,
-                    order.totalAmount
-                ),
+                value: currencyManager.format(
+                    defultAppCurrency: order.totalAmount),
                 valueColor: .appBlack
             )
         }

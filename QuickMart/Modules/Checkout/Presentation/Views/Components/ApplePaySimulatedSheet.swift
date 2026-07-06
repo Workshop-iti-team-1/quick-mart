@@ -12,6 +12,8 @@ struct ApplePaySimulatedSheet: View {
     let cart: Cart
     let onConfirm: () -> Void
     let onCancel: () -> Void
+    @EnvironmentObject var currencyManager: CurrencyManagerService
+
 
     @State private var isFaceIDAnimating: Bool = false
     @State private var isAuthenticating: Bool = false
@@ -96,11 +98,7 @@ struct ApplePaySimulatedSheet: View {
                         .lineLimit(1)
                     Spacer()
                     Text(
-                        String(
-                            format: "%@ %.2f",
-                            cart.cost.currencyCode,
-                            line.cost.totalAmount
-                        )
+                        currencyManager.format(defultAppCurrency: line.cost.totalAmount)
                     )
                     .appTextStyle(.body, color: .appBlack)
                 }
@@ -125,11 +123,7 @@ struct ApplePaySimulatedSheet: View {
                 .appTextStyle(.label, color: .appBlack)
             Spacer()
             Text(
-                String(
-                    format: "%@ %.2f",
-                    cart.cost.currencyCode,
-                    cart.cost.totalAmount
-                )
+                currencyManager.format(defultAppCurrency: cart.cost.totalAmount)
             )
             .appTextStyle(.heading2, color: .appBlack)
         }
