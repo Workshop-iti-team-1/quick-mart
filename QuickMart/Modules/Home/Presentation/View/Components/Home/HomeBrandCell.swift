@@ -7,16 +7,18 @@
 
 
 
+
 import SwiftUI
 
 struct HomeBrandCell: View {
+    @Environment(\.colorScheme) var colorScheme
     let item: BrandItem
 
     var body: some View {
         VStack(spacing: 8) {
             ZStack {
                 Circle()
-                    .fill(Color.grey50)
+                    .fill(colorScheme == .dark ? Color(UIColor.darkGray) : Color.grey50)
                     .frame(width: 64, height: 64)
                     .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
 

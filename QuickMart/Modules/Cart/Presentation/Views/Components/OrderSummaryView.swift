@@ -13,6 +13,9 @@ struct OrderSummaryView: View {
     let itemCount: Int
     let discountCodes: [CartDiscountCode]
     let onCheckout: () -> Void
+    
+    @EnvironmentObject var currencyManager: CurrencyManagerService
+    
 
     // MARK: - Computed
 
@@ -120,6 +123,8 @@ struct OrderSummaryView: View {
                     .appTextStyle(.heading2, color: .primary)
 
                 Spacer()
+                Text(currencyManager.format(defultAppCurrency: cost.totalAmount))
+                    .appTextStyle(.heading2, color: .primary)
 
                 VStack(alignment: .trailing, spacing: 4) {
                     // Original price struck through when discount active

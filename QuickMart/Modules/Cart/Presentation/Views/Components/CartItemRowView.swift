@@ -13,6 +13,8 @@ struct CartItemRowView: View {
     let onDecrement: () -> Void
     let onDelete: () -> Void
     
+    @EnvironmentObject var currencyManager: CurrencyManagerService
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             // Image
@@ -49,14 +51,25 @@ struct CartItemRowView: View {
                     .appTextStyle(.body, color: .gray)
                     .font(.system(size: 12))
                 
-                Text("\(item.merchandise.price, specifier: "%.2f") \(item.cost.currencyCode)")
+                Text(currencyManager.format(defultAppCurrency: item.merchandise.price))
                     .appTextStyle(.label, color: .primary)
                 
                 if let comparePrice = item.merchandise.compareAtPrice, comparePrice > item.merchandise.price {
-                    Text("\(comparePrice, specifier: "%.2f") \(item.cost.currencyCode)")
-                        .strikethrough()
-                        .appTextStyle(.body, color: .gray)
-                        .font(.system(size: 12))
+                    HStack(spacing: 6) {
+                        Text(currencyManager.format(defultAppCurrency: comparePrice))
+                            .strikethrough()
+                            .appTextStyle(.body, color: .gray)
+                            .font(.system(size: 12))
+                        
+                        let discount = Int(((comparePrice - item.merchandise.price) / comparePrice) * 100)
+                        Text("-\(discount)%")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
+                            .background(Color.red)
+                            .cornerRadius(4)
+                    }
                 }
                 
                 HStack {

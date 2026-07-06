@@ -89,6 +89,7 @@ extension ShopifyAPI {
       case "SearchResultItemEdge": return ShopifyAPI.Objects.SearchResultItemEdge
       case "StringConnection": return ShopifyAPI.Objects.StringConnection
       case "StringEdge": return ShopifyAPI.Objects.StringEdge
+      case "PredictiveSearchResult": return ShopifyAPI.Objects.PredictiveSearchResult
       case "OrderConnection": return ShopifyAPI.Objects.OrderConnection
       case "OrderEdge": return ShopifyAPI.Objects.OrderEdge
       case "DiscountApplicationConnection": return ShopifyAPI.Objects.DiscountApplicationConnection
@@ -101,7 +102,6 @@ extension ShopifyAPI {
       case "OrderLineItemConnection": return ShopifyAPI.Objects.OrderLineItemConnection
       case "OrderLineItemEdge": return ShopifyAPI.Objects.OrderLineItemEdge
       case "OrderLineItem": return ShopifyAPI.Objects.OrderLineItem
-      case "PredictiveSearchResult": return ShopifyAPI.Objects.PredictiveSearchResult
       case "Mutation": return ShopifyAPI.Objects.Mutation
       case "CustomerDefaultAddressUpdatePayload": return ShopifyAPI.Objects.CustomerDefaultAddressUpdatePayload
       case "CustomerUserError": return ShopifyAPI.Objects.CustomerUserError

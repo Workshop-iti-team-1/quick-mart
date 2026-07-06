@@ -9,7 +9,11 @@
 
 import SwiftUI
 
+
+
 struct AddressFormView: View {
+    @Environment(\.colorScheme) var colorScheme // Added for Dark Mode handling
+    
     @StateObject var viewModel: AddressFormViewModel
     let router: AppRouter
 
@@ -95,7 +99,8 @@ struct AddressFormView: View {
             Text(title).appTextStyle(.label, color: .appBlack)
             TextField(placeholder, text: text)
                 .padding()
-                .background(Color.grey50)
+                // Dynamic background applied here
+                .background(colorScheme == .dark ? Color(UIColor.darkGray) : Color.grey50)
                 .cornerRadius(10)
         }
     }
@@ -111,7 +116,8 @@ struct AddressFormView: View {
                     Image(systemName: "chevron.down").foregroundColor(.grey150)
                 }
                 .padding()
-                .background(Color.grey50)
+                // Dynamic background applied here
+                .background(colorScheme == .dark ? Color(UIColor.darkGray) : Color.grey50)
                 .cornerRadius(10)
             }
         }

@@ -51,6 +51,7 @@ enum AppStrings {
         static let shippingCost = String(localized: "Cart_shippingCost", defaultValue: "Shipping Cost")
         static let total = String(localized: "Cart_total", defaultValue: "Total")
         static let checkout = String(localized: "Cart_checkout", defaultValue: "Checkout")
+        static let discount = String(localized: "Cart_discount", defaultValue: "Discount")
         
         static let emptyCartTitle = String(localized: "Cart_emptyCartTitle", defaultValue: "Your cart is empty")
         static let emptyCartMessage = String(localized: "Cart_emptyCartMessage", defaultValue: "Looks like you have not added anything in your cart. Go ahead and explore top categories.")
@@ -71,8 +72,10 @@ enum AppStrings {
     
     enum ProductDetails {
         static let topRated = String(localized: "ProductDetails_topRated", defaultValue: "Top Rated")
-        static let freeShipping = String(localized: "ProductDetails_freeShipping", defaultValue: "Free Shipping")
+        static let theTitle = String(localized: "ProductDetails_theTitle", defaultValue: "Product Details")
         static let readMore = String(localized: "ProductDetails_readMore", defaultValue: "Read more")
+        static let readLess = String(localized: "ProductDetails_readLess", defaultValue: "Read less")
+        static let freeShipping = String(localized: "ProductDetails_freeShipping", defaultValue: "Free Shipping")
         static let color = String(localized: "ProductDetails_color", defaultValue: "Color")
         static let size = String(localized: "ProductDetails_size", defaultValue: "Size")
         static let quantity = String(localized: "ProductDetails_quantity", defaultValue: "Quantity")
@@ -148,6 +151,7 @@ enum AppStrings {
         static let accountManagement = String(localized: "Profile_accountManagement", defaultValue: "Account Management")
         static let changePassword = String(localized: "Profile_changePassword", defaultValue: "Change Password")
         static let darkTheme = String(localized: "Profile_darkTheme", defaultValue: "Dark Theme")
+        static let currency = String(localized: "Profile_currency", defaultValue: "Currency")
         
         // Orders
         static let ongoing = String(localized: "Profile_ongoing", defaultValue: "Ongoing")
@@ -159,6 +163,11 @@ enum AppStrings {
         static let noOngoingOrderDesc = String(localized: "Profile_noOngoingOrderDesc", defaultValue: "We currently don't have any active orders in progress. Feel free to explore our products and place a new order.")
         static let noCompletedOrderDesc = String(localized: "Profile_noCompletedOrderDesc", defaultValue: "We don't have any past orders that have been completed. Start shopping now and create your first order with us.")
         static let exploreCategories = String(localized: "Profile_exploreCategories", defaultValue: "Explore Categories")
+    }
+    
+    enum Currency {
+        static let selectCurrency = String(localized: "Currency_selectCurrency", defaultValue: "Select Currency")
+        static let searchCurrency = String(localized: "Currency_searchCurrency", defaultValue: "Search currency...")
     }
     
 }

@@ -3,36 +3,38 @@
 //  QuickMart
 //
 //  Created by Ahmed El-Sayyad Mohamed on 02/07/2026.
-
 import SwiftUI
 
 struct ProfileHeaderCard: View {
-    
     let user: UserEntity
     var onLogoutTap: (() -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 12) {
             avatarView
-            
-            VStack(alignment: .leading, spacing: 2) {
+
+            VStack(alignment: .leading, spacing: 4) {
                 Text(user.name ?? "Unknown")
                     .appTextStyle(.button, color: .appWhite)
-                
                 Text(user.email ?? "Unknown")
-                    .appTextStyle(.button, color: .appWhite)
+                    .appTextStyle(.caption, color: .appWhite.opacity(0.85))
             }
-            
+
             Spacer()
-            
+
             Button {
                 onLogoutTap?()
             } label: {
-                Image("logout")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(.appWhite)
+                ZStack {
+                    Circle()
+                        .fill(Color.appRed.opacity(0.2))
+                        .frame(width: 40, height: 40)
+                    Image("logout")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.appRed)
+                }
             }
         }
         .padding(16)
@@ -44,14 +46,11 @@ struct ProfileHeaderCard: View {
             AsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
-                    ProgressView()
-                        .frame(width: 48, height: 48)
+                    ProgressView().frame(width: 52, height: 52)
                 case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 48, height: 48)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    image.resizable().scaledToFill()
+                        .frame(width: 52, height: 52)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 case .failure:
                     placeholderView
                 @unknown default:
@@ -64,11 +63,12 @@ struct ProfileHeaderCard: View {
     }
 
     private var placeholderView: some View {
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color.appWhite.opacity(0.3))
-            .frame(width: 48, height: 48)
+        RoundedRectangle(cornerRadius: 10)
+            .fill(Color.appWhite.opacity(0.25))
+            .frame(width: 52, height: 52)
             .overlay(
                 Image(systemName: "person.fill")
+                    .font(.system(size: 22))
                     .foregroundColor(.appWhite)
             )
     }
