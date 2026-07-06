@@ -12,6 +12,10 @@ struct OrderCardView: View {
 
     let order: OrderEntity
     let item: OrderLineItemEntity
+    
+    // Configuration flag to toggle between edit controls and read-only text.
+    // Defaults to false since this model represents an already placed order.
+    var isEditable: Bool = false
 
     private var formattedDate: String {
         let formatter = DateFormatter()
@@ -110,20 +114,26 @@ struct OrderCardView: View {
                     )
                     .appTextStyle(.label, color: .appBlack)
 
-                    // Quantity display
-                    HStack(spacing: 16) {
-                        Text("-")
-                            .appTextStyle(.body, color: .grayText)
-                        Text("\(item.quantity)")
-                            .appTextStyle(.body, color: .appBlack)
-                        Text("+")
-                            .appTextStyle(.body, color: .grayText)
+                    // MARK: Quantity display (Dynamic)
+                    if isEditable {
+                        HStack(spacing: 16) {
+                            Text("-")
+                                .appTextStyle(.body, color: .grayText)
+                            Text("\(item.quantity)")
+                                .appTextStyle(.body, color: .appBlack)
+                            Text("+")
+                                .appTextStyle(.body, color: .grayText)
+                        }
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 12)
+                        .background(Color.grey50)
+                        .cornerRadius(8)
+                        .padding(.top, 4)
+                    } else {
+                        Text("Qty: \(item.quantity)")
+                            .appTextStyle(.caption, color: .grayText)
+                            .padding(.top, 4)
                     }
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 12)
-                    .background(Color.grey50)
-                    .cornerRadius(8)
-                    .padding(.top, 4)
                 }
             }
 
@@ -161,7 +171,7 @@ struct OrderCardView: View {
 #Preview {
     ScrollView {
         VStack(spacing: 16) {
-            // Apple Pay — fulfilled
+            // Apple Pay — fulfilled (Read-only mode)
             OrderCardView(
                 order: OrderEntity(
                     id: "1",
@@ -183,10 +193,11 @@ struct OrderCardView: View {
                     originalTotalPrice: 32.00,
                     variantTitle: "Black",
                     imageURL: nil
-                )
+                ),
+                isEditable: false // Default behavior
             )
 
-            // COD — pending payment, unfulfilled
+            // COD — pending payment, unfulfilled (Editable mode demo)
             OrderCardView(
                 order: OrderEntity(
                     id: "2",
@@ -208,7 +219,8 @@ struct OrderCardView: View {
                     originalTotalPrice: 25.25,
                     variantTitle: nil,
                     imageURL: nil
-                )
+                ),
+                isEditable: true // Overridden behavior
             )
         }
         .padding(16)
