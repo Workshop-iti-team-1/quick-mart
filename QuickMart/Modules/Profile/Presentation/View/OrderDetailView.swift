@@ -11,14 +11,15 @@ import SwiftUI
 struct OrderDetailView: View {
 
     let order: OrderEntity
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     private enum Layout {
-        static let horizontalPad: CGFloat  = 16
+        static let horizontalPad: CGFloat = 16
         static let sectionSpacing: CGFloat = 20
-        static let cornerRadius: CGFloat   = 12
-        static let shadowOpacity: Double   = 0.06
-        static let shadowRadius: CGFloat   = 4
-        static let shadowY: CGFloat        = 2
+        static let cornerRadius: CGFloat = 12
+        static let shadowOpacity: Double = 0.06
+        static let shadowRadius: CGFloat = 4
+        static let shadowY: CGFloat = 2
     }
 
     private var formattedDate: String {
@@ -150,7 +151,9 @@ struct OrderDetailView: View {
 
             card {
                 VStack(spacing: 0) {
-                    ForEach(Array(order.lineItems.enumerated()), id: \.element.id) { index, item in
+                    ForEach(
+                        Array(order.lineItems.enumerated()), id: \.element.id
+                    ) { index, item in
                         itemRow(item: item)
                         if index < order.lineItems.count - 1 {
                             Divider()
@@ -168,7 +171,8 @@ struct OrderDetailView: View {
             ZStack {
                 Color.grey50
                 if let urlString = item.imageURL,
-                   let url = URL(string: urlString) {
+                    let url = URL(string: urlString)
+                {
                     AsyncImage(url: url) { phase in
                         switch phase {
                         case .success(let image):
@@ -195,8 +199,9 @@ struct OrderDetailView: View {
                     .lineLimit(2)
 
                 if let variant = item.variantTitle,
-                   !variant.isEmpty,
-                   variant != "Default Title" {
+                    !variant.isEmpty,
+                    variant != "Default Title"
+                {
                     Text(variant)
                         .appTextStyle(.caption, color: .grayText)
                 }
@@ -208,8 +213,11 @@ struct OrderDetailView: View {
             Spacer(minLength: 0)
 
             // Price
-            Text(formatted(item.originalTotalPrice))
-                .appTextStyle(.label, color: .appBlack)
+            Text(
+                currencyManager.format(
+                    defultAppCurrency: item.originalTotalPrice)
+            )
+            .appTextStyle(.label, color: .appBlack)
         }
         .padding(.vertical, 12)
     }
@@ -244,7 +252,7 @@ struct OrderDetailView: View {
                         let addressLine = [
                             address.address1,
                             address.city,
-                            address.country
+                            address.country,
                         ]
                         .compactMap { $0 }
                         .filter { !$0.isEmpty }
@@ -317,7 +325,8 @@ struct OrderDetailView: View {
                     // Subtotal
                     pricingRow(
                         title: "Subtotal",
-                        value: formatted(order.currentSubtotalPrice),
+                        value: currencyManager.format(
+                            defultAppCurrency: order.currentSubtotalPrice),
                         titleColor: .grayText,
                         valueColor: .grayText,
                         strikethrough: hasDiscount
@@ -329,8 +338,10 @@ struct OrderDetailView: View {
                             Text("Discount")
                                 .appTextStyle(.body, color: .cyanPrimary)
                             Spacer()
-                            Text("- \(formatted(discountAmount))")
-                                .appTextStyle(.label, color: .cyanPrimary)
+                            Text(
+                                "- \(currencyManager.format(defultAppCurrency: discountAmount))"
+                            )
+                            .appTextStyle(.label, color: .cyanPrimary)
                         }
                     }
 
@@ -352,15 +363,24 @@ struct OrderDetailView: View {
                         Spacer()
                         VStack(alignment: .trailing, spacing: 4) {
                             if hasDiscount {
-                                Text(formatted(order.currentSubtotalPrice))
-                                    .appTextStyle(.caption, color: .grayText)
-                                    .strikethrough(true, color: .grayText)
+                                Text(
+                                    currencyManager.format(
+                                        defultAppCurrency: order
+                                            .currentSubtotalPrice)
+                                )
+                                .appTextStyle(.caption, color: .grayText)
+                                .strikethrough(true, color: .grayText)
                             }
-                            Text(formatted(order.currentTotalPrice))
-                                .appTextStyle(.heading2, color: .appBlack)
+                            Text(
+                                currencyManager.format(
+                                    defultAppCurrency: order.currentTotalPrice)
+                            )
+                            .appTextStyle(.heading2, color: .appBlack)
                             if hasDiscount {
-                                Text("Saved \(formatted(discountAmount))")
-                                    .appTextStyle(.caption, color: .cyanPrimary)
+                                Text(
+                                    "Saved \(currencyManager.format(defultAppCurrency: discountAmount))"
+                                )
+                                .appTextStyle(.caption, color: .cyanPrimary)
                             }
                         }
                     }
@@ -473,7 +493,7 @@ struct OrderDetailView: View {
                         originalTotalPrice: 15.50,
                         variantTitle: nil,
                         imageURL: nil
-                    )
+                    ),
                 ],
                 shippingAddress: OrderShippingAddressEntity(
                     firstName: "John",

@@ -12,6 +12,7 @@ struct OrderCardView: View {
 
     let order: OrderEntity
     let item: OrderLineItemEntity
+    @EnvironmentObject var currencyManager: CurrencyManagerService
     
     // Configuration flag to toggle between edit controls and read-only text.
     // Defaults to false since this model represents an already placed order.
@@ -106,11 +107,8 @@ struct OrderCardView: View {
                     }
 
                     Text(
-                        String(
-                            format: "%.2f %@",
-                            item.originalTotalPrice,
-                            order.currencyCode
-                        )
+                        currencyManager.format(
+                            defultAppCurrency: item.originalTotalPrice)
                     )
                     .appTextStyle(.label, color: .appBlack)
 
