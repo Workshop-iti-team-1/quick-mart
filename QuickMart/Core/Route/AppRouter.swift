@@ -126,6 +126,8 @@ final class AppRouter {
             )
         case .orderSuccess(let order):
             OrderSuccessView(order: order)
+        case .orderDetail(let order):
+            OrderDetailView(order: order)
         }
     }
     // MARK: - Search (fullScreenCover factory)

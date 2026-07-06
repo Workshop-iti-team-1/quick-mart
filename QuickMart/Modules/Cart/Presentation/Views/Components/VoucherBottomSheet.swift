@@ -14,6 +14,9 @@ struct VoucherBottomSheet: View {
     @State private var voucherCode: String = ""
     @State private var matchedDiscount: DiscountModel? = nil
     @State private var isFetchingRequirements: Bool = false
+    
+    // Default to a large detent on first presentation
+    @State private var sheetDetent: PresentationDetent = .medium
 
     var onApply: (String) -> Void
 
@@ -38,7 +41,6 @@ struct VoucherBottomSheet: View {
             }
 
             // MARK: - Requirements
-            // Shown when a matching discount is found in the store
             if isFetchingRequirements {
                 HStack(spacing: 8) {
                     ProgressView()
@@ -61,6 +63,9 @@ struct VoucherBottomSheet: View {
         }
         .padding(24)
         .background(Color.backGround.ignoresSafeArea())
+        .presentationDetents([.medium, .large], selection: $sheetDetent)
+        .presentationDragIndicator(.visible)
+        .presentationCornerRadius(20)
     }
 
     // MARK: - Requirements Section
@@ -70,7 +75,6 @@ struct VoucherBottomSheet: View {
             Text("Voucher Requirements")
                 .appTextStyle(.label, color: .appBlack)
 
-            // Title
             HStack(spacing: 8) {
                 Image(systemName: "tag.fill")
                     .font(.system(size: 12))
@@ -79,12 +83,10 @@ struct VoucherBottomSheet: View {
                     .appTextStyle(.label, color: .appBlack)
             }
 
-            // Summary is the human-readable condition from Shopify Admin
-            // e.g. "Minimum purchase of $100" or "3 items required"
             if !discount.summary.isEmpty {
                 VoucherRequirementView(
                     requirement: discount.summary,
-                    isMet: false   // Unknown at this point — user hasn't applied yet
+                    isMet: false
                 )
             }
         }
@@ -97,8 +99,6 @@ struct VoucherBottomSheet: View {
 
     // MARK: - Code Change Handler
 
-    /// Debounce-style lookup: fetch discounts and find a match
-    /// when the user has typed at least 3 characters.
     private func handleCodeChange(_ code: String) {
         let trimmed = code.trimmingCharacters(in: .whitespaces)
         guard trimmed.count >= 3 else {
@@ -128,7 +128,6 @@ struct VoucherBottomSheet: View {
 }
 
 // MARK: - Preview
-
 #Preview {
     Color.black.opacity(0.3)
         .ignoresSafeArea()
@@ -137,7 +136,5 @@ struct VoucherBottomSheet: View {
                 isPresented: .constant(true),
                 onApply: { _ in }
             )
-            .presentationDetents([.height(400)])
-            .presentationDragIndicator(.visible)
         }
 }

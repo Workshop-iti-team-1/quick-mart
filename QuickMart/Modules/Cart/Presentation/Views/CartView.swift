@@ -68,8 +68,6 @@ struct CartView: View {
                 VoucherBottomSheet(isPresented: $showVoucherSheet) { code in
                     viewModel.applyDiscount(code: code)
                 }
-                .presentationDetents([.height(300)])
-                .presentationDragIndicator(.visible)
             } else {
                 VoucherBottomSheet(isPresented: $showVoucherSheet) { code in
                     viewModel.applyDiscount(code: code)

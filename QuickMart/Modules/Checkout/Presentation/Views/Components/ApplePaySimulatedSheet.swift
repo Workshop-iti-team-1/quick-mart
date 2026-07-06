@@ -16,12 +16,13 @@ struct ApplePaySimulatedSheet: View {
     @State private var isFaceIDAnimating: Bool = false
     @State private var isAuthenticating: Bool = false
     @State private var authComplete: Bool = false
+    @State private var sheetDetent: PresentationDetent = .large
 
     private enum Layout {
-        static let cornerRadius: CGFloat    = 20
-        static let faceIDSize: CGFloat      = 64
-        static let buttonHeight: CGFloat    = 50
-        static let buttonRadius: CGFloat    = 12
+        static let cornerRadius: CGFloat = 20
+        static let faceIDSize: CGFloat = 64
+        static let buttonHeight: CGFloat = 50
+        static let buttonRadius: CGFloat = 12
     }
 
     var body: some View {
@@ -61,7 +62,7 @@ struct ApplePaySimulatedSheet: View {
         }
         .padding(.horizontal, 24)
         .background(Color.appWhite)
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.medium, .large], selection: $sheetDetent)
         .presentationDragIndicator(.hidden)
         .presentationCornerRadius(Layout.cornerRadius)
         .onAppear { startFaceIDPulse() }
@@ -142,21 +143,27 @@ struct ApplePaySimulatedSheet: View {
                 // Pulse ring animation
                 Circle()
                     .stroke(Color.cyanPrimary.opacity(0.2), lineWidth: 2)
-                    .frame(width: Layout.faceIDSize + 20,
-                           height: Layout.faceIDSize + 20)
+                    .frame(
+                        width: Layout.faceIDSize + 20,
+                        height: Layout.faceIDSize + 20
+                    )
                     .scaleEffect(isFaceIDAnimating ? 1.15 : 1.0)
                     .opacity(isFaceIDAnimating ? 0.0 : 1.0)
                     .animation(
-                        .easeInOut(duration: 1.2).repeatForever(autoreverses: false),
+                        .easeInOut(duration: 1.2).repeatForever(
+                            autoreverses: false),
                         value: isFaceIDAnimating
                     )
 
                 // Face ID icon
-                Image(systemName: authComplete ? "checkmark.circle.fill" : "faceid")
-                    .font(.system(size: Layout.faceIDSize * 0.6))
-                    .foregroundColor(authComplete ? .cyanPrimary : .appBlack)
-                    .frame(width: Layout.faceIDSize, height: Layout.faceIDSize)
-                    .animation(.spring(duration: 0.3), value: authComplete)
+                Image(
+                    systemName: authComplete
+                        ? "checkmark.circle.fill" : "faceid"
+                )
+                .font(.system(size: Layout.faceIDSize * 0.6))
+                .foregroundColor(authComplete ? .cyanPrimary : .appBlack)
+                .frame(width: Layout.faceIDSize, height: Layout.faceIDSize)
+                .animation(.spring(duration: 0.3), value: authComplete)
             }
 
             Text(

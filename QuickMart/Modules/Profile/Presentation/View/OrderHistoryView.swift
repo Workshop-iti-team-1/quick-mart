@@ -35,7 +35,6 @@ struct OrderHistoryView: View {
                                         : .appBlack
                                 )
 
-                            // Count badge — only shown when orders are loaded
                             let count = tabCount(for: tab)
                             if count > 0 {
                                 Text("\(count)")
@@ -80,7 +79,6 @@ struct OrderHistoryView: View {
                 Spacer()
 
             } else if let error = viewModel.error {
-                // Error state
                 VStack(spacing: 16) {
                     Image(systemName: "exclamationmark.triangle")
                         .font(.system(size: 40))
@@ -114,10 +112,16 @@ struct OrderHistoryView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 16) {
                             ForEach(currentOrders) { order in
-                                // Each line item gets its own card —
-                                // matches original design
+                                // Each line item gets its own card.
+                                // Tapping any card for an order navigates
+                                // to the full order detail screen.
                                 ForEach(order.lineItems) { item in
-                                    OrderCardView(order: order, item: item)
+                                    Button {
+                                        router.push(.orderDetail(order))
+                                    } label: {
+                                        OrderCardView(order: order, item: item)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
