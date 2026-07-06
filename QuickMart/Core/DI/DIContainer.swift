@@ -7,7 +7,6 @@
 
 // App/DI/DIContainer.swift
 
-
 import Apollo
 import Foundation
 
@@ -26,10 +25,13 @@ public final class DIContainer {
     }()
 
     private(set) lazy var restClient: RestClientProtocol = RestClient()
+    var applePayService: ApplePayServiceProtocol {
+        return ApplePayService()
+    }
 
     let sessionManager = SessionManager.shared
     // MARK: - Home Repository (shared)
-  
+
     private lazy var homeRepository: HomeRepositoryProtocol = {
         HomeRepositoryImpl(
             remoteDataSource: HomeRemoteDataSource(client: graphQLClient),
@@ -69,7 +71,9 @@ public final class DIContainer {
     }
 
     private func makeCartRepository() -> CartRepository {
-        CartRepositoryImpl(remoteDataSource: makeRemoteCartDataSource(), commonRemoteDataSource: makeCommonRemoteDataSource())
+        CartRepositoryImpl(
+            remoteDataSource: makeRemoteCartDataSource(),
+            commonRemoteDataSource: makeCommonRemoteDataSource())
     }
 
     private func makeCartUseCases() -> CartUseCases {
@@ -86,10 +90,12 @@ public final class DIContainer {
     }
 
     // MARK: - Common
-    private func makeCommonRemoteDataSource() -> CommonCartRemoteDataSourceProtocol {
+    private func makeCommonRemoteDataSource()
+        -> CommonCartRemoteDataSourceProtocol
+    {
         CommonCartRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
     }
-    
+
     private func makeCommonRepository() -> CommonCartRepositoryProtocol {
         CommonCartRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
     }
@@ -99,14 +105,18 @@ public final class DIContainer {
     }
 
     // MARK: - Product Details
-    private func makeGetProductDetailsUseCase() -> GetProductDetailsUseCaseProtocol {
+    private func makeGetProductDetailsUseCase()
+        -> GetProductDetailsUseCaseProtocol
+    {
         GetProductDetailsUseCase(repository: homeRepository)
     }
 
     // Single source of truth for building ProductDetailsViewModel.
     // preloadedProduct defaults to nil so all existing call sites (router.push(.productDetail(id)))
     // keep working unchanged; only the Wishlist offline-detail path passes a cached product.
-    func makeProductDetailsViewModel(productId: String, preloadedProduct: ProductDetails? = nil) -> ProductDetailsViewModel {
+    func makeProductDetailsViewModel(
+        productId: String, preloadedProduct: ProductDetails? = nil
+    ) -> ProductDetailsViewModel {
         ProductDetailsViewModel(
             productId: productId,
             getProductDetailsUseCase: makeGetProductDetailsUseCase(),
@@ -133,14 +143,18 @@ public final class DIContainer {
     private var fetchSubCategoriesUseCase: FetchSubCategoriesUseCaseProtocol {
         FetchSubCategoriesUseCase(repository: searchRepository)
     }
-    private var fetchPredictiveSearchUseCase: FetchPredictiveSearchUseCaseProtocol {
+    private var fetchPredictiveSearchUseCase:
+        FetchPredictiveSearchUseCaseProtocol
+    {
         FetchPredictiveSearchUseCase(repository: searchRepository)
     }
 
     // MARK: - Public Factory
 
     @MainActor
-    func makeSearchViewModel(initialFilters: SearchFilters = SearchFilters()) -> SearchViewModel {
+    func makeSearchViewModel(initialFilters: SearchFilters = SearchFilters())
+        -> SearchViewModel
+    {
         SearchViewModel(
             initialFilters: initialFilters,
             searchProductsUseCase: searchProductsUseCase,
@@ -154,7 +168,9 @@ public final class DIContainer {
 
     // MARK: - Address
 
-    private func makeAddressRemoteDataSource() -> AddressRemoteDataSourceProtocol {
+    private func makeAddressRemoteDataSource()
+        -> AddressRemoteDataSourceProtocol
+    {
         AddressRemoteDataSourceImpl(client: GraphQLClient(apollo: apolloClient))
     }
     private func makeAddressRepository() -> AddressRepositoryProtocol {
@@ -166,29 +182,33 @@ public final class DIContainer {
 
     // MARK: - Country/City reference data
 
-    private lazy var countryRemoteDataSource: CountryRemoteDataSourceProtocol = CountryRemoteDataSourceImpl()
-    private lazy var countryRepository: CountryRepositoryProtocol = CountryRepositoryImpl(remoteDataSource: countryRemoteDataSource)
+    private lazy var countryRemoteDataSource: CountryRemoteDataSourceProtocol =
+        CountryRemoteDataSourceImpl()
+    private lazy var countryRepository: CountryRepositoryProtocol =
+        CountryRepositoryImpl(remoteDataSource: countryRemoteDataSource)
     private func makeFetchCountriesUseCase() -> FetchCountriesUseCaseProtocol {
         FetchCountriesUseCase(repository: countryRepository)
     }
-    private(set) lazy var countryDataProvider: CountryDataProvider = CountryDataProvider(
-        fetchCountriesUseCase: makeFetchCountriesUseCase()
-    )
+    private(set) lazy var countryDataProvider: CountryDataProvider =
+        CountryDataProvider(
+            fetchCountriesUseCase: makeFetchCountriesUseCase()
+        )
 
     // MARK: - Favorites
 
     private lazy var favoriteLocalDataSource: FavoriteLocalDataSourceProtocol =
         FavoriteLocalDataSourceImpl(context: CoreDataStack.shared.context)
-    
 
     func makeFavoriteUseCases() -> FavoriteUseCases {
         FavoriteUseCasesImpl(repository: favoriteRepository)
     }
     private lazy var favoriteRepository: FavoriteRepositoryProtocol =
         FavoriteRepositoryImpl(localDataSource: favoriteLocalDataSource)
-    
+
     // MARK: - Profile
-    private func makeProfileRemoteDataSource() -> ProfileRemoteDataSourceProtocol {
+    private func makeProfileRemoteDataSource()
+        -> ProfileRemoteDataSourceProtocol
+    {
         ProfileRemoteDataSourceImpl(client: graphQLClient)
     }
     private func makeProfileRepository() -> ProfileRepositoryProtocol {
@@ -202,7 +222,9 @@ public final class DIContainer {
     }
     // MARK: - Checkout
 
-    private func makeCheckoutRemoteDataSource() -> CheckoutRemoteDataSourceProtocol {
+    private func makeCheckoutRemoteDataSource()
+        -> CheckoutRemoteDataSourceProtocol
+    {
         CheckoutRemoteDataSource()
     }
 
@@ -215,7 +237,12 @@ public final class DIContainer {
     private func makePlaceOrderUseCase() -> PlaceOrderUseCaseProtocol {
         PlaceOrderUseCase(repository: makeCheckoutRepository())
     }
-
+    private func makeRequestApplePayPaymentUseCase()
+        -> RequestApplePayPaymentUseCaseProtocol
+    {
+        return RequestApplePayPaymentUseCase(
+            applePayService: self.applePayService)
+    }
     // MARK: - Public Factory
 
     @MainActor
@@ -224,7 +251,8 @@ public final class DIContainer {
             cart: cart,
             placeOrderUseCase: makePlaceOrderUseCase(),
             addressUseCases: makeAddressUseCases(),
-            cartUseCases: makeCartUseCases()
+            cartUseCases: makeCartUseCases(),
+            requestApplePayUseCase: makeRequestApplePayPaymentUseCase()
         )
     }
 }

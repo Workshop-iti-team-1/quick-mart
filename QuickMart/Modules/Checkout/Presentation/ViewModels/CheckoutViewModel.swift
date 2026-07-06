@@ -1,62 +1,57 @@
-//
-//  CheckoutViewModel.swift
-//  QuickMart
-//
-//  Created by Mina_Wagdy on 05/07/2026.
-//
-import Foundation
 import Combine
+import Foundation
 
 @MainActor
 final class CheckoutViewModel: ObservableObject {
 
     // MARK: - Address State
-
     @Published private(set) var addresses: [Address] = []
     @Published var selectedAddress: Address? = nil
     @Published private(set) var isLoadingAddresses: Bool = false
 
     // MARK: - Payment State
-
     @Published var selectedPaymentMethod: PaymentMethod = .applePay
-    @Published var isApplePaySheetPresented: Bool = false
+
+    // We no longer need isApplePaySheetPresented because the system handles the UI!
 
     // MARK: - Order Placement State
-
     @Published private(set) var isPlacingOrder: Bool = false
     @Published private(set) var placedOrder: PlacedOrder? = nil
     @Published private(set) var errorMessage: String? = nil
     @Published var showErrorAlert: Bool = false
 
     // MARK: - Cart
-
     private(set) var cart: Cart
 
     // MARK: - Dependencies
-
     private let placeOrderUseCase: PlaceOrderUseCaseProtocol
     private let addressUseCases: AddressUseCases
     private let cartUseCases: CartUseCases
+    private let requestApplePayUseCase: RequestApplePayPaymentUseCaseProtocol  // <-- New Dependency
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
-
     init(
         cart: Cart,
         placeOrderUseCase: PlaceOrderUseCaseProtocol,
         addressUseCases: AddressUseCases,
-        cartUseCases: CartUseCases
+        cartUseCases: CartUseCases,
+        requestApplePayUseCase: RequestApplePayPaymentUseCaseProtocol
     ) {
         self.cart = cart
         self.placeOrderUseCase = placeOrderUseCase
         self.addressUseCases = addressUseCases
         self.cartUseCases = cartUseCases
+        self.requestApplePayUseCase = requestApplePayUseCase
 
         observeAddressEvents()
     }
 
-    // MARK: - Address Loading
+    var isApplePayAvailable: Bool {
+        return requestApplePayUseCase.canMakePayments()
+    }
 
+    // MARK: - Address Loading & Events
     func loadAddresses() {
         isLoadingAddresses = true
         addressUseCases.fetchAddresses()
@@ -69,29 +64,25 @@ final class CheckoutViewModel: ObservableObject {
             } receiveValue: { [weak self] addresses in
                 guard let self else { return }
                 self.addresses = addresses
-                // Auto-select default address if none selected yet
                 if self.selectedAddress == nil {
-                    self.selectedAddress = addresses.first { $0.isDefault }
-                        ?? addresses.first
+                    self.selectedAddress =
+                        addresses.first { $0.isDefault } ?? addresses.first
                 }
             }
             .store(in: &cancellables)
     }
-
-    // MARK: - Address Event Observation
-    // Mirrors AddressListViewModel — stays in sync when user adds/edits
-    // an address from the shipping addresses screen during checkout
 
     private func observeAddressEvents() {
         AddressEventsBus.shared.addressSaved
             .receive(on: DispatchQueue.main)
             .sink { [weak self] saved in
                 guard let self else { return }
-                if let index = self.addresses.firstIndex(where: { $0.id == saved.id }) {
+                if let index = self.addresses.firstIndex(where: {
+                    $0.id == saved.id
+                }) {
                     self.addresses[index] = saved
                 } else {
                     self.addresses.append(saved)
-                    // Auto-select newly added address if none selected
                     if self.selectedAddress == nil {
                         self.selectedAddress = saved
                     }
@@ -101,36 +92,55 @@ final class CheckoutViewModel: ObservableObject {
 
         AddressEventsBus.shared.defaultAddressChanged
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.loadAddresses()
-            }
+            .sink { [weak self] _ in self?.loadAddresses() }
             .store(in: &cancellables)
     }
 
     // MARK: - Payment Intents
 
-    /// Called when user taps the primary pay button.
-    /// Apple Pay → shows simulated Face ID sheet first.
-    /// COD → places order directly.
-    func initiatePayment() {
+    // Accept the converted amount and currency code from the View
+    func initiatePayment(amount: Double, currencyCode: String) {
         guard validateBeforePayment() else { return }
 
         switch selectedPaymentMethod {
         case .applePay:
-            isApplePaySheetPresented = true
+            Task {
+                await handleApplePayFlow(
+                    amount: amount, currencyCode: currencyCode)
+            }
         case .cashOnDelivery:
             Task { await placeOrder() }
         }
     }
 
-    /// Called when user confirms on the Apple Pay simulated sheet.
-    func confirmApplePay() {
-        isApplePaySheetPresented = false
-        Task { await placeOrder() }
+    private func handleApplePayFlow(amount: Double, currencyCode: String) async
+    {
+        isPlacingOrder = true
+
+        // Pass the dynamically converted values to PassKit
+        let result = await requestApplePayUseCase.execute(
+            amount: amount,
+            currencyCode: currencyCode
+        )
+
+        switch result {
+        case .success(let transactionIdentifier):
+            print(
+                "Native Apple Pay Auth Success! Token: \(transactionIdentifier)"
+            )
+            await placeOrder()
+
+        case .cancelled:
+            print("User dismissed the Apple Pay sheet.")
+            isPlacingOrder = false
+
+        case .failed(let error):
+            isPlacingOrder = false
+            showError(error.localizedDescription)
+        }
     }
 
     // MARK: - Order Placement
-
     private func placeOrder() async {
         isPlacingOrder = true
         errorMessage = nil
@@ -142,13 +152,9 @@ final class CheckoutViewModel: ObservableObject {
                 paymentMethod: selectedPaymentMethod
             )
 
-            // Clear cart locally + notify tab bar badge
             cartUseCases.clearCart()
             NotificationCenter.default.post(
-                name: NSNotification.Name("CartUpdated"),
-                object: nil
-            )
-
+                name: NSNotification.Name("CartUpdated"), object: nil)
             placedOrder = order
 
         } catch {
@@ -158,17 +164,15 @@ final class CheckoutViewModel: ObservableObject {
         isPlacingOrder = false
     }
 
-    // MARK: - Validation
-
+    // MARK: - Validation & Helpers
     private func validateBeforePayment() -> Bool {
         guard selectedAddress != nil else {
-            showError(CheckoutError.noAddressSelected.localizedDescription ?? "")
+            showError(
+                CheckoutError.noAddressSelected.localizedDescription ?? "")
             return false
         }
         return true
     }
-
-    // MARK: - Helpers
 
     private func showError(_ message: String) {
         errorMessage = message

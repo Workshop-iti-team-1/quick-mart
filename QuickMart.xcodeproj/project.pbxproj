@@ -345,7 +345,6 @@
 		D495718F2FFAC17B000B7E3F /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */; };
 		D49571932FFAC1C9000B7E3F /* CheckoutAddressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571922FFAC1C3000B7E3F /* CheckoutAddressCard.swift */; };
 		D49571952FFAC24A000B7E3F /* PaymentMethodSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */; };
-		D49571972FFAC297000B7E3F /* ApplePaySimulatedSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571962FFAC295000B7E3F /* ApplePaySimulatedSheet.swift */; };
 		D49571992FFAC2B1000B7E3F /* CheckoutOrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571982FFAC2AD000B7E3F /* CheckoutOrderSummaryView.swift */; };
 		D495719D2FFAC340000B7E3F /* OrderSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495719C2FFAC33D000B7E3F /* OrderSuccessView.swift */; };
 		D495719F2FFAC3AB000B7E3F /* DIContainer+Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495719E2FFAC3A8000B7E3F /* DIContainer+Checkout.swift */; };
@@ -381,6 +380,9 @@
 		D4A91F162FF025BF007B11D2 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */; };
 		D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F132FF025BF007B11D2 /* Formatter.swift */; };
 		D4A91F1B2FF0297D007B11D2 /* ShopifyGraphQLClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */; };
+		D4AC97292FFC069A00584FE6 /* ApplePayServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC97282FFC069700584FE6 /* ApplePayServiceProtocol.swift */; };
+		D4AC972C2FFC07B300584FE6 /* ApplePayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC972B2FFC07AF00584FE6 /* ApplePayService.swift */; };
+		D4AC972E2FFC0A1400584FE6 /* RequestApplePayPaymentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC972D2FFC0A1100584FE6 /* RequestApplePayPaymentUseCase.swift */; };
 		D4AF191A2FFB06D00050688B /* DiscountResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF19192FFB06C30050688B /* DiscountResponseDTO.swift */; };
 		D4AF191D2FFB074B0050688B /* CheckoutResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF191C2FFB07480050688B /* CheckoutResponseDTO.swift */; };
 		D4AF191F2FFB083A0050688B /* CheckoutAddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */; };
@@ -761,7 +763,6 @@
 		D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		D49571922FFAC1C3000B7E3F /* CheckoutAddressCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressCard.swift; sourceTree = "<group>"; };
 		D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodSectionView.swift; sourceTree = "<group>"; };
-		D49571962FFAC295000B7E3F /* ApplePaySimulatedSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaySimulatedSheet.swift; sourceTree = "<group>"; };
 		D49571982FFAC2AD000B7E3F /* CheckoutOrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutOrderSummaryView.swift; sourceTree = "<group>"; };
 		D495719C2FFAC33D000B7E3F /* OrderSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessView.swift; sourceTree = "<group>"; };
 		D495719E2FFAC3A8000B7E3F /* DIContainer+Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DIContainer+Checkout.swift"; sourceTree = "<group>"; };
@@ -798,6 +799,10 @@
 		D4A91F0E2FF025BF007B11D2 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		D4A91F132FF025BF007B11D2 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D4A91F1A2FF0297C007B11D2 /* ShopifyGraphQLClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyGraphQLClientProtocol.swift; sourceTree = "<group>"; };
+		D4AC97272FFC060E00584FE6 /* QuickMart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickMart.entitlements; sourceTree = "<group>"; };
+		D4AC97282FFC069700584FE6 /* ApplePayServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayServiceProtocol.swift; sourceTree = "<group>"; };
+		D4AC972B2FFC07AF00584FE6 /* ApplePayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayService.swift; sourceTree = "<group>"; };
+		D4AC972D2FFC0A1100584FE6 /* RequestApplePayPaymentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApplePayPaymentUseCase.swift; sourceTree = "<group>"; };
 		D4AF19192FFB06C30050688B /* DiscountResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountResponseDTO.swift; sourceTree = "<group>"; };
 		D4AF191C2FFB07480050688B /* CheckoutResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutResponseDTO.swift; sourceTree = "<group>"; };
 		D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressPickerView.swift; sourceTree = "<group>"; };
@@ -1013,6 +1018,7 @@
 				D4A91EF52FF025AE007B11D2 /* App */,
 				D4A91F152FF025BF007B11D2 /* Core */,
 				1518E8882FF1AE47006BED1A /* GoogleService-Info.plist */,
+				D4AC97272FFC060E00584FE6 /* QuickMart.entitlements */,
 			);
 			path = QuickMart;
 			sourceTree = "<group>";
@@ -1954,7 +1960,6 @@
 			children = (
 				D4AF191E2FFB08370050688B /* CheckoutAddressPickerView.swift */,
 				D49571982FFAC2AD000B7E3F /* CheckoutOrderSummaryView.swift */,
-				D49571962FFAC295000B7E3F /* ApplePaySimulatedSheet.swift */,
 				D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */,
 				D49571922FFAC1C3000B7E3F /* CheckoutAddressCard.swift */,
 			);
@@ -1993,6 +1998,7 @@
 		D49BB7D02FFAA2010047E358 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC972A2FFC07A900584FE6 /* Services */,
 				D4AF191B2FFB07340050688B /* DTOs */,
 				D49BB7E02FFAA7810047E358 /* Repository */,
 				D49BB7D62FFAA3520047E358 /* DataSource */,
@@ -2021,6 +2027,7 @@
 		D49BB7DD2FFAA6EF0047E358 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC97282FFC069700584FE6 /* ApplePayServiceProtocol.swift */,
 				D49BB7DE2FFAA70C0047E358 /* CheckoutRepositoryProtocol.swift */,
 			);
 			path = Repository;
@@ -2037,6 +2044,7 @@
 		D49BB7E32FFAA7FF0047E358 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC972D2FFC0A1100584FE6 /* RequestApplePayPaymentUseCase.swift */,
 				D49BB7E42FFAA80B0047E358 /* PlaceOrderUseCase.swift */,
 			);
 			path = UseCase;
@@ -2254,6 +2262,14 @@
 				CC0011223344556677889901 /* Common */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		D4AC972A2FFC07A900584FE6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC972B2FFC07AF00584FE6 /* ApplePayService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		D4AF191B2FFB07340050688B /* DTOs */ = {
@@ -2544,7 +2560,6 @@
 				AA0011223344556677889921 /* ProductTitleAndPrice.swift in Sources */,
 				AA0011223344556677889922 /* ProductRatingView.swift in Sources */,
 				5F1B5CD82FFBB3160028BBF0 /* PrivacyPolicyView.swift in Sources */,
-				D49571972FFAC297000B7E3F /* ApplePaySimulatedSheet.swift in Sources */,
 				AA0011223344556677889923 /* ProductDescriptionView.swift in Sources */,
 				5F7844E92FF8564E00F6D3C7 /* AddressEventsBus.swift in Sources */,
 				AA0011223344556677889924 /* ProductOptionsView.swift in Sources */,
@@ -2569,6 +2584,7 @@
 				15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */,
 				5FA216F02FF8F0B700DBA613 /* FavoriteLocalDataSourceProtocol.swift in Sources */,
 				5FC3A3512FF982D100285375 /* DiscountModel.swift in Sources */,
+				D4AC97292FFC069A00584FE6 /* ApplePayServiceProtocol.swift in Sources */,
 				D4A91F192FF025BF007B11D2 /* Formatter.swift in Sources */,
 				D4A91EF82FF025AE007B11D2 /* DIContainer.swift in Sources */,
 				D4A1B2872FF6898900735C4D /* SubCategory.swift in Sources */,
@@ -2640,6 +2656,7 @@
 				5F1B5C5A2FFBAE8B0028BBF0 /* SearchSortKeys.graphql.swift in Sources */,
 				5F1B5C5B2FFBAE8B0028BBF0 /* UpdateCustomerAddressMutation.graphql.swift in Sources */,
 				5F1B5C5C2FFBAE8B0028BBF0 /* Media.graphql.swift in Sources */,
+				D4AC972E2FFC0A1400584FE6 /* RequestApplePayPaymentUseCase.swift in Sources */,
 				5F1B5C5D2FFBAE8B0028BBF0 /* CartBuyerIdentityInput.graphql.swift in Sources */,
 				5F1B5C5E2FFBAE8B0028BBF0 /* SchemaMetadata.graphql.swift in Sources */,
 				5F1B5C5F2FFBAE8B0028BBF0 /* CartAddressInput.graphql.swift in Sources */,
@@ -2695,6 +2712,7 @@
 				5F1B5C912FFBAE8B0028BBF0 /* MailingAddressConnection.graphql.swift in Sources */,
 				5F1B5C922FFBAE8B0028BBF0 /* ProductVariantEdge.graphql.swift in Sources */,
 				5F1B5C932FFBAE8B0028BBF0 /* Customer.graphql.swift in Sources */,
+				D4AC972C2FFC07B300584FE6 /* ApplePayService.swift in Sources */,
 				5F1B5C942FFBAE8B0028BBF0 /* PricingPercentageValue.graphql.swift in Sources */,
 				5F1B5C952FFBAE8B0028BBF0 /* AddCartLinesMutation.graphql.swift in Sources */,
 				5F1B5C962FFBAE8B0028BBF0 /* HasMetafields.graphql.swift in Sources */,
@@ -3081,6 +3099,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickMart/QuickMart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -3112,6 +3131,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickMart/QuickMart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

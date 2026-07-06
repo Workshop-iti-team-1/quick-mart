@@ -13,13 +13,14 @@ struct CheckoutView: View {
     @StateObject private var viewModel: CheckoutViewModel
     @Environment(AppRouter.self) private var router
     @State private var isAddressPickerPresented: Bool = false
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     private enum Layout {
-        static let horizontalPad: CGFloat  = 16
+        static let horizontalPad: CGFloat = 16
         static let sectionSpacing: CGFloat = 24
-        static let buttonHeight: CGFloat   = 52
-        static let buttonRadius: CGFloat   = 12
-        static let bottomPad: CGFloat      = 32
+        static let buttonHeight: CGFloat = 52
+        static let buttonRadius: CGFloat = 12
+        static let bottomPad: CGFloat = 32
     }
 
     // MARK: - Init
@@ -83,18 +84,6 @@ struct CheckoutView: View {
                 }
             )
         }
-        // Apple Pay simulated sheet
-        .sheet(isPresented: $viewModel.isApplePaySheetPresented) {
-            ApplePaySimulatedSheet(
-                cart: viewModel.cart,
-                onConfirm: {
-                    viewModel.confirmApplePay()
-                },
-                onCancel: {
-                    viewModel.isApplePaySheetPresented = false
-                }
-            )
-        }
         // Navigate to success when order is placed
         .onChange(of: viewModel.placedOrder) { _, order in
             guard let order else { return }
@@ -127,7 +116,14 @@ struct CheckoutView: View {
 
     private var payButton: some View {
         Button {
-            viewModel.initiatePayment()
+            // Get the raw converted amount and currency code
+            let finalAmount = currencyManager.convert(
+                amount: viewModel.cart.cost.totalAmount)
+            let currencyCode = currencyManager.selectedCurrency
+
+            // Pass them to the ViewModel
+            viewModel.initiatePayment(
+                amount: finalAmount, currencyCode: currencyCode)
         } label: {
             HStack(spacing: 8) {
                 if viewModel.isPlacingOrder {
@@ -150,15 +146,16 @@ struct CheckoutView: View {
             .cornerRadius(Layout.buttonRadius)
         }
         .disabled(viewModel.selectedAddress == nil || viewModel.isPlacingOrder)
-        .animation(.easeInOut(duration: 0.2), value: viewModel.selectedPaymentMethod)
+        .animation(
+            .easeInOut(duration: 0.2), value: viewModel.selectedPaymentMethod)
     }
-
     private var payButtonTitle: String {
         switch viewModel.selectedPaymentMethod {
         case .applePay:
             return "Pay with Apple Pay"
         case .cashOnDelivery:
-            let total = String(format: "$%.2f", viewModel.cart.cost.totalAmount)
+            let total = currencyManager.format(
+                defultAppCurrency: viewModel.cart.cost.totalAmount)
             return "Place Order · \(total)"
         }
     }
