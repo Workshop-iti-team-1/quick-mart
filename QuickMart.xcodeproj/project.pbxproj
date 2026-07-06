@@ -48,6 +48,7 @@
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
+		5F1B5B852FFB9C080028BBF0 /* Config.local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */; };
 		5F365C172FF84D360082DE82 /* SearchablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C162FF84D360082DE82 /* SearchablePickerView.swift */; };
 		5F365C1C2FF84D920082DE82 /* AddressFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C1B2FF84D920082DE82 /* AddressFormView.swift */; };
 		5F365C1E2FF84DA80082DE82 /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F365C1D2FF84DA80082DE82 /* AddressListView.swift */; };
@@ -133,7 +134,6 @@
 		5FC3A34D2FF9822F00285375 /* DiscountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */; };
 		5FC3A34F2FF9828B00285375 /* DiscountMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */; };
 		5FC3A3512FF982D100285375 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A3502FF982D100285375 /* DiscountModel.swift */; };
-		5FC3A3802FF9932800285375 /* Config.local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */; };
 		65265A0AFEAF7DFAAB6F8C88 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985C743BC269621E90D1CB3 /* Route.swift */; };
 		6A5335F592687DF9E824D4FC /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF880445C2234B6AE73C0461 /* ProductDetails.swift */; };
 		6DB926588223269EDEFE4C83 /* RegisterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4CFA3F34C465D3BADAE0A0 /* RegisterRequestDTO.swift */; };
@@ -439,6 +439,7 @@
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		5F365C162FF84D360082DE82 /* SearchablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePickerView.swift; sourceTree = "<group>"; };
 		5F365C1B2FF84D920082DE82 /* AddressFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFormView.swift; sourceTree = "<group>"; };
 		5F365C1D2FF84DA80082DE82 /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
@@ -524,7 +525,6 @@
 		5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountDataSource.swift; sourceTree = "<group>"; };
 		5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountMapper.swift; sourceTree = "<group>"; };
 		5FC3A3502FF982D100285375 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
-		5FC3A37F2FF9932800285375 /* Config.local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		6C127E4B8B2EA37B5662334F /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		6CEF6214DE88C80686522218 /* RegisterUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterUseCase.swift; sourceTree = "<group>"; };
 		6E4A7C98EDFD3702DC235866 /* AuthRemoteDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -2023,7 +2023,7 @@
 				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
 				6C127E4B8B2EA37B5662334F /* RootView.swift */,
 				150DD8E42FF2CEE500D89DCE /* Config.xcconfig */,
-				5FC3A37F2FF9932800285375 /* Config.local.xcconfig */,
+				5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2322,8 +2322,8 @@
 				D4B080F22FF6FE520011F64A /* SearchQL.graphql in Resources */,
 				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
 				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
-				5FC3A3802FF9932800285375 /* Config.local.xcconfig in Resources */,
 				5F74F40C2FF61E3100DE42F6 /* Home.graphql in Resources */,
+				5F1B5B852FFB9C080028BBF0 /* Config.local.xcconfig in Resources */,
 				1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */,
 				5F365C292FF84F1F0082DE82 /* Address.graphql in Resources */,
 			);
@@ -2744,7 +2744,7 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
+			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2806,7 +2806,7 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
+			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2861,7 +2861,7 @@
 		};
 		584C12AE2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
+			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2892,7 +2892,7 @@
 		};
 		584C12AF2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FC3A37F2FF9932800285375 /* Config.local.xcconfig */;
+			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

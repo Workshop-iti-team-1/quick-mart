@@ -4,12 +4,12 @@
 //
 //  Created by siam on 05/07/2026.
 //
-
+// CurrencyResponseDTO.swift
 struct CurrencyResponseDTO: Decodable {
-    let data:String
-    let base:String
-    let rates:[String:String]
-    
+    let date: String
+    let base: String
+    let rates: [String: String]
+
     func toDomain() -> CurrencyRateEntity {
         var parsedRates: [String: Double] = [:]
         for (key, value) in rates {
