@@ -13,7 +13,7 @@ struct MainTabView: View {
     @Environment(AppRouter.self) private var router
 
     var body: some View {
-        //  Create a bindable reference for the router
+        
         @Bindable var bindableRouter = router
         
         VStack(spacing: 0) {
@@ -24,7 +24,7 @@ struct MainTabView: View {
                     HomeView(viewModel: DIContainer.shared.makeHomeViewModel())
                         .customToolbar(
                             cartCount: viewModel.cartItemCount,
-                            // Fire router tab switch on cart tap
+                          
                             onCart: { router.switchTab(to: .cart) }
                         )
                 case .search:
@@ -34,13 +34,13 @@ struct MainTabView: View {
                 case .wishlist:
                     WishlistView()
                 case .profile:
-                    ProfileView(router: router)
+                    ProfileView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             CustomTabBar(
-                selectedTab: $bindableRouter.selectedTab, //  Bind directly to router
+                selectedTab: $bindableRouter.selectedTab,
                 cartCount: viewModel.cartItemCount
             )
         }

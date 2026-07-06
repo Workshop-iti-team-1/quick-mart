@@ -186,4 +186,18 @@ public final class DIContainer {
     }
     private lazy var favoriteRepository: FavoriteRepositoryProtocol =
         FavoriteRepositoryImpl(localDataSource: favoriteLocalDataSource)
+    
+    // MARK: - Profile
+    private func makeProfileRemoteDataSource() -> ProfileRemoteDataSourceProtocol {
+        ProfileRemoteDataSourceImpl(client: graphQLClient)
+    }
+    private func makeProfileRepository() -> ProfileRepositoryProtocol {
+        ProfileRepositoryImpl(remoteDataSource: makeProfileRemoteDataSource())
+    }
+    private func makeGetCustomerUseCase() -> GetCustomerUseCaseProtocol {
+        GetCustomerUseCase(repository: makeProfileRepository())
+    }
+    func makeProfileViewModel() -> ProfileViewModel {
+        ProfileViewModel(getCustomerUseCase: makeGetCustomerUseCase())
+    }
 }
