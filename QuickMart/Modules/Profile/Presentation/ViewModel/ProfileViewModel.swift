@@ -42,8 +42,6 @@ class ProfileViewModel: ObservableObject {
     var personalItems: [MenuItem] {[
         MenuItem(icon: "box", title: AppStrings.Profile.shippingAddress,
                  trailing: .chevron(route: .shippingAddresses)),
-        MenuItem(icon: "card-tick", title: AppStrings.Profile.paymentMethod,
-                 trailing: .chevron(route: .paymentMethod)),
         MenuItem(icon: "receipt-edit", title: AppStrings.Profile.orderHistory,
                  trailing: .chevron(route: .orderHistory))
     ]}
