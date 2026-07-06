@@ -80,7 +80,7 @@ final class AppRouter {
                 viewModel: self.diContainer.makeProductDetailsViewModel(
                     productId: productId))
         case .cart:
-            CartView(router: self)
+            CartView()
         case .search(let filters):
             SearchView(
                 viewModel: diContainer.makeSearchViewModel(
@@ -122,6 +122,14 @@ final class AppRouter {
             ProfileView()
         case .currencyPicker:
             CurrencyPickerView(viewModel: CurrencyPickerViewModel())
+        case .checkout(let cart):
+            CheckoutView(
+                viewModel: diContainer.makeCheckoutViewModel(cart: cart)
+            )
+        case .orderSuccess(let order):
+            OrderSuccessView(order: order)
+        case .orderDetail(let order):
+            OrderDetailView(order: order)
         }
     }
     // MARK: - Search (fullScreenCover factory)

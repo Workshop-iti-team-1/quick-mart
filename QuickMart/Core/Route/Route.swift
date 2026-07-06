@@ -29,4 +29,7 @@ enum Route: Hashable {
     case faqs
     case changePassword
     case currencyPicker
+    case checkout(Cart)
+    case orderSuccess(PlacedOrder)
+    case orderDetail(OrderEntity)
 }

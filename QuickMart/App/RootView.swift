@@ -1,6 +1,3 @@
-// App/Navigation/RootView.swift
-
-// App/Navigation/RootView.swift
 import SwiftUI
 
 struct RootView: View {
@@ -21,17 +18,17 @@ struct RootView: View {
 
     @ViewBuilder
     private var currentView: some View {
-        switch sessionManager.currentState {
-        case .loading:
-            ProgressView()
-        case .unauthenticated:
-            if hasSeenOnboarding {
+        if !hasSeenOnboarding {
+            OnboardingView()
+        } else {
+            switch sessionManager.currentState {
+            case .loading:
+                ProgressView()
+            case .unauthenticated:
                 LoginView()
-            } else {
-                OnboardingView()
+            case .guest, .loggedIn:
+                MainTabView()
             }
-        case .guest, .loggedIn:
-            MainTabView()
         }
     }
 }

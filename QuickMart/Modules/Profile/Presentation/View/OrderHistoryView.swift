@@ -8,58 +8,127 @@
 import SwiftUI
 
 struct OrderHistoryView: View {
+
     @StateObject private var viewModel: OrderHistoryViewModel
     @Environment(AppRouter.self) private var router
-    
+
+
     init(viewModel: OrderHistoryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
 
-            HStack {
+            // MARK: - Tab Selector
+
+            HStack(spacing: 0) {
                 ForEach(OrderTab.allCases, id: \.self) { tab in
-                    Button(action: {
-                        withAnimation {
-                            viewModel.selectedTab = tab
+                    Button {
+                        withAnimation { viewModel.selectedTab = tab }
+                    } label: {
+                        HStack(spacing: 6) {
+                            Text(tab.title)
+                                .appTextStyle(
+                                    .body,
+                                    color: viewModel.selectedTab == tab
+                                        ? .appWhite
+                                        : .appBlack
+                                )
+
+                            let count = tabCount(for: tab)
+                            if count > 0 {
+                                Text("\(count)")
+                                    .appTextStyle(
+                                        .caption,
+                                        color: viewModel.selectedTab == tab
+                                            ? .appWhite
+                                            : .grayText
+                                    )
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(
+                                        viewModel.selectedTab == tab
+                                            ? Color.appWhite.opacity(0.25)
+                                            : Color.grey100
+                                    )
+                                    .cornerRadius(10)
+                            }
                         }
-                    }) {
-                        Text(tab.title)
-                            .appTextStyle(.body, color: viewModel.selectedTab == tab ? .appDarkBlack : .primary)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(viewModel.selectedTab == tab ? Color.appBlack : Color.clear)
-                            .cornerRadius(12)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(
+                            viewModel.selectedTab == tab
+                                ? Color.appBlack
+                                : Color.clear
+                        )
+                        .cornerRadius(12)
                     }
                 }
             }
             .padding(4)
-            .background(Color.gray.opacity(0.1))
+            .background(Color.grey50)
             .cornerRadius(16)
-            .padding(.horizontal)
+            .padding(.horizontal, 16)
             .padding(.bottom, 16)
-            
-            // Content
+
+            // MARK: - Content
+
             if viewModel.isLoading {
                 Spacer()
                 ProgressView()
                 Spacer()
+
+            } else if let error = viewModel.error {
+                VStack(spacing: 16) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 40))
+                        .foregroundColor(.appOrange)
+
+                    Text("Failed to load orders")
+                        .appTextStyle(.heading2, color: .appBlack)
+
+                    Text(error.localizedDescription)
+                        .appTextStyle(.body, color: .grayText)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+
+                    Button("Try Again") {
+                        viewModel.fetchOrders()
+                    }
+                    .appTextStyle(.label, color: .cyanPrimary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
             } else {
-                let currentOrders = viewModel.selectedTab == .ongoing ? viewModel.ongoingOrders : viewModel.completedOrders
-                
+                let currentOrders = viewModel.selectedTab == .ongoing
+                    ? viewModel.ongoingOrders
+                    : viewModel.completedOrders
+
                 if currentOrders.isEmpty {
-                    EmptyOrderView(isCompleted: viewModel.selectedTab == .completed)
+                    EmptyOrderView(
+                        isCompleted: viewModel.selectedTab == .completed
+                    )
                 } else {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 16) {
                             ForEach(currentOrders) { order in
+                                // Each line item gets its own card.
+                                // Tapping any card for an order navigates
+                                // to the full order detail screen.
                                 ForEach(order.lineItems) { item in
-                                    OrderCardView(order: order, item: item)
+                                    Button {
+                                        router.push(.orderDetail(order))
+                                    } label: {
+                                        OrderCardView(order: order, item: item)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .padding(.bottom, 24)
                     }
                 }
             }
@@ -68,6 +137,15 @@ struct OrderHistoryView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchOrders()
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func tabCount(for tab: OrderTab) -> Int {
+        switch tab {
+        case .ongoing:   return viewModel.ongoingOrders.count
+        case .completed: return viewModel.completedOrders.count
         }
     }
 }
