@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CategoryGridCell: View {
+    @Environment(\.colorScheme) var colorScheme
     let item: CategoryItem
 
     var body: some View {
@@ -49,7 +50,8 @@ struct CategoryGridCell: View {
             Spacer()
         }
         .padding(12)
-        .background(Color.appWhite)
+        // Dynamic background applied here
+        .background( Color.cardBackground)
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 6, x: 0, y: 2)
     }

@@ -105,21 +105,23 @@ final class AppRouter {
             )
             
         case .profile:
-            ProfileView(router: self)
+            ProfileView()
         case .shippingAddress:
-            ProfileView(router: self)
+            ProfileView()
         case .paymentMethod:
-            ProfileView(router: self)
+            ProfileView()
         case .orderHistory:
             OrderHistoryView(viewModel: diContainer.makeOrderHistoryViewModel())
         case .privacyPolicy:
-            ProfileView(router: self)
+            PrivacyPolicyView()
         case .termsAndConditions:
-            ProfileView(router: self)
+            TermsAndConditionsView()
         case .faqs:
-            ProfileView(router: self)
+            FAQsView()
         case .changePassword:
-            ProfileView(router: self)
+            ProfileView()
+        case .currencyPicker:
+            CurrencyPickerView(viewModel: CurrencyPickerViewModel())
         }
     }
     // MARK: - Search (fullScreenCover factory)

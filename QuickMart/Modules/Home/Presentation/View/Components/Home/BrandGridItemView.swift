@@ -81,7 +81,7 @@ struct BrandGridItemView: View {
 
     private var cardBackground: some View {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
-            .fill(Color.appWhite)
+            .fill(Color.cardBackground)
             .shadow(
                 color: Color.appBlack.opacity(Layout.shadowOpacity),
                 radius: Layout.shadowRadius,

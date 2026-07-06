@@ -21,15 +21,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct QuickMartApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var router = AppRouter()
-    @StateObject private var sessionManager = SessionManager.shared
+    @StateObject private var sessionManager = DIContainer.shared.sessionManager
+    @StateObject private var currencyManager: CurrencyManagerService
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    
+    init() {
+        let manager = DIContainer.shared.makeCurrencyManagerService()
+        _currencyManager = StateObject(wrappedValue: manager)
+    }
     
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(router)
                 .environmentObject(sessionManager)
+                .environmentObject(currencyManager)
                 .preferredColorScheme(isDarkMode ? .dark : .light)
+                .task {
+                    await currencyManager.loadRatesIfNeeded()
+                }
         }
     }
 }

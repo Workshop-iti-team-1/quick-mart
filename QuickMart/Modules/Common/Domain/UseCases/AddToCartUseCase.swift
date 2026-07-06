@@ -12,9 +12,9 @@ protocol AddToCartUseCaseProtocol {
 }
 
 class AddToCartUseCase: AddToCartUseCaseProtocol {
-    private let repository: CommonRepositoryProtocol
+    private let repository: CommonCartRepositoryProtocol
     
-    init(repository: CommonRepositoryProtocol) {
+    init(repository: CommonCartRepositoryProtocol) {
         self.repository = repository
     }
     

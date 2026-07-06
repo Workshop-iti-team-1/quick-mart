@@ -12,6 +12,8 @@ struct OrderSummaryView: View {
     let itemCount: Int
     let onCheckout: () -> Void
     
+    @EnvironmentObject var currencyManager: CurrencyManagerService
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(AppStrings.Cart.orderInfo)
@@ -21,8 +23,21 @@ struct OrderSummaryView: View {
                 Text(AppStrings.Cart.subtotal)
                     .appTextStyle(.body, color: .gray)
                 Spacer()
-                Text("\(cost.subtotalAmount, specifier: "%.2f") \(cost.currencyCode)")
+                Text(currencyManager.format(defultAppCurrency: cost.subtotalAmount))
                     .appTextStyle(.body, color: .gray)
+            }
+            
+            if cost.subtotalAmount > cost.totalAmount {
+                let discountAmount = cost.subtotalAmount - cost.totalAmount
+                let discountPercentage = Int((discountAmount / cost.subtotalAmount) * 100)
+                
+                HStack {
+                    Text("\(AppStrings.Cart.discount) (\(discountPercentage)%)")
+                        .appTextStyle(.body, color: .red)
+                    Spacer()
+                    Text("-" + currencyManager.format(defultAppCurrency: discountAmount))
+                        .appTextStyle(.body, color: .red)
+                }
             }
             
             HStack {
@@ -30,7 +45,7 @@ struct OrderSummaryView: View {
                     .appTextStyle(.body, color: .gray)
                 Spacer()
      
-                Text("0.00 \(cost.currencyCode)")
+                Text(currencyManager.format(defultAppCurrency: 0.0))
                     .appTextStyle(.body, color: .gray)
             }
             
@@ -38,7 +53,7 @@ struct OrderSummaryView: View {
                 Text(AppStrings.Cart.total)
                     .appTextStyle(.heading2, color: .primary)
                 Spacer()
-                Text("\(cost.totalAmount, specifier: "%.2f") \(cost.currencyCode)")
+                Text(currencyManager.format(defultAppCurrency: cost.totalAmount))
                     .appTextStyle(.heading2, color: .primary)
             }
             

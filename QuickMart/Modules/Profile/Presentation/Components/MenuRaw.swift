@@ -30,15 +30,22 @@ struct MenuRow: View {
 
     var body: some View {
         Button {
-            if case let .chevron(route) = trailing { router.push(route) }
+            if case let .chevron(route, _) = trailing { router.push(route) }
         } label: {
             HStack(spacing: 14) {
-                Image(icon).font(.system(size: 24, weight: .medium)).foregroundColor(.grey150)
+                if UIImage(named: icon) != nil {
+                    Image(icon).font(.system(size: 24, weight: .medium)).foregroundColor(.grey150)
+                } else {
+                    Image(systemName: icon).font(.system(size: 24, weight: .medium)).foregroundColor(.grey150)
+                }
                 Text(title).appTextStyle(.body, color: .grey150)
                 Spacer()
                 switch trailing {
-                case .chevron:
-                    Image(systemName: "chevron.right").font(.system(size: 13, weight: .semibold)).foregroundColor(.grey150)     .padding(.trailing, 20)
+                case .chevron(_, let value):
+                    if let value = value {
+                        Text(value).appTextStyle(.body, color: .grey150).padding(.trailing, 4)
+                    }
+                    Image(systemName: "chevron.right").font(.system(size: 13, weight: .semibold)).foregroundColor(.grey150).padding(.trailing, 20)
                 case .toggle:
                     Toggle("", isOn: $toggleValue).scaleEffect(0.6).labelsHidden().tint(.cyanPrimary)
                         .onChange(of: toggleValue) { newValue in onToggleChange?(newValue) }

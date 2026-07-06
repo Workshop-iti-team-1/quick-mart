@@ -11,6 +11,7 @@ import SwiftUI
 
 struct WishlistRowView: View {
     let favorite: FavoriteProduct
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     var body: some View {
         HStack(spacing: 12) {
@@ -30,16 +31,24 @@ struct WishlistRowView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(favorite.title).appTextStyle(.label, color: .appBlack).lineLimit(2)
+                Text(favorite.title)
+                    .appTextStyle(.label, color: .appBlack)
+                    .lineLimit(2)
+
                 HStack(spacing: 6) {
-                    Text(String(format: "$%.2f", favorite.price)).appTextStyle(.label, color: .appBlack)
+                    Text(currencyManager.format(defultAppCurrency: favorite.price))
+                        .appTextStyle(.label, color: .appBlack)
+                        .id("price-\(favorite.id)-\(currencyManager.selectedCurrency)")
+
                     if let compare = favorite.compareAtPrice, compare > favorite.price {
-                        Text(String(format: "$%.2f", compare))
+                        Text(currencyManager.format(defultAppCurrency: compare))
                             .appTextStyle(.caption, color: .grayText)
                             .strikethrough(true, color: .grayText)
+                            .id("compare-\(favorite.id)-\(currencyManager.selectedCurrency)")
                     }
                 }
             }
+
             Spacer()
         }
         .padding(.vertical, 6)

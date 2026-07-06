@@ -25,6 +25,9 @@ public final class DIContainer {
         return ApolloClient(networkTransport: transport, store: store)
     }()
 
+    private(set) lazy var restClient: RestClientProtocol = RestClient()
+
+    let sessionManager = SessionManager.shared
     // MARK: - Home Repository (shared)
   
     private lazy var homeRepository: HomeRepositoryProtocol = {
@@ -83,12 +86,12 @@ public final class DIContainer {
     }
 
     // MARK: - Common
-    private func makeCommonRemoteDataSource() -> CommonRemoteDataSourceProtocol {
-        CommonRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
+    private func makeCommonRemoteDataSource() -> CommonCartRemoteDataSourceProtocol {
+        CommonCartRemoteDataSource(client: GraphQLClient(apollo: apolloClient))
     }
     
-    private func makeCommonRepository() -> CommonRepositoryProtocol {
-        CommonRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
+    private func makeCommonRepository() -> CommonCartRepositoryProtocol {
+        CommonCartRepositoryImpl(remoteDataSource: makeCommonRemoteDataSource())
     }
 
     private func makeAddToCartUseCase() -> AddToCartUseCaseProtocol {
@@ -183,4 +186,18 @@ public final class DIContainer {
     }
     private lazy var favoriteRepository: FavoriteRepositoryProtocol =
         FavoriteRepositoryImpl(localDataSource: favoriteLocalDataSource)
+    
+    // MARK: - Profile
+    private func makeProfileRemoteDataSource() -> ProfileRemoteDataSourceProtocol {
+        ProfileRemoteDataSourceImpl(client: graphQLClient)
+    }
+    private func makeProfileRepository() -> ProfileRepositoryProtocol {
+        ProfileRepositoryImpl(remoteDataSource: makeProfileRemoteDataSource())
+    }
+    private func makeGetCustomerUseCase() -> GetCustomerUseCaseProtocol {
+        GetCustomerUseCase(repository: makeProfileRepository())
+    }
+    func makeProfileViewModel() -> ProfileViewModel {
+        ProfileViewModel(getCustomerUseCase: makeGetCustomerUseCase())
+    }
 }

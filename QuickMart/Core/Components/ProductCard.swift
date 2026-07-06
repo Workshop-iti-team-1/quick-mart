@@ -11,6 +11,7 @@ import SwiftUI
 struct ProductCard: View {
     let item: ProductSearchItem
     @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared
+    @EnvironmentObject var currencyManager: CurrencyManagerService
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -49,7 +50,7 @@ struct ProductCard: View {
                 FavoriteButton(
                     isFavorite: .init(
                         get: { favouriteViewModel.isFavorite(item.id) },
-                        set: { _ in } // mutation happens in onToggle, not here
+                        set: { _ in }
                     ),
                     onToggle: { newValue in
                         let product = item.toMinimalProductDetails()
@@ -62,34 +63,40 @@ struct ProductCard: View {
                 )
                 .padding(8)
             }
+
             ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
+
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)
                 .lineLimit(1)
+
+            // MARK: - Price — keyed on selectedCurrency to force redraw
             HStack(spacing: 6) {
-                Text(String(format: "$%.2f", item.price))
+                Text(currencyManager.format(defultAppCurrency: item.price))
                     .appTextStyle(.label, color: .appBlack)
-                if let originalPriceText = formattedOriginalPrice {
-                    Text(originalPriceText)
+                    .id("price-\(item.id)-\(currencyManager.selectedCurrency)")
+
+                if let originalPrice = originalPriceValue, originalPrice > item.price {
+                    Text(currencyManager.format(defultAppCurrency: originalPrice))
                         .appTextStyle(.caption, color: .grayText)
                         .strikethrough(true, color: .grayText)
+                        .id("original-\(item.id)-\(currencyManager.selectedCurrency)")
+
+                    let discount = Int(((originalPrice - item.price) / originalPrice) * 100)
+                    Text("-\(discount)%")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 2)
+                        .background(Color.red)
+                        .cornerRadius(4)
                 }
             }
         }
     }
 
-    // MARK: - Helpers
-
-    /// Formats the originalPrice array for display.
-    /// nil / empty  → hidden
-    /// [x]          → "$x.xx"
-    /// [min, max]   → "$min.xx – $max.xx"
-    private var formattedOriginalPrice: String? {
+    private var originalPriceValue: Double? {
         guard let prices = item.originalPrice, !prices.isEmpty else { return nil }
-        if prices.count == 1 {
-            return String(format: "$%.2f", prices[0])
-        }
-        let sorted = prices.sorted()
-        return String(format: "$%.2f – $%.2f", sorted[0], sorted[sorted.count - 1])
+        return prices.max()
     }
 }
