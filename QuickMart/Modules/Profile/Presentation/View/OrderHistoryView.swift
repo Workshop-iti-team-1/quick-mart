@@ -12,7 +12,6 @@ struct OrderHistoryView: View {
     @StateObject private var viewModel: OrderHistoryViewModel
     @Environment(AppRouter.self) private var router
 
-
     init(viewModel: OrderHistoryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -73,11 +72,72 @@ struct OrderHistoryView: View {
             .padding(.bottom, 16)
 
             // MARK: - Content
-
             if viewModel.isLoading {
-                Spacer()
-                ProgressView()
-                Spacer()
+                // Detailed Order History Skeleton
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 16) {
+                        ForEach(0..<3, id: \.self) { _ in
+                            VStack(alignment: .leading, spacing: 12) {
+                                // Fake Header (Order #, Badges, Date)
+                                HStack(alignment: .top, spacing: 8) {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 100, height: 16)
+                                        HStack(spacing: 6) {
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 60, height: 24)
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 80, height: 24)
+                                        }
+                                    }
+                                    Spacer()
+                                    RoundedRectangle(cornerRadius: 4).fill(
+                                        Color.shimmerBase
+                                    ).frame(width: 80, height: 14)
+                                }
+
+                                Divider()
+
+                                // Fake Product Row
+                                HStack(alignment: .top, spacing: 12) {
+                                    RoundedRectangle(cornerRadius: 12).fill(
+                                        Color.shimmerBase
+                                    ).frame(width: 80, height: 80)
+
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 160, height: 16)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 60, height: 12)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 80, height: 14)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 40, height: 12).padding(
+                                            .top, 4)
+                                    }
+                                }
+                            }
+                            .padding(16)
+                            .background(Color.appWhite)
+                            .cornerRadius(16)
+                            .shadow(
+                                color: Color.appBlack.opacity(0.02), radius: 5,
+                                x: 0, y: 2)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .padding(.bottom, 24)
+                }
+                .redacted(reason: .placeholder)
+                .shimmer()
 
             } else if let error = viewModel.error {
                 VStack(spacing: 16) {
@@ -101,7 +161,8 @@ struct OrderHistoryView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             } else {
-                let currentOrders = viewModel.selectedTab == .ongoing
+                let currentOrders =
+                    viewModel.selectedTab == .ongoing
                     ? viewModel.ongoingOrders
                     : viewModel.completedOrders
 
@@ -144,7 +205,7 @@ struct OrderHistoryView: View {
 
     private func tabCount(for tab: OrderTab) -> Int {
         switch tab {
-        case .ongoing:   return viewModel.ongoingOrders.count
+        case .ongoing: return viewModel.ongoingOrders.count
         case .completed: return viewModel.completedOrders.count
         }
     }
