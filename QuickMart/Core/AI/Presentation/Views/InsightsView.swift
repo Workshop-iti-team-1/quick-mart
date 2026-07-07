@@ -4,12 +4,6 @@
 //
 //  Created by Alaa Ayman on 06/07/2026.
 //
-//
-//  InsightsView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 06/07/2026.
-//
 
 import SwiftUI
 
@@ -20,15 +14,13 @@ struct InsightsView: View {
     var body: some View {
         VStack(spacing: 0) {
             appBar
-
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    // Header card
                     headerSection
 
                     if viewModel.isLoading {
                         loadingSection
-                    } else if let result = viewModel.resultText {
+                    } else if let result = viewModel.result {
                         insightsSection(result)
                     } else if let error = viewModel.errorMessage {
                         errorSection(error)
@@ -39,6 +31,7 @@ struct InsightsView: View {
             }
         }
         .background(Color.backGround.ignoresSafeArea())
+        .tint(.cyanPrimary)
         .onAppear { viewModel.loadInsights() }
     }
 
@@ -47,23 +40,13 @@ struct InsightsView: View {
         HStack(spacing: 12) {
             ZStack {
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.cyanPrimary.opacity(0.15), Color.cyan50.opacity(0.05)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(LinearGradient(colors: [Color.cyanPrimary.opacity(0.15), Color.cyan50.opacity(0.05)], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: 44, height: 44)
-                Image(systemName: "chart.bar.xaxis.ascending")
-                    .font(.system(size: 18, weight: .medium))
-                    .foregroundColor(.cyanPrimary)
+                Image(systemName: "chart.bar.xaxis.ascending").font(.system(size: 18, weight: .medium)).foregroundColor(.cyanPrimary)
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text("Your Shopping Insights")
-                    .appTextStyle(.label, color: .appBlack)
-                Text("Personalized analysis of your order history")
-                    .appTextStyle(.caption, color: .grayText)
+                Text("Your Shopping Insights").appTextStyle(.label, color: .appBlack)
+                Text("Based on your cart and order history").appTextStyle(.caption, color: .grayText)
             }
             Spacer()
         }
@@ -79,22 +62,16 @@ struct InsightsView: View {
     }
 
     // MARK: - Insights
-    private func insightsSection(_ text: String) -> some View {
-        let items = parseInsightItems(text)
-
-        return VStack(alignment: .leading, spacing: 12) {
-            ForEach(items) { item in
-                insightCard(item)
+    private func insightsSection(_ result: AIInsightsResult) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(Array(result.insights.enumerated()), id: \.offset) { _, insight in
+                insightCard(insight)
             }
-
-            // Powered by
             HStack {
                 Spacer()
                 HStack(spacing: 4) {
-                    Image(systemName: "sparkles")
-                        .font(.system(size: 10))
-                    Text("Powered by Gemini")
-                        .font(.system(size: 10))
+                    Image(systemName: "sparkles").font(.system(size: 10))
+                    Text("Powered by Gemini").font(.system(size: 10))
                 }
                 .foregroundColor(.grey150)
                 Spacer()
@@ -104,42 +81,40 @@ struct InsightsView: View {
         .transition(.opacity)
     }
 
-    private func insightCard(_ item: InsightItem) -> some View {
-        HStack(alignment: .top, spacing: 12) {
-            // Icon
+    private func insightCard(_ insight: AIInsightsResult.Insight) -> some View {
+        let (icon, color) = iconAndColor(for: insight.category)
+        return HStack(alignment: .top, spacing: 12) {
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(item.accentColor.opacity(0.1))
-                    .frame(width: 40, height: 40)
-                Image(systemName: item.icon)
-                    .font(.system(size: 16))
-                    .foregroundColor(item.accentColor)
+                RoundedRectangle(cornerRadius: 10).fill(color.opacity(0.1)).frame(width: 40, height: 40)
+                Image(systemName: icon).font(.system(size: 16)).foregroundColor(color)
             }
-
-            // Content
-            Text(item.text)
-                .appTextStyle(.body, color: .appBlack)
-                .fixedSize(horizontal: false, vertical: true)
-
+            VStack(alignment: .leading, spacing: 4) {
+                Text(insight.title).appTextStyle(.label, color: .appBlack)
+                Text(insight.text).appTextStyle(.body, color: .appBlack).fixedSize(horizontal: false, vertical: true)
+            }
             Spacer(minLength: 0)
         }
         .padding(14)
         .background(Color.grey50)
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.grey100, lineWidth: 1)
-        )
+        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.grey100, lineWidth: 1))
         .clipShape(RoundedRectangle(cornerRadius: 14))
+    }
+
+    private func iconAndColor(for category: String) -> (String, Color) {
+        switch category.lowercased() {
+        case "spending": return ("dollarsign.circle.fill", .appMerigold)
+        case "brand": return ("building.2.fill", .appPurple)
+        case "category": return ("tag.fill", .cyanPrimary)
+        case "suggestion": return ("lightbulb.fill", .appYellow)
+        default: return ("chart.line.uptrend.xyaxis", .appBlue)
+        }
     }
 
     // MARK: - Error
     private func errorSection(_ error: String) -> some View {
         HStack(spacing: 10) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.appRed)
-            Text(error)
-                .appTextStyle(.body, color: .appRed)
-                .fixedSize(horizontal: false, vertical: true)
+            Image(systemName: "exclamationmark.triangle.fill").foregroundColor(.appRed)
+            Text(error).appTextStyle(.body, color: .appRed).fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -164,49 +139,4 @@ struct InsightsView: View {
         .padding(.horizontal, 16)
         .padding(.top, 8)
     }
-
-    // MARK: - Parsing
-    private func parseInsightItems(_ text: String) -> [InsightItem] {
-        let lines = text.components(separatedBy: .newlines)
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-
-        return lines.enumerated().map { index, line in
-            let cleaned = line
-                .replacingOccurrences(of: #"\*\*(.+?)\*\*"#, with: "$1", options: .regularExpression)
-                .replacingOccurrences(of: #"^[-•*]\s*"#, with: "", options: .regularExpression)
-                .replacingOccurrences(of: #"^\d+[\.\)]\s*"#, with: "", options: .regularExpression)
-
-            let lower = cleaned.lowercased()
-            let icon: String
-            let color: Color
-
-            if lower.contains("spend") || lower.contains("price") || lower.contains("budget") || lower.contains("total") || lower.contains("cost") {
-                icon = "dollarsign.circle.fill"
-                color = .appMerigold
-            } else if lower.contains("brand") || lower.contains("vendor") || lower.contains("store") {
-                icon = "building.2.fill"
-                color = .appPurple
-            } else if lower.contains("suggest") || lower.contains("try") || lower.contains("recommend") || lower.contains("consider") || lower.contains("tip") {
-                icon = "lightbulb.fill"
-                color = .appYellow
-            } else if lower.contains("categor") || lower.contains("type") || lower.contains("style") || lower.contains("prefer") || lower.contains("favor") {
-                icon = "tag.fill"
-                color = .cyanPrimary
-            } else {
-                icon = "chart.line.uptrend.xyaxis"
-                color = .appBlue
-            }
-
-            return InsightItem(id: index, text: cleaned, icon: icon, accentColor: color)
-        }
-    }
-}
-
-// MARK: - Supporting Types
-private struct InsightItem: Identifiable {
-    let id: Int
-    let text: String
-    let icon: String
-    let accentColor: Color
 }

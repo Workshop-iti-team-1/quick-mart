@@ -6,21 +6,17 @@
 //
 
 
-//
-//  GenerateInsightsUseCase.swift
-//  QuickMart
-//
 import Foundation
 
 protocol GenerateInsightsUseCaseProtocol {
-    func execute(orders: [OrderEntity]) async throws -> String
+    func execute(cart: Cart?, orders: [OrderEntity]) async throws -> AIInsightsResult
 }
 
 struct GenerateInsightsUseCase: GenerateInsightsUseCaseProtocol {
     private let repository: AIRepositoryProtocol
     init(repository: AIRepositoryProtocol) { self.repository = repository }
-
-    func execute(orders: [OrderEntity]) async throws -> String {
-        try await repository.generateInsights(orders: orders)
+    func execute(cart: Cart?, orders: [OrderEntity]) async throws -> AIInsightsResult {
+        try await repository.generateInsights(cart: cart, orders: orders)
     }
 }
+
