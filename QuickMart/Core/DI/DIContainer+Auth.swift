@@ -18,16 +18,16 @@ extension DIContainer {
     // MARK: - Data Sources
     
     var authRemoteDataSource: AuthRemoteDataSourceProtocol {
-        return AuthRemoteDataSource(client: graphQLClient)
+        return AuthRemoteDataSource(
+            client: graphQLClient,
+            firebaseAuth: firebaseAuthService
+        )
     }
     
     // MARK: - Repository
     
     var authRepository: AuthRepositoryProtocol {
-        return AuthRepositoryImpl(
-            remoteDataSource: authRemoteDataSource,
-            firebaseAuth: firebaseAuthService
-        )
+        return AuthRepositoryImpl(remoteDataSource: authRemoteDataSource)
     }
     
     // MARK: - Use Cases

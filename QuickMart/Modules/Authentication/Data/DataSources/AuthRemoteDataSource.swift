@@ -10,17 +10,23 @@ import Foundation
 protocol AuthRemoteDataSourceProtocol {
     func register(request: RegisterRequestDTO) async throws -> CustomerDTO
     func login(request: LoginRequestDTO) async throws -> AuthTokenDTO
+    func loginAsGuest() async throws -> FirebaseUser
     func recoverPassword(email: String) async throws
 }
 
 final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     private let client: ShopifyGraphQLClientProtocol
+    private let firebaseAuth: FirebaseAuthServiceProtocol
     
-    init(client: ShopifyGraphQLClientProtocol) {
+    init(client: ShopifyGraphQLClientProtocol, firebaseAuth: FirebaseAuthServiceProtocol) {
         self.client = client
+        self.firebaseAuth = firebaseAuth
     }
     
     func register(request: RegisterRequestDTO) async throws -> CustomerDTO {
+        // 1. Register in Firebase first
+        _ = try await firebaseAuth.signUp(email: request.email, password: request.password)
+        
         let input = ShopifyAPI.CustomerCreateInput(
             firstName: .some(request.firstName ),
             lastName: .some(request.lastName ),
@@ -56,6 +62,9 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     func login(request: LoginRequestDTO) async throws -> AuthTokenDTO {
+        // 1. Sign in to Firebase first
+        _ = try await firebaseAuth.signIn(email: request.email, password: request.password)
+        
         let input = ShopifyAPI.CustomerAccessTokenCreateInput(
             email: request.email ,
             password: request.password
@@ -84,6 +93,10 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
         } else {
             throw NetworkError.noData
         }
+    }
+    
+    func loginAsGuest() async throws -> FirebaseUser {
+        return try await firebaseAuth.signInAnonymously()
     }
     
     func recoverPassword(email: String) async throws {
