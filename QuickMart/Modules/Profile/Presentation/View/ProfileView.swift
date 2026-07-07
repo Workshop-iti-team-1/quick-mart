@@ -35,13 +35,13 @@ struct ProfileView: View {
                 viewModel.loadProfile()
             }
         }
-        .alert("Log out", isPresented: $showLogoutAlert) {
-            Button("Cancel", role: .cancel) {}
-            Button("Log out", role: .destructive) {
+        .alert(AppStrings.Profile.logout, isPresented: $showLogoutAlert) {
+            Button(AppStrings.General.cancel, role: .cancel) {}
+            Button(AppStrings.Profile.logout, role: .destructive) {
                 SessionManager.shared.logout()
             }
         } message: {
-            Text("Are you sure you want to log out?")
+            Text(AppStrings.Profile.logoutConfirm)
         }
     }
 
@@ -59,9 +59,9 @@ struct ProfileView: View {
                 }
 
                 VStack(spacing: 4) {
-                    Text("Welcome, Guest")
+                    Text(AppStrings.Profile.welcomeGuest)
                         .appTextStyle(.heading2, color: .appWhite)
-                    Text("Sign in to access your full profile")
+                    Text(AppStrings.Profile.signInPrompt)
                         .appTextStyle(.caption, color: .appWhite.opacity(0.8))
                 }
             }
@@ -83,14 +83,14 @@ struct ProfileView: View {
                 }
 
                 VStack(spacing: 12) {
-                    AppButton(title: "Login") {
+                    AppButton(title: AppStrings.Profile.login) {
                         router.push(.login)
                     }
 
                     Button {
                         router.push(.signup)
                     } label: {
-                        Text("Create Account")
+                        Text(AppStrings.Profile.createAccount)
                             .appTextStyle(.button, color: .cyanPrimary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 18)
@@ -119,9 +119,11 @@ struct ProfileView: View {
             }
 
             if let user = viewModel.user {
-                ProfileHeaderCard(user: user) {
-                    showLogoutAlert = true
-                }
+                ProfileHeaderCard(
+                    user: user,
+                    onLogoutTap: { showLogoutAlert = true },
+                    onInfoTap: { router.push(.userInfo(user: user)) }
+                )
             }
 
             VStack(alignment: .leading, spacing: 12) {
@@ -140,10 +142,10 @@ struct ProfileView: View {
                     }
                 }
                 MenuSection(
-                    title: "AI Features",
+                    title: AppStrings.Profile.aiFeatures,
                     items: [
-                        MenuItem(icon: "sparkles", title: "Shopping Insights", trailing: .chevron(route: .aiInsights)),
-                        MenuItem(icon: "camera.viewfinder", title: "Search by Photo", trailing: .chevron(route: .aiImageSearch))
+                        MenuItem(icon: "sparkles", title: AppStrings.Profile.shoppingInsights, trailing: .chevron(route: .aiInsights)),
+                        MenuItem(icon: "camera.viewfinder", title: AppStrings.Profile.searchByPhoto, trailing: .chevron(route: .aiImageSearch))
                     ],
                     router: router
                 )

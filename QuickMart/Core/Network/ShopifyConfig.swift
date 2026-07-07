@@ -45,3 +45,19 @@ struct ShopifyConfig {
     }
 }
 
+enum SupabaseConfig {
+    static var projectURL: String { 
+        value(for: "SUPABASE_PROJECT_URL").replacingOccurrences(of: "\\", with: "")
+    }
+    static var anonKey: String { value(for: "SUPABASE_ANON_KEY") }
+    static var bucketName: String { value(for: "SUPABASE_BUCKET_NAME") }
+
+    private static func value(for key: String) -> String {
+        guard
+            let value = Bundle.main.object(forInfoDictionaryKey: key) as? String,
+            !value.isEmpty
+        else { fatalError("Key \(key) is missing or empty in Info.plist") }
+        return value
+    }
+}
+

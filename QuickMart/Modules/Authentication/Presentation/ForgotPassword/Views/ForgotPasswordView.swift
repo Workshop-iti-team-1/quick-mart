@@ -11,69 +11,53 @@ struct ForgotPasswordView: View {
     @StateObject private var viewModel = DIContainer.shared
         .makeForgotPasswordViewModel()
     var router: AppRouter
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                HStack {
-                    Button(action: {
-                        router.pop()
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .font(.title2)
-                            .foregroundColor(.primary)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    Image.appLogo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 32)
+                        .padding(.top, 8)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(AppStrings.Auth.forgotPasswordTitle)
+                            .appTextStyle(.heading1, color: .primary)
+                        Text(AppStrings.Auth.forgotPasswordSubtitle)
+                            .appTextStyle(.body, color: .gray)
+                            .padding(.top, 4)
                     }
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
-                .padding(.bottom, 8)
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 24) {
-                        Image.appLogo
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 32)
-                            .padding(.top, 8)
-
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(AppStrings.Auth.forgotPasswordTitle)
-                                .appTextStyle(.heading1, color: .primary)
-                            Text(AppStrings.Auth.forgotPasswordSubtitle)
-                                .appTextStyle(.body, color: .gray)
-                                .padding(.top, 4)
-                        }
-
-                        VStack(spacing: 16) {
-                            CustomTextField(
-                                title: AppStrings.Auth.email,
-                                placeholder: AppStrings.Auth.enterEmail,
-                                text: $viewModel.email)
-                        }
-                        .padding(.top, 16)
-
-                        VStack(spacing: 16) {
-                            AppButton(
-                                title: AppStrings.Auth.sendResetLink,
-                                verticalPadding: 20
-                            ) {
-                                viewModel.sendResetLink()
-                            }
-                            .disabled(viewModel.isLoading)
-                        }
-                        .padding(.top, 32)
-                        .padding(.bottom, 32)
+                    VStack(spacing: 16) {
+                        CustomTextField(
+                            title: AppStrings.Auth.email,
+                            placeholder: AppStrings.Auth.enterEmail,
+                            text: $viewModel.email)
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+
+                    VStack(spacing: 16) {
+                        AppButton(
+                            title: AppStrings.Auth.sendResetLink,
+                            verticalPadding: 20
+                        ) {
+                            viewModel.sendResetLink()
+                        }
+                        .disabled(viewModel.isLoading)
+                    }
+                    .padding(.top, 32)
                     .padding(.bottom, 32)
                 }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 32)
             }
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationTitle(AppStrings.Auth.forgotPasswordTitle)
+        .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if viewModel.isLoading {
                 ShimmeringLoadingOverlay(message: "Sending Link...")

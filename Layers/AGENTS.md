@@ -74,7 +74,23 @@ GeminiAPIClient
 | **Image Compression**  | 512px resize + 60% JPEG quality (2MB → ~30-50KB)           |
 | **Token Optimization** | Per-feature `maxTokens` limits (30 for image search → 1024 for comparison) |
 
-### 5. `ShopifyConfig` — Centralized Configuration
+### 5. `SupabaseStorageService` — File Upload Layer
+
+A dedicated service to handle uploading files (like user avatars) to Supabase Storage via its REST API.
+
+```
+SupabaseStorageService
+└── uploadImage(imageData:) → Compresses and POSTs image to /storage/v1/object/avatars/
+```
+
+**Key Features:**
+- **UUID Generation:** Automatically assigns a unique filename to every uploaded image.
+- **Content-Type Handling:** Uploads as `image/jpeg` with appropriate compression.
+- **Authorization:** Injects the `anonKey` directly as the `apikey` and `Authorization` bearer token.
+- **URL Generation:** Constructs and returns the public, accessible URL for the uploaded file upon success.
+- **Configuration:** Keys are loaded safely via `ShopifyConfig.SupabaseConfig`.
+
+### 6. `ShopifyConfig` — Centralized Configuration
 
 All API keys, URLs, and tokens are read from `Info.plist` (populated by `.xcconfig` files at build time):
 
@@ -89,6 +105,9 @@ All API keys, URLs, and tokens are read from `Info.plist` (populated by `.xcconf
 | `GEMINI_API_KEY`       | `Config.local.xcconfig`   | Google Gemini API key      |
 | `CURRENCY_API_KEY`     | `Config.local.xcconfig`   | CurrencyFreaks API key     |
 | `CURRENCY_BASE_URL`    | `Config.local.xcconfig`   | CurrencyFreaks base URL    |
+| `SUPABASE_PROJECT_URL` | `Config.local.xcconfig`   | Supabase project URL       |
+| `SUPABASE_ANON_KEY`    | `Config.local.xcconfig`   | Supabase public anon key   |
+| `SUPABASE_BUCKET_NAME` | `Config.local.xcconfig`   | Supabase storage bucket    |
 
 > **Security:** `Config.local.xcconfig` is `.gitignore`'d — secrets never reach version control.
 

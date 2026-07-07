@@ -25,4 +25,12 @@ extension DIContainer {
     func makeOrderHistoryViewModel() -> OrderHistoryViewModel {
         OrderHistoryViewModel(getCustomerOrdersUseCase: makeGetCustomerOrdersUseCase())
     }
+    
+    private func makeUploadProfileImageUseCase() -> UploadProfileImageUseCaseProtocol {
+        UploadProfileImageUseCase(repository: makeProfileRepository())
+    }
+    
+    func makeUserInfoViewModel(user: UserEntity) -> UserInfoViewModel {
+        UserInfoViewModel(user: user, uploadProfileImageUseCase: makeUploadProfileImageUseCase())
+    }
 }

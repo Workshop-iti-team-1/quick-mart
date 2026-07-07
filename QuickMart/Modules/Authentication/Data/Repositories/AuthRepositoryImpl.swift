@@ -9,18 +9,12 @@ import Foundation
 
 final class AuthRepositoryImpl: AuthRepositoryProtocol {
     private let remoteDataSource: AuthRemoteDataSourceProtocol
-    private let firebaseAuth: FirebaseAuthServiceProtocol
     
-    init(remoteDataSource: AuthRemoteDataSourceProtocol, firebaseAuth: FirebaseAuthServiceProtocol) {
+    init(remoteDataSource: AuthRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
-        self.firebaseAuth = firebaseAuth
     }
     
     func register(firstName: String, lastName: String, email: String, password: String, acceptsMarketing: Bool) async throws -> Customer {
-        // 1. Register in Firebase first
-        _ = try await firebaseAuth.signUp(email: email, password: password)
-        
-        // 2. Then register in Shopify
         let requestDTO = RegisterRequestDTO(
             firstName: firstName,
             lastName: lastName,
@@ -34,10 +28,6 @@ final class AuthRepositoryImpl: AuthRepositoryProtocol {
     }
     
     func login(email: String, password: String) async throws -> AuthToken {
-        // 1. Sign in to Firebase first
-        _ = try await firebaseAuth.signIn(email: email, password: password)
-        
-        // 2. Then login to Shopify
         let requestDTO = LoginRequestDTO(
             email: email,
             password: password
@@ -48,7 +38,7 @@ final class AuthRepositoryImpl: AuthRepositoryProtocol {
     }
     
     func loginAsGuest() async throws -> FirebaseUser {
-        return try await firebaseAuth.signInAnonymously()
+        return try await remoteDataSource.loginAsGuest()
     }
     
     func recoverPassword(email: String) async throws {

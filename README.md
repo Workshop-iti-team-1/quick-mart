@@ -90,6 +90,7 @@ Each module internally follows: **`Data → Domain ← Presentation`**
 | **AI Engine**      | Google Gemini API (`gemini-3.5-flash`)          |
 | **Currency**       | CurrencyFreaks REST API                        |
 | **Payments**       | Apple Pay (PassKit)                            |
+| **Storage**        | Supabase Storage API                           |
 | **Local Storage**  | Core Data (Wishlist) + UserDefaults (Prefs)    |
 | **DI**             | Custom native DIContainer (manual, no libs)    |
 | **Navigation**     | Centralized AppRouter + NavigationPath         |
@@ -138,6 +139,11 @@ GEMINI_API_KEY = your-gemini-api-key
 // CurrencyFreaks
 CURRENCY_API_KEY = your-currency-api-key
 CURRENCY_BASE_URL = https://api.currencyfreaks.com/v2.0
+
+// Supabase
+SUPABASE_PROJECT_URL = https://your-project.supabase.co
+SUPABASE_ANON_KEY = your-anon-key
+SUPABASE_BUCKET_NAME = your-bucket-name
 ```
 
 ### 3. Firebase setup
