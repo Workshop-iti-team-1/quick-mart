@@ -93,16 +93,10 @@ struct UserInfoView: View {
         } message: {
             Text(viewModel.errorMessage ?? AppStrings.UserInfo.unknownError)
         }
-        .confirmationDialog(AppStrings.UserInfo.chooseProfilePicture, isPresented: $showActionSheet, titleVisibility: .visible) {
-            Button(AppStrings.UserInfo.camera) {
-                sourceType = .camera
-                showImagePicker = true
-            }
-            Button(AppStrings.UserInfo.photoLibrary) {
-                sourceType = .photoLibrary
-                showImagePicker = true
-            }
-            Button(AppStrings.General.cancel, role: .cancel) {}
+        .sheet(isPresented: $showActionSheet) {
+            ImagePickerOptionsSheet(showImagePicker: $showImagePicker, sourceType: $sourceType)
+                .presentationDetents([.height(220)])
+                .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
@@ -132,6 +126,54 @@ struct UserInfoView: View {
             Text(value)
                 .appTextStyle(.body, color: .appBlack)
             Divider()
+        }
+    }
+}
+
+struct ImagePickerOptionsSheet: View {
+    @Binding var showImagePicker: Bool
+    @Binding var sourceType: UIImagePickerController.SourceType
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: 24) {
+            Text(AppStrings.UserInfo.chooseProfilePicture)
+                .appTextStyle(.heading3, color: .appBlack)
+                .padding(.top, 24)
+            
+            HStack(spacing: 40) {
+                OptionButton(icon: "camera.fill", title: AppStrings.UserInfo.camera) {
+                    sourceType = .camera
+                    showImagePicker = true
+                    dismiss()
+                }
+                
+                OptionButton(icon: "photo.on.rectangle", title: AppStrings.UserInfo.photoLibrary) {
+                    sourceType = .photoLibrary
+                    showImagePicker = true
+                    dismiss()
+                }
+            }
+            .padding(.horizontal)
+            
+            Spacer()
+        }
+    }
+    
+    private func OptionButton(icon: String, title: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(Color.gray.opacity(0.1))
+                        .frame(width: 70, height: 70)
+                    Image(systemName: icon)
+                        .font(.system(size: 28))
+                        .foregroundColor(.cyanPrimary)
+                }
+                Text(title)
+                    .appTextStyle(.body, color: .appBlack)
+            }
         }
     }
 }
