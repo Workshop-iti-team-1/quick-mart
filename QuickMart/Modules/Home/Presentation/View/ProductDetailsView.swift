@@ -42,7 +42,6 @@ struct ProductDetailsView: View {
                 CustomLoadingView()
             }
         }
-        .navigationBarHidden(true)
         .onAppear {
             viewModel.loadProduct()
         }
@@ -75,30 +74,18 @@ struct ProductDetailsView: View {
 
     private var appBar: some View {
         HStack {
-            Button(action: {
-                router.pop()
-            }) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.appBlack)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backGround)
-                    .clipShape(Circle())
-                    .shadow(
-                        color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
-            }
             Spacer()
             if let product = viewModel.productDetails {
                 FavoriteButton(
                     isFavorite: .init(
-                        get: { favouriteViewModel.isFavorite(product.id) },  // ← reads the OBSERVED instance
+                        get: { favouriteViewModel.isFavorite(product.id) },
                         set: { _ in }
                     ),
                     onToggle: { newValue in
                         if newValue {
-                            favouriteViewModel.addFavorite(product)  // ← same
+                            favouriteViewModel.addFavorite(product)
                         } else {
-                            favouriteViewModel.removeFavorite(id: product.id)  // ← same
+                            favouriteViewModel.removeFavorite(id: product.id)
                         }
                     }
                 )
@@ -106,7 +93,6 @@ struct ProductDetailsView: View {
         }
         .padding(.horizontal, 24)
         .padding(.top, 8)
-        .padding(.bottom, 8)
         .zIndex(1)
     }
 
