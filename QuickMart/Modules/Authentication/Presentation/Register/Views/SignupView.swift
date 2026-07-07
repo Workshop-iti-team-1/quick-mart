@@ -5,16 +5,16 @@
 //  Created by Alaa Ayman on 28/06/2026.
 //
 
-
 import SwiftUI
 
 struct SignupView: View {
-    @StateObject private var viewModel = DIContainer.shared.makeRegisterViewModel()
+    @StateObject private var viewModel = DIContainer.shared
+        .makeRegisterViewModel()
     var router: AppRouter
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
-            
+
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     Image.appLogo
@@ -38,23 +38,45 @@ struct SignupView: View {
                     }
 
                     VStack(spacing: 16) {
-                        CustomTextField(title: AppStrings.Auth.firstName, placeholder: AppStrings.Auth.enterFirstName, text: $viewModel.firstName)
-                        CustomTextField(title: AppStrings.Auth.lastName, placeholder: AppStrings.Auth.enterLastName, text: $viewModel.lastName)
-                        CustomTextField(title: AppStrings.Auth.email, placeholder: AppStrings.Auth.enterEmail, text: $viewModel.email)
-                        CustomTextField(title: AppStrings.Auth.password, placeholder: AppStrings.Auth.enterPassword, text: $viewModel.password, isSecure: true)
-                        CustomTextField(title: AppStrings.Auth.confirmPassword, placeholder: AppStrings.Auth.enterConfirmPassword, text: $viewModel.confirmPassword, isSecure: true)
+                        CustomTextField(
+                            title: AppStrings.Auth.firstName,
+                            placeholder: AppStrings.Auth.enterFirstName,
+                            text: $viewModel.firstName)
+                        CustomTextField(
+                            title: AppStrings.Auth.lastName,
+                            placeholder: AppStrings.Auth.enterLastName,
+                            text: $viewModel.lastName)
+                        CustomTextField(
+                            title: AppStrings.Auth.email,
+                            placeholder: AppStrings.Auth.enterEmail,
+                            text: $viewModel.email)
+                        CustomTextField(
+                            title: AppStrings.Auth.password,
+                            placeholder: AppStrings.Auth.enterPassword,
+                            text: $viewModel.password, isSecure: true)
+                        CustomTextField(
+                            title: AppStrings.Auth.confirmPassword,
+                            placeholder: AppStrings.Auth.enterConfirmPassword,
+                            text: $viewModel.confirmPassword, isSecure: true)
                     }
                     .padding(.top, 16)
 
                     Spacer()
 
                     VStack(spacing: 8) {
-                        AppButton(title: AppStrings.Auth.createAccount, verticalPadding: 20) { 
+                        AppButton(
+                            title: AppStrings.Auth.createAccount,
+                            verticalPadding: 20
+                        ) {
                             viewModel.register()
                         }
                         .disabled(viewModel.isLoading)
-                        
-                        AppButton(title: AppStrings.Auth.signupWithGoogle, style: .secondary, customIcon: .googleIcon, verticalPadding: 20) { }
+
+                        AppButton(
+                            title: AppStrings.Auth.signupWithGoogle,
+                            style: .secondary, customIcon: .googleIcon,
+                            verticalPadding: 20
+                        ) {}
                     }
                     .padding(.top, 16)
                     .padding(.bottom, 32)
@@ -66,11 +88,11 @@ struct SignupView: View {
         .navigationBarBackButtonHidden(true)
         .overlay {
             if viewModel.isLoading {
-                CustomLoadingView()
+                ShimmeringLoadingOverlay(message: "Creating Account...")
             }
         }
         .alert(AppStrings.General.error, isPresented: $viewModel.showError) {
-            Button(AppStrings.General.ok, role: .cancel) { }
+            Button(AppStrings.General.ok, role: .cancel) {}
         } message: {
             Text(viewModel.errorMessage ?? "")
         }
@@ -81,4 +103,3 @@ struct SignupView: View {
         }
     }
 }
-
