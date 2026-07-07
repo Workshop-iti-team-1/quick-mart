@@ -22,32 +22,60 @@ struct CartView: View {
 
             switch viewModel.viewState {
             case .loading:
-                // Skeleton Cart List
-                ScrollView {
-                    LazyVStack(spacing: 16) {
-                        ForEach(0..<3, id: \.self) { _ in
-                            HStack(spacing: 16) {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color.grey100)
-                                    .frame(width: 80, height: 80)  // Fake image
-
-                                VStack(alignment: .leading, spacing: 12) {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.appWhite)
-                                        .frame(width: 140, height: 14)
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.appWhite)
-                                        .frame(width: 80, height: 14)
-                                }
-                                Spacer()
-                            }
-                            .padding(16)
-                            .background(Color.appWhite)  // Card background
-                            .cornerRadius(12)
+                // Detailed Cart Skeleton
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        // Fake Header
+                        HStack {
+                            RoundedRectangle(cornerRadius: 4).fill(
+                                Color.shimmerBase
+                            ).frame(width: 120, height: 28)
+                            Spacer()
+                            RoundedRectangle(cornerRadius: 4).fill(
+                                Color.shimmerBase
+                            ).frame(width: 80, height: 20)
                         }
+                        .padding(.horizontal, 16).padding(.top, 16).padding(
+                            .bottom, 8)
+
+                        // Fake Cart Items
+                        LazyVStack(spacing: 16) {
+                            ForEach(0..<3, id: \.self) { _ in
+                                HStack(alignment: .top, spacing: 12) {
+                                    RoundedRectangle(cornerRadius: 12).fill(
+                                        Color.shimmerBase
+                                    ).frame(width: 80, height: 80)
+
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 140, height: 16)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 60, height: 12)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 80, height: 14)
+
+                                        // Fake Stepper & Trash row
+                                        HStack {
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 90, height: 32)
+                                            Spacer()
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 24, height: 24)
+                                        }
+                                        .padding(.top, 4)
+                                    }
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                            }
+                        }
+                        .padding(.top, 16)
                     }
-                    .padding(.top, 16)
-                    .padding(.horizontal, 16)
                 }
                 .redacted(reason: .placeholder)
                 .shimmer()

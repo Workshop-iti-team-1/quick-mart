@@ -13,7 +13,7 @@ struct OrderCardView: View {
     let order: OrderEntity
     let item: OrderLineItemEntity
     @EnvironmentObject var currencyManager: CurrencyManagerService
-    
+
     // Configuration flag to toggle between edit controls and read-only text.
     // Defaults to false since this model represents an already placed order.
     var isEditable: Bool = false
@@ -72,7 +72,8 @@ struct OrderCardView: View {
                     Color.grey50
 
                     if let imageUrl = item.imageURL,
-                       let url = URL(string: imageUrl) {
+                        let url = URL(string: imageUrl)
+                    {
                         AsyncImage(url: url) { phase in
                             switch phase {
                             case .success(let image):
@@ -80,7 +81,11 @@ struct OrderCardView: View {
                                     .resizable()
                                     .scaledToFill()
                             case .empty:
-                                ProgressView()
+                                // Asset Loading Shimmer
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 80, height: 80)
+                                    .shimmer()
                             default:
                                 Image(systemName: "photo")
                                     .foregroundColor(.grey150)
@@ -101,7 +106,8 @@ struct OrderCardView: View {
                         .lineLimit(2)
 
                     if let variantTitle = item.variantTitle,
-                       variantTitle != "Default Title" {
+                        variantTitle != "Default Title"
+                    {
                         Text(variantTitle)
                             .appTextStyle(.caption, color: .grayText)
                     }
@@ -192,7 +198,7 @@ struct OrderCardView: View {
                     variantTitle: "Black",
                     imageURL: nil
                 ),
-                isEditable: false // Default behavior
+                isEditable: false  // Default behavior
             )
 
             // COD — pending payment, unfulfilled (Editable mode demo)
@@ -218,7 +224,7 @@ struct OrderCardView: View {
                     variantTitle: nil,
                     imageURL: nil
                 ),
-                isEditable: true // Overridden behavior
+                isEditable: true  // Overridden behavior
             )
         }
         .padding(16)

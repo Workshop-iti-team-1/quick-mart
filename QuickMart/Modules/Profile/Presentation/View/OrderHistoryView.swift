@@ -73,17 +73,68 @@ struct OrderHistoryView: View {
 
             // MARK: - Content
             if viewModel.isLoading {
-                // Skeleton Order List
+                // Detailed Order History Skeleton
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 16) {
-                        ForEach(0..<4, id: \.self) { _ in
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.grey100)
-                                .frame(height: 110)  // Approximate height of OrderCardView
+                        ForEach(0..<3, id: \.self) { _ in
+                            VStack(alignment: .leading, spacing: 12) {
+                                // Fake Header (Order #, Badges, Date)
+                                HStack(alignment: .top, spacing: 8) {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 100, height: 16)
+                                        HStack(spacing: 6) {
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 60, height: 24)
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .fill(Color.shimmerBase).frame(
+                                                    width: 80, height: 24)
+                                        }
+                                    }
+                                    Spacer()
+                                    RoundedRectangle(cornerRadius: 4).fill(
+                                        Color.shimmerBase
+                                    ).frame(width: 80, height: 14)
+                                }
+
+                                Divider()
+
+                                // Fake Product Row
+                                HStack(alignment: .top, spacing: 12) {
+                                    RoundedRectangle(cornerRadius: 12).fill(
+                                        Color.shimmerBase
+                                    ).frame(width: 80, height: 80)
+
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 160, height: 16)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 60, height: 12)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 80, height: 14)
+                                        RoundedRectangle(cornerRadius: 4).fill(
+                                            Color.shimmerBase
+                                        ).frame(width: 40, height: 12).padding(
+                                            .top, 4)
+                                    }
+                                }
+                            }
+                            .padding(16)
+                            .background(Color.appWhite)
+                            .cornerRadius(16)
+                            .shadow(
+                                color: Color.appBlack.opacity(0.02), radius: 5,
+                                x: 0, y: 2)
                         }
                     }
                     .padding(.horizontal, 16)
-                    .padding(.top, 16)
+                    .padding(.vertical, 8)
+                    .padding(.bottom, 24)
                 }
                 .redacted(reason: .placeholder)
                 .shimmer()
