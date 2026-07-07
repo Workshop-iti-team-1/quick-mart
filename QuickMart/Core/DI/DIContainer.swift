@@ -255,4 +255,42 @@ public final class DIContainer {
             requestApplePayUseCase: makeRequestApplePayPaymentUseCase()
         )
     }
+    
+    // MARK: - AI
+    private lazy var aiRepository: AIRepositoryProtocol = AIRepositoryImpl()
+
+    /// Cheap grounding text so Gemini's answers stay relevant to your actual catalog.
+    /// Swap the placeholder for real category/brand names once you want tighter grounding.
+    private func aiCatalogContext() -> String {
+        "QuickMart sells clothing and accessories across Men, Women, Kids, and Sale categories from multiple vendors."
+    }
+
+    func makeChatViewModel() -> ChatViewModel {
+        ChatViewModel(useCase: SendChatMessageUseCase(
+            repository: aiRepository,
+            catalogContextProvider: aiCatalogContext))
+    }
+
+    func makeComparisonViewModel(products: [ProductDetails]) -> ComparisonViewModel {
+        ComparisonViewModel(products: products, useCase: CompareProductsUseCase(repository: aiRepository))
+    }
+
+    func makeImageSearchViewModel() -> ImageSearchViewModel {
+        ImageSearchViewModel(
+            searchByImageUseCase: SearchByImageUseCase(repository: aiRepository),
+            searchProductsUseCase: searchProductsUseCase
+        )
+    }
+
+    func makeOutfitViewModel(product: ProductDetails) -> OutfitViewModel {
+        OutfitViewModel(product: product, useCase: GenerateOutfitUseCase(
+            repository: aiRepository, catalogContextProvider: aiCatalogContext))
+    }
+
+    func makeInsightsViewModel() -> InsightsViewModel {
+        InsightsViewModel(
+            insightsUseCase: GenerateInsightsUseCase(repository: aiRepository),
+            getCustomerOrdersUseCase: makeGetCustomerOrdersUseCase() // ⚠️ reuse whatever factory backs makeOrderHistoryViewModel()
+        )
+    }
 }

@@ -32,4 +32,10 @@ enum Route: Hashable {
     case checkout(Cart)
     case orderSuccess(PlacedOrder)
     case orderDetail(OrderEntity)
+    case aiChat
+    case aiComparison(products: [ProductDetails])
+    case aiImageSearch
+    case aiOutfit(product: ProductDetails)
+    case aiInsights
+    case aiComparisonPicker(baseProduct: ProductDetails)
 }

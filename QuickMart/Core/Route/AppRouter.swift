@@ -130,16 +130,29 @@ final class AppRouter {
             OrderSuccessView(order: order)
         case .orderDetail(let order):
             OrderDetailView(order: order)
+        case .aiChat:
+            ChatView(viewModel: self.diContainer.makeChatViewModel())
+        case .aiComparison(let products):
+            ComparisonView(viewModel: self.diContainer.makeComparisonViewModel(products: products))
+        case .aiImageSearch:
+            ImageSearchView(viewModel: self.diContainer.makeImageSearchViewModel())
+        case .aiOutfit(let product):
+            OutfitView(viewModel: self.diContainer.makeOutfitViewModel(product: product))
+        case .aiInsights:
+            InsightsView(viewModel: self.diContainer.makeInsightsViewModel())
+        case .aiComparisonPicker(let baseProduct):
+            ComparisonPickerView(baseProduct: baseProduct)
         }
-    }
+        }
+    
     // MARK: - Search (fullScreenCover factory)
     // Call this from any view that presents search modally:
     // .fullScreenCover(isPresented: $showSearch) { router.searchView() }
 
-    @MainActor
-    func searchView() -> SearchView {
-        SearchView(
-            viewModel: diContainer.makeSearchViewModel(
-                initialFilters: SearchFilters()))
-    }
+@MainActor
+func searchView() -> SearchView {
+    SearchView(
+        viewModel: diContainer.makeSearchViewModel(
+            initialFilters: SearchFilters()))
+}
 }

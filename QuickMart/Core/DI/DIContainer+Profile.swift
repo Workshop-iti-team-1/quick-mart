@@ -18,7 +18,7 @@ extension DIContainer {
         ProfileRepositoryImpl(remoteDataSource: makeProfileRemoteDataSource())
     }
     
-    private func makeGetCustomerOrdersUseCase() -> GetCustomerOrdersUseCaseProtocol {
+     func makeGetCustomerOrdersUseCase() -> GetCustomerOrdersUseCaseProtocol {
         GetCustomerOrdersUseCase(repository: makeProfileRepository())
     }
     
