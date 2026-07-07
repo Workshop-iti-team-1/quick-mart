@@ -108,11 +108,23 @@ struct LoginView: View {
             }
             .disabled(viewModel.isLoading)
 
-            Button(AppStrings.Auth.loginAsGuest) {
+            Button {
                 viewModel.loginAsGuest()
+            } label: {
+                Text(AppStrings.Auth.loginAsGuest)
+                    .appTextStyle(.button, color: .cyanPrimary)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 18)
+                    .background(Color.appWhite)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.cyanPrimary, lineWidth: 1.5)
+                    )
             }
             .appTextStyle(.body, color: .cyanPrimary)
             .padding(.top, 8)
+
         }
         .padding(.top, 16)
         .padding(.bottom, 32)
