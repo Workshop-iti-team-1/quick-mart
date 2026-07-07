@@ -48,7 +48,9 @@ struct HomeView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 12)
                 .padding(.bottom, 24)
+                .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.backGround.ignoresSafeArea())
 
             AIAssistantFAB {
@@ -57,6 +59,7 @@ struct HomeView: View {
             .padding(.trailing, 20)
             .padding(.bottom, 24)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModel.loadHome()
@@ -80,6 +83,3 @@ struct AIAssistantFAB: View {
         }
     }
 }
-
-
-

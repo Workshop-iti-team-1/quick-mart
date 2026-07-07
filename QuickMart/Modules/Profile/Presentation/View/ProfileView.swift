@@ -115,13 +115,44 @@ struct ProfileView: View {
     private var loggedInView: some View {
         ScrollView(showsIndicators: false) {
             if viewModel.isLoading {
-                ProgressView().padding(.top, 80)
-            }
+                VStack(spacing: 24) {
+                    HStack(spacing: 12) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.shimmerBase).frame(
+                                width: 52, height: 52)
+                        VStack(alignment: .leading, spacing: 8) {
+                            RoundedRectangle(cornerRadius: 4).fill(
+                                Color.shimmerBase
+                            ).frame(width: 150, height: 16)
+                            RoundedRectangle(cornerRadius: 4).fill(
+                                Color.shimmerBase
+                            ).frame(width: 100, height: 12)
+                        }
+                    }
+                    .padding(16).frame(maxWidth: .infinity, alignment: .leading)
 
-            if let user = viewModel.user {
+                    ForEach(0..<4, id: \.self) { _ in
+                        VStack(alignment: .leading, spacing: 12) {
+                            RoundedRectangle(cornerRadius: 4).fill(
+                                Color.shimmerBase
+                            ).frame(width: 100, height: 16)
+                            ForEach(0..<2, id: \.self) { _ in
+                                RoundedRectangle(cornerRadius: 8).fill(
+                                    Color.shimmerBase
+                                ).frame(height: 50)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                }
+                .padding(.top, 24)
+                .redacted(reason: .placeholder)
+                .shimmer()
+
+            } else if let user = viewModel.user {
+                // ... (Keep existing loggedInView content)
                 ProfileHeaderCard(
                     user: user,
-                    onLogoutTap: { showLogoutAlert = true },
                     onInfoTap: { router.push(.userInfo(user: user)) }
                 )
             }
@@ -144,11 +175,19 @@ struct ProfileView: View {
                 MenuSection(
                     title: AppStrings.Profile.aiFeatures,
                     items: [
-                        MenuItem(icon: "sparkles", title: AppStrings.Profile.shoppingInsights, trailing: .chevron(route: .aiInsights)),
-                        MenuItem(icon: "camera.viewfinder", title: AppStrings.Profile.searchByPhoto, trailing: .chevron(route: .aiImageSearch))
+                        MenuItem(
+                            icon: "sparkles",
+                            title: AppStrings.Profile.shoppingInsights,
+                            trailing: .chevron(route: .aiInsights)),
+                        MenuItem(
+                            icon: "camera.viewfinder",
+                            title: AppStrings.Profile.searchByPhoto,
+                            trailing: .chevron(route: .aiImageSearch)),
                     ],
                     router: router
                 )
+
+                logoutButton
             }
             .padding(.top, 24)
             .background(Color.backGround)
@@ -157,5 +196,28 @@ struct ProfileView: View {
             )
             //            .frame(minHeight: UIScreen.main.bounds.height)
         }
+    }
+
+    // MARK: - Logout
+    private var logoutButton: some View {
+        Button {
+            showLogoutAlert = true
+        } label: {
+            HStack(spacing: 12) {
+                Spacer()
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .font(.system(size: 16, weight: .semibold))
+                Text(AppStrings.Profile.logout)
+                    .appTextStyle(.button, color: .appRed)
+                Spacer()
+            }
+            .foregroundColor(.appRed)
+            .padding(.vertical, 16)
+            .background(Color.appRed.opacity(0.08))
+            .cornerRadius(12)
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 32)
     }
 }
