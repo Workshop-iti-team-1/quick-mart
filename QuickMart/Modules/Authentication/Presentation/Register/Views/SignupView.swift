@@ -71,12 +71,6 @@ struct SignupView: View {
                             viewModel.register()
                         }
                         .disabled(viewModel.isLoading)
-
-                        AppButton(
-                            title: AppStrings.Auth.signupWithGoogle,
-                            style: .secondary, customIcon: .googleIcon,
-                            verticalPadding: 20
-                        ) {}
                     }
                     .padding(.top, 16)
                     .padding(.bottom, 32)

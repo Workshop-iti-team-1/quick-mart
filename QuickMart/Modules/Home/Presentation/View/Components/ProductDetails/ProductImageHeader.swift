@@ -13,7 +13,7 @@ struct ProductImageHeader: View {
     var body: some View {
         ZStack(alignment: .top) {
             if let imageURLStr = product.images.first?.url,
-                let url = URL(string: imageURLStr)
+               let url = URL(string: imageURLStr)
             {
                 AsyncImage(url: url) { phase in
                     switch phase {
@@ -23,14 +23,14 @@ struct ProductImageHeader: View {
                             .frame(height: 380)
                             .frame(maxWidth: .infinity)
                             .shimmer()
+                            
                     case .success(let image):
                         image
                             .resizable()
                             .scaledToFit()
                             .padding(24)
-                            .frame(height: 380)
                             .frame(maxWidth: .infinity)
-                            .clipped()
+                            
                     case .failure:
                         Image(systemName: "photo")
                             .resizable()
@@ -39,6 +39,7 @@ struct ProductImageHeader: View {
                             .foregroundColor(.gray)
                             .frame(height: 380)
                             .frame(maxWidth: .infinity)
+                            
                     @unknown default:
                         EmptyView()
                     }

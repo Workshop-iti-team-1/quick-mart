@@ -108,11 +108,6 @@ struct LoginView: View {
             }
             .disabled(viewModel.isLoading)
 
-            AppButton(
-                title: AppStrings.Auth.loginWithGoogle, style: .secondary,
-                customIcon: .googleIcon, verticalPadding: 20
-            ) {}
-
             Button(AppStrings.Auth.loginAsGuest) {
                 viewModel.loginAsGuest()
             }
