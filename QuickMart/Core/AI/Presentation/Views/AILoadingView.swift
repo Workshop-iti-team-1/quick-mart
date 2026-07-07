@@ -137,12 +137,6 @@ struct ShimmerModifier: ViewModifier {
     }
 }
 
-extension View {
-    func shimmer() -> some View {
-        modifier(ShimmerModifier())
-    }
-}
-
 // MARK: - Skeleton Product Card
 /// A placeholder card that mimics the AIProductCard layout while content loads.
 struct SkeletonProductCard: View {

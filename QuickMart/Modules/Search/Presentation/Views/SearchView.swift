@@ -267,8 +267,48 @@ struct SearchView: View {
     @ViewBuilder
     private var activeSearchContent: some View {
         if viewModel.isSearching {
-            ProgressView()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Detailed Skeleton Product Grid
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
+                    ForEach(0..<6, id: \.self) { _ in
+                        // Mimics the exact layout of ProductCard
+                        VStack(alignment: .leading, spacing: 6) {
+                            // Fake Image Box
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.shimmerBase)  // Uses the new semantic color
+                                .frame(height: 140)
+
+                            // Fake Color Swatches
+                            HStack(spacing: 4) {
+                                Circle().fill(Color.shimmerBase).frame(
+                                    width: 14, height: 14)
+                                Circle().fill(Color.shimmerBase).frame(
+                                    width: 14, height: 14)
+                                Circle().fill(Color.shimmerBase).frame(
+                                    width: 14, height: 14)
+                            }
+                            .padding(.top, 4)
+
+                            // Fake Title
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.shimmerBase)
+                                .frame(width: 110, height: 14)
+                                .padding(.top, 2)
+
+                            // Fake Price Row
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.shimmerBase)
+                                .frame(width: 70, height: 14)
+                        }
+                    }
+                }
+                .padding(.horizontal, Layout.horizontalPad)
+                .padding(.bottom, 24)
+            }
+            .redacted(reason: .placeholder)
+            .shimmer()
+            .scrollDismissesKeyboard(.immediately)
+
         } else if viewModel.hasResults {
             resultsGrid
         } else {

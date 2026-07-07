@@ -46,7 +46,30 @@ struct AllBrandsView: View {
                 .ignoresSafeArea()
 
             if viewModel.isLoading {
-                ProgressView()
+                // Detailed Skeleton Grid
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing)
+                    {
+                        ForEach(0..<12, id: \.self) { _ in
+                            // Mimics the exact layout of HomeBrandCell
+                            VStack(spacing: 8) {
+                                Circle()
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 64, height: 64)
+
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 70, height: 12)
+                            }
+                            .frame(height: 100)  // Approximate cell height
+                        }
+                    }
+                    .padding(.horizontal, Layout.horizontalPadding)
+                    .padding(.top, Layout.topPadding)
+                    .padding(.bottom, Layout.bottomPadding)
+                }
+                .redacted(reason: .placeholder)
+                .shimmer()
             } else {
                 brandGrid
             }

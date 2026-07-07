@@ -12,7 +12,6 @@ struct OrderHistoryView: View {
     @StateObject private var viewModel: OrderHistoryViewModel
     @Environment(AppRouter.self) private var router
 
-
     init(viewModel: OrderHistoryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -73,11 +72,21 @@ struct OrderHistoryView: View {
             .padding(.bottom, 16)
 
             // MARK: - Content
-
             if viewModel.isLoading {
-                Spacer()
-                ProgressView()
-                Spacer()
+                // Skeleton Order List
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 16) {
+                        ForEach(0..<4, id: \.self) { _ in
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.grey100)
+                                .frame(height: 110)  // Approximate height of OrderCardView
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                }
+                .redacted(reason: .placeholder)
+                .shimmer()
 
             } else if let error = viewModel.error {
                 VStack(spacing: 16) {
@@ -101,7 +110,8 @@ struct OrderHistoryView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             } else {
-                let currentOrders = viewModel.selectedTab == .ongoing
+                let currentOrders =
+                    viewModel.selectedTab == .ongoing
                     ? viewModel.ongoingOrders
                     : viewModel.completedOrders
 
@@ -144,7 +154,7 @@ struct OrderHistoryView: View {
 
     private func tabCount(for tab: OrderTab) -> Int {
         switch tab {
-        case .ongoing:   return viewModel.ongoingOrders.count
+        case .ongoing: return viewModel.ongoingOrders.count
         case .completed: return viewModel.completedOrders.count
         }
     }

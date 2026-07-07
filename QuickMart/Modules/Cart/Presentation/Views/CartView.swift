@@ -22,7 +22,36 @@ struct CartView: View {
 
             switch viewModel.viewState {
             case .loading:
-                CustomLoadingView()
+                // Skeleton Cart List
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(0..<3, id: \.self) { _ in
+                            HStack(spacing: 16) {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.grey100)
+                                    .frame(width: 80, height: 80)  // Fake image
+
+                                VStack(alignment: .leading, spacing: 12) {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.appWhite)
+                                        .frame(width: 140, height: 14)
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.appWhite)
+                                        .frame(width: 80, height: 14)
+                                }
+                                Spacer()
+                            }
+                            .padding(16)
+                            .background(Color.appWhite)  // Card background
+                            .cornerRadius(12)
+                        }
+                    }
+                    .padding(.top, 16)
+                    .padding(.horizontal, 16)
+                }
+                .redacted(reason: .placeholder)
+                .shimmer()
+
             case .guest:
                 GuestCartView {
                     router.push(.login)

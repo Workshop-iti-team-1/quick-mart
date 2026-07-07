@@ -5,7 +5,6 @@
 //  Created by Alaa Ayman on 29/06/2026.
 //
 
-
 import SwiftUI
 
 struct ProductCard: View {
@@ -28,19 +27,28 @@ struct ProductCard: View {
                                     .frame(width: 80)
                                     .foregroundColor(.grey150)
                             } else {
-                                AsyncImage(url: URL(string: item.imageName)) { phase in
+                                AsyncImage(url: URL(string: item.imageName)) {
+                                    phase in
                                     switch phase {
                                     case .success(let image):
                                         image
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 80)
-                                    default:
+                                    case .failure:
                                         Image(systemName: "photo")
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 80)
                                             .foregroundColor(.grey150)
+                                    case .empty:
+                                        // Asset Loading Shimmer
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(Color.shimmerBase)
+                                            .frame(width: 80, height: 80)
+                                            .shimmer()
+                                    @unknown default:
+                                        EmptyView()
                                     }
                                 }
                             }
@@ -64,7 +72,8 @@ struct ProductCard: View {
                 .padding(8)
             }
 
-            ColorSwatches(colorNames: item.colorNames, totalCount: item.colorCount)
+            ColorSwatches(
+                colorNames: item.colorNames, totalCount: item.colorCount)
 
             Text(item.name)
                 .appTextStyle(.label, color: .appBlack)
@@ -76,13 +85,20 @@ struct ProductCard: View {
                     .appTextStyle(.label, color: .appBlack)
                     .id("price-\(item.id)-\(currencyManager.selectedCurrency)")
 
-                if let originalPrice = originalPriceValue, originalPrice > item.price {
-                    Text(currencyManager.format(defultAppCurrency: originalPrice))
-                        .appTextStyle(.caption, color: .grayText)
-                        .strikethrough(true, color: .grayText)
-                        .id("original-\(item.id)-\(currencyManager.selectedCurrency)")
+                if let originalPrice = originalPriceValue,
+                    originalPrice > item.price
+                {
+                    Text(
+                        currencyManager.format(defultAppCurrency: originalPrice)
+                    )
+                    .appTextStyle(.caption, color: .grayText)
+                    .strikethrough(true, color: .grayText)
+                    .id(
+                        "original-\(item.id)-\(currencyManager.selectedCurrency)"
+                    )
 
-                    let discount = Int(((originalPrice - item.price) / originalPrice) * 100)
+                    let discount = Int(
+                        ((originalPrice - item.price) / originalPrice) * 100)
                     Text("-\(discount)%")
                         .font(.system(size: 10, weight: .bold))
                         .foregroundColor(.white)
@@ -96,7 +112,9 @@ struct ProductCard: View {
     }
 
     private var originalPriceValue: Double? {
-        guard let prices = item.originalPrice, !prices.isEmpty else { return nil }
+        guard let prices = item.originalPrice, !prices.isEmpty else {
+            return nil
+        }
         return prices.max()
     }
 }

@@ -11,12 +11,12 @@ struct BrandGridItemView: View {
     let item: BrandItem
 
     private enum Layout {
-        static let cornerRadius: CGFloat       = 12
-        static let iconSize: CGFloat           = 48
-        static let cardPadding: CGFloat        = 16
-        static let shadowRadius: CGFloat       = 4
-        static let shadowY: CGFloat            = 2
-        static let shadowOpacity: Double       = 0.06
+        static let cornerRadius: CGFloat = 12
+        static let iconSize: CGFloat = 48
+        static let cardPadding: CGFloat = 16
+        static let shadowRadius: CGFloat = 4
+        static let shadowY: CGFloat = 2
+        static let shadowOpacity: Double = 0.06
         static let spacingIconToLabel: CGFloat = 10
     }
 
@@ -46,17 +46,25 @@ struct BrandGridItemView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(width: Layout.iconSize, height: Layout.iconSize)
-                            .clipShape(RoundedRectangle(cornerRadius: Layout.cornerRadius))
+                            .frame(
+                                width: Layout.iconSize, height: Layout.iconSize
+                            )
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: Layout.cornerRadius))
                     case .failure:
                         Image(systemName: "photo")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: Layout.iconSize, height: Layout.iconSize)
+                            .frame(
+                                width: Layout.iconSize, height: Layout.iconSize
+                            )
                             .foregroundColor(.grey150)
                     case .empty:
-                        ProgressView()
-                            .frame(width: Layout.iconSize, height: Layout.iconSize)
+                        Circle()
+                            .fill(Color.shimmerBase)
+                            .frame(width: 64, height: 64)
+                            .shimmer()
                     @unknown default:
                         EmptyView()
                     }

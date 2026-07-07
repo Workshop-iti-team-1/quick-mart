@@ -36,4 +36,10 @@ extension Color {
     static let primaryButtonBackground = Color("appBlack")
     static let appDarkBlack = Color("appDarkBlack")
     static let cardBackground = Color("cardBackground")
+    
+    // MARK: - Skeleton / Shimmer
+    /// The base color for the skeleton shapes
+    static let shimmerBase = Color.grey100
+    /// An alternative lighter color if you need subtle contrast in skeletons
+    static let shimmerHighlight = Color.grey50
 }
