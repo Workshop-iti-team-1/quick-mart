@@ -38,6 +38,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
 
+        // Set global tint for UIKit-based ProgressViews
+        if let cyanColor = UIColor(named: "cyanPrimary") {
+            UIProgressView.appearance().progressTintColor = cyanColor
+        }
+
         return true
     }
 }

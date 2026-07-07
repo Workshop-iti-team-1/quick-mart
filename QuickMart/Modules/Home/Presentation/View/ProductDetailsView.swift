@@ -39,7 +39,11 @@ struct ProductDetailsView: View {
             }
 
             if viewModel.isAddingToCart {
-                CustomLoadingView()
+                ZStack {
+                    Color.black.opacity(0.1).ignoresSafeArea()
+                    ProgressView()
+                        .tint(.cyanPrimary)
+                }
             }
         }
         .onAppear {
