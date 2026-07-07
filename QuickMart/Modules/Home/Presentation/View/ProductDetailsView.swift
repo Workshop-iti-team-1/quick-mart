@@ -9,18 +9,17 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @StateObject var viewModel: ProductDetailsViewModel
-    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared   
+    @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared
     @Environment(AppRouter.self) var router
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
-            
+
             VStack(spacing: 0) {
                 if viewModel.isLoadingProduct {
-                    Spacer()
-                    CustomLoadingView()
-                    Spacer()
+                    ProductDetailsSkeletonView()
+
                 } else if let product = viewModel.productDetails {
                     contentView(for: product)
                     ProductBottomBar(viewModel: viewModel)
@@ -29,21 +28,20 @@ struct ProductDetailsView: View {
                 }
             }
             .ignoresSafeArea(edges: .top)
-            
+
             VStack {
                 appBar
                 Spacer()
             }
-            
+
             if viewModel.showToast {
                 ProductToastView(viewModel: viewModel)
             }
-            
+
             if viewModel.isAddingToCart {
                 CustomLoadingView()
             }
         }
-        .navigationBarHidden(true)
         .onAppear {
             viewModel.loadProduct()
         }
@@ -53,13 +51,19 @@ struct ProductDetailsView: View {
                 router.push(.cart)
             }
         }
-        .alert(AppStrings.General.error, isPresented: $viewModel.showOutOfStockAlert) {
-            Button(AppStrings.General.ok, role: .cancel) { }
+        .alert(
+            AppStrings.General.error,
+            isPresented: $viewModel.showOutOfStockAlert
+        ) {
+            Button(AppStrings.General.ok, role: .cancel) {}
         } message: {
             Text(AppStrings.ProductDetails.outOfStock)
         }
-        .alert(AppStrings.ProductDetails.guestAlertTitle, isPresented: $viewModel.showGuestAlert) {
-            Button(AppStrings.General.cancel, role: .cancel) { }
+        .alert(
+            AppStrings.ProductDetails.guestAlertTitle,
+            isPresented: $viewModel.showGuestAlert
+        ) {
+            Button(AppStrings.General.cancel, role: .cancel) {}
             Button(AppStrings.Auth.login) {
                 router.push(.login)
             }
@@ -70,29 +74,18 @@ struct ProductDetailsView: View {
 
     private var appBar: some View {
         HStack {
-            Button(action: {
-                router.pop()
-            }) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.appBlack)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backGround)
-                    .clipShape(Circle())
-                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
-            }
             Spacer()
             if let product = viewModel.productDetails {
                 FavoriteButton(
                     isFavorite: .init(
-                        get: { favouriteViewModel.isFavorite(product.id) },   // ← reads the OBSERVED instance
+                        get: { favouriteViewModel.isFavorite(product.id) },
                         set: { _ in }
                     ),
                     onToggle: { newValue in
                         if newValue {
-                            favouriteViewModel.addFavorite(product)           // ← same
+                            favouriteViewModel.addFavorite(product)
                         } else {
-                            favouriteViewModel.removeFavorite(id: product.id) // ← same
+                            favouriteViewModel.removeFavorite(id: product.id)
                         }
                     }
                 )
@@ -100,35 +93,41 @@ struct ProductDetailsView: View {
         }
         .padding(.horizontal, 24)
         .padding(.top, 8)
-        .padding(.bottom, 8)
         .zIndex(1)
     }
-    
+
     @ViewBuilder
     private func contentView(for product: ProductDetails) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 ProductImageHeader(product: product)
-                
+
                 VStack(alignment: .leading, spacing: 20) {
                     HStack(spacing: 8) {
-                        BadgeView(text: AppStrings.ProductDetails.topRated, color: Color.cyanPrimary)
-                        BadgeView(text: AppStrings.ProductDetails.freeShipping, color: Color.cyanPrimary)
+                        BadgeView(
+                            text: AppStrings.ProductDetails.topRated,
+                            color: Color.cyanPrimary)
+                        BadgeView(
+                            text: AppStrings.ProductDetails.freeShipping,
+                            color: Color.cyanPrimary)
                     }
-                    
+
                     ProductTitleAndPrice(product: product)
                     ProductRatingView(product: product)
                     ProductDescriptionView(product: product)
                     HStack(spacing: 12) {
                         Button {
-                            router.push(.aiComparisonPicker(baseProduct: product))
+                            router.push(
+                                .aiComparisonPicker(baseProduct: product))
                         } label: {
-                            aiActionLabel(icon: "arrow.left.arrow.right", text: "Compare")
+                            aiActionLabel(
+                                icon: "arrow.left.arrow.right", text: "Compare")
                         }
                         Button {
                             router.push(.aiOutfit(product: product))
                         } label: {
-                            aiActionLabel(icon: "tshirt", text: "Complete the Look")
+                            aiActionLabel(
+                                icon: "tshirt", text: "Complete the Look")
                         }
                     }
 
@@ -142,7 +141,7 @@ struct ProductDetailsView: View {
             }
         }
     }
-    
+
     private func errorView(message: String) -> some View {
         VStack {
             Spacer()
@@ -157,11 +156,10 @@ struct ProductDetailsView: View {
     }
 }
 
-
 struct BadgeView: View {
     let text: String
     let color: Color
-    
+
     var body: some View {
         Text(text)
             .appTextStyle(.label, color: .white)

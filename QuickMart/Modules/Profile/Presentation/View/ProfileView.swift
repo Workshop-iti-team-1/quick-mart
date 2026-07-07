@@ -35,9 +35,9 @@ struct ProfileView: View {
                 viewModel.loadProfile()
             }
         }
-        .alert("Log Out", isPresented: $showLogoutAlert) {
+        .alert("Log out", isPresented: $showLogoutAlert) {
             Button("Cancel", role: .cancel) {}
-            Button("Log Out", role: .destructive) {
+            Button("Log out", role: .destructive) {
                 SessionManager.shared.logout()
             }
         } message: {

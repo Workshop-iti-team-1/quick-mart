@@ -5,9 +5,6 @@
 //  Created by Alaa Ayman on 01/07/2026.
 //
 
-
-
-
 import SwiftUI
 
 struct HomeBrandCell: View {
@@ -18,7 +15,10 @@ struct HomeBrandCell: View {
         VStack(spacing: 8) {
             ZStack {
                 Circle()
-                    .fill(colorScheme == .dark ? Color(UIColor.darkGray) : Color.grey50)
+                    .fill(
+                        colorScheme == .dark
+                            ? Color(UIColor.darkGray) : Color.grey50
+                    )
                     .frame(width: 64, height: 64)
                     .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 2)
 
@@ -45,8 +45,10 @@ struct HomeBrandCell: View {
                                     .frame(width: 24, height: 24)
                                     .foregroundColor(.grey150)
                             case .empty:
-                                ProgressView()
-                                    .frame(width: 28, height: 28)
+                                Circle()
+                                    .fill(Color.grey100)
+                                    .frame(width: 64, height: 64)
+                                    .shimmer()
                             @unknown default:
                                 EmptyView()
                             }

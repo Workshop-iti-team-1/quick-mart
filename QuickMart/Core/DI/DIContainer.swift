@@ -283,14 +283,18 @@ public final class DIContainer {
     }
 
     func makeOutfitViewModel(product: ProductDetails) -> OutfitViewModel {
-        OutfitViewModel(product: product, useCase: GenerateOutfitUseCase(
-            repository: aiRepository, catalogContextProvider: aiCatalogContext))
+        OutfitViewModel(
+            product: product,
+            generateOutfitUseCase: GenerateOutfitUseCase(repository: aiRepository),
+            searchProductsUseCase: searchProductsUseCase
+        )
     }
 
     func makeInsightsViewModel() -> InsightsViewModel {
         InsightsViewModel(
             insightsUseCase: GenerateInsightsUseCase(repository: aiRepository),
-            getCustomerOrdersUseCase: makeGetCustomerOrdersUseCase() // ⚠️ reuse whatever factory backs makeOrderHistoryViewModel()
+            getCustomerOrdersUseCase: makeGetCustomerOrdersUseCase(),
+            cartUseCases: makeCartUseCases()
         )
     }
 }

@@ -77,7 +77,6 @@ struct ComparisonPickerView: View {
             }
         }
         .background(Color.backGround.ignoresSafeArea())
-        .navigationBarHidden(true)
         .onAppear { favouriteViewModel.loadFavorites() }
     }
 
@@ -211,14 +210,6 @@ struct ComparisonPickerView: View {
     // MARK: - App Bar
     private var appBar: some View {
         HStack {
-            Button(action: { router.pop() }) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.appBlack)
-                    .frame(width: 40, height: 40)
-                    .background(Color.grey50)
-                    .clipShape(Circle())
-            }
             Spacer()
             Text("Select Items to Compare")
                 .appTextStyle(.heading2, color: .appBlack)
