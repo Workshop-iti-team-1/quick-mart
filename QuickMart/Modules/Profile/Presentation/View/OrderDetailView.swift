@@ -167,7 +167,6 @@ struct OrderDetailView: View {
 
     private func itemRow(item: OrderLineItemEntity) -> some View {
         HStack(spacing: 12) {
-            // Product image
             ZStack {
                 Color.grey50
                 if let urlString = item.imageURL,
@@ -178,7 +177,10 @@ struct OrderDetailView: View {
                         case .success(let image):
                             image.resizable().scaledToFill()
                         case .empty:
-                            ProgressView()
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.shimmerBase)
+                                .frame(width: 56, height: 56)
+                                .shimmer()
                         default:
                             Image(systemName: "photo")
                                 .foregroundColor(.grey150)
