@@ -31,8 +31,12 @@ final class ApplePayService: NSObject, ApplePayServiceProtocol {
         request.currencyCode = currencyCode
         
         // 2. Define what the user is paying for
+        let decimalAmount = NSDecimalNumber(value: amount)
+        let behavior = NSDecimalNumberHandler(roundingMode: .plain, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        let roundedAmount = decimalAmount.rounding(accordingToBehavior: behavior)
+        
         request.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: "QuickMart", amount: NSDecimalNumber(value: amount))
+            PKPaymentSummaryItem(label: "QuickMart", amount: roundedAmount)
         ]
         
         // 3. Initialize the Controller
