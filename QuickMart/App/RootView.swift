@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct RootView: View {
-    @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding: Bool = false
+    @AppStorage(UserDefaultsKeys.hasSeenOnboarding) var hasSeenOnboarding:
+        Bool = false
     @Environment(AppRouter.self) private var router
     @EnvironmentObject private var sessionManager: SessionManager
 
@@ -13,7 +14,7 @@ struct RootView: View {
                 .navigationDestination(for: Route.self) { route in
                     router.destination(for: route)
                 }
-        }
+        }.tint(Color.cyanPrimary)
     }
 
     @ViewBuilder

@@ -51,7 +51,6 @@ struct ChatView: View {
             inputBar
         }
         .background(Color.backGround.ignoresSafeArea())
-        .navigationBarHidden(true)
         .alert(AppStrings.General.error, isPresented: .constant(viewModel.errorMessage != nil)) {
             Button(AppStrings.General.ok, role: .cancel) { viewModel.errorMessage = nil }
         } message: {
@@ -103,14 +102,6 @@ struct ChatView: View {
     // MARK: - App Bar
     private var appBar: some View {
         HStack {
-            Button(action: { router.pop() }) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.appBlack)
-                    .frame(width: 40, height: 40)
-                    .background(Color.grey50)
-                    .clipShape(Circle())
-            }
             Spacer()
             HStack(spacing: 6) {
                 Image(systemName: "bubble.left.and.text.bubble.right.fill")
