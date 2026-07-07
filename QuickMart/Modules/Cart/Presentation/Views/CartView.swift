@@ -93,7 +93,11 @@ struct CartView: View {
             }
 
             if viewModel.isUpdating {
-                CustomLoadingView()
+                ZStack {
+                    Color.black.opacity(0.1).ignoresSafeArea()
+                    ProgressView()
+                        .tint(.cyanPrimary)
+                }
             }
         }
         .onAppear {

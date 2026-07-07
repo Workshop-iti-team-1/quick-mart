@@ -102,7 +102,7 @@ struct CheckoutView: View {
                     Color.black.opacity(0.35).ignoresSafeArea()
                     VStack(spacing: 16) {
                         ProgressView()
-                            .tint(.appWhite)
+                            .tint(.cyanPrimary)
                             .scaleEffect(1.4)
                         Text("Placing your order...")
                             .appTextStyle(.body, color: .appWhite)
@@ -113,28 +113,20 @@ struct CheckoutView: View {
     }
 
     // MARK: - Pay Button
-
     private var payButton: some View {
         Button {
-            // Get the raw converted amount and currency code
             let finalAmount = currencyManager.convert(
                 amount: viewModel.cart.cost.totalAmount)
             let currencyCode = currencyManager.selectedCurrency
 
-            // Pass them to the ViewModel
             viewModel.initiatePayment(
                 amount: finalAmount, currencyCode: currencyCode)
         } label: {
             HStack(spacing: 8) {
-                if viewModel.isPlacingOrder {
-                    ProgressView()
-                        .tint(.appWhite)
-                } else {
-                    Image(systemName: viewModel.selectedPaymentMethod.iconName)
-                        .font(.system(size: 16, weight: .semibold))
-                    Text(payButtonTitle)
-                        .appTextStyle(.button, color: .appWhite)
-                }
+                Image(systemName: viewModel.selectedPaymentMethod.iconName)
+                    .font(.system(size: 16, weight: .semibold))
+                Text(payButtonTitle)
+                    .appTextStyle(.button, color: .appWhite)
             }
             .frame(maxWidth: .infinity)
             .frame(height: Layout.buttonHeight)
