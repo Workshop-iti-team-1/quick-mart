@@ -21,6 +21,7 @@ enum Route: Hashable {
     case favoriteDetail(ProductDetails)
     case wishlist
     case profile
+    case userInfo(user: UserEntity)
     case shippingAddress
     case paymentMethod
     case orderHistory

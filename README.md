@@ -90,6 +90,7 @@ Each module internally follows: **`Data → Domain ← Presentation`**
 | **AI Engine**      | Google Gemini API (`gemini-3.5-flash`)          |
 | **Currency**       | CurrencyFreaks REST API                        |
 | **Payments**       | Apple Pay (PassKit)                            |
+| **Storage**        | Supabase Storage API                           |
 | **Local Storage**  | Core Data (Wishlist) + UserDefaults (Prefs)    |
 | **DI**             | Custom native DIContainer (manual, no libs)    |
 | **Navigation**     | Centralized AppRouter + NavigationPath         |

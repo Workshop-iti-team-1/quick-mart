@@ -163,6 +163,16 @@ enum AppStrings {
         static let noOngoingOrderDesc = String(localized: "Profile_noOngoingOrderDesc", defaultValue: "We currently don't have any active orders in progress. Feel free to explore our products and place a new order.")
         static let noCompletedOrderDesc = String(localized: "Profile_noCompletedOrderDesc", defaultValue: "We don't have any past orders that have been completed. Start shopping now and create your first order with us.")
         static let exploreCategories = String(localized: "Profile_exploreCategories", defaultValue: "Explore Categories")
+        
+        static let logout = String(localized: "Profile_logout", defaultValue: "Log out")
+        static let logoutConfirm = String(localized: "Profile_logoutConfirm", defaultValue: "Are you sure you want to log out?")
+        static let welcomeGuest = String(localized: "Profile_welcomeGuest", defaultValue: "Welcome, Guest")
+        static let signInPrompt = String(localized: "Profile_signInPrompt", defaultValue: "Sign in to access your full profile")
+        static let login = String(localized: "Profile_login", defaultValue: "Login")
+        static let createAccount = String(localized: "Profile_createAccount", defaultValue: "Create Account")
+        static let aiFeatures = String(localized: "Profile_aiFeatures", defaultValue: "AI Features")
+        static let shoppingInsights = String(localized: "Profile_shoppingInsights", defaultValue: "Shopping Insights")
+        static let searchByPhoto = String(localized: "Profile_searchByPhoto", defaultValue: "Search by Photo")
     }
     
     enum Currency {
@@ -170,4 +180,27 @@ enum AppStrings {
         static let searchCurrency = String(localized: "Currency_searchCurrency", defaultValue: "Search currency...")
     }
     
+    enum Supabase {
+        static let invalidURL = String(localized: "Supabase_invalidURL", defaultValue: "Invalid Supabase URL")
+        static func uploadFailed(_ message: String) -> String {
+            String(localized: "Supabase_uploadFailed", defaultValue: "Upload failed: \(message)")
+        }
+        static let invalidResponse = String(localized: "Supabase_invalidResponse", defaultValue: "Invalid response from server")
+        static let imageCompressionFailed = String(localized: "Supabase_imageCompressionFailed", defaultValue: "Could not compress image")
+        static let permissionDenied = String(localized: "Supabase_permissionDenied", defaultValue: "You don't have permission to upload. Please check server settings.")
+        static let serverError = String(localized: "Supabase_serverError", defaultValue: "Failed to upload image. Please try again later.")
+    }
+    
+    enum UserInfo {
+        static let title = String(localized: "UserInfo_title", defaultValue: "User Info")
+        static let name = String(localized: "UserInfo_name", defaultValue: "Name")
+        static let email = String(localized: "UserInfo_email", defaultValue: "Email")
+        static let notSet = String(localized: "UserInfo_notSet", defaultValue: "Not Set")
+        static let uploading = String(localized: "UserInfo_uploading", defaultValue: "Uploading...")
+        static let unknownError = String(localized: "UserInfo_unknownError", defaultValue: "An unknown error occurred")
+        static let chooseProfilePicture = String(localized: "UserInfo_chooseProfilePicture", defaultValue: "Choose Profile Picture")
+        static let camera = String(localized: "UserInfo_camera", defaultValue: "Camera")
+        static let photoLibrary = String(localized: "UserInfo_photoLibrary", defaultValue: "Photo Library")
+        static let failedToProcessImage = String(localized: "UserInfo_failedToProcessImage", defaultValue: "Failed to process image.")
+    }
 }

@@ -114,11 +114,18 @@ class ProfileRepositoryImpl: ProfileRepositoryProtocol {
             let fullName = [firstName, lastName]
                 .filter { !$0.isEmpty }
                 .joined(separator: " ")
+            
+            let email = customer.email ?? ""
+            let avatarURL = UserDefaults.standard.string(forKey: "avatar_\(email)")
 
             return UserEntity(
                 name: fullName.isEmpty ? nil : fullName,
                 email: customer.email,
-                avatarImageURL: nil
+                avatarImageURL: avatarURL
             )
         }
+        
+    func uploadProfileImage(imageData: Data) async throws -> String {
+        return try await remoteDataSource.uploadProfileImage(imageData: imageData)
+    }
 }

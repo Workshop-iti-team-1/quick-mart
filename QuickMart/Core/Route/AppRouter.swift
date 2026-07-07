@@ -106,6 +106,8 @@ final class AppRouter {
             
         case .profile:
             ProfileView()
+        case .userInfo(let user):
+            UserInfoView(viewModel: diContainer.makeUserInfoViewModel(user: user))
         case .shippingAddress:
             ProfileView()
         case .paymentMethod:

@@ -74,7 +74,22 @@ GeminiAPIClient
 | **Image Compression**  | 512px resize + 60% JPEG quality (2MB → ~30-50KB)           |
 | **Token Optimization** | Per-feature `maxTokens` limits (30 for image search → 1024 for comparison) |
 
-### 5. `ShopifyConfig` — Centralized Configuration
+### 5. `SupabaseStorageService` — File Upload Layer
+
+A dedicated service to handle uploading files (like user avatars) to Supabase Storage via its REST API.
+
+```
+SupabaseStorageService
+└── uploadImage(imageData:) → Compresses and POSTs image to /storage/v1/object/avatars/
+```
+
+**Key Features:**
+- **UUID Generation:** Automatically assigns a unique filename to every uploaded image.
+- **Content-Type Handling:** Uploads as `image/jpeg` with appropriate compression.
+- **Authorization:** Injects the `anonKey` directly as the `apikey` and `Authorization` bearer token.
+- **URL Generation:** Constructs and returns the public, accessible URL for the uploaded file upon success.
+
+### 6. `ShopifyConfig` — Centralized Configuration
 
 All API keys, URLs, and tokens are read from `Info.plist` (populated by `.xcconfig` files at build time):
 

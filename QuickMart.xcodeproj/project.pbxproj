@@ -20,6 +20,12 @@
 		15C227852FF95DBC004E3E90 /* ProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C227832FF95DBC004E3E90 /* ProfileRepositoryImpl.swift */; };
 		15D4B36D2FF1F3030091D036 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36C2FF1F3030091D036 /* Customer.swift */; };
 		15D4B36F2FF1F30B0091D036 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4B36E2FF1F30B0091D036 /* AuthToken.swift */; };
+		15D7716B2FFD432900137FFA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7716A2FFD432900137FFA /* ImagePicker.swift */; };
+		15D7716F2FFD438600137FFA /* SupabaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7716D2FFD438600137FFA /* SupabaseStorageService.swift */; };
+		15D771712FFD43CF00137FFA /* UploadProfileImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D771702FFD43CF00137FFA /* UploadProfileImageUseCase.swift */; };
+		15D771732FFD440300137FFA /* ProfileHeaderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D771722FFD440300137FFA /* ProfileHeaderCard.swift */; };
+		15D771752FFD440E00137FFA /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D771742FFD440E00137FFA /* UserInfoView.swift */; };
+		15D771772FFD441200137FFA /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D771762FFD441200137FFA /* UserInfoViewModel.swift */; };
 		15E10F8E2FFAC22800E6E7AF /* RestClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F8D2FFAC21400E6E7AF /* RestClientProtocol.swift */; };
 		15E10F902FFAC2C900E6E7AF /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F8F2FFAC2BF00E6E7AF /* RestClient.swift */; };
 		15E10F962FFAC7DF00E6E7AF /* CurrencyRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E10F952FFAC7DD00E6E7AF /* CurrencyRemoteDataSource.swift */; };
@@ -470,6 +476,12 @@
 		15C227832FF95DBC004E3E90 /* ProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryImpl.swift; sourceTree = "<group>"; };
 		15D4B36C2FF1F3030091D036 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		15D4B36E2FF1F30B0091D036 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		15D7716A2FFD432900137FFA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		15D7716D2FFD438600137FFA /* SupabaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageService.swift; sourceTree = "<group>"; };
+		15D771702FFD43CF00137FFA /* UploadProfileImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProfileImageUseCase.swift; sourceTree = "<group>"; };
+		15D771722FFD440300137FFA /* ProfileHeaderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCard.swift; sourceTree = "<group>"; };
+		15D771742FFD440E00137FFA /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		15D771762FFD441200137FFA /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		15E10F8D2FFAC21400E6E7AF /* RestClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientProtocol.swift; sourceTree = "<group>"; };
 		15E10F8F2FFAC2BF00E6E7AF /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		15E10F952FFAC7DD00E6E7AF /* CurrencyRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -939,6 +951,7 @@
 			children = (
 				5F1B5CD52FFBAF2A0028BBF0 /* GetCustomerUseCase.swift */,
 				15C2277F2FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift */,
+				15D771702FFD43CF00137FFA /* UploadProfileImageUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -956,6 +969,7 @@
 			children = (
 				15E10FA32FFADDFB00E6E7AF /* CurrencyManagerService.swift */,
 				15E10FA22FFADDCF00E6E7AF /* Firebase */,
+				15D7716D2FFD438600137FFA /* SupabaseStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1962,6 +1976,7 @@
 				AF7A5B8BE8A25040E2309634 /* AppButton.swift */,
 				5FA135B82FF16AF3005F9FA6 /* CustomTextField.swift */,
 				57D20BE86A4B20A54AA6EA3F /* CustomLoadingView.swift */,
+				15D7716A2FFD432900137FFA /* ImagePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2475,6 +2490,7 @@
 				15E10FA72FFAE88C00E6E7AF /* CurrencyPickerViewModel.swift */,
 				DE8869522FF6EA9100860250 /* ProfileViewModel.swift */,
 				15C227742FF95BAC004E3E90 /* OrderHistoryViewModel.swift */,
+				15D771762FFD441200137FFA /* UserInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2530,6 +2546,7 @@
 				D4A5C0FC2FFBB39900CAAA7C /* OrderDetailView.swift */,
 				DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */,
 				15C227722FF95B90004E3E90 /* OrderHistoryView.swift */,
+				15D771742FFD440E00137FFA /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2545,6 +2562,7 @@
 				DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */,
 				15C227762FF95BBD004E3E90 /* OrderCardView.swift */,
 				15C227782FF95BD1004E3E90 /* EmptyOrderView.swift */,
+				15D771722FFD440300137FFA /* ProfileHeaderCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2803,6 +2821,7 @@
 				5F1B5C432FFBAE8B0028BBF0 /* CartDeliveryAddressInput.graphql.swift in Sources */,
 				5F1B5C442FFBAE8B0028BBF0 /* Trackable.graphql.swift in Sources */,
 				5F1B5C452FFBAE8B0028BBF0 /* Order.graphql.swift in Sources */,
+				15D771732FFD440300137FFA /* ProfileHeaderCard.swift in Sources */,
 				5F1B5C462FFBAE8B0028BBF0 /* Video.graphql.swift in Sources */,
 				5F1B5C472FFBAE8B0028BBF0 /* MediaPresentation.graphql.swift in Sources */,
 				5F1B5C482FFBAE8B0028BBF0 /* CartInput.graphql.swift in Sources */,
@@ -2837,6 +2856,7 @@
 				5F1B5C642FFBAE8B0028BBF0 /* Decimal.swift in Sources */,
 				5F1B5C652FFBAE8B0028BBF0 /* CustomerAccessTokenCreatePayload.graphql.swift in Sources */,
 				5F1B5C662FFBAE8B0028BBF0 /* CustomerAccessToken.graphql.swift in Sources */,
+				15D7716B2FFD432900137FFA /* ImagePicker.swift in Sources */,
 				5F1B5C672FFBAE8B0028BBF0 /* CartLinesAddPayload.graphql.swift in Sources */,
 				5F1B5C682FFBAE8B0028BBF0 /* DiscountApplicationEdge.graphql.swift in Sources */,
 				5F1B5C692FFBAE8B0028BBF0 /* UrlRedirect.graphql.swift in Sources */,
@@ -2855,6 +2875,7 @@
 				5F1B5C762FFBAE8B0028BBF0 /* CompanyLocation.graphql.swift in Sources */,
 				5F1B5C772FFBAE8B0028BBF0 /* CartDiscountCode.graphql.swift in Sources */,
 				5F1B5C782FFBAE8B0028BBF0 /* QueryRoot.graphql.swift in Sources */,
+				15D771772FFD441200137FFA /* UserInfoViewModel.swift in Sources */,
 				5F1B5C792FFBAE8B0028BBF0 /* MoneyV2.graphql.swift in Sources */,
 				5F1B5C7A2FFBAE8B0028BBF0 /* ShopPayInstallmentsProductVariantPricing.graphql.swift in Sources */,
 				5F1B5C7B2FFBAE8B0028BBF0 /* CountryCode.graphql.swift in Sources */,
@@ -2917,6 +2938,7 @@
 				D48E1B562FFD1AF400581CD3 /* ShimmeringLoadingOverlay.swift in Sources */,
 				5F1B5CB22FFBAE8B0028BBF0 /* TaxonomyCategory.graphql.swift in Sources */,
 				5F1B5CB32FFBAE8B0028BBF0 /* ProductConnection.graphql.swift in Sources */,
+				15D7716F2FFD438600137FFA /* SupabaseStorageService.swift in Sources */,
 				5F1B5CB42FFBAE8B0028BBF0 /* CartSelectableAddressInput.graphql.swift in Sources */,
 				5F1B5CB52FFBAE8B0028BBF0 /* AttributeInput.graphql.swift in Sources */,
 				5F1B5CB62FFBAE8B0028BBF0 /* CustomerCreatePayload.graphql.swift in Sources */,
@@ -3073,6 +3095,7 @@
 				5F840A822FF31B2300BB18C7 /* FetchBannersUseCaseProtocol.swift in Sources */,
 				5F840A762FF31A4500BB18C7 /* ColorSwatches.swift in Sources */,
 				D4A1B2832FF6892C00735C4D /* SortOption.swift in Sources */,
+				15D771752FFD440E00137FFA /* UserInfoView.swift in Sources */,
 				5F74F50D2FF62E4C00DE42F6 /* HomeBrandsSection.swift in Sources */,
 				5F840A922FF31E7800BB18C7 /* FavoriteButton.swift in Sources */,
 				5F74F5092FF62CFD00DE42F6 /* RootViewModel.swift in Sources */,
@@ -3111,6 +3134,7 @@
 				5F552A1C2FF664A000D34320 /* HomeRemoteDataSourceProtocol.swift in Sources */,
 				5F1B5CDC2FFBB3310028BBF0 /* FAQsView.swift in Sources */,
 				5F365C602FF8509F0082DE82 /* AddressModel.swift in Sources */,
+				15D771712FFD43CF00137FFA /* UploadProfileImageUseCase.swift in Sources */,
 				941B5A9C57FD9CD7C5DF3D3F /* GraphQLClient.swift in Sources */,
 				5F7844E72FF8562200F6D3C7 /* AddressListViewModel.swift in Sources */,
 				15F124572FF4643A00428612 /* RecoverPasswordUseCase.swift in Sources */,

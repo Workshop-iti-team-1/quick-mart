@@ -20,6 +20,12 @@
 	<string>$(CURRENCY_BASE_URL)</string>
 	<key>CURRENCY_API_KEY</key>
 	<string>$(CURRENCY_API_KEY)</string>
+	<key>SUPABASE_PROJECT_URL</key>
+	<string>$(SUPABASE_PROJECT_URL)</string>
+	<key>SUPABASE_ANON_KEY</key>
+	<string>$(SUPABASE_ANON_KEY)</string>
+	<key>SUPABASE_BUCKET_NAME</key>
+	<string>$(SUPABASE_BUCKET_NAME)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

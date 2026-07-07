@@ -8,17 +8,25 @@ import SwiftUI
 struct ProfileHeaderCard: View {
     let user: UserEntity
     var onLogoutTap: (() -> Void)? = nil
+    var onInfoTap: (() -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 12) {
-            avatarView
+            Button {
+                onInfoTap?()
+            } label: {
+                HStack(spacing: 12) {
+                    avatarView
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(user.name ?? "Unknown")
-                    .appTextStyle(.button, color: .appWhite)
-                Text(user.email ?? "Unknown")
-                    .appTextStyle(.caption, color: .appWhite.opacity(0.85))
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(user.name ?? "Unknown")
+                            .appTextStyle(.button, color: .appWhite)
+                        Text(user.email ?? "Unknown")
+                            .appTextStyle(.caption, color: .appWhite.opacity(0.85))
+                    }
+                }
             }
+            .buttonStyle(.plain)
 
             Spacer()
 
