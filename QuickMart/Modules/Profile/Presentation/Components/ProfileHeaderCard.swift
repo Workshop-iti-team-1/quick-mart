@@ -68,3 +68,25 @@ struct ProfileHeaderCard: View {
             )
     }
 }
+struct ProfileHeaderCardSkeleton: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.shimmerBase)
+                .frame(width: 52, height: 52)
+
+            VStack(alignment: .leading, spacing: 8) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.shimmerBase)
+                    .frame(width: 150, height: 16)
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.shimmerBase)
+                    .frame(width: 100, height: 12)
+            }
+            Spacer()
+        }
+        .padding(16)
+        .redacted(reason: .placeholder)
+        .shimmer()
+    }
+}

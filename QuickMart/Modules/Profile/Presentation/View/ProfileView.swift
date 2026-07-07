@@ -115,23 +115,10 @@ struct ProfileView: View {
     private var loggedInView: some View {
         ScrollView(showsIndicators: false) {
             if viewModel.isLoading {
-                VStack(spacing: 24) {
-                    HStack(spacing: 12) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.shimmerBase).frame(
-                                width: 52, height: 52)
-                        VStack(alignment: .leading, spacing: 8) {
-                            RoundedRectangle(cornerRadius: 4).fill(
-                                Color.shimmerBase
-                            ).frame(width: 150, height: 16)
-                            RoundedRectangle(cornerRadius: 4).fill(
-                                Color.shimmerBase
-                            ).frame(width: 100, height: 12)
-                        }
-                    }
-                    .padding(16).frame(maxWidth: .infinity, alignment: .leading)
+                VStack(spacing: 0) {
+                    ProfileHeaderCardSkeleton()
 
-                    ForEach(0..<4, id: \.self) { _ in
+                    ForEach(0..<3, id: \.self) { _ in
                         VStack(alignment: .leading, spacing: 12) {
                             RoundedRectangle(cornerRadius: 4).fill(
                                 Color.shimmerBase
@@ -142,15 +129,13 @@ struct ProfileView: View {
                                 ).frame(height: 50)
                             }
                         }
-                        .padding(.horizontal, 16)
+                        .padding(16)
                     }
                 }
                 .padding(.top, 24)
                 .redacted(reason: .placeholder)
                 .shimmer()
-
             } else if let user = viewModel.user {
-                // ... (Keep existing loggedInView content)
                 ProfileHeaderCard(
                     user: user,
                     onInfoTap: { router.push(.userInfo(user: user)) }
@@ -194,7 +179,6 @@ struct ProfileView: View {
             .clipShape(
                 RoundedCorner(radius: 30, corners: [.topLeft, .topRight])
             )
-            //            .frame(minHeight: UIScreen.main.bounds.height)
         }
     }
 
