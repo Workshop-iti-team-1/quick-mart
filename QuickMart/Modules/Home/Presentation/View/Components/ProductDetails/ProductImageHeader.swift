@@ -9,16 +9,20 @@ import SwiftUI
 
 struct ProductImageHeader: View {
     let product: ProductDetails
-    
+
     var body: some View {
         ZStack(alignment: .top) {
-            if let imageURLStr = product.images.first?.url, let url = URL(string: imageURLStr) {
+            if let imageURLStr = product.images.first?.url,
+                let url = URL(string: imageURLStr)
+            {
                 AsyncImage(url: url) { phase in
                     switch phase {
                     case .empty:
-                        ProgressView()
+                        Rectangle()
+                            .fill(Color.shimmerBase)
                             .frame(height: 380)
                             .frame(maxWidth: .infinity)
+                            .shimmer()
                     case .success(let image):
                         image
                             .resizable()

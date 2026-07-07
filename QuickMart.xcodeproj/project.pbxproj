@@ -370,6 +370,7 @@
 		D412CA452FF2E1DB0010892E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA442FF2E1DB0010892E /* FirebaseAuth */; };
 		D412CA472FF2E1DB0010892E /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA462FF2E1DB0010892E /* FirebaseCore */; };
 		D412CA4A2FF2E2560010892E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA492FF2E2560010892E /* Apollo */; };
+		D48E1B532FFD06F600581CD3 /* ProductDetailsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E1B522FFD06F300581CD3 /* ProductDetailsSkeletonView.swift */; };
 		D495718F2FFAC17B000B7E3F /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */; };
 		D49571932FFAC1C9000B7E3F /* CheckoutAddressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571922FFAC1C3000B7E3F /* CheckoutAddressCard.swift */; };
 		D49571952FFAC24A000B7E3F /* PaymentMethodSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */; };
@@ -816,6 +817,7 @@
 		D4092FAA2FF92B0F00702CFE /* PredictiveSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveSuggestion.swift; sourceTree = "<group>"; };
 		D4092FAD2FF930DC00702CFE /* FetchPredictiveSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPredictiveSearchUseCase.swift; sourceTree = "<group>"; };
 		D4092FAF2FF9337A00702CFE /* PredictiveSuggestionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveSuggestionRowView.swift; sourceTree = "<group>"; };
+		D48E1B522FFD06F300581CD3 /* ProductDetailsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsSkeletonView.swift; sourceTree = "<group>"; };
 		D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		D49571922FFAC1C3000B7E3F /* CheckoutAddressCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressCard.swift; sourceTree = "<group>"; };
 		D49571942FFAC247000B7E3F /* PaymentMethodSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodSectionView.swift; sourceTree = "<group>"; };
@@ -2005,6 +2007,7 @@
 		AA0011223344556677889900 /* ProductDetails */ = {
 			isa = PBXGroup;
 			children = (
+				D48E1B522FFD06F300581CD3 /* ProductDetailsSkeletonView.swift */,
 				AA0011223344556677889910 /* ProductImageHeader.swift */,
 				AA0011223344556677889911 /* ProductTitleAndPrice.swift */,
 				AA0011223344556677889912 /* ProductRatingView.swift */,
@@ -3013,6 +3016,7 @@
 				15E10FB52FFAF09200E6E7AF /* currencyRow.swift in Sources */,
 				D4A1B2A22FF68F2300735C4D /* SearchView.swift in Sources */,
 				D4B082312FF700DF0011F64A /* ShopifySearchRepository.swift in Sources */,
+				D48E1B532FFD06F600581CD3 /* ProductDetailsSkeletonView.swift in Sources */,
 				D49571992FFAC2B1000B7E3F /* CheckoutOrderSummaryView.swift in Sources */,
 				D4A1B2962FF68CE400735C4D /* FetchSubCategoriesUseCase.swift in Sources */,
 				DEE282402FF7F85C00B4F59E /* UserEntity.swift in Sources */,
