@@ -212,7 +212,7 @@ NavigationLink("Details") { ProductDetailsView() }
 
 ## 👥 Team
 
-- Ahmed El Sayyad (siam)
+- Ahmed El Sayyad
 - Alaa Ayman
 - Mina Wagdy
 - Ibrahim Siam
