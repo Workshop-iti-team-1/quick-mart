@@ -60,9 +60,9 @@ QuickMart/
 │   ├── DI/                     ← DIContainer + domain extensions
 │   ├── Network/                ← GraphQL + REST clients
 │   ├── Route/                  ← Centralized AppRouter + Route enum
-│   ├── Services/               ← Firebase Auth, Currency
+│   ├── Services/                ← Firebase Auth, Currency
 │   ├── theme/                  ← Design tokens (colors, typography)
-│   └── Utilities/              ← Localization, session, constants
+│   └── Utilities/               ← Localization, session, constants
 │
 └── 📦 Modules/                 ← Feature modules
     ├── Authentication/         ├── Home/
@@ -212,10 +212,10 @@ NavigationLink("Details") { ProductDetailsView() }
 
 ## 👥 Team
 
-| Contributor               | Focus Areas                                          |
-|---------------------------|------------------------------------------------------|
-| **Ahmed El Sayyad (siam)**| Architecture, Core, Auth, DI, Network, Session, Currency |
-| **Alaa Ayman**            | Home, Tab Bar, Brands, AI Features, Root ViewModel   |
+- Ahmed El Sayyad
+- Alaa Ayman
+- Mina Wagdy
+- Ibrahim Siam
 
 ---
 
