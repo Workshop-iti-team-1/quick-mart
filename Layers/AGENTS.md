@@ -88,6 +88,7 @@ SupabaseStorageService
 - **Content-Type Handling:** Uploads as `image/jpeg` with appropriate compression.
 - **Authorization:** Injects the `anonKey` directly as the `apikey` and `Authorization` bearer token.
 - **URL Generation:** Constructs and returns the public, accessible URL for the uploaded file upon success.
+- **Configuration:** Keys are loaded safely via `ShopifyConfig.SupabaseConfig`.
 
 ### 6. `ShopifyConfig` — Centralized Configuration
 
@@ -104,6 +105,9 @@ All API keys, URLs, and tokens are read from `Info.plist` (populated by `.xcconf
 | `GEMINI_API_KEY`       | `Config.local.xcconfig`   | Google Gemini API key      |
 | `CURRENCY_API_KEY`     | `Config.local.xcconfig`   | CurrencyFreaks API key     |
 | `CURRENCY_BASE_URL`    | `Config.local.xcconfig`   | CurrencyFreaks base URL    |
+| `SUPABASE_PROJECT_URL` | `Config.local.xcconfig`   | Supabase project URL       |
+| `SUPABASE_ANON_KEY`    | `Config.local.xcconfig`   | Supabase public anon key   |
+| `SUPABASE_BUCKET_NAME` | `Config.local.xcconfig`   | Supabase storage bucket    |
 
 > **Security:** `Config.local.xcconfig` is `.gitignore`'d — secrets never reach version control.
 

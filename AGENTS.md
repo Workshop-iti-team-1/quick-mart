@@ -116,7 +116,7 @@ This document outlines the external agents and third-party services integrated i
 - **Role:** Handles user-generated content uploads, specifically profile avatars.
 - **Technology:** Supabase Storage REST API.
 - **Service:** `SupabaseStorageService` — simple URLSession-based network client.
-- **Configuration:** Keys stored in `SupabaseConfig`.
+- **Configuration:** Keys stored in `Info.plist` (injected via `xcconfig`) and accessed via `ShopifyConfig.SupabaseConfig`.
 - **Integration:** `UploadProfileImageUseCase` processes image data, uploads to the `avatars` bucket, and returns a public URL.
 
 ---
