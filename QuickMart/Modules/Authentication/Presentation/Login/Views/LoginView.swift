@@ -131,19 +131,50 @@ struct LoginView: View {
     }
 
     private var termsSection: some View {
-        HStack {
-            Spacer()
-            (Text(AppStrings.Auth.termsPrefix).foregroundColor(.gray)
-                + Text(AppStrings.Auth.privacyPolicy).foregroundColor(
-                    .cyanPrimary)
-                + Text(AppStrings.Auth.and).foregroundColor(.gray)
-                + Text(AppStrings.Auth.termsConditions).foregroundColor(
-                    .cyanPrimary)
-                + Text(".").foregroundColor(.gray))
-                .font(.system(size: 12, weight: .regular))
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .padding(.top, 32)
+        Text(termsAttributedString)
+            .font(.system(size: 12, weight: .regular))
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+            .multilineTextAlignment(.center)
+            .padding(.top, 32)
+            .padding(.horizontal, 16)
+            .environment(
+                \.openURL,
+                OpenURLAction { url in
+                    switch url.absoluteString {
+                    case "app://privacy":
+                        router.push(.privacyPolicy)
+                    case "app://terms":
+                        router.push(.termsAndConditions)
+                    default:
+                        break
+                    }
+                    return .handled
+                })
+    }
+
+    private var termsAttributedString: AttributedString {
+        var prefix = AttributedString("\(AppStrings.Auth.termsPrefix) ")
+        prefix.foregroundColor = .gray
+
+        var privacy = AttributedString(AppStrings.Auth.privacyPolicy)
+        privacy.foregroundColor = .cyanPrimary
+        privacy.underlineStyle = .single
+        privacy.link = URL(string: "app://privacy")
+
+        var and = AttributedString(" \(AppStrings.Auth.and) ")
+        and.foregroundColor = .gray
+
+        let termsText = AppStrings.Auth.termsConditions
+            .replacingOccurrences(of: " ", with: "\u{00A0}")
+        var terms = AttributedString(termsText)
+        terms.foregroundColor = .cyanPrimary
+        terms.underlineStyle = .single
+        terms.link = URL(string: "app://terms")
+
+        var period = AttributedString(".")
+        period.foregroundColor = .gray
+
+        return prefix + privacy + and + terms + period
     }
 }
