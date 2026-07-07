@@ -4,12 +4,6 @@
 //
 //  Created by Alaa Ayman on 06/07/2026.
 //
-//
-//  OutfitView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 06/07/2026.
-//
 
 import SwiftUI
 

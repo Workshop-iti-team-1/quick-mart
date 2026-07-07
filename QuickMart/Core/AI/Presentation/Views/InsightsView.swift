@@ -4,12 +4,6 @@
 //
 //  Created by Alaa Ayman on 06/07/2026.
 //
-//
-//  InsightsView.swift
-//  QuickMart
-//
-//  Created by Alaa Ayman on 06/07/2026.
-//
 
 import SwiftUI
 
