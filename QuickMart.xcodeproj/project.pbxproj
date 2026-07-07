@@ -54,7 +54,6 @@
 		584C129E2FEFFA2300F61A1B /* QuickMartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C129D2FEFFA2300F61A1B /* QuickMartTests.swift */; };
 		584C12A82FEFFA2400F61A1B /* QuickMartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */; };
 		584C12AA2FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */; };
-		5F1B5B852FFB9C080028BBF0 /* Config.local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */; };
 		5F1B5C332FFBAE8B0028BBF0 /* PricingValue.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1B5C2B2FFBAE8B0028BBF0 /* PricingValue.graphql.swift */; };
 		5F1B5C342FFBAE8B0028BBF0 /* GetProductQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1B5B992FFBAE8B0028BBF0 /* GetProductQuery.graphql.swift */; };
 		5F1B5C352FFBAE8B0028BBF0 /* OrderEdge.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1B5C052FFBAE8B0028BBF0 /* OrderEdge.graphql.swift */; };
@@ -333,6 +332,7 @@
 		5FA216FD2FF8F18000DBA613 /* WishlistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA216FC2FF8F18000DBA613 /* WishlistRowView.swift */; };
 		5FA216FF2FF8F18E00DBA613 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA216FE2FF8F18E00DBA613 /* WishlistView.swift */; };
 		5FA217012FF8F90B00DBA613 /* ProductSearchItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA217002FF8F8FD00DBA613 /* ProductSearchItemMapper.swift */; };
+		5FA8B5CE2FFD68860079DD47 /* Config.local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5FA8B5CD2FFD68860079DD47 /* Config.local.xcconfig */; };
 		5FC3A34B2FF981FF00285375 /* DiscountDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34A2FF981FF00285375 /* DiscountDataSourceProtocol.swift */; };
 		5FC3A34D2FF9822F00285375 /* DiscountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */; };
 		5FC3A34F2FF9828B00285375 /* DiscountMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */; };
@@ -510,7 +510,6 @@
 		584C12A72FEFFA2400F61A1B /* QuickMartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITests.swift; sourceTree = "<group>"; };
 		584C12A92FEFFA2400F61A1B /* QuickMartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5985C743BC269621E90D1CB3 /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		5F1B5B862FFBAE8B0028BBF0 /* AddCartLinesMutation.graphql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartLinesMutation.graphql.swift; sourceTree = "<group>"; };
 		5F1B5B872FFBAE8B0028BBF0 /* AddCustomerAddressMutation.graphql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomerAddressMutation.graphql.swift; sourceTree = "<group>"; };
 		5F1B5B882FFBAE8B0028BBF0 /* ApplyDiscountCodeMutation.graphql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyDiscountCodeMutation.graphql.swift; sourceTree = "<group>"; };
@@ -789,6 +788,7 @@
 		5FA216FC2FF8F18000DBA613 /* WishlistRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistRowView.swift; sourceTree = "<group>"; };
 		5FA216FE2FF8F18E00DBA613 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		5FA217002FF8F8FD00DBA613 /* ProductSearchItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchItemMapper.swift; sourceTree = "<group>"; };
+		5FA8B5CD2FFD68860079DD47 /* Config.local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.local.xcconfig; sourceTree = "<group>"; };
 		5FC3A34A2FF981FF00285375 /* DiscountDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountDataSourceProtocol.swift; sourceTree = "<group>"; };
 		5FC3A34C2FF9822F00285375 /* DiscountDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountDataSource.swift; sourceTree = "<group>"; };
 		5FC3A34E2FF9827E00285375 /* DiscountMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountMapper.swift; sourceTree = "<group>"; };
@@ -2384,7 +2384,7 @@
 				D4A91EF42FF025AE007B11D2 /* tempConfig.xcconfig */,
 				6C127E4B8B2EA37B5662334F /* RootView.swift */,
 				150DD8E42FF2CEE500D89DCE /* Config.xcconfig */,
-				5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */,
+				5FA8B5CD2FFD68860079DD47 /* Config.local.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2712,7 +2712,7 @@
 				D4A91EFB2FF025AE007B11D2 /* Assets.xcassets in Resources */,
 				D4A91EFD2FF025AE007B11D2 /* tempConfig.xcconfig in Resources */,
 				5F74F40C2FF61E3100DE42F6 /* Home.graphql in Resources */,
-				5F1B5B852FFB9C080028BBF0 /* Config.local.xcconfig in Resources */,
+				5FA8B5CE2FFD68860079DD47 /* Config.local.xcconfig in Resources */,
 				1518E8892FF1AE47006BED1A /* GoogleService-Info.plist in Resources */,
 				5F365C292FF84F1F0082DE82 /* Address.graphql in Resources */,
 			);
@@ -3198,7 +3198,6 @@
 /* Begin XCBuildConfiguration section */
 		584C12AB2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3260,7 +3259,6 @@
 		};
 		584C12AC2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3315,7 +3313,6 @@
 		};
 		584C12AE2FEFFA2400F61A1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3347,7 +3344,6 @@
 		};
 		584C12AF2FEFFA2400F61A1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F1B5B842FFB9C080028BBF0 /* Config.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

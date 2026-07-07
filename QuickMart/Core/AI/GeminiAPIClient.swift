@@ -8,141 +8,159 @@
 //  GeminiAPIClient.swift
 //  QuickMart
 //
-//  Created by Alaa Ayman on 06/07/2026.
-//
-
 import Foundation
 
 final class GeminiAPIClient: GeminiAPIClientProtocol {
     private let session: URLSession
-
-    // MARK: - Rate Limiting
-    /// Tracks when the last request was sent to enforce spacing.
     private var lastRequestTime: Date = .distantPast
-    /// Minimum seconds between consecutive requests (~15 RPM safe margin).
     private let minRequestInterval: TimeInterval = 4
-    /// Lock to make lastRequestTime access thread-safe.
     private let lock = NSLock()
+
+    // MARK: - Key Rotation
+    private var currentKeyIndex = 0
+    private let keyLock = NSLock()
 
     init(session: URLSession = .shared) {
         self.session = session
     }
 
-    // MARK: - Public API
-    func generate(prompt: String, imageData: Data?, model: String, maxTokens: Int = 1024) async throws -> String {
-        // Throttle: wait if we're sending too fast
+    private func currentAPIKey() -> String {
+        keyLock.lock()
+        defer { keyLock.unlock() }
+        return AIConfig.apiKeys[currentKeyIndex]
+    }
+
+    /// Moves to the next key in the pool. Called when the current key's project hits 429.
+    private func rotateToNextKey() {
+        keyLock.lock()
+        currentKeyIndex = (currentKeyIndex + 1) % AIConfig.apiKeys.count
+        keyLock.unlock()
+        #if DEBUG
+        print("🔄 Rotated to Gemini API key index \(currentKeyIndex)")
+        #endif
+    }
+
+    // GeminiAPIClient.generate
+    func generate(prompt: String, imageData: Data?, model: String, maxTokens: Int = 1024, jsonMode: Bool = false, responseSchema: [String: Any]? = nil) async throws -> String {
         try await throttleIfNeeded()
-
-        // Build the request
-        let request = try buildRequest(prompt: prompt, imageData: imageData, model: model, maxTokens: maxTokens)
-
-        // Execute with single retry on 429
-        return try await executeWithRetry(request: request)
+        return try await executeWithRotation(
+            prompt: prompt, imageData: imageData, model: model,
+            maxTokens: maxTokens, jsonMode: jsonMode, responseSchema: responseSchema,
+            attemptsRemaining: min(2, AIConfig.apiKeys.count)
+        )
     }
 
     // MARK: - Throttling
-    /// Sleeps if the last request was sent less than `minRequestInterval` seconds ago.
     private func throttleIfNeeded() async throws {
         let waitTime: TimeInterval
         lock.lock()
         let elapsed = Date().timeIntervalSince(lastRequestTime)
-        if elapsed < minRequestInterval {
-            waitTime = minRequestInterval - elapsed
-        } else {
-            waitTime = 0
-        }
+        waitTime = elapsed < minRequestInterval ? minRequestInterval - elapsed : 0
         lastRequestTime = Date().addingTimeInterval(max(waitTime, 0))
         lock.unlock()
-
         if waitTime > 0 {
             try await Task.sleep(nanoseconds: UInt64(waitTime * 1_000_000_000))
         }
     }
 
     // MARK: - Request Builder
-    private func buildRequest(prompt: String, imageData: Data?, model: String, maxTokens: Int) throws -> URLRequest {
+    private func buildRequest(prompt: String, imageData: Data?, model: String, maxTokens: Int, jsonMode: Bool, responseSchema: [String: Any]?, apiKey: String) throws -> URLRequest {
         guard let url = URL(string: "\(AIConfig.baseURL)/\(model):generateContent") else {
             throw AIError.invalidURL
         }
 
         var parts: [[String: Any]] = [["text": prompt]]
         if let imageData {
-            parts.append([
-                "inline_data": [
-                    "mime_type": "image/jpeg",
-                    "data": imageData.base64EncodedString()
-                ]
-            ])
+            parts.append(["inline_data": ["mime_type": "image/jpeg", "data": imageData.base64EncodedString()]])
+        }
+
+        var generationConfig: [String: Any] = [
+            "temperature": 0.7,
+            "maxOutputTokens": maxTokens
+        ]
+        if jsonMode {
+            generationConfig["responseMimeType"] = "application/json"
+            generationConfig["thinkingConfig"] = ["thinkingBudget": 0]
+            if let responseSchema {
+                generationConfig["responseSchema"] = responseSchema
+            }
         }
 
         let body: [String: Any] = [
             "contents": [["parts": parts]],
-            "generationConfig": [
-                "temperature": 0.7,
-                "maxOutputTokens": maxTokens
-            ]
+            "generationConfig": generationConfig
         ]
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(AIConfig.apiKey, forHTTPHeaderField: "x-goog-api-key")
+        request.setValue(apiKey, forHTTPHeaderField: "x-goog-api-key")
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         return request
     }
 
-    // MARK: - Execute with Retry
-    /// Executes the request. On a 429 response, waits 10 seconds and retries once.
-    private func executeWithRetry(request: URLRequest) async throws -> String {
+    // MARK: - Execute with key rotation + single 429 retry per key
+    private func executeWithRotation(
+        prompt: String, imageData: Data?, model: String,
+        maxTokens: Int, jsonMode: Bool, responseSchema: [String: Any]?,
+        attemptsRemaining: Int
+    ) async throws -> String {
+        let apiKey = currentAPIKey()
+        let request = try buildRequest(
+            prompt: prompt, imageData: imageData, model: model,
+            maxTokens: maxTokens, jsonMode: jsonMode, responseSchema: responseSchema, apiKey: apiKey
+        )
+
         let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
 
-        guard let http = response as? HTTPURLResponse else {
-            throw URLError(.badServerResponse)
-        }
-
-        // Rate limited — wait and retry once
         if http.statusCode == 429 {
-            try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
-
-            lock.lock()
-            lastRequestTime = Date()
-            lock.unlock()
-
-            let (retryData, retryResponse) = try await session.data(for: request)
-
-            guard let retryHTTP = retryResponse as? HTTPURLResponse else {
-                throw URLError(.badServerResponse)
+            if attemptsRemaining > 1 {
+                // Try the next project's key immediately — no need to wait if it's a fresh quota pool
+                rotateToNextKey()
+                return try await executeWithRotation(
+                    prompt: prompt, imageData: imageData, model: model,
+                    maxTokens: maxTokens, jsonMode: jsonMode, responseSchema: responseSchema,
+                    attemptsRemaining: attemptsRemaining - 1
+                )
+            } else {
+                // Every key exhausted — wait once, then give up cleanly
+                try await Task.sleep(nanoseconds: 10_000_000_000)
+                let (retryData, retryResponse) = try await session.data(for: request)
+                guard let retryHTTP = retryResponse as? HTTPURLResponse else { throw URLError(.badServerResponse) }
+                if retryHTTP.statusCode == 429 { throw AIError.rateLimited }
+                guard (200...299).contains(retryHTTP.statusCode) else { throw AIError.requestFailed(statusCode: retryHTTP.statusCode) }
+                return try decodeResponse(retryData, jsonMode: jsonMode)
             }
-
-            // If still 429 after retry, throw user-friendly error
-            if retryHTTP.statusCode == 429 {
-                throw AIError.rateLimited
-            }
-
-            guard (200...299).contains(retryHTTP.statusCode) else {
-                throw AIError.requestFailed(statusCode: retryHTTP.statusCode)
-            }
-
-            return try decodeResponse(retryData)
         }
 
-        guard (200...299).contains(http.statusCode) else {
-            throw AIError.requestFailed(statusCode: http.statusCode)
-        }
-
-        return try decodeResponse(data)
+        guard (200...299).contains(http.statusCode) else { throw AIError.requestFailed(statusCode: http.statusCode) }
+        return try decodeResponse(data, jsonMode: jsonMode)
     }
 
     // MARK: - Response Decoder
-    private func decodeResponse(_ data: Data) throws -> String {
+    private func decodeResponse(_ data: Data, jsonMode: Bool) throws -> String {
         do {
             let decoded = try JSONDecoder().decode(GeminiResponse.self, from: data)
-            guard let text = decoded.candidates?.first?.content.parts.first?.text, !text.isEmpty else {
-                throw AIError.emptyResponse
+            guard let candidate = decoded.candidates?.first else { throw AIError.emptyResponse }
+
+            let text = candidate.content.parts.first?.text
+
+            if candidate.finishReason == "MAX_TOKENS" {
+                #if DEBUG
+                print("⚠️ Gemini response truncated (MAX_TOKENS). jsonMode=\(jsonMode). Partial text: \(text ?? "nil")")
+                #endif
+                if jsonMode {
+                    throw AIError.truncated
+                }
             }
+
+            guard let text, !text.isEmpty else { throw AIError.emptyResponse }
             return text
         } catch is DecodingError {
             throw AIError.decodingFailed
         }
     }
 }
+
+
