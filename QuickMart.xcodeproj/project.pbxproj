@@ -432,7 +432,6 @@
 		DE047EC35CF252B5A89CE785 /* RegisterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB407902B34A12003729580C /* RegisterResponseDTO.swift */; };
 		DE8869532FF6EA9100860250 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8869522FF6EA9100860250 /* ProfileViewModel.swift */; };
 		DECCB60F2FF696F500F0A8C0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */; };
-		DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */; };
 		DECCB6142FF6ADB400F0A8C0 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */; };
 		DECCB6162FF6ADFE00F0A8C0 /* MenuRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */; };
 		DEE282402FF7F85C00B4F59E /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE2823F2FF7F85C00B4F59E /* UserEntity.swift */; };
@@ -888,7 +887,6 @@
 		D676201016FCACC6E578BECA /* AppTextStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppTextStyle.swift; sourceTree = "<group>"; };
 		DE8869522FF6EA9100860250 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		DECCB60E2FF696EC00F0A8C0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCard.swift; sourceTree = "<group>"; };
 		DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
 		DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRaw.swift; sourceTree = "<group>"; };
 		DEE2823F2FF7F85C00B4F59E /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -2557,7 +2555,6 @@
 				15E10FB42FFAF09000E6E7AF /* currencyRow.swift */,
 				15E10FB22FFAF00100E6E7AF /* searchBar.swift */,
 				D4AF19202FFB09DB0050688B /* OrderStatusBadge.swift */,
-				DECCB6112FF69E7C00F0A8C0 /* ProfileHeaderCard.swift */,
 				DECCB6132FF6ADB400F0A8C0 /* MenuSection.swift */,
 				DECCB6152FF6ADFE00F0A8C0 /* MenuRaw.swift */,
 				15C227762FF95BBD004E3E90 /* OrderCardView.swift */,
@@ -3110,7 +3107,6 @@
 				15C227822FF95C6C004E3E90 /* GetCustomerOrdersUseCase.swift in Sources */,
 				15C227732FF95B90004E3E90 /* OrderHistoryView.swift in Sources */,
 				5FA216FD2FF8F18000DBA613 /* WishlistRowView.swift in Sources */,
-				DECCB6122FF69E7C00F0A8C0 /* ProfileHeaderCard.swift in Sources */,
 				5F840A732FF319FF00BB18C7 /* HomeView.swift in Sources */,
 				C858FCC936287DB11AE1F1A5 /* AuthRepositoryProtocol.swift in Sources */,
 				AE28836E3A00924BD327C1C5 /* LoginUseCase.swift in Sources */,
