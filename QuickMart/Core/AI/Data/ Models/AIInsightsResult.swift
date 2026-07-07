@@ -7,12 +7,12 @@
 
 import Foundation
 
+
 struct AIInsightsResult: Decodable {
     struct Insight: Decodable {
-        let icon: String       // SF Symbol name, model picks from a short list we give it
+        let category: String // "spending" | "brand" | "category" | "suggestion" | "general"
         let title: String
-        let description: String
+        let text: String
     }
     let insights: [Insight]
-    let favoriteCategory: String?
 }
