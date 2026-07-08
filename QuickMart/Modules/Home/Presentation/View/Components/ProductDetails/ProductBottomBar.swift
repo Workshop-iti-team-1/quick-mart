@@ -18,11 +18,9 @@ struct ProductBottomBar: View {
                 }
             }) {
                 if viewModel.isAddingToCart {
-                    Text(AppStrings.ProductDetails.buyNow)
-                        .appTextStyle(.button, color: .primary)
+                    ProgressView()
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
-
                 } else {
                     Text(AppStrings.ProductDetails.buyNow)
                         .appTextStyle(.button, color: .primary)

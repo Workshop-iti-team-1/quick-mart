@@ -5,9 +5,9 @@
 //  Created by siam on 29/06/2026.
 //
 
-import Foundation
 import Combine
 import FirebaseAuth
+import Foundation
 
 enum AppState {
     case loading
@@ -18,19 +18,21 @@ enum AppState {
 
 class SessionManager: ObservableObject {
     static let shared = SessionManager()
-    
+
     @Published var currentState: AppState = .loading
-    
+
     private let firebaseAuth: FirebaseAuthServiceProtocol
-    
-    private init(firebaseAuth: FirebaseAuthServiceProtocol = FirebaseAuthService()) {
+
+    private init(
+        firebaseAuth: FirebaseAuthServiceProtocol = FirebaseAuthService()
+    ) {
         self.firebaseAuth = firebaseAuth
     }
-    
+
     func configure() {
         checkUserStatus()
     }
-    
+
     func checkUserStatus() {
         if let firebaseUser = firebaseAuth.getCurrentUser() {
             if firebaseUser.isAnonymous {
@@ -44,24 +46,37 @@ class SessionManager: ObservableObject {
             currentState = .unauthenticated
         }
     }
-    
+    private func clearCartState() {
+        CartEventsBus.shared.cartCleared.send()
+    }
+
     func login(token: String) {
-        UserDefaults.standard.set(token, forKey: UserDefaultsKeys.customerAccessToken)
+        clearCartState()
+        UserDefaults.standard.set(
+            token, forKey: UserDefaultsKeys.customerAccessToken)
         currentState = .loggedIn
+
+        CartEventsBus.shared.cartUpdated.send()
     }
-    
+
     func loginAsGuest() {
+        clearCartState()
         currentState = .guest
+
+        CartEventsBus.shared.cartUpdated.send()
     }
-    
+
     func logout() {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.customerAccessToken)
+        clearCartState()
+        UserDefaults.standard.removeObject(
+            forKey: UserDefaultsKeys.customerAccessToken)
         try? firebaseAuth.signOut()
         currentState = .unauthenticated
     }
-    
+
     func getToken() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultsKeys.customerAccessToken)
+        return UserDefaults.standard.string(
+            forKey: UserDefaultsKeys.customerAccessToken)
     }
 
     /// Scoping key for anything user-specific stored locally (e.g. favorites).

@@ -12,7 +12,6 @@ enum Route: Hashable {
     case category
     case forgotPassword
     case allBrands
-    case categoryDetail(CategoryItem)
     case productDetails(productId: String)
     case cart
     case search(filters: SearchFilters? = nil)

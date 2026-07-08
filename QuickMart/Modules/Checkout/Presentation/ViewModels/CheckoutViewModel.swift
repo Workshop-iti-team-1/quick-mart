@@ -12,8 +12,6 @@ final class CheckoutViewModel: ObservableObject {
     // MARK: - Payment State
     @Published var selectedPaymentMethod: PaymentMethod = .applePay
 
-    // We no longer need isApplePaySheetPresented because the system handles the UI!
-
     // MARK: - Order Placement State
     @Published private(set) var isPlacingOrder: Bool = false
     @Published private(set) var placedOrder: PlacedOrder? = nil
@@ -27,7 +25,7 @@ final class CheckoutViewModel: ObservableObject {
     private let placeOrderUseCase: PlaceOrderUseCaseProtocol
     private let addressUseCases: AddressUseCases
     private let cartUseCases: CartUseCases
-    private let requestApplePayUseCase: RequestApplePayPaymentUseCaseProtocol  // <-- New Dependency
+    private let requestApplePayUseCase: RequestApplePayPaymentUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -98,7 +96,6 @@ final class CheckoutViewModel: ObservableObject {
 
     // MARK: - Payment Intents
 
-    // Accept the converted amount and currency code from the View
     func initiatePayment(amount: Double, currencyCode: String) {
         guard validateBeforePayment() else { return }
 
@@ -117,7 +114,6 @@ final class CheckoutViewModel: ObservableObject {
     {
         isPlacingOrder = true
 
-        // Pass the dynamically converted values to PassKit
         let result = await requestApplePayUseCase.execute(
             amount: amount,
             currencyCode: currencyCode
@@ -153,9 +149,9 @@ final class CheckoutViewModel: ObservableObject {
             )
 
             cartUseCases.clearCart()
-            NotificationCenter.default.post(
-                name: NSNotification.Name("CartUpdated"), object: nil)
+            CartEventsBus.shared.cartCleared.send()
             placedOrder = order
+            OrderEventsBus.shared.orderPlaced.send(order)
 
         } catch {
             showError(error.localizedDescription)
@@ -168,7 +164,7 @@ final class CheckoutViewModel: ObservableObject {
     private func validateBeforePayment() -> Bool {
         guard selectedAddress != nil else {
             showError(
-                CheckoutError.noAddressSelected.localizedDescription ?? "")
+                CheckoutError.noAddressSelected.localizedDescription)
             return false
         }
         return true

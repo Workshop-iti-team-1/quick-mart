@@ -24,7 +24,6 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     func register(request: RegisterRequestDTO) async throws -> CustomerDTO {
-        // 1. Register in Firebase first
         _ = try await firebaseAuth.signUp(email: request.email, password: request.password)
         
         let input = ShopifyAPI.CustomerCreateInput(
@@ -62,7 +61,6 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
     }
     
     func login(request: LoginRequestDTO) async throws -> AuthTokenDTO {
-        // 1. Sign in to Firebase first
         _ = try await firebaseAuth.signIn(email: request.email, password: request.password)
         
         let input = ShopifyAPI.CustomerAccessTokenCreateInput(
