@@ -46,7 +46,6 @@ class SessionManager: ObservableObject {
             currentState = .unauthenticated
         }
     }
-    // Update this helper method to ONLY clear the UI
     private func clearCartState() {
         CartEventsBus.shared.cartCleared.send()
     }
