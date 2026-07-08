@@ -2,14 +2,36 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>APIKey</key>
-	<string>$(API_KEY)</string>
-	<key>APISecretKey</key>
-	<string>$(API_SECRET_KEY)</string>
-	<key>AdminAPIToken</key>
-	<string>$(ADMIN_API_TOKEN)</string>
-	<key>StoreURL</key>
+	<key>GEMINI_API_KEY_1</key>
+	<string>$(GEMINI_API_KEY_1)</string>
+	<key>GEMINI_API_KEY_2</key>
+	<string>$(GEMINI_API_KEY_2)</string>
+	<key>GEMINI_API_KEY_3</key>
+	<string>$(GEMINI_API_KEY_3)</string>
+	<key>GEMINI_API_KEY_4</key>
+	<string>$(GEMINI_API_KEY_4)</string>
+	<key>STORE_URL</key>
 	<string>$(STORE_URL)</string>
+	<key>ADMIN_STORE_URL</key>
+	<string>$(ADMIN_STORE_URL)</string>
+	<key>ADMIN_TOKEN</key>
+	<string>$(ADMIN_TOKEN)</string>
+	<key>STOREFRONT_TOKEN</key>
+	<string>$(STOREFRONT_TOKEN)</string>
+	<key>API_KEY</key>
+	<string>$(API_KEY)</string>
+	<key>API_SECRET_KEY</key>
+	<string>$(API_SECRET_KEY)</string>
+	<key>CURRENCY_BASE_URL</key>
+	<string>$(CURRENCY_BASE_URL)</string>
+	<key>CURRENCY_API_KEY</key>
+	<string>$(CURRENCY_API_KEY)</string>
+	<key>SUPABASE_PROJECT_URL</key>
+	<string>$(SUPABASE_PROJECT_URL)</string>
+	<key>SUPABASE_ANON_KEY</key>
+	<string>$(SUPABASE_ANON_KEY)</string>
+	<key>SUPABASE_BUCKET_NAME</key>
+	<string>$(SUPABASE_BUCKET_NAME)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

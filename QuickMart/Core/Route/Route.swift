@@ -1,0 +1,41 @@
+//
+//  Route.swift
+//  QuickMart
+//
+
+import Foundation
+
+enum Route: Hashable {
+    case home
+    case login
+    case signup
+    case category
+    case forgotPassword
+    case allBrands
+    case productDetails(productId: String)
+    case cart
+    case search(filters: SearchFilters? = nil)
+    case shippingAddresses
+    case addressForm(Address?)
+    case favoriteDetail(ProductDetails)
+    case wishlist
+    case profile
+    case userInfo(user: UserEntity)
+    case shippingAddress
+    case paymentMethod
+    case orderHistory
+    case privacyPolicy
+    case termsAndConditions
+    case faqs
+    case changePassword
+    case currencyPicker
+    case checkout(Cart)
+    case orderSuccess(PlacedOrder)
+    case orderDetail(OrderEntity)
+    case aiChat
+    case aiComparison(products: [ProductDetails])
+    case aiImageSearch
+    case aiOutfit(product: ProductDetails)
+    case aiInsights
+    case aiComparisonPicker(baseProduct: ProductDetails)
+}

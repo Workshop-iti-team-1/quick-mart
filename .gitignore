@@ -34,7 +34,6 @@ DerivedData/
 .build/
 Packages/
 Package.pins
-Package.resolved
 *.xcodeproj/Mac/
 
 # ========================================
@@ -62,9 +61,12 @@ Config.swift
 Config.xcconfig
 Config.plist
 Config.json
+Config.local.xcconfig
 
 # Explicitly track the temporary/template configuration files
 !tempConfig.swift
 !tempConfig.xcconfig
 !tempConfig.plist
 !tempConfig.json
+
+*.agentsQuickMartDebug.entitlements

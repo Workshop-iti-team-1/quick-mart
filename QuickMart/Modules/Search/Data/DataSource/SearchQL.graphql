@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────
+# OPERATION 1 — Global Product Search
+# ─────────────────────────────────────────────
+query SearchProducts(
+    $query: String!
+    $first: Int!
+    $after: String
+    $sortKey: SearchSortKeys
+    $reverse: Boolean
+) {
+    search(
+        query: $query
+        types: PRODUCT
+        first: $first
+        after: $after
+        sortKey: $sortKey
+        reverse: $reverse
+    ) {
+        edges {
+            node {
+                ... on Product {
+                    id
+                    title
+                    vendor
+                    productType
+                    availableForSale
+                    priceRange {
+                        minVariantPrice { amount currencyCode }
+                        maxVariantPrice { amount currencyCode }
+                    }
+                    compareAtPriceRange {
+                        minVariantPrice { amount }
+                    }
+                    images(first: 1) {
+                        edges { node { url altText } }
+                    }
+                    collections(first: 10) {
+                        edges { node { id handle } }
+                    }
+                    variants(first: 1) {
+                        edges { node { id availableForSale } }
+                    }
+                }
+            }
+        }
+        pageInfo { hasNextPage endCursor }
+        totalCount
+    }
+}
+
+# ─────────────────────────────────────────────
+# OPERATION 2 — Product Types (Sub-Categories)
+# ─────────────────────────────────────────────
+query FetchProductTypes($first: Int!) {
+    productTypes(first: $first) {
+        edges { node }
+    }
+}
+
+# ─────────────────────────────────────────────
+# OPERATION 3 — Predictive / Autocomplete Search
+#
+# Fires on every keystroke (debounced 200ms).
+# Returns lightweight product + collection suggestions.
+# Does NOT replace the full search — it drives the
+# autocomplete overlay while the user is still typing.
+#
+# types: [PRODUCT, COLLECTION] matches the example provided.
+# ─────────────────────────────────────────────
+query PredictiveSearch($query: String!) {
+    predictiveSearch(query: $query, types: [PRODUCT, COLLECTION]) {
+        products {
+            id
+            title
+            vendor
+            priceRange {
+                minVariantPrice { amount currencyCode }
+            }
+            images(first: 1) {
+                edges { node { url altText } }
+            }
+        }
+        collections {
+            id
+            title
+            handle
+            image { url altText }
+        }
+    }
+}

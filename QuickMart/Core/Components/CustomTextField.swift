@@ -19,14 +19,13 @@ struct CustomTextField: View {
     @FocusState private var isFocused: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 0) {
                 Text(title)
-                    .appTextStyle(.body, color: .primary)
-                    .fontWeight(.medium)
+                    .appTextStyle(.label, color: .primary)
                 if isRequired {
                     Text(" *")
-                        .appTextStyle(.body, color: .red)
+                        .appTextStyle(.label, color: .red)
                 }
             }
 
@@ -40,11 +39,10 @@ struct CustomTextField: View {
                         .appTextStyle(.body, color: .primary)
                         .focused($isFocused)
                 }
-
                 if isSecure {
                     Button(action: { isPasswordVisible.toggle() }) {
                         Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
-                            .foregroundColor(.grayText)
+                            .foregroundColor(Color.gray)
                     }
                 }
             }
@@ -52,9 +50,12 @@ struct CustomTextField: View {
             .frame(height: 56)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isFocused ? Color.cyanPrimary : Color.gray.opacity(0.2), lineWidth: 1.5)
+                    .stroke(
+                        isFocused ? Color.cyanPrimary : Color.gray.opacity(0.3),
+                        lineWidth: 1.5
+                    )
             )
         }
-        .padding(.horizontal, 16)
     }
 }
+

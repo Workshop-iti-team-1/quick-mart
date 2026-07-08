@@ -4,9 +4,11 @@ struct AppTextStyle: ViewModifier {
     enum TextStyle {
         case heading1
         case heading2
+        case heading3
         case body
         case button
         case caption
+        case label
     }
 
     var style: TextStyle
@@ -22,6 +24,10 @@ struct AppTextStyle: ViewModifier {
             content
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(color)
+        case .heading3:
+            content
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(color)
         case .body:
             content
                 .font(.system(size: 14, weight: .regular))
@@ -34,12 +40,18 @@ struct AppTextStyle: ViewModifier {
             content
                 .font(.system(size: 12, weight: .regular))
                 .foregroundColor(color)
+        case .label:
+            content
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(color)
         }
     }
 }
 
 extension View {
-    func appTextStyle(_ style: AppTextStyle.TextStyle, color: Color = .primary) -> some View {
+    func appTextStyle(_ style: AppTextStyle.TextStyle, color: Color = .primary)
+        -> some View
+    {
         self.modifier(AppTextStyle(style: style, color: color))
     }
 }

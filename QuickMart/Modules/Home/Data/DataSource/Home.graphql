@@ -1,0 +1,115 @@
+query GetCollections($first: Int!, $after: String) {
+  collections(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        title
+        handle
+        description
+        image {
+          url
+          altText
+        }
+        products(first: 1) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+} 
+
+query GetProduct($id: ID!) {
+  product(id: $id) {
+    id
+    title
+    description
+    descriptionHtml
+    vendor
+    productType
+    tags
+    availableForSale
+
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+
+    compareAtPriceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+
+    images(first: 20) {
+      edges {
+        node {
+          id
+          url
+          altText
+          width
+          height
+        }
+      }
+    }
+
+    options {
+      id
+      name
+      values
+    }
+
+    variants(first: 30) {
+      edges {
+        node {
+          id
+          title
+          availableForSale
+          quantityAvailable
+          price {
+            amount
+            currencyCode
+          }
+          compareAtPrice {
+            amount
+            currencyCode
+          }
+          selectedOptions {
+            name
+            value
+          }
+          image {
+            url
+            altText
+          }
+        }
+      }
+    }
+
+    metafields(
+      identifiers: [
+        { namespace: "reviews", key: "rating" }
+        { namespace: "reviews", key: "rating_count" }
+      ]
+    ) {
+      key
+      namespace
+      value
+      type
+    }
+  }
+}

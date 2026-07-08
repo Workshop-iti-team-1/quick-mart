@@ -10,10 +10,9 @@ struct AppButton: View {
     var style: AppButtonStyle = .primary
     var icon: String? = nil
     var customIcon: Image? = nil
-    var color: Color = .black
-    var verticalPadding: CGFloat = 16
+    var verticalPadding: CGFloat = 18
     var action: () -> Void
-    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
@@ -38,10 +37,8 @@ struct AppButton: View {
 
     private var textColor: Color {
         switch style {
-        case .primary:
-            return colorScheme == .dark ? .black : .white
-        case .secondary:
-            return color
+        case .primary: return Color(UIColor.white)
+        case .secondary: return Color.primary
         }
     }
 
@@ -50,14 +47,15 @@ struct AppButton: View {
         switch style {
         case .primary:
             RoundedRectangle(cornerRadius: 12)
-                .fill(color)
+                .fill(Color.appButton)
         case .secondary:
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                .stroke(Color.gray.opacity(0.3), lineWidth: 1.5)
         }
     }
 }
 
+  
 #Preview {
     VStack(spacing: 20) {
         AppButton(title: "Primary Button") {}
@@ -66,3 +64,4 @@ struct AppButton: View {
     }
     .padding()
 }
+
