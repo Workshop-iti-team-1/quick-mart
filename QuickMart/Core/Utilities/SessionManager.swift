@@ -46,11 +46,8 @@ class SessionManager: ObservableObject {
             currentState = .unauthenticated
         }
     }
-    // Add this helper method inside SessionManager
+    // Update this helper method to ONLY clear the UI
     private func clearCartState() {
-        // Destroy the stale cart ID tied to the previous session
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.cartId)
-        // Broadcast the clear event to reset the badge globally
         CartEventsBus.shared.cartCleared.send()
     }
 
@@ -59,11 +56,15 @@ class SessionManager: ObservableObject {
         UserDefaults.standard.set(
             token, forKey: UserDefaultsKeys.customerAccessToken)
         currentState = .loggedIn
+
+        CartEventsBus.shared.cartUpdated.send()
     }
 
     func loginAsGuest() {
         clearCartState()
         currentState = .guest
+
+        CartEventsBus.shared.cartUpdated.send()
     }
 
     func logout() {
