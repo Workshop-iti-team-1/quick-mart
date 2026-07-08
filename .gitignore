@@ -69,4 +69,4 @@ Config.local.xcconfig
 !tempConfig.plist
 !tempConfig.json
 
-*.agents
+*.agentsQuickMartDebug.entitlements
