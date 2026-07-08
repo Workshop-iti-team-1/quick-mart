@@ -376,6 +376,8 @@
 		D412CA452FF2E1DB0010892E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA442FF2E1DB0010892E /* FirebaseAuth */; };
 		D412CA472FF2E1DB0010892E /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA462FF2E1DB0010892E /* FirebaseCore */; };
 		D412CA4A2FF2E2560010892E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = D412CA492FF2E2560010892E /* Apollo */; };
+		D475C8192FFE6AB6005A096C /* OrderEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C8182FFE6AAD005A096C /* OrderEventBus.swift */; };
+		D475C81B2FFE6C53005A096C /* OrderSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C81A2FFE6C47005A096C /* OrderSortOption.swift */; };
 		D48E1B532FFD06F600581CD3 /* ProductDetailsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E1B522FFD06F300581CD3 /* ProductDetailsSkeletonView.swift */; };
 		D48E1B562FFD1AF400581CD3 /* ShimmeringLoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E1B552FFD1AF200581CD3 /* ShimmeringLoadingOverlay.swift */; };
 		D495718F2FFAC17B000B7E3F /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */; };
@@ -829,6 +831,8 @@
 		D4092FAA2FF92B0F00702CFE /* PredictiveSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveSuggestion.swift; sourceTree = "<group>"; };
 		D4092FAD2FF930DC00702CFE /* FetchPredictiveSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPredictiveSearchUseCase.swift; sourceTree = "<group>"; };
 		D4092FAF2FF9337A00702CFE /* PredictiveSuggestionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveSuggestionRowView.swift; sourceTree = "<group>"; };
+		D475C8182FFE6AAD005A096C /* OrderEventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEventBus.swift; sourceTree = "<group>"; };
+		D475C81A2FFE6C47005A096C /* OrderSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSortOption.swift; sourceTree = "<group>"; };
 		D48E1B522FFD06F300581CD3 /* ProductDetailsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsSkeletonView.swift; sourceTree = "<group>"; };
 		D48E1B552FFD1AF200581CD3 /* ShimmeringLoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringLoadingOverlay.swift; sourceTree = "<group>"; };
 		D495718E2FFAC174000B7E3F /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
@@ -2416,6 +2420,8 @@
 		D4A91F142FF025BF007B11D2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D475C81A2FFE6C47005A096C /* OrderSortOption.swift */,
+				D475C8182FFE6AAD005A096C /* OrderEventBus.swift */,
 				5F7844EA2FF8574800F6D3C7 /* CountryDataProvider.swift */,
 				D4A91F132FF025BF007B11D2 /* Formatter.swift */,
 				F11684F704246EE1B731ABEA /* AppConstants.swift */,
@@ -2902,6 +2908,7 @@
 				5F1B5C932FFBAE8B0028BBF0 /* Customer.graphql.swift in Sources */,
 				D4AC972C2FFC07B300584FE6 /* ApplePayService.swift in Sources */,
 				5F1B5C942FFBAE8B0028BBF0 /* PricingPercentageValue.graphql.swift in Sources */,
+				D475C81B2FFE6C53005A096C /* OrderSortOption.swift in Sources */,
 				5F1B5C952FFBAE8B0028BBF0 /* AddCartLinesMutation.graphql.swift in Sources */,
 				5F1B5C962FFBAE8B0028BBF0 /* HasMetafields.graphql.swift in Sources */,
 				5F1B5C972FFBAE8B0028BBF0 /* Blog.graphql.swift in Sources */,
@@ -2930,6 +2937,7 @@
 				5F1B5CAD2FFBAE8B0028BBF0 /* DeliveryAddressValidationStrategy.graphql.swift in Sources */,
 				5F1B5CAE2FFBAE8B0028BBF0 /* DiscountApplication.graphql.swift in Sources */,
 				5F1B5CAF2FFBAE8B0028BBF0 /* OnlineStorePublishable.graphql.swift in Sources */,
+				D475C8192FFE6AB6005A096C /* OrderEventBus.swift in Sources */,
 				5F1B5CB02FFBAE8B0028BBF0 /* Cart.graphql.swift in Sources */,
 				5F1B5CB12FFBAE8B0028BBF0 /* SearchResultItemEdge.graphql.swift in Sources */,
 				D48E1B562FFD1AF400581CD3 /* ShimmeringLoadingOverlay.swift in Sources */,

@@ -69,7 +69,34 @@ struct OrderHistoryView: View {
             .background(Color.grey50)
             .cornerRadius(16)
             .padding(.horizontal, 16)
-            .padding(.bottom, 16)
+            .padding(.bottom, 8)
+
+            // MARK: - Sort Menu
+            HStack {
+                Spacer()
+                Menu {
+                    ForEach(OrderSortOption.allCases) { option in
+                        Button {
+                            viewModel.sortOption = option
+                        } label: {
+                            if viewModel.sortOption == option {
+                                Label(option.title, systemImage: "checkmark")
+                            } else {
+                                Text(option.title)
+                            }
+                        }
+                    }
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "arrow.up.arrow.down")
+                            .font(.system(size: 12, weight: .semibold))
+                        Text(viewModel.sortOption.title)
+                            .appTextStyle(.caption, color: .grayText)
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 12)
 
             // MARK: - Content
             if viewModel.isLoading {
@@ -174,17 +201,13 @@ struct OrderHistoryView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 16) {
                             ForEach(currentOrders) { order in
-                                // Each line item gets its own card.
-                                // Tapping any card for an order navigates
-                                // to the full order detail screen.
-                                ForEach(order.lineItems) { item in
-                                    Button {
-                                        router.push(.orderDetail(order))
-                                    } label: {
-                                        OrderCardView(order: order, item: item)
-                                    }
-                                    .buttonStyle(.plain)
+                                Button {
+                                    router.push(.orderDetail(order))
+                                } label: {
+                                    OrderCardView(order: order)
                                 }
+                                .buttonStyle(.plain)
+                                .id(order.id)
                             }
                         }
                         .padding(.horizontal, 16)

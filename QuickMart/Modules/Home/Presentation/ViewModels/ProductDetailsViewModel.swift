@@ -80,6 +80,13 @@ final class ProductDetailsViewModel: ObservableObject {
     }
     
     func addToCart(buyNow: Bool = false) async {
+        // Root-cause fix: block re-entrant calls at the ViewModel level.
+        // This runs synchronously (no `await` before it) so it is atomic
+        // under MainActor isolation — a second call queued while the first
+        // is still in-flight will see isAddingToCart == true and bail out,
+        // even if the UI hasn't re-rendered the disabled button yet.
+        guard !isAddingToCart else { return }
+
         if SessionManager.shared.currentState == .guest {
             showGuestAlert = true
             return
