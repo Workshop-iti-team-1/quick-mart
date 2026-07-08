@@ -16,10 +16,8 @@ final class AppRouter {
 
     var path = NavigationPath()
 
-    // 1. Add global tab state
     var selectedTab: TabItem = .home
 
-    // 2. Add the filter mailbox
     var queuedSearchFilters: SearchFilters? = nil
 
     // MARK: - Dependencies
@@ -32,7 +30,6 @@ final class AppRouter {
 
     // MARK: - Navigation Intents
 
-    // 3. Add the tab switching method
     func switchTab(to tab: TabItem, with filters: SearchFilters? = nil) {
         if let filters = filters {
             self.queuedSearchFilters = filters
@@ -56,7 +53,6 @@ final class AppRouter {
 
     // MARK: - Route → View Resolution
 
-    /// Attach this to your root NavigationStack via .navigationDestination(for: Route.self)
     @MainActor
     @ViewBuilder
     func destination(for route: Route) -> some View {
@@ -66,13 +62,11 @@ final class AppRouter {
         case .login:
             LoginView()
         case .signup:
-            SignupView(router: self)
+            SignupView()
         case .allBrands:
             AllBrandsView(viewModel: diContainer.makeBrandViewModel())
         case .category:
             AllBrandsView(viewModel: diContainer.makeBrandViewModel())
-        case .categoryDetail(let item):
-            CategoryDetailView(category: item)
         case .forgotPassword:
             ForgotPasswordView(router: self)
         case .productDetails(let productId):
@@ -86,28 +80,32 @@ final class AppRouter {
                 viewModel: diContainer.makeSearchViewModel(
                     initialFilters: filters ?? SearchFilters()))
         case .shippingAddresses:
-            AddressListView(viewModel: AddressListViewModel(useCases: self.diContainer.makeAddressUseCases()))
-            // AppRouter.destination(for:) — update the .addressForm case
-            case .addressForm(let address):
-                AddressFormView(
-                    viewModel: AddressFormViewModel(
-                        useCases: self.diContainer.makeAddressUseCases(),
-                        countryProvider: self.diContainer.countryDataProvider,
-                        editingAddress: address
-                    ),
-                    router: self
-                )
+            AddressListView(
+                viewModel: AddressListViewModel(
+                    useCases: self.diContainer.makeAddressUseCases()))
+        // AppRouter.destination(for:) — update the .addressForm case
+        case .addressForm(let address):
+            AddressFormView(
+                viewModel: AddressFormViewModel(
+                    useCases: self.diContainer.makeAddressUseCases(),
+                    countryProvider: self.diContainer.countryDataProvider,
+                    editingAddress: address
+                ),
+                router: self
+            )
         case .wishlist:
             WishlistView()
         case .favoriteDetail(let product):
             ProductDetailsView(
-                viewModel: self.diContainer.makeProductDetailsViewModel(productId: product.id, preloadedProduct: product)
+                viewModel: self.diContainer.makeProductDetailsViewModel(
+                    productId: product.id, preloadedProduct: product)
             )
-            
+
         case .profile:
             ProfileView()
         case .userInfo(let user):
-            UserInfoView(viewModel: diContainer.makeUserInfoViewModel(user: user))
+            UserInfoView(
+                viewModel: diContainer.makeUserInfoViewModel(user: user))
         case .shippingAddress:
             ProfileView()
         case .paymentMethod:
@@ -135,26 +133,29 @@ final class AppRouter {
         case .aiChat:
             ChatView(viewModel: self.diContainer.makeChatViewModel())
         case .aiComparison(let products):
-            ComparisonView(viewModel: self.diContainer.makeComparisonViewModel(products: products))
+            ComparisonView(
+                viewModel: self.diContainer.makeComparisonViewModel(
+                    products: products))
         case .aiImageSearch:
-            ImageSearchView(viewModel: self.diContainer.makeImageSearchViewModel())
+            ImageSearchView(
+                viewModel: self.diContainer.makeImageSearchViewModel())
         case .aiOutfit(let product):
-            OutfitView(viewModel: self.diContainer.makeOutfitViewModel(product: product))
+            OutfitView(
+                viewModel: self.diContainer.makeOutfitViewModel(
+                    product: product))
         case .aiInsights:
             InsightsView(viewModel: self.diContainer.makeInsightsViewModel())
         case .aiComparisonPicker(let baseProduct):
             ComparisonPickerView(baseProduct: baseProduct)
         }
-        }
-    
-    // MARK: - Search (fullScreenCover factory)
-    // Call this from any view that presents search modally:
-    // .fullScreenCover(isPresented: $showSearch) { router.searchView() }
+    }
 
-@MainActor
-func searchView() -> SearchView {
-    SearchView(
-        viewModel: diContainer.makeSearchViewModel(
-            initialFilters: SearchFilters()))
-}
+    // MARK: - Search (fullScreenCover factory)
+
+    @MainActor
+    func searchView() -> SearchView {
+        SearchView(
+            viewModel: diContainer.makeSearchViewModel(
+                initialFilters: SearchFilters()))
+    }
 }

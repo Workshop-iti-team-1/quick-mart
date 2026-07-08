@@ -10,7 +10,7 @@ import SwiftUI
 struct SignupView: View {
     @StateObject private var viewModel = DIContainer.shared
         .makeRegisterViewModel()
-    var router: AppRouter
+    @Environment(AppRouter.self) private var router
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()

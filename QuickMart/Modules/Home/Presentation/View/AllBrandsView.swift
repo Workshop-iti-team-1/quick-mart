@@ -61,7 +61,7 @@ struct AllBrandsView: View {
                                     .fill(Color.shimmerBase)
                                     .frame(width: 70, height: 12)
                             }
-                            .frame(height: 100)  // Approximate cell height
+                            .frame(height: 100) 
                         }
                     }
                     .padding(.horizontal, Layout.horizontalPadding)

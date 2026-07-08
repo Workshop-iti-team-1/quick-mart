@@ -149,8 +149,7 @@ final class CheckoutViewModel: ObservableObject {
             )
 
             cartUseCases.clearCart()
-//            NotificationCenter.default.post(
-//                name: NSNotification.Name("CartUpdated"), object: nil)
+            CartEventsBus.shared.cartCleared.send()
             placedOrder = order
             OrderEventsBus.shared.orderPlaced.send(order)
 

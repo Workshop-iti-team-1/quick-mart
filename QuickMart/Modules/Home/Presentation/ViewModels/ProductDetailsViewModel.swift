@@ -41,15 +41,14 @@ final class ProductDetailsViewModel: ObservableObject {
     }
 
     func loadProduct() {
-        if productDetails != nil { return } // already have data (offline cache) — done
+        if productDetails != nil { return }
         isLoadingProduct = true
         errorMessage = nil
         Task {
             do {
                 let details = try await getProductDetailsUseCase.execute(id: productId)
                 self.productDetails = details
-                FavouriteViewModel.shared.syncIfFavorite(details) // refresh cache with richer data if favorited
-                // ...pre-select color/size as before...
+                FavouriteViewModel.shared.syncIfFavorite(details)
                 isLoadingProduct = false
             } catch {
                 isLoadingProduct = false
@@ -80,11 +79,6 @@ final class ProductDetailsViewModel: ObservableObject {
     }
     
     func addToCart(buyNow: Bool = false) async {
-        // Root-cause fix: block re-entrant calls at the ViewModel level.
-        // This runs synchronously (no `await` before it) so it is atomic
-        // under MainActor isolation — a second call queued while the first
-        // is still in-flight will see isAddingToCart == true and bail out,
-        // even if the UI hasn't re-rendered the disabled button yet.
         guard !isAddingToCart else { return }
 
         if SessionManager.shared.currentState == .guest {
@@ -110,8 +104,7 @@ final class ProductDetailsViewModel: ObservableObject {
         do {
             try await addToCartUseCase.execute(variantId: variantId, quantity: quantity)
             isAddingToCart = false
-            NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil)
-            
+            CartEventsBus.shared.cartUpdated.send()
             if buyNow {
                 navigateToCart = true
             } else {

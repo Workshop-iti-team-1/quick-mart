@@ -5,8 +5,8 @@
 //  Created by siam on 2/07/2026.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 enum CartViewState {
     case loading
@@ -63,7 +63,8 @@ final class CartViewModel: ObservableObject {
         Task {
             do {
                 if let fetchedCart = try await useCases.getCart(),
-                   !fetchedCart.lines.isEmpty {
+                    !fetchedCart.lines.isEmpty
+                {
                     self.cart = fetchedCart
                     self.viewState = .populated
                 } else {
@@ -89,10 +90,7 @@ final class CartViewModel: ObservableObject {
                     quantity: newQuantity
                 )
                 self.cart = updatedCart
-                NotificationCenter.default.post(
-                    name: NSNotification.Name("CartUpdated"),
-                    object: nil
-                )
+                CartEventsBus.shared.cartUpdated.send()
                 if updatedCart.lines.isEmpty { self.viewState = .empty }
             } catch {
                 self.errorMessage = error.localizedDescription
@@ -107,10 +105,7 @@ final class CartViewModel: ObservableObject {
             do {
                 let updatedCart = try await useCases.removeLine(lineId: lineId)
                 self.cart = updatedCart
-                NotificationCenter.default.post(
-                    name: NSNotification.Name("CartUpdated"),
-                    object: nil
-                )
+                CartEventsBus.shared.cartUpdated.send()
                 if updatedCart.lines.isEmpty { self.viewState = .empty }
             } catch {
                 self.errorMessage = error.localizedDescription
@@ -135,7 +130,8 @@ final class CartViewModel: ObservableObject {
                 ) {
                     if appliedCode.applicable {
                         // ✅ Discount successfully applied — totals already updated
-                        self.discountMessage = AppStrings.Cart.discountAppliedMessage
+                        self.discountMessage =
+                            AppStrings.Cart.discountAppliedMessage
                         self.showDiscountAlert = true
                     } else {
                         // ⚠️ Code accepted but conditions not met
@@ -144,7 +140,8 @@ final class CartViewModel: ObservableObject {
                     }
                 } else {
                     // Code not found in response at all
-                    self.discountMessage = AppStrings.Cart.discountInvalidMessage
+                    self.discountMessage =
+                        AppStrings.Cart.discountInvalidMessage
                     self.showDiscountAlert = true
                 }
 
@@ -169,11 +166,13 @@ final class CartViewModel: ObservableObject {
             ) {
                 // Use the discount summary as the reason — it contains
                 // the human-readable condition from Shopify admin
-                discountNotApplicableReason = match.summary.isEmpty
+                discountNotApplicableReason =
+                    match.summary.isEmpty
                     ? AppStrings.Cart.discountInvalidMessage
                     : match.summary
             } else {
-                discountNotApplicableReason = AppStrings.Cart.discountInvalidMessage
+                discountNotApplicableReason =
+                    AppStrings.Cart.discountInvalidMessage
             }
 
         } catch {
@@ -198,10 +197,7 @@ final class CartViewModel: ObservableObject {
         useCases.clearCart()
         cart = nil
         viewState = .empty
-        NotificationCenter.default.post(
-            name: NSNotification.Name("CartUpdated"),
-            object: nil
-        )
-        loadCart()
+        CartEventsBus.shared.cartCleared.send()
+//        loadCart()
     }
 }
