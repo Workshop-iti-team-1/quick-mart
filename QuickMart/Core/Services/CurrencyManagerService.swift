@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 class CurrencyManagerService: ObservableObject {
     @Published var rates: [String: Double] = [:]
     @AppStorage("selectedCurrency") var selectedCurrency: String = AppConstants
