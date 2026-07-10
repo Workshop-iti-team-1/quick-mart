@@ -118,49 +118,6 @@ struct ProfileView: View {
             if viewModel.isLoading {
                 VStack(spacing: 0) {
                     ProfileHeaderCardSkeleton()
-
-                    ForEach(0..<3, id: \.self) { _ in
-                        VStack(alignment: .leading, spacing: 8) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.shimmerBase)
-                                .frame(width: 120, height: 16)
-                                .padding(.horizontal, 16)
-                                
-                            VStack(spacing: 0) {
-                                ForEach(0..<2, id: \.self) { i in
-                                    HStack(spacing: 16) {
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .fill(Color.shimmerBase)
-                                            .frame(width: 24, height: 24)
-                                            
-                                        RoundedRectangle(cornerRadius: 4)
-                                            .fill(Color.shimmerBase)
-                                            .frame(width: 150, height: 14)
-                                            
-                                        Spacer()
-                                        
-                                        RoundedRectangle(cornerRadius: 4)
-                                            .fill(Color.shimmerBase)
-                                            .frame(width: 12, height: 12)
-                                    }
-                                    .padding(.vertical, 16)
-                                    .padding(.horizontal, 16)
-                                    
-                                    if i == 0 {
-                                        Divider().padding(.leading, 54)
-                                    }
-                                }
-                            }
-                            .background(Color.cardBackground)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.grey100.opacity(colorScheme == .dark ? 0.1 : 0.4), lineWidth: 1)
-                            )
-                            .padding(.horizontal, 16)
-                        }
-                        .padding(.top, 16)
-                    }
                 }
                 .padding(.top, 24)
                 .redacted(reason: .placeholder)
