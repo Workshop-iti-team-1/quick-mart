@@ -159,15 +159,8 @@ struct SearchFilterBottomSheet: View {
     // MARK: - Apply Button
 
     private var applyButton: some View {
-        Button {
+        AppButton(title: "Apply") {
             viewModel.applyFilters()
-        } label: {
-            Text("Apply")
-                .appTextStyle(.button, color: .appWhite)
-                .frame(maxWidth: .infinity)
-                .frame(height: Layout.applyHeight)
-                .background(Color.appBlack)
-                .cornerRadius(Layout.cornerRadius)
         }
         .padding(.horizontal, Layout.horizontalPad)
         .padding(.vertical, 16)
