@@ -12,59 +12,57 @@ struct WishlistRowView: View {
     let favorite: FavoriteProduct
     @EnvironmentObject var currencyManager: CurrencyManagerService
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
-        HStack(spacing: 12) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.grey50)
-                .frame(width: 70, height: 70)
-                .overlay(
-                    AsyncImage(url: URL(string: favorite.imageURL ?? "")) {
-                        phase in
-                        switch phase {
-                        case .success(let image):
-                            image.resizable().scaledToFit().padding(8)
-                        case .empty:
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.shimmerBase)
-                                .frame(width: 70, height: 70)
-                                .shimmer()
-                        default:
-                            Image(systemName: "photo").foregroundColor(.grey150)
-                        }
-                    }
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-
-            VStack(alignment: .leading, spacing: 6) {
-                Text(favorite.title)
-                    .appTextStyle(.label, color: .appBlack)
-                    .lineLimit(2)
-
-                HStack(spacing: 6) {
-                    Text(
-                        currencyManager.format(
-                            defultAppCurrency: favorite.price)
-                    )
-                    .appTextStyle(.label, color: .appBlack)
-                    .id(
-                        "price-\(favorite.id)-\(currencyManager.selectedCurrency)"
-                    )
-
-                    if let compare = favorite.compareAtPrice,
-                        compare > favorite.price
-                    {
-                        Text(currencyManager.format(defultAppCurrency: compare))
-                            .appTextStyle(.caption, color: .grayText)
-                            .strikethrough(true, color: .grayText)
-                            .id(
-                                "compare-\(favorite.id)-\(currencyManager.selectedCurrency)"
-                            )
+        HStack(spacing: 16) {
+            // Product Image
+            ZStack {
+                Color.grey50
+                AsyncImage(url: URL(string: favorite.imageURL ?? "")) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image.resizable().scaledToFill()
+                    case .empty:
+                        ProgressView()
+                    default:
+                        Image(systemName: "photo").foregroundColor(.grey150)
                     }
                 }
             }
-
-            Spacer()
+            .frame(width: 90, height: 90)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            // Product Details
+            VStack(alignment: .leading, spacing: 8) {
+                Text(favorite.title)
+                    .appTextStyle(.label, color: .appBlack)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                
+                HStack(spacing: 6) {
+                    Text(currencyManager.format(defultAppCurrency: favorite.price))
+                        .appTextStyle(.heading3, color: .cyanPrimary)
+                        .id("price-\(favorite.id)-\(currencyManager.selectedCurrency)")
+                    
+                    if let compare = favorite.compareAtPrice, compare > favorite.price {
+                        Text(currencyManager.format(defultAppCurrency: compare))
+                            .appTextStyle(.caption, color: .grayText)
+                            .strikethrough(true, color: .grayText)
+                            .id("compare-\(favorite.id)-\(currencyManager.selectedCurrency)")
+                    }
+                }
+            }
+            
+            Spacer(minLength: 0)
         }
-        .padding(.vertical, 6)
+        .padding(12)
+        .background(Color.cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.06), radius: 8, x: 0, y: 4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.grey100.opacity(colorScheme == .dark ? 0.1 : 0.5), lineWidth: 1)
+        )
     }
 }

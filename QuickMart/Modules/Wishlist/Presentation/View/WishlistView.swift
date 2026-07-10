@@ -34,9 +34,14 @@ struct WishlistView: View {
                                     Label("Remove", systemImage: "trash")
                                 }
                             }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                     }
                 }
                 .listStyle(.plain)
+                .background(Color.backGround)
+                .padding(.top, 8)
             }
         }
         .navigationTitle("Wishlist")
