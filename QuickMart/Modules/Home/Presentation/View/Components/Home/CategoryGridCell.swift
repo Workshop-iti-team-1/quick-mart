@@ -13,46 +13,37 @@ struct CategoryGridCell: View {
     let item: CategoryItem
 
     var body: some View {
-        VStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
+        VStack(spacing: 0) {
+            if let imageName = item.imageName {
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 160)
+                    .clipped()
+            } else {
+                Rectangle()
                     .fill(Color.cyan50)
-                    .frame(width: 150, height: 150)
-
-                if let imageName = item.imageName {
-                    if item.isSystemImage == true {
-                        Image(systemName: imageName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
+                    .frame(height: 160)
+                    .overlay(
+                        Image(systemName: "photo")
                             .foregroundColor(.cyanPrimary)
-                    } else {
-                        Image(imageName)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 150, height: 150)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                } else {
-                    Image(systemName: "square.grid.2x2")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 60)
-                        .foregroundColor(.grey150)
-                }
+                    )
             }
-
-            Text(item.name)
+            
+            Text(item.name.uppercased())
                 .appTextStyle(.label, color: .appBlack)
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Spacer()
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity)
+                .background(Color.cardBackground)
         }
-        .padding(12)
-        // Dynamic background applied here
-        .background( Color.cardBackground)
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 6, x: 0, y: 2)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.08), radius: 10, x: 0, y: 4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.grey100.opacity(colorScheme == .dark ? 0.1 : 0.4), lineWidth: 1)
+        )
     }
 }

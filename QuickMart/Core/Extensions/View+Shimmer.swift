@@ -7,19 +7,19 @@
 import SwiftUI
 
 struct ShimmerEffect: ViewModifier {
-    @State private var isInitialState = true
+    @State private var phase: CGFloat = -0.5
 
     func body(content: Content) -> some View {
         content
             .mask(
                 LinearGradient(
-                    gradient: Gradient(colors: [
-                        .black.opacity(0.4),
-                        .black,
-                        .black.opacity(0.4)
+                    gradient: Gradient(stops: [
+                        .init(color: .black.opacity(0.4), location: phase - 0.2),
+                        .init(color: .black, location: phase),
+                        .init(color: .black.opacity(0.4), location: phase + 0.2)
                     ]),
-                    startPoint: isInitialState ? .init(x: -0.3, y: -0.3) : .init(x: 1, y: 1),
-                    endPoint: isInitialState ? .init(x: 0, y: 0) : .init(x: 1.3, y: 1.3)
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
                 )
             )
             .onAppear {
@@ -27,7 +27,7 @@ struct ShimmerEffect: ViewModifier {
                     .linear(duration: 1.5)
                     .repeatForever(autoreverses: false)
                 ) {
-                    isInitialState = false
+                    phase = 1.5
                 }
             }
     }

@@ -61,9 +61,9 @@ struct BrandGridItemView: View {
                             )
                             .foregroundColor(.grey150)
                     case .empty:
-                        Circle()
+                        RoundedRectangle(cornerRadius: Layout.cornerRadius)
                             .fill(Color.shimmerBase)
-                            .frame(width: 64, height: 64)
+                            .frame(width: Layout.iconSize, height: Layout.iconSize)
                             .shimmer()
                     @unknown default:
                         EmptyView()
