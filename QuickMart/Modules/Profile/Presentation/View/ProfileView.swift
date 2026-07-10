@@ -116,12 +116,9 @@ struct ProfileView: View {
     private var loggedInView: some View {
         ScrollView(showsIndicators: false) {
             if viewModel.isLoading {
-                VStack(spacing: 0) {
-                    ProfileHeaderCardSkeleton()
-                }
-                .padding(.top, 24)
-                .redacted(reason: .placeholder)
-                .shimmer()
+                ProfileHeaderCardSkeleton()
+                    .redacted(reason: .placeholder)
+                    .shimmer()
             } else if let user = viewModel.user {
                 ProfileHeaderCard(
                     user: user,

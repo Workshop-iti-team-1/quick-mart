@@ -35,7 +35,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>backGround</string>
+		<string>LaunchBackgroundColor</string>
 		<key>UIImageName</key>
 		<string>quickmart</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
