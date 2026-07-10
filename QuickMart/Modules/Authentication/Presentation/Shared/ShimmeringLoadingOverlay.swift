@@ -27,7 +27,7 @@ struct ShimmeringLoadingOverlay: View {
                         .stroke(Color.cyanPrimary.opacity(0.3), lineWidth: 2)
                         .frame(width: 80, height: 80)
                         
-                    Image(systemName: "bag.fill")
+                    Image(systemName: "hourglass")
                         .font(.system(size: 32))
                         .foregroundColor(.cyanPrimary)
                         .shimmer()

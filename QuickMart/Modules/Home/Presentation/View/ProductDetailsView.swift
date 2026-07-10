@@ -175,12 +175,18 @@ struct BadgeView: View {
 }
 private func aiActionLabel(icon: String, text: String) -> some View {
     HStack(spacing: 6) {
-        Image(systemName: icon).font(.system(size: 13, weight: .semibold))
-        Text(text).appTextStyle(.label)
+        Image(systemName: icon)
+            .font(.system(size: 13, weight: .semibold))
+            .foregroundColor(.cyanPrimary)
+        Text(text)
+            .appTextStyle(.label, color: .cyanPrimary)
     }
-    .foregroundColor(.cyanPrimary)
-    .padding(.horizontal, 12)
-    .padding(.vertical, 8)
-    .background(Color.cyan50)
-    .clipShape(RoundedRectangle(cornerRadius: 10))
+    .padding(.horizontal, 14)
+    .padding(.vertical, 10)
+    .background(Color.cyanPrimary.opacity(0.1))
+    .clipShape(RoundedRectangle(cornerRadius: 12))
+    .overlay(
+        RoundedRectangle(cornerRadius: 12)
+            .stroke(Color.cyanPrimary.opacity(0.3), lineWidth: 1)
+    )
 }
