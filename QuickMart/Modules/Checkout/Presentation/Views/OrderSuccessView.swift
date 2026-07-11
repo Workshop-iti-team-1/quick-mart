@@ -57,16 +57,12 @@ struct OrderSuccessView: View {
                 Spacer()
 
                 // Continue Shopping button
-                Button {
-                    router.switchTab(to: .home)
-                } label: {
-                    Text("Continue Shopping")
-                        .appTextStyle(.button, color: .appWhite)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: Layout.buttonHeight)
-                        .background(Color.appBlack)
-                        .cornerRadius(Layout.buttonRadius)
-                }
+                AppButton(
+                    title: "Continue Shopping",
+                    action: {
+                        router.switchTab(to: .home)
+                    }
+                )
                 .padding(.horizontal, Layout.horizontalPad)
                 .padding(.bottom, 32)
             }

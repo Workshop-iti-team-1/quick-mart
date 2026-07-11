@@ -114,30 +114,20 @@ struct CheckoutView: View {
 
     // MARK: - Pay Button
     private var payButton: some View {
-        Button {
-            let finalAmount = currencyManager.convert(
-                amount: viewModel.cart.cost.totalAmount)
-            let currencyCode = currencyManager.selectedCurrency
+        AppButton(
+            title: payButtonTitle,
+            icon: viewModel.selectedPaymentMethod.iconName,
+            action: {
+                let finalAmount = currencyManager.convert(
+                    amount: viewModel.cart.cost.totalAmount)
+                let currencyCode = currencyManager.selectedCurrency
 
-            viewModel.initiatePayment(
-                amount: finalAmount, currencyCode: currencyCode)
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: viewModel.selectedPaymentMethod.iconName)
-                    .font(.system(size: 16, weight: .semibold))
-                Text(payButtonTitle)
-                    .appTextStyle(.button, color: .appWhite)
+                viewModel.initiatePayment(
+                    amount: finalAmount, currencyCode: currencyCode)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: Layout.buttonHeight)
-            .background(
-                viewModel.selectedAddress == nil
-                    ? Color.grey150
-                    : Color.appBlack
-            )
-            .cornerRadius(Layout.buttonRadius)
-        }
+        )
         .disabled(viewModel.selectedAddress == nil || viewModel.isPlacingOrder)
+        .opacity(viewModel.selectedAddress == nil || viewModel.isPlacingOrder ? 0.5 : 1.0)
         .animation(
             .easeInOut(duration: 0.2), value: viewModel.selectedPaymentMethod)
     }
