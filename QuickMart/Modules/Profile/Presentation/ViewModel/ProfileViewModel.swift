@@ -25,6 +25,7 @@ class ProfileViewModel: ObservableObject {
     }
 
     func loadProfile() {
+        guard user == nil else { return }
         Task {
             isLoading = true
             do {

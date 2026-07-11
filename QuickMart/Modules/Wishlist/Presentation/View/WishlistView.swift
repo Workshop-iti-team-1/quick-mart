@@ -18,34 +18,46 @@ struct WishlistView: View {
     var body: some View {
         ZStack {
             Color.backGround.ignoresSafeArea()
-            if viewmodel.favorites.isEmpty {
-                emptyState
-            } else {
-                List {
-                    ForEach(viewmodel.favorites) { favorite in
-                        WishlistRowView(favorite: favorite)
-                            .contentShape(Rectangle())
-                            .onTapGesture { openDetail(favorite) }
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    favoritePendingDelete = favorite
-                                    showDeleteAlert = true
-                                } label: {
-                                    Label("Remove", systemImage: "trash")
-                                }
-                            }
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                    }
+            
+            VStack(spacing: 0) {
+                // Top App Bar
+                HStack {
+                    Text("Wishlist")
+                        .appTextStyle(.heading2, color: .appBlack)
+                    Spacer()
                 }
-                .listStyle(.plain)
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 8)
                 .background(Color.backGround)
-                .padding(.top, 8)
+
+                if viewmodel.favorites.isEmpty {
+                    emptyState
+                } else {
+                    List {
+                        ForEach(viewmodel.favorites) { favorite in
+                            WishlistRowView(favorite: favorite)
+                                .contentShape(Rectangle())
+                                .onTapGesture { openDetail(favorite) }
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        favoritePendingDelete = favorite
+                                        showDeleteAlert = true
+                                    } label: {
+                                        Label("Remove", systemImage: "trash")
+                                    }
+                                }
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                        }
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                    .background(Color.backGround)
+                }
             }
         }
-        .navigationTitle("Wishlist")
-        .navigationBarTitleDisplayMode(.inline)
         .alert("Remove from Wishlist?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) {
                 favoritePendingDelete = nil

@@ -22,6 +22,7 @@ final class BrandViewModel: ObservableObject {
     }
 
     func loadBrands() {
+        guard brands.isEmpty else { return }
         isLoading = true
         errorMessage = nil
 

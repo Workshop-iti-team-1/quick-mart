@@ -22,6 +22,7 @@ final class HomeViewModel: ObservableObject {
     }
 
     func loadHome() {
+        guard banners.isEmpty else { return }
         isLoading = true
         errorMessage = nil
         Task {
