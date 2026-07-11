@@ -21,9 +21,9 @@ struct HomeBrandsSection: View {
                         Button {
                             onBrandTap?(item)
                         } label: {
-                            BrandGridItemView(item: item)
+                            HomeBrandCell(item: item)
                         }
-                        .buttonStyle(.plain)  // Prevents default button dimming/coloring
+                        .buttonStyle(.plain)
                     }
                 }
             }

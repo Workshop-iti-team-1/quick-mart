@@ -52,16 +52,16 @@ struct AllBrandsView: View {
                     {
                         ForEach(0..<12, id: \.self) { _ in
                             // Mimics the exact layout of HomeBrandCell
-                            VStack(spacing: 8) {
+                            VStack(spacing: 12) {
                                 Circle()
                                     .fill(Color.shimmerBase)
-                                    .frame(width: 64, height: 64)
+                                    .frame(width: 100, height: 100)
 
                                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color.shimmerBase)
-                                    .frame(width: 70, height: 12)
+                                    .frame(width: 90, height: 16)
                             }
-                            .frame(height: 100) 
+                            .frame(height: 140) 
                         }
                     }
                     .padding(.horizontal, Layout.horizontalPadding)
@@ -90,7 +90,7 @@ struct AllBrandsView: View {
                         filters.selectedBrandIDs.insert(item.name)
                         router.switchTab(to: .search, with: filters)
                     } label: {
-                        BrandGridItemView(item: item)
+                        HomeBrandCell(item: item, size: 100)
                     }
                     .buttonStyle(.plain)
                 }
