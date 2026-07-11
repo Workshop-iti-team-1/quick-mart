@@ -29,14 +29,14 @@ struct OrderCardView: View {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "d MMM, yyyy"
                     Text(formatter.string(from: order.processedAt))
-                        .appTextStyle(.label, color: .gray)
+                        .appTextStyle(.label, color: .grey150)
                 }
             }
             
             HStack(alignment: .top, spacing: 12) {
                 // Image
                 ZStack {
-                    Color.gray.opacity(0.1)
+                    Color.grey100.opacity(0.3)
                     
                     if let imageUrl = item.imageURL, let url = URL(string: imageUrl) {
                         AsyncImage(url: url) { image in
@@ -46,7 +46,7 @@ struct OrderCardView: View {
                         }
                     } else {
                         Image(systemName: "photo")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.grey150)
                     }
                 }
                 .frame(width: 80, height: 80)
@@ -65,17 +65,17 @@ struct OrderCardView: View {
                         // Fake Stepper just to match UI
                         HStack(spacing: 16) {
                             Text("-")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.grey150)
                             
                             Text("\(item.quantity)")
                                 .appTextStyle(.body, color: .primary)
                             
                             Text("+")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.grey150)
                         }
                         .padding(.vertical, 6)
                         .padding(.horizontal, 12)
-                        .background(Color.gray.opacity(0.1))
+                        .background(Color.grey100.opacity(0.3))
                         .cornerRadius(8)
                         
                         Spacer()

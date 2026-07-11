@@ -70,13 +70,13 @@ struct CheckoutAddressCard: View {
                     .appTextStyle(.label, color: .appBlack)
 
                 Text(address.formattedAddress)
-                    .appTextStyle(.caption, color: .grayText)
+                    .appTextStyle(.caption, color: .grey150)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
 
                 if let phone = address.phone, !phone.isEmpty {
                     Text(phone)
-                        .appTextStyle(.caption, color: .grayText)
+                        .appTextStyle(.caption, color: .grey150)
                 }
             }
 
@@ -98,7 +98,7 @@ struct CheckoutAddressCard: View {
             }
 
             Text("No address selected. Tap Add to continue.")
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
 
             Spacer(minLength: 0)
         }
@@ -108,7 +108,7 @@ struct CheckoutAddressCard: View {
 
     private var cardBackground: some View {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
-            .fill(Color.appWhite)
+            .fill(Color.cardBackground)
             .shadow(
                 color: Color.appBlack.opacity(Layout.shadowOpacity),
                 radius: Layout.shadowRadius,

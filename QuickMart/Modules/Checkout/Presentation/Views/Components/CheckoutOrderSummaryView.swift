@@ -84,11 +84,11 @@ struct CheckoutOrderSummaryView: View {
 
                 if line.merchandise.title != "Default Title" {
                     Text(line.merchandise.title)
-                        .appTextStyle(.caption, color: .grayText)
+                        .appTextStyle(.caption, color: .grey150)
                 }
 
                 Text("Qty: \(line.quantity)")
-                    .appTextStyle(.caption, color: .grayText)
+                    .appTextStyle(.caption, color: .grey150)
             }
 
             Spacer(minLength: 0)
@@ -167,7 +167,7 @@ struct CheckoutOrderSummaryView: View {
     ) -> some View {
         HStack {
             Text(title)
-                .appTextStyle(titleStyle, color: .grayText)
+                .appTextStyle(titleStyle, color: .grey150)
             Spacer()
             Text(value)
                 .appTextStyle(valueStyle, color: .appBlack)
@@ -178,7 +178,7 @@ struct CheckoutOrderSummaryView: View {
 
     private var cardBackground: some View {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
-            .fill(Color.appWhite)
+            .fill(Color.cardBackground)
             .shadow(
                 color: Color.appBlack.opacity(Layout.shadowOpacity),
                 radius: Layout.shadowRadius,

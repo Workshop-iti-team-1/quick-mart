@@ -71,7 +71,7 @@ struct AIProductCard: View {
                 if isHighlighted {
                     Image(systemName: "sparkles")
                         .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.appWhite)
                         .padding(5)
                         .background(
                             LinearGradient(
@@ -94,7 +94,7 @@ struct AIProductCard: View {
 
             // MARK: Vendor
             Text(product.vendor)
-                .appTextStyle(.caption, color: .grayText)
+                .appTextStyle(.caption, color: .grey150)
                 .lineLimit(1)
 
             // MARK: Rating
@@ -103,7 +103,7 @@ struct AIProductCard: View {
                     .font(.system(size: 9))
                     .foregroundColor(.appYellow)
                 Text(String(format: "%.1f", product.rating))
-                    .appTextStyle(.caption, color: .grayText)
+                    .appTextStyle(.caption, color: .grey150)
                 Text("(\(product.reviewsCount))")
                     .font(.system(size: 10))
                     .foregroundColor(.grey150)

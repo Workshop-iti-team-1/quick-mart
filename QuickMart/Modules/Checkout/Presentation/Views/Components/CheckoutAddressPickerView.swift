@@ -122,13 +122,13 @@ struct CheckoutAddressPickerView: View {
                     }
 
                     Text(address.formattedAddress)
-                        .appTextStyle(.caption, color: .grayText)
+                        .appTextStyle(.caption, color: .grey150)
                         .lineLimit(2)
                         .fixedSize(horizontal: false, vertical: true)
 
                     if let phone = address.phone, !phone.isEmpty {
                         Text(phone)
-                            .appTextStyle(.caption, color: .grayText)
+                            .appTextStyle(.caption, color: .grey150)
                     }
                 }
 
@@ -154,7 +154,7 @@ struct CheckoutAddressPickerView: View {
             .padding(Layout.horizontalPad)
             .background(
                 RoundedRectangle(cornerRadius: Layout.cornerRadius)
-                    .fill(Color.appWhite)
+                    .fill(Color.cardBackground)
                     .shadow(
                         color: Color.appBlack.opacity(Layout.shadowOpacity),
                         radius: Layout.shadowRadius,
@@ -185,7 +185,7 @@ struct CheckoutAddressPickerView: View {
                 .appTextStyle(.heading2, color: .appBlack)
 
             Text("Add a shipping address to continue.")
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

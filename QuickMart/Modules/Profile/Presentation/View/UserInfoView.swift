@@ -19,6 +19,8 @@ struct UserInfoView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         ZStack(alignment: .top) {
             Color.backGround.ignoresSafeArea()
@@ -32,17 +34,19 @@ struct UserInfoView: View {
                             Image(uiImage: selectedImage)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 120, height: 120)
+                                .frame(width: 140, height: 140)
                                 .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                         } else if let urlString = viewModel.user.avatarImageURL, let url = URL(string: urlString) {
                             AsyncImage(url: url) { phase in
                                 switch phase {
                                 case .empty:
-                                    ProgressView().frame(width: 120, height: 120)
+                                    ProgressView().frame(width: 140, height: 140)
                                 case .success(let image):
                                     image.resizable().scaledToFill()
-                                        .frame(width: 120, height: 120)
+                                        .frame(width: 140, height: 140)
                                         .clipShape(Circle())
+                                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                                 case .failure:
                                     placeholderView
                                 @unknown default:
@@ -59,23 +63,31 @@ struct UserInfoView: View {
                             ZStack {
                                 Circle()
                                     .fill(Color.cyanPrimary)
-                                    .frame(width: 36, height: 36)
+                                    .frame(width: 40, height: 40)
+                                    .shadow(color: Color.cyanPrimary.opacity(0.4), radius: 6, x: 0, y: 3)
                                 Image(systemName: "camera.fill")
-                                    .font(.system(size: 16))
+                                    .font(.system(size: 18))
                                     .foregroundColor(.appWhite)
                             }
                         }
                         .offset(x: 4, y: 4)
                     }
-                    .padding(.top, 32)
+                    .padding(.top, 40)
                     
                     // User Info Section
-                    VStack(alignment: .leading, spacing: 20) {
-                        infoRow(title: AppStrings.UserInfo.name, value: viewModel.user.name ?? AppStrings.UserInfo.notSet)
-                        infoRow(title: AppStrings.UserInfo.email, value: viewModel.user.email ?? AppStrings.UserInfo.notSet)
+                    VStack(alignment: .leading, spacing: 0) {
+                        infoRow(title: AppStrings.UserInfo.name, value: viewModel.user.name ?? AppStrings.UserInfo.notSet, showDivider: true)
+                        infoRow(title: AppStrings.UserInfo.email, value: viewModel.user.email ?? AppStrings.UserInfo.notSet, showDivider: false)
                     }
+                    .background(Color.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.05), radius: 8, x: 0, y: 4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.grey100.opacity(colorScheme == .dark ? 0.1 : 0.4), lineWidth: 1)
+                    )
                     .padding(.horizontal, 24)
-                    .padding(.top, 16)
+                    .padding(.top, 24)
                     
                     Spacer()
                 }
@@ -95,8 +107,9 @@ struct UserInfoView: View {
         }
         .sheet(isPresented: $showActionSheet) {
             ImagePickerOptionsSheet(showImagePicker: $showImagePicker, sourceType: $sourceType)
-                .presentationDetents([.height(220)])
+                .presentationDetents([.height(240)])
                 .presentationDragIndicator(.visible)
+                .presentationCornerRadius(24)
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
@@ -110,23 +123,29 @@ struct UserInfoView: View {
     
     private var placeholderView: some View {
         Circle()
-            .fill(Color.gray.opacity(0.2))
-            .frame(width: 120, height: 120)
+            .fill(Color.grey50)
+            .frame(width: 140, height: 140)
+            .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
             .overlay(
                 Image(systemName: "person.fill")
                     .font(.system(size: 60))
-                    .foregroundColor(.gray)
+                    .foregroundColor(.grey150)
             )
     }
     
-    private func infoRow(title: String, value: String) -> some View {
+    private func infoRow(title: String, value: String, showDivider: Bool) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .appTextStyle(.caption, color: .gray)
+                .appTextStyle(.caption, color: .grayText)
             Text(value)
                 .appTextStyle(.body, color: .appBlack)
-            Divider()
+            if showDivider {
+                Divider().padding(.top, 4)
+            }
         }
+        .padding(.horizontal, 20)
+        .padding(.top, 16)
+        .padding(.bottom, showDivider ? 0 : 16)
     }
 }
 
@@ -165,7 +184,7 @@ struct ImagePickerOptionsSheet: View {
             VStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(Color.gray.opacity(0.1))
+                        .fill(Color.grey100.opacity(0.3))
                         .frame(width: 70, height: 70)
                     Image(systemName: icon)
                         .font(.system(size: 28))

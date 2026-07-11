@@ -447,7 +447,7 @@ struct OrderDetailView: View {
             .padding(Layout.horizontalPad)
             .background(
                 RoundedRectangle(cornerRadius: Layout.cornerRadius)
-                    .fill(Color.appWhite)
+                    .fill(Color.cardBackground)
                     .shadow(
                         color: Color.appBlack.opacity(Layout.shadowOpacity),
                         radius: Layout.shadowRadius,

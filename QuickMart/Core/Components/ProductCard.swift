@@ -12,48 +12,48 @@ struct ProductCard: View {
     @ObservedObject private var favouriteViewModel = FavouriteViewModel.shared
     @EnvironmentObject var currencyManager: CurrencyManagerService
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 0) {
+            // Top Image Section
             ZStack(alignment: .topTrailing) {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.grey50)
-                    .frame(height: 140)
-                    .overlay(
-                        Group {
-                            if item.isSystemImage {
-                                Image(systemName: item.imageName)
+                Color.grey50
+                
+                Group {
+                    if item.isSystemImage {
+                        Image(systemName: item.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .foregroundColor(.grey150)
+                    } else {
+                        AsyncImage(url: URL(string: item.imageName)) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            case .failure:
+                                Image(systemName: "photo")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80)
                                     .foregroundColor(.grey150)
-                            } else {
-                                AsyncImage(url: URL(string: item.imageName)) {
-                                    phase in
-                                    switch phase {
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 80)
-                                    case .failure:
-                                        Image(systemName: "photo")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 80)
-                                            .foregroundColor(.grey150)
-                                    case .empty:
-                                        // Asset Loading Shimmer
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .fill(Color.shimmerBase)
-                                            .frame(width: 80, height: 80)
-                                            .shimmer()
-                                    @unknown default:
-                                        EmptyView()
-                                    }
-                                }
+                            case .empty:
+                                // Asset Loading Shimmer
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 80, height: 80)
+                                    .shimmer()
+                            @unknown default:
+                                EmptyView()
                             }
                         }
-                    )
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
 
                 FavoriteButton(
                     isFavorite: .init(
@@ -71,44 +71,50 @@ struct ProductCard: View {
                 )
                 .padding(8)
             }
+            .frame(height: 160)
 
-            ColorSwatches(
-                colorNames: item.colorNames, totalCount: item.colorCount)
+            // Content Section
+            VStack(alignment: .leading, spacing: 8) {
+                ColorSwatches(
+                    colorNames: item.colorNames, totalCount: item.colorCount)
 
-            Text(item.name)
-                .appTextStyle(.label, color: .appBlack)
-                .lineLimit(1)
-
-            // MARK: - Price — keyed on selectedCurrency to force redraw
-            HStack(spacing: 6) {
-                Text(currencyManager.format(defultAppCurrency: item.price))
+                Text(item.name)
                     .appTextStyle(.label, color: .appBlack)
-                    .id("price-\(item.id)-\(currencyManager.selectedCurrency)")
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
 
-                if let originalPrice = originalPriceValue,
-                    originalPrice > item.price
-                {
-                    Text(
-                        currencyManager.format(defultAppCurrency: originalPrice)
-                    )
-                    .appTextStyle(.caption, color: .grayText)
-                    .strikethrough(true, color: .grayText)
-                    .id(
-                        "original-\(item.id)-\(currencyManager.selectedCurrency)"
-                    )
+                // Price Section
+                HStack(spacing: 6) {
+                    Text(currencyManager.format(defultAppCurrency: item.price))
+                        .appTextStyle(.heading3, color: .cyanPrimary)
+                        .id("price-\(item.id)-\(currencyManager.selectedCurrency)")
 
-                    let discount = Int(
-                        ((originalPrice - item.price) / originalPrice) * 100)
-                    Text("-\(discount)%")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 2)
-                        .background(Color.red)
-                        .cornerRadius(4)
+                    if let originalPrice = originalPriceValue, originalPrice > item.price {
+                        Text(currencyManager.format(defultAppCurrency: originalPrice))
+                            .appTextStyle(.caption, color: .grayText)
+                            .strikethrough(true, color: .grayText)
+                            .id("original-\(item.id)-\(currencyManager.selectedCurrency)")
+
+                        let discount = Int(((originalPrice - item.price) / originalPrice) * 100)
+                        Text("-\(discount)%")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.appWhite)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
+                            .background(Color.appRed)
+                            .cornerRadius(4)
+                    }
                 }
             }
+            .padding(12)
         }
+        .background(Color.cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.08), radius: 10, x: 0, y: 4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.grey100.opacity(colorScheme == .dark ? 0.1 : 0.4), lineWidth: 1)
+        )
     }
 
     private var originalPriceValue: Double? {

@@ -25,7 +25,7 @@ struct EmptyOrderView: View {
                     .appTextStyle(.heading2, color: .primary)
                 
                 Text(isCompleted ? AppStrings.Profile.noCompletedOrderDesc : AppStrings.Profile.noOngoingOrderDesc)
-                    .appTextStyle(.body, color: .gray)
+                    .appTextStyle(.body, color: .grey150)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }

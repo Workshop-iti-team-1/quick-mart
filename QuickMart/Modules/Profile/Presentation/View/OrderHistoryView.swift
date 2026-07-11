@@ -31,7 +31,7 @@ struct OrderHistoryView: View {
                                 .appTextStyle(
                                     .body,
                                     color: viewModel.selectedTab == tab
-                                        ? .appWhite
+                                        ? .backGround
                                         : .appBlack
                                 )
 
@@ -41,14 +41,14 @@ struct OrderHistoryView: View {
                                     .appTextStyle(
                                         .caption,
                                         color: viewModel.selectedTab == tab
-                                            ? .appWhite
+                                            ? .backGround
                                             : .grayText
                                     )
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 2)
                                     .background(
                                         viewModel.selectedTab == tab
-                                            ? Color.appWhite.opacity(0.25)
+                                            ? Color.backGround.opacity(0.25)
                                             : Color.grey100
                                     )
                                     .cornerRadius(10)
@@ -152,7 +152,7 @@ struct OrderHistoryView: View {
                                 }
                             }
                             .padding(16)
-                            .background(Color.appWhite)
+                            .background(Color.backGround)
                             .cornerRadius(16)
                             .shadow(
                                 color: Color.appBlack.opacity(0.02), radius: 5,

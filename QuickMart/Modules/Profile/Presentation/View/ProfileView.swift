@@ -13,6 +13,7 @@ struct ProfileView: View {
     @StateObject private var viewModel = DIContainer.shared
         .makeProfileViewModel()
     @State private var showLogoutAlert = false
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -94,7 +95,7 @@ struct ProfileView: View {
                             .appTextStyle(.button, color: .cyanPrimary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 18)
-                            .background(Color.appWhite)
+                            .background(Color.cardBackground)
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
@@ -115,26 +116,9 @@ struct ProfileView: View {
     private var loggedInView: some View {
         ScrollView(showsIndicators: false) {
             if viewModel.isLoading {
-                VStack(spacing: 0) {
-                    ProfileHeaderCardSkeleton()
-
-                    ForEach(0..<3, id: \.self) { _ in
-                        VStack(alignment: .leading, spacing: 12) {
-                            RoundedRectangle(cornerRadius: 4).fill(
-                                Color.shimmerBase
-                            ).frame(width: 100, height: 16)
-                            ForEach(0..<2, id: \.self) { _ in
-                                RoundedRectangle(cornerRadius: 8).fill(
-                                    Color.shimmerBase
-                                ).frame(height: 50)
-                            }
-                        }
-                        .padding(16)
-                    }
-                }
-                .padding(.top, 24)
-                .redacted(reason: .placeholder)
-                .shimmer()
+                ProfileHeaderCardSkeleton()
+                    .redacted(reason: .placeholder)
+                    .shimmer()
             } else if let user = viewModel.user {
                 ProfileHeaderCard(
                     user: user,
@@ -142,7 +126,7 @@ struct ProfileView: View {
                 )
             }
 
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 0) {
                 MenuSection(
                     title: AppStrings.Profile.personalInfo,
                     items: viewModel.personalItems, router: router)

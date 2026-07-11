@@ -23,6 +23,7 @@ final class CategoryViewModel: ObservableObject {
     }
 
     func loadCategories() {
+        guard categories.isEmpty else { return }
         isLoading = true
         errorMessage = nil
 

@@ -67,7 +67,7 @@ struct ComparisonView: View {
                 Text("Smart Comparison")
                     .appTextStyle(.label, color: .appBlack)
                 Text("Comparing \(viewModel.products.count) products side by side")
-                    .appTextStyle(.caption, color: .grayText)
+                    .appTextStyle(.caption, color: .grey150)
             }
             Spacer()
         }
@@ -100,7 +100,7 @@ struct ComparisonView: View {
     private var vsDivider: some View {
         Text("VS")
             .font(.system(size: 11, weight: .heavy, design: .rounded))
-            .foregroundColor(.white)
+            .foregroundColor(.appWhite)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             .background(

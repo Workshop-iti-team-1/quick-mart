@@ -14,10 +14,19 @@ struct HomeView: View {
     @StateObject private var categoryViewModel = DIContainer.shared.makeCategoryViewModel()
     @Environment(AppRouter.self) private var router
 
+    private var showSkeleton: Bool {
+        (viewModel.isLoading && viewModel.banners.isEmpty) ||
+        (brandViewModel.isLoading && brandViewModel.brands.isEmpty) ||
+        (categoryViewModel.isLoading && categoryViewModel.categories.isEmpty)
+    }
+
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 24) {
+            if showSkeleton {
+                HomeSkeletonView()
+            } else {
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 24) {
                     if !viewModel.banners.isEmpty {
                         AdBannerPager(items: viewModel.banners)
                     }
@@ -52,6 +61,7 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.backGround.ignoresSafeArea())
+            } // Close else block
 
             AIAssistantFAB {
                 router.push(.aiChat)
@@ -75,7 +85,7 @@ struct AIAssistantFAB: View {
         Button(action: action) {
             Image(systemName: "sparkles")
                 .font(.system(size: 22, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.appWhite)
                 .frame(width: 56, height: 56)
                 .background(Color.cyanPrimary)
                 .clipShape(Circle())

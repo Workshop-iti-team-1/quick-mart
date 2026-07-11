@@ -104,6 +104,7 @@ struct DiscountDetailSheet: View {
     let item: BannerItem
     @Binding var showCopied: Bool
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -195,7 +196,7 @@ struct DiscountDetailSheet: View {
                             }
                             .padding(.horizontal, 16)
                             .padding(.vertical, 14)
-                            .background(Color.grey50)
+                            .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.grey50)
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)

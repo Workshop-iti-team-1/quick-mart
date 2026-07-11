@@ -30,7 +30,7 @@ struct OnboardingBottomActionView: View {
             HStack(spacing: 8) {
                 ForEach(0..<items.count, id: \.self) { index in
                     Capsule()
-                        .fill(currentPage == index ? Color.cyanPrimary : Color.gray.opacity(0.5))
+                        .fill(currentPage == index ? Color.cyanPrimary : Color.grey150.opacity(0.5))
                         .frame(width: currentPage == index ? 24 : 8, height: 8)
                 }
             }

@@ -36,7 +36,7 @@ struct ProductImageHeader: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 100)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.grey150)
                             .frame(height: 380)
                             .frame(maxWidth: .infinity)
                             

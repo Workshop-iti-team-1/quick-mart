@@ -271,34 +271,40 @@ struct SearchView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: gridColumns, spacing: Layout.gridSpacing) {
                     ForEach(0..<6, id: \.self) { _ in
-                        // Mimics the exact layout and spacing of ProductCard
-                        VStack(alignment: .leading, spacing: 6) {  // Spacing MUST be 6 to match real card
-
-                            // 1. Fake Image Box (Exact 140 height)
-                            RoundedRectangle(cornerRadius: 12)
+                        // Mimics the exact layout and spacing of the NEW ProductCard
+                        VStack(alignment: .leading, spacing: 0) {
+                            // 1. Fake Image Box (Exact 160 height)
+                            RoundedRectangle(cornerRadius: 0)
                                 .fill(Color.shimmerBase)
-                                .frame(height: 140)
+                                .frame(height: 160)
 
-                            // 2. Fake Color Swatches (Exact 14 height, no extra padding)
-                            HStack(spacing: 4) {
-                                Circle().fill(Color.shimmerBase).frame(
-                                    width: 14, height: 14)
-                                Circle().fill(Color.shimmerBase).frame(
-                                    width: 14, height: 14)
-                                Circle().fill(Color.shimmerBase).frame(
-                                    width: 14, height: 14)
+                            // 2. Content Section
+                            VStack(alignment: .leading, spacing: 8) {
+                                // Fake Color Swatches
+                                HStack(spacing: 4) {
+                                    Circle().fill(Color.shimmerBase).frame(width: 14, height: 14)
+                                    Circle().fill(Color.shimmerBase).frame(width: 14, height: 14)
+                                    Circle().fill(Color.shimmerBase).frame(width: 14, height: 14)
+                                }
+
+                                // Fake Title (2 lines max in real card, so we'll just make a block)
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 110, height: 16)
+
+                                // Fake Price Row
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.shimmerBase)
+                                    .frame(width: 70, height: 20)
                             }
-
-                            // 3. Fake Title
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.shimmerBase)
-                                .frame(width: 110, height: 14)
-
-                            // 4. Fake Price Row
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.shimmerBase)
-                                .frame(width: 70, height: 14)
+                            .padding(12)
                         }
+                        .background(Color.cardBackground)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.grey100.opacity(0.5), lineWidth: 1)
+                        )
                     }
                 }
                 .padding(.horizontal, Layout.horizontalPad)

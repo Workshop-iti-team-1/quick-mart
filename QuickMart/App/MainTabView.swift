@@ -17,25 +17,30 @@ struct MainTabView: View {
         @Bindable var bindableRouter = router
         
         VStack(spacing: 0) {
-            Group {
-                //  Read selected tab from the router
-                switch router.selectedTab {
-                case .home:
-                    HomeView(viewModel: DIContainer.shared.makeHomeViewModel())
-                        .customToolbar(
-                            cartCount: viewModel.cartItemCount,
-                          
-                            onCart: { router.switchTab(to: .cart) }
-                        )
-                case .search:
-                    SearchView(viewModel: DIContainer.shared.makeSearchViewModel())
-                case .cart:
-                    CartView()
-                case .wishlist:
-                    WishlistView()
-                case .profile:
-                    ProfileView()
-                }
+            TabView(selection: $bindableRouter.selectedTab) {
+                HomeView(viewModel: DIContainer.shared.makeHomeViewModel())
+                    .customToolbar(
+                        cartCount: viewModel.cartItemCount,
+                        onCart: { router.switchTab(to: .cart) }
+                    )
+                    .tag(TabItem.home)
+                    .toolbar(.hidden, for: .tabBar)
+
+                SearchView(viewModel: DIContainer.shared.makeSearchViewModel())
+                    .tag(TabItem.search)
+                    .toolbar(.hidden, for: .tabBar)
+
+                CartView()
+                    .tag(TabItem.cart)
+                    .toolbar(.hidden, for: .tabBar)
+
+                WishlistView()
+                    .tag(TabItem.wishlist)
+                    .toolbar(.hidden, for: .tabBar)
+
+                ProfileView()
+                    .tag(TabItem.profile)
+                    .toolbar(.hidden, for: .tabBar)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 

@@ -27,7 +27,7 @@ DerivedData/
 *.hmap
 *.ipa
 *.xcuserstate
-
+*.agents/
 # ========================================
 # Swift Package Manager
 # ========================================

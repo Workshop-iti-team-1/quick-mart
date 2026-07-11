@@ -19,7 +19,7 @@ struct CartItemRowView: View {
         HStack(alignment: .top, spacing: 12) {
             // Image
             ZStack {
-                Color.gray.opacity(0.1)
+                Color.grey100.opacity(0.3)
 
                 if let imageUrl = item.merchandise.imageURL,
                     let url = URL(string: imageUrl)
@@ -35,7 +35,7 @@ struct CartItemRowView: View {
                     }
                 } else {
                     Image(systemName: "photo")
-                        .foregroundColor(.gray)
+                        .foregroundColor(.grey150)
                 }
             }
             .frame(width: 80, height: 80)
@@ -53,7 +53,7 @@ struct CartItemRowView: View {
                 }
 
                 Text(item.merchandise.title)  // Variant title
-                    .appTextStyle(.body, color: .gray)
+                    .appTextStyle(.body, color: .grey150)
                     .font(.system(size: 12))
 
                 Text(
@@ -71,7 +71,7 @@ struct CartItemRowView: View {
                                 defultAppCurrency: comparePrice)
                         )
                         .strikethrough()
-                        .appTextStyle(.body, color: .gray)
+                        .appTextStyle(.body, color: .grey150)
                         .font(.system(size: 12))
 
                         let discount = Int(
@@ -79,10 +79,10 @@ struct CartItemRowView: View {
                                 / comparePrice) * 100)
                         Text("-\(discount)%")
                             .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.appWhite)
                             .padding(.horizontal, 4)
                             .padding(.vertical, 2)
-                            .background(Color.red)
+                            .background(Color.appRed)
                             .cornerRadius(4)
                     }
                 }
@@ -105,7 +105,7 @@ struct CartItemRowView: View {
                     }
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
-                    .background(Color.gray.opacity(0.1))
+                    .background(Color.grey100.opacity(0.3))
                     .cornerRadius(8)
 
                     Spacer()
@@ -113,7 +113,7 @@ struct CartItemRowView: View {
                     // Delete Button
                     Button(action: onDelete) {
                         Image(systemName: "trash")
-                            .foregroundColor(.red)
+                            .foregroundColor(.appRed)
                             .padding(8)
                     }
                 }
