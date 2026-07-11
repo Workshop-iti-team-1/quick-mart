@@ -102,7 +102,7 @@ struct ImageSearchView: View {
                         Text("Change photo")
                             .font(.system(size: 12, weight: .medium))
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(.appWhite)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(.ultraThinMaterial)
@@ -116,7 +116,7 @@ struct ImageSearchView: View {
                         .foregroundColor(.cyanPrimary)
 
                     Text("Tap to choose a photo")
-                        .appTextStyle(.label, color: .grayText)
+                        .appTextStyle(.label, color: .grey150)
                     Text("We'll find matching products")
                         .appTextStyle(.caption, color: .grey150)
                 }
@@ -144,7 +144,7 @@ struct ImageSearchView: View {
                     .foregroundColor(.cyanPrimary)
             }
             Text(message)
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
             Spacer()
         }
         .padding(14)

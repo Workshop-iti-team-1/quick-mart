@@ -68,7 +68,7 @@ struct LoginView: View {
                 .appTextStyle(.heading1, color: .primary)
             HStack(spacing: 4) {
                 Text(AppStrings.Auth.dontHaveAccount)
-                    .appTextStyle(.body, color: .gray)
+                    .appTextStyle(.body, color: .grey150)
                 Button(AppStrings.Auth.signup) {
                     router.popToRoot()
                     router.push(.signup)
@@ -115,7 +115,7 @@ struct LoginView: View {
                     .appTextStyle(.button, color: .cyanPrimary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 18)
-                    .background(Color.appWhite)
+                    .background(Color.cardBackground)
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
@@ -155,7 +155,7 @@ struct LoginView: View {
 
     private var termsAttributedString: AttributedString {
         var prefix = AttributedString("\(AppStrings.Auth.termsPrefix) ")
-        prefix.foregroundColor = .gray
+        prefix.foregroundColor = .grey150
 
         var privacy = AttributedString(AppStrings.Auth.privacyPolicy)
         privacy.foregroundColor = .cyanPrimary
@@ -163,7 +163,7 @@ struct LoginView: View {
         privacy.link = URL(string: "app://privacy")
 
         var and = AttributedString(" \(AppStrings.Auth.and) ")
-        and.foregroundColor = .gray
+        and.foregroundColor = .grey150
 
         let termsText = AppStrings.Auth.termsConditions
             .replacingOccurrences(of: " ", with: "\u{00A0}")
@@ -173,7 +173,7 @@ struct LoginView: View {
         terms.link = URL(string: "app://terms")
 
         var period = AttributedString(".")
-        period.foregroundColor = .gray
+        period.foregroundColor = .grey150
 
         return prefix + privacy + and + terms + period
     }

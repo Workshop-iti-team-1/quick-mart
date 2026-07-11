@@ -44,7 +44,7 @@ struct ComparisonPickerView: View {
                         // Selection hint
                         HStack {
                             Text("Select up to 2 items to compare")
-                                .appTextStyle(.caption, color: .grayText)
+                                .appTextStyle(.caption, color: .grey150)
                             Spacer()
                             Text("\(selectedIDs.count)/2 selected")
                                 .appTextStyle(.caption, color: .cyanPrimary)
@@ -170,7 +170,7 @@ struct ComparisonPickerView: View {
                             .overlay(
                                 Image(systemName: "checkmark")
                                     .font(.system(size: 11, weight: .bold))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.appWhite)
                             )
                             .transition(.scale.combined(with: .opacity))
                     }
@@ -200,7 +200,7 @@ struct ComparisonPickerView: View {
             Text("No items to compare")
                 .appTextStyle(.label, color: .appBlack)
             Text("Add a few items to your wishlist first to compare them.")
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
             Spacer()

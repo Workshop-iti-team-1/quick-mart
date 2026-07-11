@@ -95,7 +95,7 @@ struct ProfileView: View {
                             .appTextStyle(.button, color: .cyanPrimary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 18)
-                            .background(Color.appWhite)
+                            .background(Color.cardBackground)
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)

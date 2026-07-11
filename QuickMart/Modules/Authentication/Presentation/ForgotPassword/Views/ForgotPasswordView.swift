@@ -28,7 +28,7 @@ struct ForgotPasswordView: View {
                         Text(AppStrings.Auth.forgotPasswordTitle)
                             .appTextStyle(.heading1, color: .primary)
                         Text(AppStrings.Auth.forgotPasswordSubtitle)
-                            .appTextStyle(.body, color: .gray)
+                            .appTextStyle(.body, color: .grey150)
                             .padding(.top, 4)
                     }
 

@@ -29,7 +29,7 @@ struct FavoriteButton: View {
                 .foregroundColor(isFavorite ? .cyanPrimary : .grey150)
                 .font(.system(size: 18, weight: .medium))
                 .padding(6)
-                .background(Color.appWhite)
+                .background(Color.cardBackground)
                 .clipShape(Circle())
                 .shadow(color: .black.opacity(0.08), radius: 4, x: 0, y: 2)
         }

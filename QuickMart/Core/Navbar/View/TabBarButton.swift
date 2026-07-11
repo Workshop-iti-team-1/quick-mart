@@ -25,7 +25,7 @@ struct TabBarButton: View {
                             if tab == .cart && cartCount > 0 {
                                 Text("\(cartCount)")
                                     .font(.system(size: 10, weight: .bold))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.appWhite)
                                     .padding(.horizontal, 4)
                                     .padding(.vertical, 2)
                                     .frame(minWidth: 16, minHeight: 16)

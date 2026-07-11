@@ -140,7 +140,7 @@ struct ChatView: View {
                 Button(action: viewModel.sendMessage) {
                     Image(systemName: "arrow.up")
                         .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.appWhite)
                         .frame(width: 36, height: 36)
                         .background(
                             canSend
@@ -192,7 +192,7 @@ struct ChatBubbleView: View {
 
             // Bubble
             Text(message.text)
-                .appTextStyle(.body, color: isUser ? .white : .appBlack)
+                .appTextStyle(.body, color: isUser ? .appWhite : .appBlack)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 10)
                 .background(

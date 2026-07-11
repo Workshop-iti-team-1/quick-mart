@@ -73,7 +73,7 @@ struct ProductDetailsSkeletonView: View {
                     }
                 }
                 .padding(24)
-                .background(Color.appWhite)
+                .background(Color.cardBackground)
                 .cornerRadius(24, corners: [.topLeft, .topRight])
                 .padding(.top, -24)
             }

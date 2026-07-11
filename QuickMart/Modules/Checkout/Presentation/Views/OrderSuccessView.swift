@@ -45,7 +45,7 @@ struct OrderSuccessView: View {
                 Text(
                     "Thank you for choosing us! Feel free to continue\nshopping and explore our wide range of products.\nHappy Shopping!"
                 )
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 32)
 
@@ -116,7 +116,7 @@ struct OrderSuccessView: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.appWhite)
+                .fill(Color.cardBackground)
                 .shadow(
                     color: Color.appBlack.opacity(0.06),
                     radius: 4,
@@ -133,7 +133,7 @@ struct OrderSuccessView: View {
     ) -> some View {
         HStack {
             Text(title)
-                .appTextStyle(.body, color: .grayText)
+                .appTextStyle(.body, color: .grey150)
             Spacer()
             Text(value)
                 .appTextStyle(.label, color: valueColor)

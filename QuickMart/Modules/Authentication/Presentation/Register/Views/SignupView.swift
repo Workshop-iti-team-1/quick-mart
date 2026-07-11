@@ -28,7 +28,7 @@ struct SignupView: View {
                             .appTextStyle(.heading1, color: .primary)
                         HStack(spacing: 4) {
                             Text(AppStrings.Auth.alreadyHaveAccount)
-                                .appTextStyle(.body, color: .gray)
+                                .appTextStyle(.body, color: .grey150)
                             Button(AppStrings.Auth.login) {
                                 router.popToRoot()
                                 router.push(.login)

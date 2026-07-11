@@ -150,7 +150,7 @@ struct ProductDetailsView: View {
         VStack {
             Spacer()
             Text("Error: \(message)")
-                .foregroundColor(.red)
+                .foregroundColor(.appRed)
                 .padding()
             Button("Retry") {
                 viewModel.loadProduct()
@@ -166,7 +166,7 @@ struct BadgeView: View {
 
     var body: some View {
         Text(text)
-            .appTextStyle(.label, color: .white)
+            .appTextStyle(.label, color: .appWhite)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .background(color)

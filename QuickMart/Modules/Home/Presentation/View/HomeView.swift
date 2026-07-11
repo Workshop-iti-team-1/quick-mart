@@ -85,7 +85,7 @@ struct AIAssistantFAB: View {
         Button(action: action) {
             Image(systemName: "sparkles")
                 .font(.system(size: 22, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.appWhite)
                 .frame(width: 56, height: 56)
                 .background(Color.cyanPrimary)
                 .clipShape(Circle())

@@ -184,7 +184,7 @@ struct ImagePickerOptionsSheet: View {
             VStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(Color.gray.opacity(0.1))
+                        .fill(Color.grey100.opacity(0.3))
                         .frame(width: 70, height: 70)
                     Image(systemName: icon)
                         .font(.system(size: 28))

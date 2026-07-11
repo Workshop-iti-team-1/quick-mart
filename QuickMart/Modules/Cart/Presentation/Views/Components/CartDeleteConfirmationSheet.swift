@@ -15,7 +15,7 @@ struct CartDeleteConfirmationSheet: View {
     var body: some View {
         VStack(spacing: 32) {
             Capsule()
-                .fill(Color.gray.opacity(0.3))
+                .fill(Color.grey150.opacity(0.3))
                 .frame(width: 40, height: 4)
                 .padding(.top, 16)
             

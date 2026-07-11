@@ -60,7 +60,7 @@ struct PaymentMethodSectionView: View {
                 Text(method.rawValue)
                     .appTextStyle(
                         .label,
-                        color: isSelected ? .appBlack : .grayText
+                        color: isSelected ? .appBlack : .grey150
                     )
 
                 Spacer(minLength: 0)
@@ -85,7 +85,7 @@ struct PaymentMethodSectionView: View {
             .padding(Layout.padding)
             .background(
                 RoundedRectangle(cornerRadius: Layout.cornerRadius)
-                    .fill(Color.appWhite)
+                    .fill(Color.cardBackground)
                     .shadow(
                         color: Color.appBlack.opacity(Layout.shadowOpacity),
                         radius: Layout.shadowRadius,

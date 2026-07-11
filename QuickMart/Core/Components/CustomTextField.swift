@@ -25,7 +25,7 @@ struct CustomTextField: View {
                     .appTextStyle(.label, color: .primary)
                 if isRequired {
                     Text(" *")
-                        .appTextStyle(.label, color: .red)
+                        .appTextStyle(.label, color: .appRed)
                 }
             }
 
@@ -42,7 +42,7 @@ struct CustomTextField: View {
                 if isSecure {
                     Button(action: { isPasswordVisible.toggle() }) {
                         Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color.grey150)
                     }
                 }
             }
@@ -51,7 +51,7 @@ struct CustomTextField: View {
             .background(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(
-                        isFocused ? Color.cyanPrimary : Color.gray.opacity(0.3),
+                        isFocused ? Color.cyanPrimary : Color.grey150.opacity(0.3),
                         lineWidth: 1.5
                     )
             )

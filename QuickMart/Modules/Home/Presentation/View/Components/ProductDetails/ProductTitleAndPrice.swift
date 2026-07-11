@@ -35,10 +35,10 @@ struct ProductTitleAndPrice: View {
                         let discount = Int(((originalPrice - product.minPrice) / originalPrice) * 100)
                         Text("-\(discount)%")
                             .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.appWhite)
                             .padding(.horizontal, 4)
                             .padding(.vertical, 2)
-                            .background(Color.red)
+                            .background(Color.appRed)
                             .cornerRadius(4)
                     }
                 }
